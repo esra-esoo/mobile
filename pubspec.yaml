@@ -1,0 +1,70 @@
+name: huayati
+description: jbank mobile app.
+
+# The following line prevents the package from being accidentally published to
+# pub.dev using `pub publish`. This is preferred for private packages.
+publish_to: 'none' # Remove this line if you wish to publish to pub.dev
+
+version: 1.0.0+1
+
+environment:
+  sdk: ">=2.7.0 <3.0.0"
+
+dependencies:
+  flutter:
+    sdk: flutter
+
+
+  # The following adds the Cupertino Icons font to your application.
+  # Use with the CupertinoIcons class for iOS style icons.
+  cupertino_icons: ^1.0.0
+  dio: ^3.0.10
+  provider: ^4.3.2+3
+  get_it: ^5.0.3
+  simple_animations: ^2.4.2
+  flutter_staggered_animations: ^0.1.2
+  flutter_screenutil: ^4.0.2+2
+  json_annotation: ^3.1.1
+  flutter_secure_storage: ^3.3.5
+  flutter_platform_widgets: ^0.60.1
+  stacked: ^1.9.2
+  stacked_hooks: ^0.1.3
+  flutter_hooks:
+  responsive_builder: ^0.3.0
+  auto_route: ^0.6.9
+  get: ^3.24.0
+  badges: ^1.1.6
+  flutter_spinkit: ^4.1.2+1
+  pin_code_fields: ^6.1.0
+
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  json_serializable:
+  build_runner:
+  stacked_generator: ^0.2.0
+  auto_route_generator:
+# For information on the generic Dart part of this file, see the
+# following page: https://dart.dev/tools/pub/pubspec
+
+# The following section is specific to Flutter.
+flutter:
+
+  # The following line ensures that the Material Icons font is
+  # included with your application, so that you can use the icons in
+  # the material Icons class.
+  uses-material-design: true
+
+  assets:
+    - assets/
+    - assets/images/
+
+
+  fonts:
+    - family: Cairo
+      fonts:
+        - asset: assets/fonts/Cairo-Black.ttf
+        - asset: assets/fonts/Cairo-Bold.ttf
+        - asset: assets/fonts/Cairo-Light.ttf
+        - asset: assets/fonts/Cairo-Regular.ttf
