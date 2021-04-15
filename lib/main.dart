@@ -36,6 +36,7 @@ class MyApp extends StatelessWidget {
             accentColor: Colors.white,
             splashColor: kcolorPrimaryBlue,
             visualDensity: VisualDensity.adaptivePlatformDensity,
+            fontFamily: 'Cairo',
           ),
           initialRoute: Routes.splashScreenView,
           onGenerateRoute: Router().onGenerateRoute,
