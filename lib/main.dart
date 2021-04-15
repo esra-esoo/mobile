@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart' hide Router;
 import 'package:flutter/services.dart';
+import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'app/app_config.dart';
 import 'app/locator.dart';
@@ -38,6 +39,13 @@ class MyApp extends StatelessWidget {
             visualDensity: VisualDensity.adaptivePlatformDensity,
             fontFamily: 'Cairo',
           ),
+          localizationsDelegates: [
+            GlobalMaterialLocalizations.delegate,
+            GlobalWidgetsLocalizations.delegate,
+            GlobalCupertinoLocalizations.delegate,
+          ],
+          supportedLocales: [const Locale('ar'), const Locale('en')],
+          locale: const Locale("LY"),
           initialRoute: Routes.splashScreenView,
           onGenerateRoute: Router().onGenerateRoute,
           navigatorKey: locator<NavigationService>().navigatorKey,

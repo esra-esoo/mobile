@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
 import 'package:flutter/services.dart';
 import 'package:huayati/app/locator.dart';
+import 'package:huayati/ui/widgets/bottom_navigation_bar.dart';
 import 'package:stacked/stacked.dart';
 
 import 'startup_viewmodel.dart';
@@ -48,7 +49,10 @@ class StartUpView extends StatelessWidget {
               },
               child: getViewForIndex(model.currentIndex, context),
             ),
-            bottomNavigationBar: Container(),
+            bottomNavigationBar: AppBottomNavigationBar(
+              currentIndex: model.currentIndex,
+              onTap: model.setIndex,
+            ),
           );
         });
   }
