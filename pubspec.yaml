@@ -36,6 +36,8 @@ dependencies:
   badges: ^1.1.6
   flutter_spinkit: ^4.1.2+1
   pin_code_fields: ^6.1.0
+  shimmer: ^1.1.2
+  animations: ^1.1.2
 
 
 dev_dependencies:
