@@ -60,7 +60,7 @@ android {
         dev {
             dimension "default"
             applicationIdSuffix ".dev"
-            resValue "string", "app_name", "huayatiDev"
+            resValue "string", "app_name", "هويتي.dev"
         }
         prod {
             dimension "default"
