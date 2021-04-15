@@ -1,4 +1,4 @@
-package ly.jbank.huayati.app.huayati
+package ly.jbank.huayati.app
 
 import io.flutter.embedding.android.FlutterActivity
 
