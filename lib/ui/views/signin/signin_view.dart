@@ -4,6 +4,7 @@ import 'package:huayati/ui/widgets/botton_padding.dart';
 import 'package:huayati/ui/widgets/busy_overlay.dart';
 import 'package:huayati/ui/widgets/form/bottom_submit_button.dart';
 import 'package:huayati/ui/widgets/form/link_button.dart';
+import 'package:huayati/ui/widgets/form/password_field.dart';
 import 'package:huayati/ui/widgets/full_logo.dart';
 import 'package:responsive_builder/responsive_builder.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -71,23 +72,39 @@ class SignInView extends StatelessWidget with $SignInView {
                           child: Column(
                             crossAxisAlignment: CrossAxisAlignment.stretch,
                             children: [
-                              // FormTitle(
-                              //   title: 'تسجيل دخول',
-                              // ),
-                              // SizedBox(height: 30.h),
-                              SizedBox(height: 25.h),
+                              SizedBox(height: 30.h),
+                              TextFormField(
+                                cursorColor: kcolorPrimaryBlue,
+                                controller: phoneController,
+                                keyboardType: TextInputType.number,
+                                textInputAction: TextInputAction.next,
+                                autocorrect: false,
+                                maxLength: 9,
+                                style: textFormFieldStyle,
+                                decoration: kformFieldInputDecoration.copyWith(
+                                  hintText: '9xxxxxxxx',
+                                  labelText: 'رقم الهاتف *',
+                                ),
+                              ),
+                              SizedBox(height: 40.h),
+                              PasswordFormField(
+                                controller: passwordController,
+                                onFieldSubmitted: (_) => viewModel.saveData(),
+                              ),
+                              SizedBox(height: 20.h),
                               LinkButton(
                                 label: 'نسيت كلمة المرور ؟',
                                 onTap: () => viewModel.recoverPassword(),
                               ),
-                              SizedBox(height: 40.h),
-                              LinkButton(
-                                label: 'سجلت ولم تصلني رسالة ؟',
-                                onTap: () => viewModel.navigateToSignUpScreen(),
-                              ),
-                              SizedBox(height: 20.h),
+                              SizedBox(height: 60.h),
+                              // LinkButton(
+                              //   label: 'سجلت ولم تصلني رسالة ؟',
+                              //   onTap: () => viewModel.navigateToSignUpScreen(),
+                              // ),
+                              // SizedBox(height: 20.h),
                               LinkButton(
                                 label: 'إنشاء حساب جديد',
+                                bold: true,
                                 onTap: () => viewModel.navigateToSignUpScreen(),
                               ),
                               const BottomPadding(),

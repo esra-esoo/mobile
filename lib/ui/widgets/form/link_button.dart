@@ -5,11 +5,14 @@ class LinkButton extends StatelessWidget {
   final String label;
   final Function onTap;
   final Alignment alignment;
+
+  final bool bold;
   const LinkButton({
     Key key,
     @required this.onTap,
     @required this.label,
     this.alignment = Alignment.centerRight,
+    this.bold = false,
   }) : super(key: key);
 
   @override
@@ -22,6 +25,7 @@ class LinkButton extends StatelessWidget {
           label,
           style: TextStyle(
             color: Colors.white,
+            fontWeight: bold ? FontWeight.bold : FontWeight.normal,
             fontSize: getValueForScreenType<double>(
               context: context,
               mobile: 18,

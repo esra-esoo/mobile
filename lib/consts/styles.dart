@@ -18,3 +18,30 @@ const kMaterialColor = MaterialColor(
     900: Color(0xFF124067),
   },
 );
+
+const textFormFieldStyle = TextStyle(color: kcolorPrimaryBlue);
+const kformFieldInputDecoration = InputDecoration(
+  focusedBorder: OutlineInputBorder(
+    borderRadius: const BorderRadius.all(
+      const Radius.circular(15.0),
+    ),
+  ),
+  disabledBorder: OutlineInputBorder(
+    borderRadius: const BorderRadius.all(
+      const Radius.circular(20.0),
+    ),
+  ),
+  enabledBorder: OutlineInputBorder(
+    borderRadius: const BorderRadius.all(
+      const Radius.circular(20.0),
+    ),
+    borderSide: BorderSide(color: Colors.white, width: 2.0),
+  ),
+  fillColor: Colors.white,
+  filled: true,
+  hintStyle: TextStyle(color: Colors.grey),
+  labelStyle: TextStyle(color: kcolorPrimaryBlue),
+  floatingLabelBehavior: FloatingLabelBehavior.never,
+  isDense: true,
+  counterText: '',
+);
