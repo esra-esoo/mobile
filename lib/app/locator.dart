@@ -5,6 +5,7 @@ import 'package:huayati/services/third_party/navigation_service.dart';
 import 'package:huayati/services/third_party/picker_services.dart';
 import 'package:huayati/services/third_party/secure_storage_service.dart';
 import 'package:huayati/services/third_party/snackbar_service.dart';
+import 'package:huayati/ui/views/home/home_viewmodel.dart';
 import 'package:huayati/ui/views/startup/startup_viewmodel.dart';
 
 GetIt locator = GetIt.instance;
@@ -23,5 +24,5 @@ void setupLocator({@required String endpoint}) {
 
   //////////////////////////////////////////////////////////////////////////
   locator.registerLazySingleton(() => StartUpViewModel());
-  // locator.registerSingleton(HomeViewModel());
+  locator.registerSingleton(HomeViewModel());
 }

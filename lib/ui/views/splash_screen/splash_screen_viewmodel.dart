@@ -7,9 +7,12 @@ class SplashScreenViewModel extends BaseViewModel {
   final _navigationService = locator<NavigationService>();
 
   Future<void> initializeView() async {
+    bool userLoggedIn = false;
     await Future.delayed(
       const Duration(seconds: 2),
-      () => _navigationService.pushNamedAndRemoveUntil(Routes.startUpView),
+      () => _navigationService.pushNamedAndRemoveUntil(
+        userLoggedIn ? Routes.startUpView : Routes.signInView,
+      ),
     );
   }
 }

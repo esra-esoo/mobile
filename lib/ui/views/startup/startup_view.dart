@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
 import 'package:flutter/services.dart';
 import 'package:huayati/app/locator.dart';
+import 'package:huayati/ui/views/home/home_view.dart';
 import 'package:huayati/ui/widgets/bottom_navigation_bar.dart';
 import 'package:stacked/stacked.dart';
 
@@ -59,10 +60,11 @@ class StartUpView extends StatelessWidget {
 
   Widget getViewForIndex(int index, BuildContext context) {
     switch (index) {
+      case 0:
+        return HomeView();
+        break;
       default:
-        return Container(
-          child: Text('home'),
-        );
+        return HomeView();
     }
   }
 }

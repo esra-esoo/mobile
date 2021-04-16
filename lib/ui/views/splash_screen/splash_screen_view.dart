@@ -3,10 +3,11 @@ import 'package:flutter/services.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:huayati/consts/styles.dart';
 import 'package:huayati/ui/animations/fade_animation.dart';
-import 'package:huayati/ui/animations/fade_left_animation.dart';
+import 'package:huayati/ui/animations/fade_bottom_animation.dart';
 import 'package:huayati/ui/animations/scale_animation.dart';
+import 'package:huayati/ui/widgets/full_logo.dart';
 import 'package:huayati/ui/widgets/jbank_logo.dart';
-import 'package:huayati/ui/widgets/white_logo.dart';
+import 'package:huayati/ui/widgets/loading_indicator.dart';
 import 'package:responsive_builder/responsive_builder.dart';
 import 'package:stacked/stacked.dart';
 
@@ -35,23 +36,18 @@ class SplashScreenView extends StatelessWidget {
                 order: 1,
                 curve: Curves.fastOutSlowIn,
                 duration: 400,
-                child: WhiteLogo(height: 220.w),
-              ),
-              FadeAnimation(
-                order: 1.4,
-                child: Text(
-                  'تطبيق هويتي',
-                  style: TextStyle(
-                    color: Colors.white,
-                    fontSize: 22.sp,
-                    fontWeight: FontWeight.w700,
-                  ),
-                ),
+                child: Hero(tag: 'logo', child: FullLogo(height: 220.w)),
               ),
               const Spacer(),
-              FadeFromLeftAnimation(
+              // SizedBox(
+              //   width: MediaQuery.of(context).size.width / 3,
+              //   child: const LinearProgressIndicator(
+              //     backgroundColor: kcolorBluelight,
+              //   ),
+              // ),
+              FadeFromBottomAnimation(
                 duration: 300,
-                order: 1.9,
+                order: 1.5,
                 child: SafeArea(
                   minimum: EdgeInsets.only(
                     top: getValueForScreenType<double>(
