@@ -2,7 +2,6 @@ import 'package:flutter/material.dart' hide Router;
 import 'package:flutter/services.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:huayati/ui/views/startup/startup_view.dart';
 import 'app/app_config.dart';
 import 'app/locator.dart';
 
@@ -50,7 +49,7 @@ class MyApp extends StatelessWidget {
           initialRoute: Routes.splashScreenView,
           onGenerateRoute: Router().onGenerateRoute,
           navigatorKey: locator<NavigationService>().navigatorKey,
-          home: StartUpView(),
+          home: SplashScreenView(),
         );
       },
     );
