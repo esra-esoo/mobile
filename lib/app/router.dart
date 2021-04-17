@@ -1,5 +1,6 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:auto_route/auto_route_annotations.dart';
+import 'package:huayati/ui/views/otp/otp_view.dart';
 import 'package:huayati/ui/views/signin/signin_view.dart';
 import 'package:huayati/ui/views/signup/signup_view.dart';
 import 'package:huayati/ui/views/splash_screen/splash_screen_view.dart';
@@ -20,5 +21,6 @@ import 'package:huayati/ui/views/startup/startup_view.dart';
     page: SignUpView,
     transitionsBuilder: TransitionsBuilders.fadeIn,
   ),
+  AdaptiveRoute(page: OtpView, fullscreenDialog: true),
 ])
 class $Router {}

@@ -1,0 +1,41 @@
+import 'package:flutter/material.dart';
+import 'package:responsive_builder/responsive_builder.dart';
+
+class ResendButton extends StatelessWidget {
+  final Function onTap;
+  const ResendButton({this.onTap});
+
+  @override
+  Widget build(BuildContext context) {
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.center,
+      children: <Widget>[
+        Text(
+          'لم يصلك رمز التحقق ؟',
+          style: TextStyle(
+            color: Colors.white,
+            fontSize: getValueForScreenType<double>(
+              context: context,
+              mobile: 14,
+              tablet: 15,
+            ),
+          ),
+          textAlign: TextAlign.center,
+        ),
+        const SizedBox(width: 8),
+        InkWell(
+          onTap: onTap,
+          child: Text(
+            'إعاة إسال',
+            style: TextStyle(
+              color: Colors.white,
+              fontSize: 16,
+              fontWeight: FontWeight.bold,
+            ),
+            textAlign: TextAlign.center,
+          ),
+        ),
+      ],
+    );
+  }
+}

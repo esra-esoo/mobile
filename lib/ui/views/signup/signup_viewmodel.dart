@@ -14,23 +14,28 @@ class SignUpViewModel extends FormViewModel {
   List<String> _accountTypes = ['شركة', 'فرد'];
   List<String> get accountTypes => _accountTypes;
 
+  String _selectedType;
+  String get selectedType => _selectedType;
+
   @override
   void setFormStatus() {}
 
   Future saveData() async {
-    if ((phoneValue?.isEmpty ?? true) || (passwordValue?.isEmpty ?? true)) {
+    if ((phoneValue?.isEmpty ?? true)) {
       _snackbarService.showTopErrorSnackbar(
         message: 'يرجى ملء كافة الحقول المطلوبة (*)',
       );
-    } else if (phoneValue.isValidPhonenumber) {
+    } else if (!phoneValue.isValidPhonenumber) {
       _snackbarService.showTopErrorSnackbar(
         message: 'رقم الهاتف يجب ان يكون بصيغة (9xxxxxxxx)',
       );
-    } else if (emailValue != null && !EmailValidator.validate(emailValue)) {
+    } else if (emailValue != null &&
+        emailValue.length > 0 &&
+        !EmailValidator.validate(emailValue)) {
       _snackbarService.showTopErrorSnackbar(
         message: 'البريد الالكتروني غير صحيح !',
       );
-    } else if (_selectedType = null) {
+    } else if (_selectedType == null) {
       _snackbarService.showTopErrorSnackbar(
         message: 'يجب أختيار نوع المستخدم !',
       );
@@ -55,9 +60,6 @@ class SignUpViewModel extends FormViewModel {
       Routes.signInView,
     );
   }
-
-  String _selectedType;
-  String get selectedType => _selectedType;
 
   void onAccountTypeChanged(String value) {
     _selectedType = value;

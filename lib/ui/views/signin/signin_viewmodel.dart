@@ -14,11 +14,13 @@ class SignInViewModel extends FormViewModel {
   void setFormStatus() {}
 
   Future saveData() async {
+    print(phoneValue);
+    print(passwordValue);
     if ((phoneValue?.isEmpty ?? true) || (passwordValue?.isEmpty ?? true)) {
       _snackbarService.showTopErrorSnackbar(
         message: 'كل الحقول مطلوبة !',
       );
-    } else if (phoneValue.isValidPhonenumber) {
+    } else if (!phoneValue.isValidPhonenumber) {
       _snackbarService.showTopErrorSnackbar(
         message: 'رقم الهاتف يجب ان يكون بصيغة (9xxxxxxxx)',
       );

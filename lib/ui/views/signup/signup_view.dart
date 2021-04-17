@@ -87,10 +87,9 @@ class SignUpView extends StatelessWidget with $SignUpView {
                               TextFormField(
                                 cursorColor: kcolorPrimaryBlue,
                                 controller: emailController,
-                                keyboardType: TextInputType.number,
+                                keyboardType: TextInputType.emailAddress,
                                 textInputAction: TextInputAction.next,
                                 autocorrect: false,
-                                maxLength: 9,
                                 style: textFormFieldStyle,
                                 decoration: kformFieldInputDecoration.copyWith(
                                   hintText: 'ادخل عنوان البريد الالكتروني',
