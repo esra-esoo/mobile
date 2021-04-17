@@ -26,7 +26,7 @@ class AppBottomNavigationBar extends StatelessWidget {
       child: BottomNavigationBar(
         backgroundColor: Colors.transparent,
         selectedItemColor: kcolorPrimaryBlue,
-        unselectedItemColor: Colors.black54,
+        unselectedItemColor: Colors.grey,
         currentIndex: currentIndex,
         elevation: 0,
         type: BottomNavigationBarType.fixed,
@@ -34,19 +34,19 @@ class AppBottomNavigationBar extends StatelessWidget {
         onTap: onTap,
         items: [
           BottomNavigationBarItem(
-            icon: Icon(CupertinoIcons.home),
+            icon: Icon(Icons.home),
             label: 'الرئيسية',
           ),
           BottomNavigationBarItem(
-            icon: Icon(CupertinoIcons.chat_bubble_2),
+            icon: Icon(CupertinoIcons.chat_bubble_2_fill),
             label: 'محادثة',
           ),
           BottomNavigationBarItem(
-            icon: Icon(CupertinoIcons.person_circle),
+            icon: Icon(CupertinoIcons.person_circle_fill),
             label: 'الملف الشخصي',
           ),
           BottomNavigationBarItem(
-            icon: Icon(CupertinoIcons.flag),
+            icon: Icon(CupertinoIcons.flag_fill),
             label: 'إسال شكوى',
           ),
         ],
