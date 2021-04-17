@@ -12,7 +12,7 @@ import 'package:stacked/stacked.dart';
 
 import 'otp_viewmodel.dart';
 import 'widgets/resend_button.dart';
-import 'widgets/verification_tip.dart';
+import 'widgets/otp_tip.dart';
 
 class OtpView extends StatefulWidget {
   final String userId;
@@ -31,12 +31,6 @@ class OtpView extends StatefulWidget {
 
 class _OtpViewState extends State<OtpView> {
   TextEditingController _pinController = TextEditingController();
-
-  @override
-  void dispose() {
-    _pinController.dispose();
-    super.dispose();
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -109,7 +103,7 @@ class _OtpViewState extends State<OtpView> {
                                 keyboardType: TextInputType.number,
                                 textInputAction: TextInputAction.done,
                                 controller: _pinController,
-                                autoDisposeControllers: false,
+                                // autoDisposeControllers: false,
                                 length: 6,
                                 pastedTextStyle: TextStyle(
                                   color: Colors.white,
@@ -133,7 +127,7 @@ class _OtpViewState extends State<OtpView> {
                                   fontSize: 14.sp,
                                 ),
                                 enableActiveFill: false,
-                                
+
                                 beforeTextPaste: (text) {
                                   if (text.length == 6)
                                     return true;
