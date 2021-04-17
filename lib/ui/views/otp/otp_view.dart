@@ -85,7 +85,7 @@ class _OtpViewState extends State<OtpView> {
                           right: 30.w,
                         ),
                         child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.center,
+                          crossAxisAlignment: CrossAxisAlignment.stretch,
                           mainAxisSize: MainAxisSize.min,
                           children: [
                             FormTitle(

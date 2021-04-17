@@ -8,7 +8,6 @@ class ResendButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Row(
-      mainAxisAlignment: MainAxisAlignment.center,
       children: <Widget>[
         Text(
           'لم يصلك رمز التحقق ؟',
@@ -20,7 +19,6 @@ class ResendButton extends StatelessWidget {
               tablet: 15,
             ),
           ),
-          textAlign: TextAlign.center,
         ),
         const SizedBox(width: 8),
         InkWell(
@@ -32,7 +30,6 @@ class ResendButton extends StatelessWidget {
               fontSize: 16,
               fontWeight: FontWeight.bold,
             ),
-            textAlign: TextAlign.center,
           ),
         ),
       ],

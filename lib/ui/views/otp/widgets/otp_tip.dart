@@ -8,7 +8,6 @@ class OtpTip extends StatelessWidget {
   Widget build(BuildContext context) {
     return Text(
       'ستصلك رسالة تحتوي على رمز التحقق، ادخله لاتمام عملية انشاء الحساب',
-      textAlign: TextAlign.center,
       style: TextStyle(
         color: Colors.white,
         fontSize: getValueForScreenType<double>(
