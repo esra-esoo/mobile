@@ -2,7 +2,9 @@ import 'package:huayati/app/locator.dart';
 import 'package:huayati/app/router.gr.dart';
 import 'package:huayati/services/third_party/navigation_service.dart';
 import 'package:huayati/services/third_party/snackbar_service.dart';
+import 'package:huayati/ui/views/signin/signin_view.form.dart';
 import 'package:stacked/stacked.dart';
+import 'package:huayati/extensions/string_extensions.dart';
 
 class SignInViewModel extends FormViewModel {
   final _navigationService = locator<NavigationService>();
@@ -11,9 +13,19 @@ class SignInViewModel extends FormViewModel {
   @override
   void setFormStatus() {}
 
-  bool get canGoBack => _navigationService.canGoBack();
-
-  Future saveData() async {}
+  Future saveData() async {
+    if ((phoneValue?.isEmpty ?? true) || (passwordValue?.isEmpty ?? true)) {
+      _snackbarService.showTopErrorSnackbar(
+        message: 'كل الحقول مطلوبة !',
+      );
+    } else if (phoneValue.isValidPhonenumber) {
+      _snackbarService.showTopErrorSnackbar(
+        message: 'رقم الهاتف يجب ان يكون بصيغة (9xxxxxxxx)',
+      );
+    } else {
+      // TODO submit
+    }
+  }
 
   Future<void> navigatoToStartUpView() async {
     await _navigationService.pushNamedAndRemoveUntil(
@@ -32,7 +44,7 @@ class SignInViewModel extends FormViewModel {
   }
 
   Future navigateToSignUpScreen() async {
-    await _navigationService.navigateTo(
+    await _navigationService.replaceWith(
       Routes.signUpView,
     );
   }

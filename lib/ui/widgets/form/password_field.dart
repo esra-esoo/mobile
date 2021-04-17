@@ -32,11 +32,11 @@ class _PasswordFormFieldState extends State<PasswordFormField> {
       style: textFormFieldStyle,
       decoration: kformFieldInputDecoration.copyWith(
         hintText: 'أدخل كلمة المرور هنا ..',
-        labelText: 'كلمة المرور *',
+        labelText: 'كلمة المرور (*)',
         suffixIcon: GestureDetector(
           child: Icon(
             _obscureText ? CupertinoIcons.eye : CupertinoIcons.eye_slash,
-            color: Colors.white,
+            color: kcolorPrimaryBlue,
           ),
           onTap: () {
             setState(() {

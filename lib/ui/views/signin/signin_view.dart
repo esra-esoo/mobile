@@ -42,13 +42,6 @@ class SignInView extends StatelessWidget with $SignInView {
                 backgroundColor: Colors.transparent,
                 brightness: Brightness.dark,
                 elevation: 0,
-                leading: viewModel.canGoBack
-                    ? IconButton(
-                        onPressed: () => Navigator.pop(context),
-                        icon: const Icon(Icons.arrow_back_ios),
-                        color: Colors.white,
-                      )
-                    : const SizedBox.shrink(),
               ),
               body: Column(
                 children: [
@@ -68,7 +61,10 @@ class SignInView extends StatelessWidget with $SignInView {
                       child: SingleChildScrollView(
                         child: Padding(
                           padding: EdgeInsets.only(
-                              top: 30.h, left: 30.w, right: 30.w),
+                            top: 30.h,
+                            left: 30.w,
+                            right: 30.w,
+                          ),
                           child: Column(
                             crossAxisAlignment: CrossAxisAlignment.stretch,
                             children: [
@@ -83,7 +79,7 @@ class SignInView extends StatelessWidget with $SignInView {
                                 style: textFormFieldStyle,
                                 decoration: kformFieldInputDecoration.copyWith(
                                   hintText: '9xxxxxxxx',
-                                  labelText: 'رقم الهاتف *',
+                                  labelText: 'رقم الهاتف (*)',
                                 ),
                               ),
                               SizedBox(height: 40.h),
@@ -91,20 +87,16 @@ class SignInView extends StatelessWidget with $SignInView {
                                 controller: passwordController,
                                 onFieldSubmitted: (_) => viewModel.saveData(),
                               ),
-                              SizedBox(height: 20.h),
+                              SizedBox(height: 25.h),
                               LinkButton(
                                 label: 'نسيت كلمة المرور ؟',
                                 onTap: () => viewModel.recoverPassword(),
                               ),
                               SizedBox(height: 60.h),
-                              // LinkButton(
-                              //   label: 'سجلت ولم تصلني رسالة ؟',
-                              //   onTap: () => viewModel.navigateToSignUpScreen(),
-                              // ),
-                              // SizedBox(height: 20.h),
                               LinkButton(
                                 label: 'إنشاء حساب جديد',
                                 bold: true,
+                                mainAxisAlignment: MainAxisAlignment.center,
                                 onTap: () => viewModel.navigateToSignUpScreen(),
                               ),
                               const BottomPadding(),

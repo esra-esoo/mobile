@@ -2,12 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:huayati/consts/styles.dart';
-import 'package:huayati/ui/animations/fade_animation.dart';
 import 'package:huayati/ui/animations/fade_bottom_animation.dart';
 import 'package:huayati/ui/animations/scale_animation.dart';
 import 'package:huayati/ui/widgets/full_logo.dart';
 import 'package:huayati/ui/widgets/jbank_logo.dart';
-import 'package:huayati/ui/widgets/loading_indicator.dart';
 import 'package:responsive_builder/responsive_builder.dart';
 import 'package:stacked/stacked.dart';
 

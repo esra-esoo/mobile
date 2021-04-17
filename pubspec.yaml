@@ -39,6 +39,7 @@ dependencies:
   pin_code_fields: ^6.1.0
   shimmer: ^1.1.2
   animations: ^1.1.2
+  email_validator: '^1.0.6'
 
 
 dev_dependencies:

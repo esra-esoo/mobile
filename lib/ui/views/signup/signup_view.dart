@@ -12,6 +12,7 @@ import 'package:stacked/stacked_annotations.dart';
 
 import 'signup_view.form.dart';
 import 'signup_viewmodel.dart';
+import 'widgets/account_type_radio.dart';
 
 @FormView(fields: [
   FormTextField(name: 'phone'),
@@ -42,11 +43,6 @@ class SignUpView extends StatelessWidget with $SignUpView {
                 backgroundColor: Colors.transparent,
                 brightness: Brightness.dark,
                 elevation: 0,
-                leading: IconButton(
-                  onPressed: () => Navigator.pop(context),
-                  icon: const Icon(Icons.arrow_back_ios),
-                  color: Colors.white,
-                ),
               ),
               body: Column(
                 children: [
@@ -66,19 +62,57 @@ class SignUpView extends StatelessWidget with $SignUpView {
                       child: SingleChildScrollView(
                         child: Padding(
                           padding: EdgeInsets.only(
-                              top: 30.h, left: 30.w, right: 30.w),
+                            top: 30.h,
+                            left: 30.w,
+                            right: 30.w,
+                          ),
                           child: Column(
                             crossAxisAlignment: CrossAxisAlignment.stretch,
                             children: [
-                              // FormTitle(
-                              //   title: 'تسجيل دخول',
-                              // ),
-                              // SizedBox(height: 30.h),
-
+                              SizedBox(height: 30.h),
+                              TextFormField(
+                                cursorColor: kcolorPrimaryBlue,
+                                controller: phoneController,
+                                keyboardType: TextInputType.number,
+                                textInputAction: TextInputAction.next,
+                                autocorrect: false,
+                                maxLength: 9,
+                                style: textFormFieldStyle,
+                                decoration: kformFieldInputDecoration.copyWith(
+                                  hintText: '9xxxxxxxx',
+                                  labelText: 'رقم الهاتف (*)',
+                                ),
+                              ),
                               SizedBox(height: 40.h),
-
+                              TextFormField(
+                                cursorColor: kcolorPrimaryBlue,
+                                controller: emailController,
+                                keyboardType: TextInputType.number,
+                                textInputAction: TextInputAction.next,
+                                autocorrect: false,
+                                maxLength: 9,
+                                style: textFormFieldStyle,
+                                decoration: kformFieldInputDecoration.copyWith(
+                                  hintText: 'ادخل عنوان البريد الالكتروني',
+                                  labelText: 'البريد الالكتروني (اختياري)',
+                                ),
+                              ),
+                              SizedBox(height: 40.h),
+                              // PasswordFormField(
+                              //   controller: passwordController,
+                              //   onFieldSubmitted: (_) => viewModel.saveData(),
+                              // ),
+                              // SizedBox(height: 40.h),
+                              Text(
+                                'نوع المستخدم (*) :',
+                                style: TextStyle(color: Colors.white),
+                              ),
+                              const AccountTypesRadio(),
+                              SizedBox(height: 60.h),
                               LinkButton(
                                 label: 'لدي حساب',
+                                bold: true,
+                                mainAxisAlignment: MainAxisAlignment.center,
                                 onTap: () => viewModel.navigatoToSingInView(),
                               ),
                               const BottomPadding(),

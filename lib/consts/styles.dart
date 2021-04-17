@@ -28,14 +28,13 @@ const kformFieldInputDecoration = InputDecoration(
   ),
   disabledBorder: OutlineInputBorder(
     borderRadius: const BorderRadius.all(
-      const Radius.circular(20.0),
+      const Radius.circular(15.0),
     ),
   ),
   enabledBorder: OutlineInputBorder(
     borderRadius: const BorderRadius.all(
-      const Radius.circular(20.0),
+      const Radius.circular(15.0),
     ),
-    borderSide: BorderSide(color: Colors.white, width: 2.0),
   ),
   fillColor: Colors.white,
   filled: true,
