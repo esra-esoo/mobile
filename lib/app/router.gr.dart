@@ -9,21 +9,27 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 
+import '../ui/views/otp/otp_view.dart';
 import '../ui/views/signin/signin_view.dart';
 import '../ui/views/signup/signup_view.dart';
 import '../ui/views/splash_screen/splash_screen_view.dart';
 import '../ui/views/startup/startup_view.dart';
+import '../ui/views/upload_form/upload_form_view.dart';
 
 class Routes {
   static const String splashScreenView = '/';
+  static const String uploadFormView = '/upload-form-view';
   static const String startUpView = '/start-up-view';
   static const String signInView = '/sign-in-view';
   static const String signUpView = '/sign-up-view';
+  static const String otpView = '/otp-view';
   static const all = <String>{
     splashScreenView,
+    uploadFormView,
     startUpView,
     signInView,
     signUpView,
+    otpView,
   };
 }
 
@@ -32,9 +38,11 @@ class Router extends RouterBase {
   List<RouteDef> get routes => _routes;
   final _routes = <RouteDef>[
     RouteDef(Routes.splashScreenView, page: SplashScreenView),
+    RouteDef(Routes.uploadFormView, page: UploadFormView),
     RouteDef(Routes.startUpView, page: StartUpView),
     RouteDef(Routes.signInView, page: SignInView),
     RouteDef(Routes.signUpView, page: SignUpView),
+    RouteDef(Routes.otpView, page: OtpView),
   ];
   @override
   Map<Type, AutoRouteFactory> get pagesMap => _pagesMap;
@@ -43,6 +51,14 @@ class Router extends RouterBase {
       return buildAdaptivePageRoute<dynamic>(
         builder: (context) => SplashScreenView(),
         settings: data,
+      );
+    },
+    UploadFormView: (data) {
+      return PageRouteBuilder<dynamic>(
+        pageBuilder: (context, animation, secondaryAnimation) =>
+            const UploadFormView(),
+        settings: data,
+        transitionsBuilder: TransitionsBuilders.fadeIn,
       );
     },
     StartUpView: (data) {
@@ -75,6 +91,20 @@ class Router extends RouterBase {
         transitionsBuilder: TransitionsBuilders.fadeIn,
       );
     },
+    OtpView: (data) {
+      final args = data.getArgs<OtpViewArguments>(
+        orElse: () => OtpViewArguments(),
+      );
+      return buildAdaptivePageRoute<dynamic>(
+        builder: (context) => OtpView(
+          key: args.key,
+          userId: args.userId,
+          resendCode: args.resendCode,
+        ),
+        settings: data,
+        fullscreenDialog: true,
+      );
+    },
   };
 }
 
@@ -92,4 +122,12 @@ class SignInViewArguments {
 class SignUpViewArguments {
   final Key key;
   SignUpViewArguments({this.key});
+}
+
+/// OtpView arguments holder class
+class OtpViewArguments {
+  final Key key;
+  final String userId;
+  final bool resendCode;
+  OtpViewArguments({this.key, this.userId, this.resendCode});
 }

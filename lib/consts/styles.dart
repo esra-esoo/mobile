@@ -2,6 +2,9 @@ import 'package:flutter/material.dart';
 
 const Color kcolorPrimaryBlue = Color(0xFF124067);
 const Color kcolorBluelight = Color(0xFF1873ba);
+const Color kColorCard = const Color(0xFFEFEFEF);
+const Color kColorText = const Color(0xFF8B8B8B);
+const Color kColorBlackButton = const Color(0xFF303030);
 
 const kMaterialColor = MaterialColor(
   0xFFD2662F,
