@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:huayati/consts/styles.dart';
 import 'package:responsive_builder/responsive_builder.dart';
 
 class FileSizeNote extends StatelessWidget {
@@ -9,7 +10,7 @@ class FileSizeNote extends StatelessWidget {
     return Text(
       'حجم الصورة يجب ان يكون أقل من 2 ميجا',
       style: TextStyle(
-        color: Colors.grey.shade700,
+        color: kcolorBluelight,
         fontSize: getValueForScreenType<double>(
           context: context,
           mobile: 16,

@@ -1,7 +1,9 @@
 import 'dart:io';
 
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:huayati/app/locator.dart';
+import 'package:huayati/consts/styles.dart';
 import 'package:huayati/services/third_party/media_picker.dart';
 import 'package:huayati/services/third_party/snackbar_service.dart';
 import 'package:image_picker/image_picker.dart';
@@ -67,15 +69,17 @@ class _ImagePickerFieldState extends State<ImagePickerField> {
             : Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: <Widget>[
-                  Image.file(
-                    _image,
-                    fit: BoxFit.contain,
-                    height: 100,
-                    width: 100,
+                  AspectRatio(
+                    aspectRatio: 4 / 3,
+                    child: Image.file(
+                      _image,
+                      fit: BoxFit.contain,
+                    ),
                   ),
                   IconButton(
+                    splashColor: kColorCard,
                     icon: Icon(
-                      Icons.delete,
+                      CupertinoIcons.delete_right,
                       color: Colors.grey.shade600,
                     ),
                     onPressed: () {
@@ -98,8 +102,8 @@ class _ImagePickerFieldState extends State<ImagePickerField> {
       await Future.delayed(const Duration(milliseconds: 350));
       PickedFile pickedFile = await _imagePicker.getImage(
         source: imageSource,
-        maxHeight: 480,
-        maxWidth: 640,
+        maxHeight: 810,
+        maxWidth: 1080,
       );
       if (pickedFile == null) return;
       File imageFile = File(pickedFile.path);

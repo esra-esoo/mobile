@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:huayati/consts/styles.dart';
+import 'package:huayati/ui/widgets/botton_padding.dart';
 import 'package:huayati/ui/widgets/busy_overlay.dart';
+import 'package:huayati/ui/widgets/form/bottom_submit_button.dart';
 import 'package:huayati/ui/widgets/form/form_title.dart';
 import 'package:huayati/ui/widgets/form/image_picker_field.dart';
 import 'package:stacked/stacked.dart';
@@ -32,30 +34,57 @@ class UploadFormView extends StatelessWidget {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.stretch,
                 children: [
-                  SizedBox(height: 30.h),
+                  SizedBox(height: 40.h),
                   FormTitle(
-                    title: 'رفع صور المستندات',
-                    color: kcolorBluelight,
+                    title: 'رفع مستندات الشركة',
+                    color: kcolorPrimaryBlue,
                   ),
                   SizedBox(height: 15.h),
                   const FileSizeNote(),
-                  SizedBox(height: 40.h),
+                  SizedBox(height: 30.h),
                   TextFieldLabel(label: 'الرخصة التجارية'),
                   SizedBox(height: 10.h),
                   ImagePickerField(
                     onChanged: (file) => viewModel.file1 = file,
                     imageFile: viewModel.file1,
                   ),
-                  SizedBox(height: 30.h),
+                  SizedBox(height: 25.h),
                   TextFieldLabel(label: 'السجل التجاري'),
                   SizedBox(height: 10.h),
                   ImagePickerField(
                     onChanged: (file) => viewModel.file2 = file,
                     imageFile: viewModel.file2,
                   ),
+                  SizedBox(height: 25.h),
+                  TextFieldLabel(label: 'سجل المستوردين'),
+                  SizedBox(height: 10.h),
+                  ImagePickerField(
+                    onChanged: (file) => viewModel.file3 = file,
+                    imageFile: viewModel.file3,
+                  ),
+                  SizedBox(height: 25.h),
+                  TextFieldLabel(label: 'الغرفة التجارية'),
+                  SizedBox(height: 10.h),
+                  ImagePickerField(
+                    onChanged: (file) => viewModel.file4 = file,
+                    imageFile: viewModel.file4,
+                  ),
+                  SizedBox(height: 25.h),
+                  TextFieldLabel(label: 'كشف الحساب'),
+                  SizedBox(height: 10.h),
+                  ImagePickerField(
+                    onChanged: (file) => viewModel.file5 = file,
+                    imageFile: viewModel.file5,
+                  ),
+                  const BottomPadding(),
                 ],
               ),
             ),
+          ),
+          bottomNavigationBar: BottomSubmitButton(
+            label: 'التالي',
+            accentColors: false,
+            onPressed: () {},
           ),
         ),
       ),

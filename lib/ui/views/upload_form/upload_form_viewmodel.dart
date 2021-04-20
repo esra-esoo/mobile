@@ -9,4 +9,7 @@ class UploadFormViewModel extends BaseViewModel {
 
   File file1;
   File file2;
+  File file3;
+  File file4;
+  File file5;
 }
