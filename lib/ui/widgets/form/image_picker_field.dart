@@ -56,11 +56,12 @@ class _ImagePickerFieldState extends State<ImagePickerField> {
                     size: 20,
                   ),
                   const SizedBox(width: 20),
-                  Text(
-                    'إضغط هنا لاختيار الصورة ..',
-                    style: TextStyle(color: Colors.grey.shade600),
+                  Expanded(
+                    child: Text(
+                      'إختر الصورة ..',
+                      style: TextStyle(color: Colors.grey.shade600),
+                    ),
                   ),
-                  const Spacer(),
                   Icon(
                     Icons.arrow_forward_ios,
                     color: Colors.grey.shade600,

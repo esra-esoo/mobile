@@ -72,7 +72,7 @@ class _AuthorizerFieldsCard extends ViewModelWidget<CompanyViewModel> {
             onFileChanged: (file) =>
                 viewModel.authorizers[index].extraFile = file,
           ),
-          SizedBox(height: 10.h),
+          SizedBox(height: 15.h),
           Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: <Widget>[

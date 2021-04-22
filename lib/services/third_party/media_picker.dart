@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_platform_widgets/flutter_platform_widgets.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:huayati/consts/styles.dart';
 import 'package:image_picker/image_picker.dart';
@@ -25,7 +26,7 @@ class MediaPickerService {
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                const SizedBox(height: 20),
+                SizedBox(height: 20.h),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   children: [
@@ -38,8 +39,8 @@ class MediaPickerService {
                         ),
                       ),
                       splashColor: kcolorBluelight,
-                      minWidth: 150,
-                      height: 90,
+                      minWidth: 150.w,
+                      height: 90.h,
                       onPressed: () =>
                           Navigator.pop(context, ImageSource.camera),
                       icon: Icon(Icons.camera, color: Colors.white),
@@ -59,8 +60,8 @@ class MediaPickerService {
                           width: 1,
                         ),
                       ),
-                      minWidth: 150,
-                      height: 90,
+                      minWidth: 150.w,
+                      height: 90.h,
                       splashColor: kcolorBluelight,
                       onPressed: () =>
                           Navigator.pop(context, ImageSource.gallery),
@@ -69,13 +70,13 @@ class MediaPickerService {
                         'الصور',
                         style: TextStyle(
                           color: Colors.white,
-                          fontSize: 18,
+                          fontSize: 18.sp,
                         ),
                       ),
                     ),
                   ],
                 ),
-                const SizedBox(height: 20),
+                SizedBox(height: 20.h),
               ],
             ),
           );
