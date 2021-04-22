@@ -13,11 +13,11 @@ class SplashScreenViewModel extends BaseViewModel {
 
     if (userLoggedIn) {
       if (didntUploadAnyFile)
-        route = Routes.uploadFormView;
+        route = Routes.companyView;
       else
         route = Routes.startUpView;
     }
-    
+
     await Future.delayed(
       const Duration(seconds: 2),
       () => _navigationService.pushNamedAndRemoveUntil(route),

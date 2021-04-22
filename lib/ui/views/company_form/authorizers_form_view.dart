@@ -1,20 +1,20 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:huayati/consts/styles.dart';
-import 'package:huayati/ui/views/upload_form/widgets/add_authorizer_btn.dart';
 import 'package:huayati/ui/widgets/form/file_radio_tile.dart';
 import 'package:huayati/ui/widgets/form/image_picker_field.dart';
 import 'package:stacked/stacked.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-import 'upload_form_viewmodel.dart';
+import 'company_form_viewmodel.dart';
+import 'widgets/add_authorizer_btn.dart';
 import 'widgets/text_field_label.dart';
 
-class AuthorizersFormView extends ViewModelWidget<UploadFormViewModel> {
+class AuthorizersFormView extends ViewModelWidget<CompanyViewModel> {
   const AuthorizersFormView({Key key}) : super(key: key);
 
   @override
-  Widget build(BuildContext context, UploadFormViewModel viewModel) {
+  Widget build(BuildContext context, CompanyViewModel viewModel) {
     return Container(
       height: MediaQuery.of(context).size.height,
       child: ListView.builder(
@@ -33,7 +33,7 @@ class AuthorizersFormView extends ViewModelWidget<UploadFormViewModel> {
   }
 }
 
-class _AuthorizerFieldsCard extends ViewModelWidget<UploadFormViewModel> {
+class _AuthorizerFieldsCard extends ViewModelWidget<CompanyViewModel> {
   final int index;
   const _AuthorizerFieldsCard({
     Key key,
@@ -41,7 +41,7 @@ class _AuthorizerFieldsCard extends ViewModelWidget<UploadFormViewModel> {
   }) : super(key: key);
 
   @override
-  Widget build(BuildContext context, UploadFormViewModel viewModel) {
+  Widget build(BuildContext context, CompanyViewModel viewModel) {
     var authorizer = viewModel.authorizers[index];
     return Container(
       decoration: BoxDecoration(

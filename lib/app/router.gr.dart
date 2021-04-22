@@ -9,23 +9,23 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 
+import '../ui/views/company_form/company_form_view.dart';
 import '../ui/views/otp/otp_view.dart';
 import '../ui/views/signin/signin_view.dart';
 import '../ui/views/signup/signup_view.dart';
 import '../ui/views/splash_screen/splash_screen_view.dart';
 import '../ui/views/startup/startup_view.dart';
-import '../ui/views/upload_form/upload_form_view.dart';
 
 class Routes {
   static const String splashScreenView = '/';
-  static const String uploadFormView = '/upload-form-view';
+  static const String companyView = '/company-view';
   static const String startUpView = '/start-up-view';
   static const String signInView = '/sign-in-view';
   static const String signUpView = '/sign-up-view';
   static const String otpView = '/otp-view';
   static const all = <String>{
     splashScreenView,
-    uploadFormView,
+    companyView,
     startUpView,
     signInView,
     signUpView,
@@ -38,7 +38,7 @@ class Router extends RouterBase {
   List<RouteDef> get routes => _routes;
   final _routes = <RouteDef>[
     RouteDef(Routes.splashScreenView, page: SplashScreenView),
-    RouteDef(Routes.uploadFormView, page: UploadFormView),
+    RouteDef(Routes.companyView, page: CompanyView),
     RouteDef(Routes.startUpView, page: StartUpView),
     RouteDef(Routes.signInView, page: SignInView),
     RouteDef(Routes.signUpView, page: SignUpView),
@@ -53,10 +53,10 @@ class Router extends RouterBase {
         settings: data,
       );
     },
-    UploadFormView: (data) {
+    CompanyView: (data) {
       return PageRouteBuilder<dynamic>(
         pageBuilder: (context, animation, secondaryAnimation) =>
-            const UploadFormView(),
+            const CompanyView(),
         settings: data,
         transitionsBuilder: TransitionsBuilders.fadeIn,
       );

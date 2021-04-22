@@ -2,22 +2,22 @@ import 'package:animations/animations.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:huayati/consts/styles.dart';
-import 'package:huayati/ui/views/upload_form/authorizers_form_view.dart';
-import 'package:huayati/ui/views/upload_form/basic_form_view.dart';
 import 'package:huayati/ui/widgets/busy_overlay.dart';
 import 'package:huayati/ui/widgets/form/bottom_submit_button.dart';
 import 'package:huayati/ui/widgets/form/form_title.dart';
 import 'package:stacked/stacked.dart';
 
-import 'upload_form_viewmodel.dart';
+import 'authorizers_form_view.dart';
+import 'basic_form_view.dart';
+import 'company_form_viewmodel.dart';
 
-class UploadFormView extends StatelessWidget {
-  const UploadFormView({Key key}) : super(key: key);
+class CompanyView extends StatelessWidget {
+  const CompanyView({Key key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return ViewModelBuilder<UploadFormViewModel>.reactive(
-      viewModelBuilder: () => UploadFormViewModel(),
+    return ViewModelBuilder<CompanyViewModel>.reactive(
+      viewModelBuilder: () => CompanyViewModel(),
       builder: (context, viewModel, child) => BusyOverlay(
         primaryColors: true,
         show: viewModel.isBusy,

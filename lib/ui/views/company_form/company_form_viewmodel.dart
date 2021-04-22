@@ -6,7 +6,7 @@ import 'package:huayati/models/authorizer.dart';
 import 'package:huayati/services/third_party/snackbar_service.dart';
 import 'package:stacked/stacked.dart';
 
-class UploadFormViewModel extends IndexTrackingViewModel {
+class CompanyViewModel extends IndexTrackingViewModel {
   final _snackbarService = locator<SnackbarService>();
 
   File file1;
