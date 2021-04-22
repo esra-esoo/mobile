@@ -8,15 +8,9 @@ class SplashScreenViewModel extends BaseViewModel {
 
   Future<void> initializeView() async {
     bool userLoggedIn = true;
-    bool didntUploadAnyFile = true;
     var route = Routes.signInView;
 
-    if (userLoggedIn) {
-      if (didntUploadAnyFile)
-        route = Routes.companyView;
-      else
-        route = Routes.startUpView;
-    }
+    if (userLoggedIn) route = Routes.startUpView;
 
     await Future.delayed(
       const Duration(seconds: 2),
