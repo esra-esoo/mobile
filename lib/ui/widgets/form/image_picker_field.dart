@@ -12,11 +12,12 @@ class ImagePickerField extends StatefulWidget {
   final File imageFile;
   final ValueChanged<File> onChanged;
   final VoidCallback onDelete;
-
+  final bool disabled;
   const ImagePickerField({
     this.imageFile,
     this.onDelete,
     this.onChanged,
+    this.disabled = false,
   });
 
   @override
@@ -35,13 +36,14 @@ class _ImagePickerFieldState extends State<ImagePickerField> {
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: _selectFile,
+      onTap: widget.disabled ? null : _selectFile,
       child: AnimatedContainer(
         duration: const Duration(milliseconds: 300),
         curve: Curves.easeIn,
         height: _image != null ? 120 : 55,
         padding: EdgeInsets.symmetric(horizontal: 10, vertical: 15),
         decoration: BoxDecoration(
+          color: widget.disabled ? Colors.grey.shade300 : Colors.white,
           border: Border.all(color: Colors.grey.shade400),
           borderRadius: BorderRadius.circular(10),
         ),
@@ -80,7 +82,7 @@ class _ImagePickerFieldState extends State<ImagePickerField> {
                     splashColor: kColorCard,
                     icon: Icon(
                       CupertinoIcons.delete_right,
-                      color: Colors.grey.shade600,
+                      color: kColorText,
                     ),
                     onPressed: () {
                       setState(() {

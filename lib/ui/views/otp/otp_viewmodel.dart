@@ -41,7 +41,7 @@ class OtpViewModel extends BaseViewModel {
     // }
   }
 
-  void closeScreen() async {
-    await _navigationService.back();
+  void closeScreen() {
+    _navigationService.back();
   }
 }

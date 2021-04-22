@@ -1,16 +1,15 @@
+import 'package:animations/animations.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:huayati/consts/styles.dart';
-import 'package:huayati/ui/widgets/botton_padding.dart';
+import 'package:huayati/ui/views/upload_form/authorizers_form_view.dart';
+import 'package:huayati/ui/views/upload_form/basic_form_view.dart';
 import 'package:huayati/ui/widgets/busy_overlay.dart';
 import 'package:huayati/ui/widgets/form/bottom_submit_button.dart';
 import 'package:huayati/ui/widgets/form/form_title.dart';
-import 'package:huayati/ui/widgets/form/image_picker_field.dart';
 import 'package:stacked/stacked.dart';
 
 import 'upload_form_viewmodel.dart';
-import 'widgets/file_size_note.dart';
-import 'widgets/text_field_label.dart';
 
 class UploadFormView extends StatelessWidget {
   const UploadFormView({Key key}) : super(key: key);
@@ -24,70 +23,73 @@ class UploadFormView extends StatelessWidget {
         show: viewModel.isBusy,
         child: Scaffold(
           backgroundColor: Colors.white,
-          body: SingleChildScrollView(
-            child: Padding(
-              padding: EdgeInsets.only(
-                top: 30.h,
-                left: 30.w,
-                right: 30.w,
-              ),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.stretch,
-                children: [
-                  SizedBox(height: 40.h),
-                  FormTitle(
-                    title: 'رفع مستندات الشركة',
-                    color: kcolorPrimaryBlue,
-                  ),
-                  SizedBox(height: 15.h),
-                  const FileSizeNote(),
-                  SizedBox(height: 30.h),
-                  TextFieldLabel(label: 'الرخصة التجارية'),
-                  SizedBox(height: 10.h),
-                  ImagePickerField(
-                    onChanged: (file) => viewModel.file1 = file,
-                    imageFile: viewModel.file1,
-                  ),
-                  SizedBox(height: 25.h),
-                  TextFieldLabel(label: 'السجل التجاري'),
-                  SizedBox(height: 10.h),
-                  ImagePickerField(
-                    onChanged: (file) => viewModel.file2 = file,
-                    imageFile: viewModel.file2,
-                  ),
-                  SizedBox(height: 25.h),
-                  TextFieldLabel(label: 'سجل المستوردين'),
-                  SizedBox(height: 10.h),
-                  ImagePickerField(
-                    onChanged: (file) => viewModel.file3 = file,
-                    imageFile: viewModel.file3,
-                  ),
-                  SizedBox(height: 25.h),
-                  TextFieldLabel(label: 'الغرفة التجارية'),
-                  SizedBox(height: 10.h),
-                  ImagePickerField(
-                    onChanged: (file) => viewModel.file4 = file,
-                    imageFile: viewModel.file4,
-                  ),
-                  SizedBox(height: 25.h),
-                  TextFieldLabel(label: 'كشف الحساب'),
-                  SizedBox(height: 10.h),
-                  ImagePickerField(
-                    onChanged: (file) => viewModel.file5 = file,
-                    imageFile: viewModel.file5,
-                  ),
-                  const BottomPadding(),
-                ],
-              ),
+          appBar: AppBar(
+            backgroundColor: Colors.white,
+            elevation: 0,
+            leading: viewModel.currentIndex == 1
+                ? IconButton(
+                    onPressed: () => viewModel.setIndex(0),
+                    icon: Icon(Icons.arrow_back, color: kcolorPrimaryBlue),
+                  )
+                : SizedBox.shrink(),
+            centerTitle: true,
+            title: FormTitle(
+              title: viewModel.currentIndex == 0
+                  ? 'رفع مستندات الشركة'
+                  : 'المخولين',
+              color: kcolorPrimaryBlue,
+            ),
+          ),
+          body: Padding(
+            padding: EdgeInsets.only(
+              top: 30.h,
+              left: 30.w,
+              right: 30.w,
+            ),
+            child: PageTransitionSwitcher(
+              duration: const Duration(milliseconds: 300),
+              reverse: viewModel.reverse,
+              transitionBuilder: (
+                Widget child,
+                Animation<double> animation,
+                Animation<double> secondaryAnimation,
+              ) {
+                return SharedAxisTransition(
+                  fillColor: Colors.transparent,
+                  child: child,
+                  animation: animation,
+                  secondaryAnimation: secondaryAnimation,
+                  transitionType: SharedAxisTransitionType.horizontal,
+                );
+              },
+              child: getViewForIndex(viewModel.currentIndex, context),
             ),
           ),
           bottomNavigationBar: BottomSubmitButton(
-            label: 'التالي',
+            label: viewModel.currentIndex == 0 ? 'التالي' : 'رفع المستندات',
             accentColors: false,
-            onPressed: () {},
+            onPressed: () async {
+              if (viewModel.currentIndex == 0)
+                viewModel.goNext();
+              else
+                await viewModel.saveData();
+            },
           ),
         ),
       ),
     );
+  }
+
+  Widget getViewForIndex(int index, BuildContext context) {
+    switch (index) {
+      case 0:
+        return BasicFormView();
+        break;
+      case 1:
+        return AuthorizersFormView();
+        break;
+      default:
+        return BasicFormView();
+    }
   }
 }

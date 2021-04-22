@@ -7,18 +7,20 @@ class BottomSubmitButton extends StatelessWidget {
   final Function onPressed;
   final bool isBusy;
   final bool accentColors;
-
+  final bool disabled;
   const BottomSubmitButton({
     Key key,
     @required this.onPressed,
     @required this.label,
     this.accentColors = true,
     this.isBusy = false,
+    this.disabled = false,
   }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return FlatButton(
+      disabledColor: kColorCard,
       splashColor: kcolorBluelight,
       color: accentColors ? Colors.white : kcolorPrimaryBlue,
       minWidth: double.infinity,
@@ -42,13 +44,15 @@ class BottomSubmitButton extends StatelessWidget {
             : Text(
                 label,
                 style: TextStyle(
-                  color: accentColors ? kcolorPrimaryBlue : Colors.white,
+                  color: disabled
+                      ? kColorText
+                      : (accentColors ? kcolorPrimaryBlue : Colors.white),
                   fontWeight: FontWeight.bold,
                   fontSize: 18,
                 ),
               ),
       ),
-      onPressed: onPressed,
+      onPressed: disabled ? null : onPressed,
     );
   }
 }
