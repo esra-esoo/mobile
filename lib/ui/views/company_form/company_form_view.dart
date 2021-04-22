@@ -26,12 +26,12 @@ class CompanyView extends StatelessWidget {
           appBar: AppBar(
             backgroundColor: Colors.white,
             elevation: 0,
-            leading: viewModel.currentIndex == 1
-                ? IconButton(
-                    onPressed: () => viewModel.setIndex(0),
-                    icon: Icon(Icons.arrow_back, color: kcolorPrimaryBlue),
-                  )
-                : SizedBox.shrink(),
+            leading: IconButton(
+              onPressed: () => viewModel.currentIndex == 1
+                  ? viewModel.setIndex(0)
+                  : Navigator.pop(context),
+              icon: Icon(Icons.arrow_back, color: kcolorPrimaryBlue),
+            ),
             centerTitle: true,
             title: FormTitle(
               title: viewModel.currentIndex == 0

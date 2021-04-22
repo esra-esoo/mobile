@@ -9,10 +9,7 @@ import 'package:huayati/ui/views/startup/startup_view.dart';
 
 @AdaptiveAutoRouter(routes: [
   AdaptiveRoute(page: SplashScreenView, initial: true),
-  CustomRoute(
-    page: CompanyView,
-    transitionsBuilder: TransitionsBuilders.fadeIn,
-  ),
+  AdaptiveRoute(page: CompanyView),
   CustomRoute(
     page: StartUpView,
     transitionsBuilder: TransitionsBuilders.fadeIn,

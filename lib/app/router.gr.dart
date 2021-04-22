@@ -54,11 +54,9 @@ class Router extends RouterBase {
       );
     },
     CompanyView: (data) {
-      return PageRouteBuilder<dynamic>(
-        pageBuilder: (context, animation, secondaryAnimation) =>
-            const CompanyView(),
+      return buildAdaptivePageRoute<dynamic>(
+        builder: (context) => const CompanyView(),
         settings: data,
-        transitionsBuilder: TransitionsBuilders.fadeIn,
       );
     },
     StartUpView: (data) {

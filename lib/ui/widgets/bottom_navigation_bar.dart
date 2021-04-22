@@ -21,7 +21,14 @@ class AppBottomNavigationBar extends StatelessWidget {
           topRight: Radius.circular(30),
           topLeft: Radius.circular(30),
         ),
-        border: Border.all(color: kcolorPrimaryBlue, width: 1),
+        // border: Border.all(color: kcolorPrimaryBlue, width: 1),
+         boxShadow: [
+          BoxShadow(
+            color: kcolorPrimaryBlue.withOpacity(0.6),
+            spreadRadius: 1,
+            blurRadius: 5,
+          ),
+        ],
       ),
       child: BottomNavigationBar(
         backgroundColor: Colors.transparent,
@@ -30,7 +37,7 @@ class AppBottomNavigationBar extends StatelessWidget {
         currentIndex: currentIndex,
         elevation: 0,
         type: BottomNavigationBarType.fixed,
-        showUnselectedLabels: true,
+        showUnselectedLabels: false,
         onTap: onTap,
         items: [
           BottomNavigationBarItem(
