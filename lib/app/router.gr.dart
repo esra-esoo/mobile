@@ -10,6 +10,7 @@ import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 
 import '../ui/views/company_form/company_form_view.dart';
+import '../ui/views/individual_form/individual_form_view.dart';
 import '../ui/views/otp/otp_view.dart';
 import '../ui/views/signin/signin_view.dart';
 import '../ui/views/signup/signup_view.dart';
@@ -18,14 +19,16 @@ import '../ui/views/startup/startup_view.dart';
 
 class Routes {
   static const String splashScreenView = '/';
-  static const String companyView = '/company-view';
+  static const String companyFormView = '/company-form-view';
+  static const String individualFormView = '/individual-form-view';
   static const String startUpView = '/start-up-view';
   static const String signInView = '/sign-in-view';
   static const String signUpView = '/sign-up-view';
   static const String otpView = '/otp-view';
   static const all = <String>{
     splashScreenView,
-    companyView,
+    companyFormView,
+    individualFormView,
     startUpView,
     signInView,
     signUpView,
@@ -38,7 +41,8 @@ class Router extends RouterBase {
   List<RouteDef> get routes => _routes;
   final _routes = <RouteDef>[
     RouteDef(Routes.splashScreenView, page: SplashScreenView),
-    RouteDef(Routes.companyView, page: CompanyView),
+    RouteDef(Routes.companyFormView, page: CompanyFormView),
+    RouteDef(Routes.individualFormView, page: IndividualFormView),
     RouteDef(Routes.startUpView, page: StartUpView),
     RouteDef(Routes.signInView, page: SignInView),
     RouteDef(Routes.signUpView, page: SignUpView),
@@ -53,9 +57,15 @@ class Router extends RouterBase {
         settings: data,
       );
     },
-    CompanyView: (data) {
+    CompanyFormView: (data) {
       return buildAdaptivePageRoute<dynamic>(
-        builder: (context) => const CompanyView(),
+        builder: (context) => const CompanyFormView(),
+        settings: data,
+      );
+    },
+    IndividualFormView: (data) {
+      return buildAdaptivePageRoute<dynamic>(
+        builder: (context) => const IndividualFormView(),
         settings: data,
       );
     },

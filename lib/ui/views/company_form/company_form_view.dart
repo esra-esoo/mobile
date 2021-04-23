@@ -11,13 +11,13 @@ import 'authorizers_form_view.dart';
 import 'basic_form_view.dart';
 import 'company_form_viewmodel.dart';
 
-class CompanyView extends StatelessWidget {
-  const CompanyView({Key key}) : super(key: key);
+class CompanyFormView extends StatelessWidget {
+  const CompanyFormView({Key key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return ViewModelBuilder<CompanyViewModel>.reactive(
-      viewModelBuilder: () => CompanyViewModel(),
+    return ViewModelBuilder<CompanyFormViewModel>.reactive(
+      viewModelBuilder: () => CompanyFormViewModel(),
       builder: (context, viewModel, child) => BusyOverlay(
         primaryColors: true,
         show: viewModel.isBusy,

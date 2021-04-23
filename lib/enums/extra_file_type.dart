@@ -1,4 +1,4 @@
-enum AutorizerExtraFileType {
+enum ExtraFileType {
   nid,
   birth_certificate,
 }

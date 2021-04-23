@@ -5,7 +5,7 @@ const List<MenuItem> companyMenu = [
   MenuItem(
     title: 'بيانات الشركة',
   ),
-  MenuItem(title: 'مستندات الشركة', route: Routes.companyView, notifciation: 3),
+  MenuItem(title: 'مستندات الشركة', route: Routes.companyFormView, notifciation: 3),
   MenuItem(
     title: 'بيانات الحساب',
   ),
@@ -22,5 +22,5 @@ const List<MenuItem> individualMenu = [
   MenuItem(
     title: 'بيانات الحساب',
   ),
-  MenuItem(title: 'المستندات', notifciation: 2),
+  MenuItem(title: 'المستندات',route: Routes.individualFormView, notifciation: 2),
 ];

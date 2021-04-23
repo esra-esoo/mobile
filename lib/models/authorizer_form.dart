@@ -1,14 +1,14 @@
 import 'dart:io';
 
 import 'package:flutter/material.dart';
-import 'package:huayati/enums/authorizer_extra_file_type.dart';
+import 'package:huayati/enums/extra_file_type.dart';
 
-class Authorizer {
+class AuthorizerForm {
   File passport;
   File extraFile;
-  AutorizerExtraFileType extraFileType;
+  ExtraFileType extraFileType;
 
-  Authorizer({
+  AuthorizerForm({
     @required this.passport,
     @required this.extraFile,
     @required this.extraFileType,

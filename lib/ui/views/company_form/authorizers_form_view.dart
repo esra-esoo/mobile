@@ -8,13 +8,13 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import 'company_form_viewmodel.dart';
 import 'widgets/add_authorizer_btn.dart';
-import 'widgets/text_field_label.dart';
+import '../../widgets/form/text_field_label.dart';
 
-class AuthorizersFormView extends ViewModelWidget<CompanyViewModel> {
+class AuthorizersFormView extends ViewModelWidget<CompanyFormViewModel> {
   const AuthorizersFormView({Key key}) : super(key: key);
 
   @override
-  Widget build(BuildContext context, CompanyViewModel viewModel) {
+  Widget build(BuildContext context, CompanyFormViewModel viewModel) {
     return Container(
       height: MediaQuery.of(context).size.height,
       child: ListView.builder(
@@ -33,7 +33,7 @@ class AuthorizersFormView extends ViewModelWidget<CompanyViewModel> {
   }
 }
 
-class _AuthorizerFieldsCard extends ViewModelWidget<CompanyViewModel> {
+class _AuthorizerFieldsCard extends ViewModelWidget<CompanyFormViewModel> {
   final int index;
   const _AuthorizerFieldsCard({
     Key key,
@@ -41,7 +41,7 @@ class _AuthorizerFieldsCard extends ViewModelWidget<CompanyViewModel> {
   }) : super(key: key);
 
   @override
-  Widget build(BuildContext context, CompanyViewModel viewModel) {
+  Widget build(BuildContext context, CompanyFormViewModel viewModel) {
     var authorizer = viewModel.authorizers[index];
     return Container(
       decoration: BoxDecoration(
@@ -61,7 +61,7 @@ class _AuthorizerFieldsCard extends ViewModelWidget<CompanyViewModel> {
             imageFile: authorizer.passport,
           ),
           SizedBox(height: 25.h),
-          TextFieldLabel(label: 'مستند إضافي'),
+          TextFieldLabel(label: 'مستند أخر'),
           FileRadioTile(
             options: ['الرقم الوطني', 'شهادة الميلاد'],
             groupValue: viewModel.authorizers[index]?.extraFileType?.index,
