@@ -4,8 +4,13 @@ import 'package:huayati/models/menu_item.dart';
 const List<MenuItem> companyMenu = [
   MenuItem(
     title: 'بيانات الشركة',
+    route: Routes.companyDataView,
   ),
-  MenuItem(title: 'مستندات الشركة', route: Routes.companyFormView, notifciation: 3),
+  MenuItem(
+    title: 'مستندات الشركة',
+    route: Routes.companyFormView,
+    notifciation: 3,
+  ),
   MenuItem(
     title: 'بيانات الحساب',
   ),
@@ -22,5 +27,6 @@ const List<MenuItem> individualMenu = [
   MenuItem(
     title: 'بيانات الحساب',
   ),
-  MenuItem(title: 'المستندات',route: Routes.individualFormView, notifciation: 2),
+  MenuItem(
+      title: 'المستندات', route: Routes.individualFormView, notifciation: 2),
 ];

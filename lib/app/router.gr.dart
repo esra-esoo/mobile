@@ -9,6 +9,7 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 
+import '../ui/views/company_data/company_data_view.dart';
 import '../ui/views/company_form/company_form_view.dart';
 import '../ui/views/individual_form/individual_form_view.dart';
 import '../ui/views/otp/otp_view.dart';
@@ -20,6 +21,7 @@ import '../ui/views/startup/startup_view.dart';
 class Routes {
   static const String splashScreenView = '/';
   static const String companyFormView = '/company-form-view';
+  static const String companyDataView = '/company-data-view';
   static const String individualFormView = '/individual-form-view';
   static const String startUpView = '/start-up-view';
   static const String signInView = '/sign-in-view';
@@ -28,6 +30,7 @@ class Routes {
   static const all = <String>{
     splashScreenView,
     companyFormView,
+    companyDataView,
     individualFormView,
     startUpView,
     signInView,
@@ -42,6 +45,7 @@ class Router extends RouterBase {
   final _routes = <RouteDef>[
     RouteDef(Routes.splashScreenView, page: SplashScreenView),
     RouteDef(Routes.companyFormView, page: CompanyFormView),
+    RouteDef(Routes.companyDataView, page: CompanyDataView),
     RouteDef(Routes.individualFormView, page: IndividualFormView),
     RouteDef(Routes.startUpView, page: StartUpView),
     RouteDef(Routes.signInView, page: SignInView),
@@ -60,6 +64,12 @@ class Router extends RouterBase {
     CompanyFormView: (data) {
       return buildAdaptivePageRoute<dynamic>(
         builder: (context) => const CompanyFormView(),
+        settings: data,
+      );
+    },
+    CompanyDataView: (data) {
+      return buildAdaptivePageRoute<dynamic>(
+        builder: (context) => const CompanyDataView(),
         settings: data,
       );
     },

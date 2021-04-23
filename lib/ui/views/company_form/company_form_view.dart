@@ -30,7 +30,7 @@ class CompanyFormView extends StatelessWidget {
               onPressed: () => viewModel.currentIndex == 1
                   ? viewModel.setIndex(0)
                   : Navigator.pop(context),
-              icon: Icon(Icons.arrow_back, color: kcolorPrimaryBlue),
+              icon: Icon(Icons.arrow_back_ios, color: kcolorPrimaryBlue),
             ),
             centerTitle: true,
             title: FormTitle(

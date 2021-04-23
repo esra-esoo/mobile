@@ -30,7 +30,7 @@ class IndividualFormView extends StatelessWidget {
             elevation: 0,
             leading: IconButton(
               onPressed: () => Navigator.pop(context),
-              icon: Icon(Icons.arrow_back, color: kcolorPrimaryBlue),
+              icon: Icon(Icons.arrow_back_ios, color: kcolorPrimaryBlue),
             ),
             centerTitle: true,
             title: FormTitle(

@@ -18,14 +18,14 @@ class GridItem extends StatelessWidget {
       child: Container(
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(20),
-          border: Border.all(color: kcolorPrimaryBlue, width: 0.2),
+          border: Border.all(color: kcolorPrimaryBlue, width: 0.5),
           color: Colors.white,
           boxShadow: [
             BoxShadow(
               color: kcolorPrimaryBlue.withOpacity(0.2),
               offset: Offset(0, 0),
-              blurRadius: 3,
-              spreadRadius: 1,
+              blurRadius: 1,
+              spreadRadius: 2,
             )
           ],
         ),
