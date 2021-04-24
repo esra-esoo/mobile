@@ -5,6 +5,7 @@ import 'package:flutter/services.dart';
 import 'package:huayati/app/locator.dart';
 import 'package:huayati/ui/views/home/home_view.dart';
 import 'package:huayati/ui/widgets/bottom_navigation_bar.dart';
+import 'package:huayati/ui/widgets/side_drawer.dart';
 import 'package:stacked/stacked.dart';
 
 import 'startup_viewmodel.dart';
@@ -19,6 +20,8 @@ class StartUpView extends StatelessWidget {
         statusBarBrightness: Brightness.light,
       ),
     );
+    final _scaffoldKey = GlobalKey<ScaffoldState>();
+
     return ViewModelBuilder<StartUpViewModel>.reactive(
         viewModelBuilder: () => locator<StartUpViewModel>(),
         onModelReady: (viewModel) async {
@@ -31,12 +34,14 @@ class StartUpView extends StatelessWidget {
         disposeViewModel: false,
         builder: (context, model, child) {
           return Scaffold(
+            key: _scaffoldKey,
+            drawer: const SideDrawer(),
             resizeToAvoidBottomInset: false,
             appBar: AppBar(
-              // leading: IconButton(
-              //   icon: const Icon(Icons.menu),
-              //   onPressed: () {},
-              // ),
+              leading: IconButton(
+                icon: const Icon(Icons.menu),
+                onPressed: () => _scaffoldKey.currentState.openDrawer(),
+              ),
               title: Text('الرئيسية', style: const TextStyle(fontSize: 18)),
               centerTitle: true,
               actions: [
