@@ -9,7 +9,6 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 
-import '../models/signup_result.dart';
 import '../ui/views/company_data/company_data_view.dart';
 import '../ui/views/company_form/company_form_view.dart';
 import '../ui/views/individual_form/individual_form_view.dart';
@@ -93,8 +92,10 @@ class Router extends RouterBase {
         orElse: () => SignInViewArguments(),
       );
       return PageRouteBuilder<dynamic>(
-        pageBuilder: (context, animation, secondaryAnimation) =>
-            SignInView(key: args.key),
+        pageBuilder: (context, animation, secondaryAnimation) => SignInView(
+          key: args.key,
+          phoneNumber: args.phoneNumber,
+        ),
         settings: data,
         transitionsBuilder: TransitionsBuilders.fadeIn,
       );
@@ -115,7 +116,9 @@ class Router extends RouterBase {
       return buildAdaptivePageRoute<dynamic>(
         builder: (context) => OtpView(
           key: args.key,
-          signUpResult: args.signUpResult,
+          phoneNumber: args.phoneNumber,
+          email: args.email,
+          customerType: args.customerType,
         ),
         settings: data,
         fullscreenDialog: true,
@@ -131,7 +134,8 @@ class Router extends RouterBase {
 /// SignInView arguments holder class
 class SignInViewArguments {
   final Key key;
-  SignInViewArguments({this.key});
+  final String phoneNumber;
+  SignInViewArguments({this.key, this.phoneNumber});
 }
 
 /// SignUpView arguments holder class
@@ -143,6 +147,12 @@ class SignUpViewArguments {
 /// OtpView arguments holder class
 class OtpViewArguments {
   final Key key;
-  final SignUpResult signUpResult;
-  OtpViewArguments({this.key, @required this.signUpResult});
+  final String phoneNumber;
+  final String email;
+  final int customerType;
+  OtpViewArguments(
+      {this.key,
+      @required this.phoneNumber,
+      this.email,
+      @required this.customerType});
 }

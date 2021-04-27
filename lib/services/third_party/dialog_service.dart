@@ -41,7 +41,7 @@ class DialogService {
           PlatformDialogAction(
             onPressed: () {
               if (!_dialogCompleter.isCompleted)
-                completeDialog(DialogResponse(confirmed: false));
+                completeDialog(DialogResponse(confirmed: true));
             },
             child: Text(closeTitle.toUpperCase()),
           ),

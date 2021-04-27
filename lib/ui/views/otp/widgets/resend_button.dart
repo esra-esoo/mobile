@@ -10,7 +10,7 @@ class ResendButton extends StatelessWidget {
     return Row(
       children: <Widget>[
         Text(
-          'لم يصلك رمز التحقق ؟',
+          'لم يصلك رمز التفعيل ؟',
           style: TextStyle(
             color: Colors.white,
             fontSize: getValueForScreenType<double>(

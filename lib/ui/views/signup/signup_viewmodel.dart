@@ -1,6 +1,7 @@
 import 'package:email_validator/email_validator.dart';
 import 'package:huayati/app/locator.dart';
 import 'package:huayati/app/router.gr.dart';
+import 'package:huayati/consts/account_type.dart';
 import 'package:huayati/models/signup_result.dart';
 import 'package:huayati/services/auth_service.dart';
 import 'package:huayati/services/third_party/navigation_service.dart';
@@ -48,7 +49,9 @@ class SignUpViewModel extends FormViewModel {
           _authService.signUp(
             email: emailValue,
             phoneNumber: phoneValue,
-            customerType: _selectedType == 'فرد' ? 6 : 7,
+            customerType: _selectedType == AccountType.INDIVISUAL
+                ? AccountTypeValue.INDIVISUAL
+                : AccountTypeValue.COMPANY,
           ),
           throwException: true,
         );
@@ -57,7 +60,11 @@ class SignUpViewModel extends FormViewModel {
         await _navigationService.pushNamedAndRemoveUntil(
           Routes.otpView,
           arguments: OtpViewArguments(
-            signUpResult: result,
+            email: emailValue,
+            phoneNumber: phoneValue,
+            customerType: _selectedType == AccountType.INDIVISUAL
+                ? AccountTypeValue.INDIVISUAL
+                : AccountTypeValue.COMPANY,
           ),
         );
       } catch (e) {
