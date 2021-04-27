@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:huayati/consts/styles.dart';
+import 'package:huayati/models/signup_result.dart';
 import 'package:huayati/ui/widgets/botton_padding.dart';
 import 'package:huayati/ui/widgets/busy_overlay.dart';
 import 'package:huayati/ui/widgets/form/bottom_submit_button.dart';
@@ -9,20 +10,16 @@ import 'package:pin_code_fields/pin_code_fields.dart';
 import 'package:responsive_builder/responsive_builder.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:stacked/stacked.dart';
-
 import 'otp_viewmodel.dart';
 import 'widgets/resend_button.dart';
 import 'widgets/otp_tip.dart';
+import 'package:huayati/extensions/string_extensions.dart';
 
 class OtpView extends StatefulWidget {
-  final String userId;
-  // final String phoneNo;
-  final bool resendCode;
+  final SignUpResult signUpResult;
   const OtpView({
     Key key,
-    this.userId,
-    // this.phoneNo,
-    this.resendCode,
+    @required this.signUpResult,
   }) : super(key: key);
 
   @override
@@ -30,18 +27,17 @@ class OtpView extends StatefulWidget {
 }
 
 class _OtpViewState extends State<OtpView> {
-  TextEditingController _pinController = TextEditingController();
+  final TextEditingController _pinController = TextEditingController();
+  bool _enableResend = false;
+
+  @override
+  void initState() {
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
     return ViewModelBuilder<OtpViewModel>.reactive(
-      onModelReady: (viewModel) => WidgetsBinding.instance.addPostFrameCallback(
-        (_) async {
-          if (widget.resendCode != null) {
-            await viewModel.resendCode(widget.userId);
-          }
-        },
-      ),
       viewModelBuilder: () => OtpViewModel(),
       builder: (context, viewModel, child) => GestureDetector(
         onTap: () {
@@ -92,7 +88,7 @@ class _OtpViewState extends State<OtpView> {
                               title: 'رمز التحقق',
                             ),
                             SizedBox(height: 30.h),
-                            const OtpTip(),
+                            OtpTip(phoneNo: widget.signUpResult.phoneNumber),
                             SizedBox(height: 30.h),
                             Padding(
                               padding: EdgeInsets.all(20.w),
@@ -135,14 +131,20 @@ class _OtpViewState extends State<OtpView> {
                                     return false;
                                 },
                                 onCompleted: (_) => viewModel.verifyUser(
-                                    widget.userId, _pinController.text),
+                                  widget.signUpResult.phoneNumber,
+                                  _pinController.text.toNumber,
+                                ),
                                 onSubmitted: (_) => {},
                                 onChanged: (value) {},
                               ),
                             ),
                             SizedBox(height: 50.h),
                             ResendButton(
-                              onTap: () => viewModel.resendCode(widget.userId),
+                              onTap: () => _enableResend
+                                  ? viewModel.resendCode(
+                                      widget.signUpResult.phoneNumber,
+                                    )
+                                  : null,
                             ),
                             const BottomPadding(),
                           ],
@@ -154,8 +156,10 @@ class _OtpViewState extends State<OtpView> {
               ),
               bottomNavigationBar: BottomSubmitButton(
                 label: 'تحقق',
-                onPressed: () =>
-                    viewModel.verifyUser(widget.userId, _pinController.text),
+                onPressed: () => viewModel.verifyUser(
+                  widget.signUpResult.phoneNumber,
+                  _pinController.text.toNumber,
+                ),
               ),
             ),
           ),

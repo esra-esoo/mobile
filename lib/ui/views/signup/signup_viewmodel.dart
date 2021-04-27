@@ -1,6 +1,8 @@
 import 'package:email_validator/email_validator.dart';
 import 'package:huayati/app/locator.dart';
 import 'package:huayati/app/router.gr.dart';
+import 'package:huayati/models/signup_result.dart';
+import 'package:huayati/services/auth_service.dart';
 import 'package:huayati/services/third_party/navigation_service.dart';
 import 'package:huayati/services/third_party/snackbar_service.dart';
 import 'package:stacked/stacked.dart';
@@ -10,6 +12,7 @@ import 'package:huayati/extensions/string_extensions.dart';
 class SignUpViewModel extends FormViewModel {
   final _navigationService = locator<NavigationService>();
   final _snackbarService = locator<SnackbarService>();
+  final _authService = locator<AuthService>();
 
   List<String> _accountTypes = ['شركة', 'فرد'];
   List<String> get accountTypes => _accountTypes;
@@ -40,19 +43,28 @@ class SignUpViewModel extends FormViewModel {
         message: 'يجب أختيار نوع المستخدم !',
       );
     } else {
-      // TODO submit
-    }
-  }
+      try {
+        SignUpResult result = await runBusyFuture(
+          _authService.signUp(
+            email: emailValue,
+            phoneNumber: phoneValue,
+            customerType: _selectedType == 'فرد' ? 6 : 7,
+          ),
+          throwException: true,
+        );
+        print(result.verificationCode);
 
-  Future<void> navigatoToVerificationView(String userId, String phone) async {
-    // await _navigationService.pushNamedAndRemoveUntil(
-    //   Routes.verificationView,
-    //   arguments: VerificationViewArguments(
-    //     userId: userId,
-    //     phoneNo: phone,
-    //     fromBagView: _fromBagView,
-    //   ),
-    // );
+        await _navigationService.pushNamedAndRemoveUntil(
+          Routes.otpView,
+          arguments: OtpViewArguments(
+            signUpResult: result,
+          ),
+        );
+      } catch (e) {
+        print(e.toString());
+        _snackbarService.showBottomErrorSnackbar(message: e.toString());
+      }
+    }
   }
 
   void navigatoToSingInView() {

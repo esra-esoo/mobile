@@ -9,6 +9,7 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 
+import '../models/signup_result.dart';
 import '../ui/views/company_data/company_data_view.dart';
 import '../ui/views/company_form/company_form_view.dart';
 import '../ui/views/individual_form/individual_form_view.dart';
@@ -110,14 +111,11 @@ class Router extends RouterBase {
       );
     },
     OtpView: (data) {
-      final args = data.getArgs<OtpViewArguments>(
-        orElse: () => OtpViewArguments(),
-      );
+      final args = data.getArgs<OtpViewArguments>(nullOk: false);
       return buildAdaptivePageRoute<dynamic>(
         builder: (context) => OtpView(
           key: args.key,
-          userId: args.userId,
-          resendCode: args.resendCode,
+          signUpResult: args.signUpResult,
         ),
         settings: data,
         fullscreenDialog: true,
@@ -145,7 +143,6 @@ class SignUpViewArguments {
 /// OtpView arguments holder class
 class OtpViewArguments {
   final Key key;
-  final String userId;
-  final bool resendCode;
-  OtpViewArguments({this.key, this.userId, this.resendCode});
+  final SignUpResult signUpResult;
+  OtpViewArguments({this.key, @required this.signUpResult});
 }

@@ -15,6 +15,6 @@ void main() async {
     isDevEnviroment: true,
     child: MyApp(),
   );
-  setupLocator(endpoint: 'https://vatanexpo.herokuapp.com/api/v1');
+  setupLocator(endpoint: 'https://mobile.tatweer.ly:5001');
   runApp(configuredApp);
 }

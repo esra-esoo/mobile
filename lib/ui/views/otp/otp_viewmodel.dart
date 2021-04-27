@@ -8,10 +8,10 @@ class OtpViewModel extends BaseViewModel {
   final _navigationService = locator<NavigationService>();
   final _snackbarService = locator<SnackbarService>();
 
-  Future verifyUser(String userId, String pinCode) async {
-    if (pinCode.length < 6) {
+  Future verifyUser(String phoneNo, int verificationCode) async {
+    if (verificationCode.toString().length < 6) {
       _snackbarService.showTopErrorSnackbar(
-        message: 'نرجو ملء كافة الخانات ..',
+        message: 'نرجو منك ملء كافة الخانات ..',
       );
     } else {
       // TODO submit

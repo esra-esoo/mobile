@@ -7,7 +7,7 @@ class SplashScreenViewModel extends BaseViewModel {
   final _navigationService = locator<NavigationService>();
 
   Future<void> initializeView() async {
-    bool userLoggedIn = true;
+    bool userLoggedIn = false;
     var route = Routes.signInView;
 
     if (userLoggedIn) route = Routes.startUpView;

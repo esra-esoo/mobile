@@ -41,6 +41,7 @@ dependencies:
   animations: ^1.1.2
   email_validator: '^1.0.6'
   image_picker: ^0.6.7+22
+  oauth2: ^1.6.3
 
 dev_dependencies:
   flutter_test:

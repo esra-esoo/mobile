@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get_it/get_it.dart';
+import 'package:huayati/services/api.dart';
+import 'package:huayati/services/auth_service.dart';
 import 'package:huayati/services/third_party/dialog_service.dart';
 import 'package:huayati/services/third_party/media_picker.dart';
 import 'package:huayati/services/third_party/navigation_service.dart';
@@ -14,7 +16,7 @@ GetIt locator = GetIt.instance;
 void setupLocator({@required String endpoint}) {
   //////////////////////////////////////////////////////////////////////////
   //##Services
-  // locator.registerLazySingleton(() => Api(endpoint));
+  locator.registerLazySingleton(() => Api(endpoint));
   locator.registerLazySingleton(() => NavigationService());
   locator.registerLazySingleton(() => SnackbarService());
   locator.registerLazySingleton(() => DialogService());
@@ -22,7 +24,7 @@ void setupLocator({@required String endpoint}) {
   locator.registerLazySingleton(() => PickerService());
   locator.registerLazySingleton(() => MediaPickerService());
   // locator.registerLazySingleton(() => UserService());
-  // locator.registerLazySingleton(() => AuthService());
+  locator.registerLazySingleton(() => AuthService());
 
   //////////////////////////////////////////////////////////////////////////
   locator.registerLazySingleton(() => StartUpViewModel());
