@@ -86,7 +86,7 @@ class SignInView extends StatelessWidget with $SignInView {
                                   labelText: 'رقم الهاتف (*)',
                                 ),
                               ),
-                              SizedBox(height: 40.h),
+                              SizedBox(height: 20.h),
                               PasswordFormField(
                                 controller: passwordController,
                                 onFieldSubmitted: (_) => viewModel.saveData(),

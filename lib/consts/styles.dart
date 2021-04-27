@@ -45,5 +45,6 @@ const kformFieldInputDecoration = InputDecoration(
   labelStyle: TextStyle(color: kcolorPrimaryBlue),
   floatingLabelBehavior: FloatingLabelBehavior.never,
   isDense: true,
-  counterText: '',
+  counterStyle: TextStyle(color: Colors.white),
+  // counterText: '',
 );

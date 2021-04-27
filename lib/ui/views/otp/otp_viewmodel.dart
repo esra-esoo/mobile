@@ -77,7 +77,7 @@ class OtpViewModel extends BaseViewModel {
     }
   }
 
-  void closeScreen() {
-    _navigationService.back();
+  Future closeScreen() async {
+    await _navigationService.pushNamedAndRemoveUntil(Routes.signUpView);
   }
 }
