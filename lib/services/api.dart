@@ -1,9 +1,13 @@
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
+import 'package:huayati/interceptors/app_interceptor.dart';
+import 'package:huayati/interceptors/auth_interceptor.dart';
 import 'package:oauth2/oauth2.dart' as oauth2;
 
 class Api {
-  final _dio = Dio();
+  final Dio _dioAuth = Dio();
+  final Dio _dio = Dio();
+
   final endpoint;
   final authorizationEndpoint =
       Uri.parse('https://mobile.tatweer.ly:5001/connect/token');
@@ -17,11 +21,14 @@ class Api {
     'offline_access',
   ];
 
-  Api(this.endpoint);
+  Api(this.endpoint) {
+    _dioAuth.interceptors.add(AuthInterceptor(_dioAuth));
+    _dio.interceptors.add(AppInterceptor(_dio));
+  }
 
   Future postCall({@required String url, @required dynamic data}) async {
     try {
-      final response = await _dio.post(
+      final response = await _dioAuth.post(
         endpoint + url,
         data: data,
       );

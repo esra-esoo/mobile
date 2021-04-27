@@ -76,10 +76,10 @@ class SignUpView extends StatelessWidget with $SignUpView {
                                 keyboardType: TextInputType.number,
                                 textInputAction: TextInputAction.next,
                                 autocorrect: false,
-                                maxLength: 9,
+                                maxLength: 10,
                                 style: textFormFieldStyle,
                                 decoration: kformFieldInputDecoration.copyWith(
-                                  hintText: '9xxxxxxxx',
+                                  hintText: '09xxxxxxxx',
                                   labelText: 'رقم الهاتف (*)',
                                 ),
                               ),

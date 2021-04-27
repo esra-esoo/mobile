@@ -31,7 +31,7 @@ class SignUpViewModel extends FormViewModel {
       );
     } else if (!phoneValue.isValidPhonenumber) {
       _snackbarService.showTopErrorSnackbar(
-        message: 'رقم الهاتف يجب ان يكون بصيغة (9xxxxxxxx)',
+        message: 'رقم الهاتف يجب ان يكون بصيغة (09xxxxxxxx)',
       );
     } else if (emailValue != null &&
         emailValue.length > 0 &&
