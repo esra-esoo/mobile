@@ -122,50 +122,52 @@ class _OtpViewState extends State<OtpView> {
                             SizedBox(height: 30.h),
                             Padding(
                               padding: EdgeInsets.all(20.w),
-                              child: PinCodeTextField(
-                                autoDismissKeyboard: true,
-                                errorTextSpace: 0,
-                                appContext: context,
-                                keyboardType: TextInputType.number,
-                                textInputAction: TextInputAction.done,
-                                controller: _pinController,
-                                // autoDisposeControllers: false,
-                                length: 6,
-                                pastedTextStyle: TextStyle(
-                                  color: Colors.white,
-                                  fontSize: 14.sp,
+                              child: Directionality(
+                                textDirection: TextDirection.ltr,
+                                child: PinCodeTextField(
+                                  autoDismissKeyboard: true,
+                                  errorTextSpace: 0,
+                                  appContext: context,
+                                  keyboardType: TextInputType.number,
+                                  textInputAction: TextInputAction.done,
+                                  controller: _pinController,
+                                  // autoDisposeControllers: false,
+                                  length: 6,
+                                  pastedTextStyle: TextStyle(
+                                    color: Colors.white,
+                                    fontSize: 14.sp,
+                                  ),
+                                  obscureText: false,
+                                  animationType: AnimationType.fade,
+                                  pinTheme: PinTheme(
+                                    shape: PinCodeFieldShape.circle,
+                                    selectedColor: kcolorBluelight,
+                                    selectedFillColor: kcolorBluelight,
+                                    activeColor: kcolorBluelight,
+                                    activeFillColor: kcolorBluelight,
+                                    inactiveFillColor: Colors.white,
+                                    inactiveColor: Colors.white,
+                                    fieldWidth: 45.w,
+                                  ),
+                                  backgroundColor: Colors.transparent,
+                                  textStyle: TextStyle(
+                                    color: Colors.white,
+                                    fontSize: 14.sp,
+                                  ),
+                                  enableActiveFill: false,
+                                  beforeTextPaste: (text) {
+                                    if (text.length == 6)
+                                      return true;
+                                    else
+                                      return false;
+                                  },
+                                  onCompleted: (_) => viewModel.verifyUser(
+                                    widget.phoneNumber,
+                                    _pinController.text.toNumber,
+                                  ),
+                                  onSubmitted: (_) => {},
+                                  onChanged: (value) {},
                                 ),
-                                obscureText: false,
-                                animationType: AnimationType.fade,
-                                pinTheme: PinTheme(
-                                  shape: PinCodeFieldShape.circle,
-                                  selectedColor: kcolorBluelight,
-                                  selectedFillColor: kcolorBluelight,
-                                  activeColor: kcolorBluelight,
-                                  activeFillColor: kcolorBluelight,
-                                  inactiveFillColor: Colors.white,
-                                  inactiveColor: Colors.white,
-                                  fieldWidth: 45.w,
-                                ),
-                                backgroundColor: Colors.transparent,
-                                textStyle: TextStyle(
-                                  color: Colors.white,
-                                  fontSize: 14.sp,
-                                ),
-                                enableActiveFill: false,
-
-                                beforeTextPaste: (text) {
-                                  if (text.length == 6)
-                                    return true;
-                                  else
-                                    return false;
-                                },
-                                onCompleted: (_) => viewModel.verifyUser(
-                                  widget.phoneNumber,
-                                  _pinController.text.toNumber,
-                                ),
-                                onSubmitted: (_) => {},
-                                onChanged: (value) {},
                               ),
                             ),
                             SizedBox(height: 50.h),
