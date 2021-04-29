@@ -43,6 +43,7 @@ dependencies:
   image_picker: ^0.6.7+22
   oauth2: ^1.6.3
   circular_countdown_timer: ^0.1.0
+  jwt_decoder: ^1.0.4
 
 dev_dependencies:
   flutter_test:

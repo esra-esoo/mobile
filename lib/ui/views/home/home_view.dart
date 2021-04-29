@@ -1,6 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:huayati/consts/account_type.dart';
+import 'package:huayati/models/menu_item.dart';
+import 'package:huayati/models/user.dart';
 import 'package:huayati/ui/views/home/menus.dart';
 import 'package:huayati/ui/views/home/widgets/grid_item.dart';
+import 'package:provider/provider.dart';
 import 'package:responsive_builder/responsive_builder.dart';
 
 class HomeView extends StatelessWidget {
@@ -8,6 +12,9 @@ class HomeView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    var userRole = Provider.of<User>(context).role;
+    List<MenuItem> menu =
+        userRole == AccountType.INDIVISUAL ? individualMenu : companyMenu;
     return Container(
       height: MediaQuery.of(context).size.height,
       child: GridView.builder(
@@ -17,7 +24,7 @@ class HomeView extends StatelessWidget {
           bottom: 30,
           top: 30,
         ),
-        itemCount: companyMenu.length,
+        itemCount: menu.length,
         gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
           crossAxisCount: getValueForScreenType<int>(
             context: context,
@@ -28,7 +35,7 @@ class HomeView extends StatelessWidget {
           crossAxisSpacing: 15,
           childAspectRatio: 5 / 4,
         ),
-        itemBuilder: (context, index) => GridItem(menuItem: companyMenu[index]),
+        itemBuilder: (context, index) => GridItem(menuItem: menu[index]),
       ),
     );
   }

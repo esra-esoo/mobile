@@ -9,7 +9,7 @@ const List<MenuItem> companyMenu = [
   MenuItem(
     title: 'مستندات الشركة',
     route: Routes.companyFormView,
-    notifciation: 3,
+    // notifciation: 3,
   ),
   MenuItem(
     title: 'بيانات الحساب',
@@ -17,7 +17,10 @@ const List<MenuItem> companyMenu = [
   MenuItem(
     title: 'بيانات المخول',
   ),
-  MenuItem(title: 'مستندات المخول', notifciation: 1),
+  MenuItem(
+    title: 'مستندات المخول',
+    // notifciation: 1,
+  ),
 ];
 
 const List<MenuItem> individualMenu = [
@@ -28,5 +31,8 @@ const List<MenuItem> individualMenu = [
     title: 'بيانات الحساب',
   ),
   MenuItem(
-      title: 'المستندات', route: Routes.individualFormView, notifciation: 2),
+    title: 'المستندات',
+    route: Routes.individualFormView,
+    // notifciation: 2,
+  ),
 ];
