@@ -44,12 +44,30 @@ class Api {
     }
   }
 
-  Future postCallWithToken(
-      {@required String url, @required dynamic data}) async {
+  Future postCallWithToken({
+    @required String url,
+    @required dynamic data,
+  }) async {
     try {
       final response = await _dio.post(
         endpoint + url,
         data: data,
+        options: Options(
+          headers: {"requires-token": true},
+        ),
+      );
+      return response.data;
+    } catch (e) {
+      throw e;
+    }
+  }
+
+  Future getCallWithToken({
+    @required String url,
+  }) async {
+    try {
+      final response = await _dio.get(
+        endpoint + url,
         options: Options(
           headers: {"requires-token": true},
         ),

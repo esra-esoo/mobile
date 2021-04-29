@@ -3,7 +3,6 @@ import 'package:huayati/app/locator.dart';
 import 'package:huayati/app/router.gr.dart';
 import 'package:huayati/consts/styles.dart';
 import 'package:huayati/services/third_party/navigation_service.dart';
-import 'package:huayati/services/third_party/secure_storage_service.dart';
 import 'package:huayati/services/user_service.dart';
 import 'package:huayati/ui/widgets/botton_padding.dart';
 
@@ -101,8 +100,7 @@ class _SignOutButton extends StatelessWidget {
       type: MaterialType.transparency,
       child: InkWell(
         onTap: () async {
-          await locator<SecureStorageService>().deleteAll();
-          await locator<UserService>().removeUser();
+          await locator<UserService>().signOut();
           await locator<NavigationService>()
               .pushNamedAndRemoveUntil(Routes.signInView);
         },

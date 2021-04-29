@@ -34,6 +34,7 @@ class AppInterceptor extends Interceptor {
 
   @override
   Future onError(DioError dioError) async {
+    print('status code =::${dioError.response.statusCode}');
     try {
       if (dioError.response?.statusCode == 401) {
         try {
@@ -69,8 +70,7 @@ class AppInterceptor extends Interceptor {
   }
 
   Future<void> signOut() async {
-    await _secureStorageService.deleteAll();
-    await _userService.removeUser();
+    await _userService.signOut();
     await _navigationService.pushNamedAndRemoveUntil(Routes.signInView);
   }
 

@@ -13,7 +13,8 @@ class UserService {
 
   Stream<User> get userStream => _userController.stream;
 
-  Future<void> removeUser() async {
+  Future<void> signOut() async {
+    await _storage.deleteAll();
     _userController.sink.add(User.initial());
   }
 

@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:get_it/get_it.dart';
 import 'package:huayati/services/api.dart';
 import 'package:huayati/services/auth_service.dart';
+import 'package:huayati/services/company_service.dart';
+import 'package:huayati/services/individual_service.dart';
 import 'package:huayati/services/third_party/dialog_service.dart';
 import 'package:huayati/services/third_party/media_picker.dart';
 import 'package:huayati/services/third_party/navigation_service.dart';
@@ -26,6 +28,8 @@ void setupLocator({@required String endpoint}) {
   locator.registerLazySingleton(() => MediaPickerService());
   locator.registerLazySingleton(() => UserService());
   locator.registerLazySingleton(() => AuthService());
+  locator.registerLazySingleton(() => IndividualService());
+  locator.registerLazySingleton(() => CompanyService());
 
   //////////////////////////////////////////////////////////////////////////
   locator.registerLazySingleton(() => StartUpViewModel());

@@ -37,12 +37,12 @@ class SplashScreenView extends StatelessWidget {
                 child: Hero(tag: 'logo', child: FullLogo(height: 220.w)),
               ),
               const Spacer(),
-              // SizedBox(
-              //   width: MediaQuery.of(context).size.width / 3,
-              //   child: const LinearProgressIndicator(
-              //     backgroundColor: kcolorBluelight,
-              //   ),
-              // ),
+              SizedBox(
+                width: MediaQuery.of(context).size.width / 3,
+                child: const LinearProgressIndicator(
+                  backgroundColor: kcolorBluelight,
+                ),
+              ),
               FadeFromBottomAnimation(
                 duration: 300,
                 order: 1.5,
