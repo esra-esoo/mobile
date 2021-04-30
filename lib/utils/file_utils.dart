@@ -1,6 +1,6 @@
 import 'dart:convert';
 import 'dart:io';
-import 'package:huayati/models/indivisual_create_file_payload.dart';
+import 'package:huayati/models/individual/indivisual_create_file_payload.dart';
 import 'package:huayati/extensions/file_extensions.dart';
 
 class FileUtils {

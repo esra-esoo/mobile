@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:json_annotation/json_annotation.dart';
 
-part 'indivisual_create_file_payload.g.dart';
+part '../indivisual_create_file_payload.g.dart';
 
 @JsonSerializable(explicitToJson: true)
 class IndivisualCreateFilePayload {

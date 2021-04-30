@@ -1,7 +1,7 @@
 import 'package:huayati/app/locator.dart';
 import 'package:huayati/enums/group_file_type.dart';
-import 'package:huayati/models/authorizer_form.dart';
-import 'package:huayati/models/company_form.dart';
+import 'package:huayati/models/company/authorizer_form.dart';
+import 'package:huayati/models/company/company_form.dart';
 import 'package:huayati/services/third_party/snackbar_service.dart';
 import 'package:stacked/stacked.dart';
 

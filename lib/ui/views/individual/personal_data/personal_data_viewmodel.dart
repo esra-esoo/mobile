@@ -1,6 +1,6 @@
 import 'package:huayati/app/locator.dart';
 import 'package:huayati/models/navigation_result.dart';
-import 'package:huayati/models/personal_data.dart';
+import 'package:huayati/models/individual/personal_data.dart';
 import 'package:huayati/services/individual_service.dart';
 import 'package:huayati/services/third_party/navigation_service.dart';
 import 'package:stacked/stacked.dart';

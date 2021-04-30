@@ -1,6 +1,6 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'indivisual_create_file_payload.dart';
+part of 'individual/indivisual_create_file_payload.dart';
 
 // **************************************************************************
 // JsonSerializableGenerator

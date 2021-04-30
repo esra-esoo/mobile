@@ -1,8 +1,8 @@
 import 'package:dio/dio.dart';
 import 'package:huayati/app/locator.dart';
 import 'package:huayati/models/image_file.dart';
-import 'package:huayati/models/indivisual_create_file_payload.dart';
-import 'package:huayati/models/personal_data.dart';
+import 'package:huayati/models/individual/indivisual_create_file_payload.dart';
+import 'package:huayati/models/individual/personal_data.dart';
 
 import 'api.dart';
 

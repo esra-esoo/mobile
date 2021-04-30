@@ -1,4 +1,4 @@
-import 'package:huayati/models/compnay_data.dart';
+import 'package:huayati/models/company/compnay_data.dart';
 import 'package:stacked/stacked.dart';
 
 class CompanyDataViewModel extends BaseViewModel {
