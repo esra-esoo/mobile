@@ -53,12 +53,16 @@ class IndividualService {
     }
   }
 
-  Future<BankAccountData> getBankAccounts() async {
+  Future<List<BankAccountData>> getBankAccounts() async {
     try {
       final response = await _api.getCallWithToken(
         url: '/api/Individual/GetBankAccounts',
       );
-      return BankAccountData.fromJson(response);
+      return response
+          ?.map<BankAccountData>(
+            (json) => BankAccountData.fromJson(json),
+          )
+          ?.toList();
     } on DioError catch (e) {
       throw e.message;
     } catch (e) {
