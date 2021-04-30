@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:huayati/consts/styles.dart';
-import 'package:huayati/ui/widgets/botton_padding.dart';
-import 'package:huayati/ui/widgets/data_item.dart';
 import 'package:huayati/ui/widgets/form/form_title.dart';
 import 'package:huayati/ui/widgets/loading_indicator.dart';
 import 'package:huayati/ui/widgets/scrollbar.dart';
@@ -61,15 +59,18 @@ class _DataView extends ViewModelWidget<IndividualBankAccountDataViewModel> {
         child: ListView.builder(
           padding: EdgeInsets.only(
             top: 30.h,
-            left: 30.w,
-            right: 30.w,
+            left: 20.w,
+            right: 20.w,
             bottom: kBottomNavigationBarHeight +
                 MediaQuery.of(context).viewPadding.bottom,
           ),
           shrinkWrap: true,
           itemCount: viewModel?.bankAccountData?.length,
           itemBuilder: (context, index) {
-            return BankItem(bankAccountData: viewModel?.bankAccountData[index]);
+            return BankItem(
+              bankAccountData: viewModel?.bankAccountData[index],
+              no: index + 1,
+            );
           },
         ),
       ),
