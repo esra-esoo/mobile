@@ -2,7 +2,7 @@ import 'dart:io';
 
 import 'package:flutter/material.dart';
 
-import '../company/authorizer_form.dart';
+import 'authorizer_form.dart';
 
 class CompanyForm {
   File commercialLicense;
