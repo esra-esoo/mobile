@@ -35,5 +35,6 @@ const List<MenuItem> individualMenu = [
   ),
   MenuItem(
     title: 'بيانات الحساب',
+    route: Routes.individualBankAccountDataView,
   ),
 ];
