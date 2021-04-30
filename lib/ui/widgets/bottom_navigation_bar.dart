@@ -22,11 +22,11 @@ class AppBottomNavigationBar extends StatelessWidget {
           topLeft: Radius.circular(30),
         ),
         // border: Border.all(color: kcolorPrimaryBlue, width: 1),
-         boxShadow: [
+        boxShadow: [
           BoxShadow(
-            color: kcolorPrimaryBlue.withOpacity(0.6),
-            spreadRadius: 1,
-            blurRadius: 5,
+            color: kcolorPrimaryBlue.withOpacity(0.2),
+            spreadRadius: 2,
+            blurRadius: 3,
           ),
         ],
       ),
