@@ -1,24 +1,27 @@
 import 'dart:io';
 
 import 'package:flutter/material.dart';
-import 'package:huayati/enums/extra_file_type.dart';
+import 'package:huayati/enums/group_file_type.dart';
 
 class IndividualForm {
   File passport;
-  File extraFile;
-  ExtraFileType extraFileType;
-  File accountStatement;
+  File groupFile;
+  File groupFile2;
+  GroupFileType groupFileType;
+  GroupFileType2 groupFileType2;
 
   IndividualForm.initial()
       : passport = null,
-        extraFile = null,
-        extraFileType = null,
-        accountStatement = null;
+        groupFile = null,
+        groupFile2 = null,
+        groupFileType = null,
+        groupFileType2 = null;
 
   IndividualForm({
     @required this.passport,
-    @required this.extraFile,
-    @required this.extraFileType,
-    @required this.accountStatement,
+    @required this.groupFile,
+    @required this.groupFile2,
+    @required this.groupFileType,
+    @required this.groupFileType2,
   });
 }
