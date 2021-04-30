@@ -20,7 +20,7 @@ extension StringExtension on String {
   }
 
   get isValidPhonenumber {
-    RegExp regExp = RegExp(r'^(9)[0-9]{8}$');
+    RegExp regExp = RegExp(r'^(09)[0-9]{8}$');
     return regExp.hasMatch(this);
   }
 

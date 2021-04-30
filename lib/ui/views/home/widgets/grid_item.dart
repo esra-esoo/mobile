@@ -15,21 +15,12 @@ class GridItem extends StatelessWidget {
         if (menuItem.route != null)
           locator<NavigationService>().navigateTo(menuItem.route);
       },
-      child: Container(
-        decoration: BoxDecoration(
+      child: Card(
+        elevation: 4,
+        shadowColor: Colors.grey.withOpacity(0.4),
+        shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(20),
-          border: Border.all(color: kcolorPrimaryBlue, width: 0.5),
-          color: Colors.white,
-          boxShadow: [
-            BoxShadow(
-              color: kcolorPrimaryBlue.withOpacity(0.2),
-              offset: Offset(0, 0),
-              blurRadius: 1,
-              spreadRadius: 2,
-            )
-          ],
         ),
-        clipBehavior: Clip.antiAlias,
         child: GridTile(
           child: Center(
             child: Text(

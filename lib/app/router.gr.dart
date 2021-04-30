@@ -92,8 +92,10 @@ class Router extends RouterBase {
         orElse: () => SignInViewArguments(),
       );
       return PageRouteBuilder<dynamic>(
-        pageBuilder: (context, animation, secondaryAnimation) =>
-            SignInView(key: args.key),
+        pageBuilder: (context, animation, secondaryAnimation) => SignInView(
+          key: args.key,
+          phoneNumber: args.phoneNumber,
+        ),
         settings: data,
         transitionsBuilder: TransitionsBuilders.fadeIn,
       );
@@ -110,14 +112,13 @@ class Router extends RouterBase {
       );
     },
     OtpView: (data) {
-      final args = data.getArgs<OtpViewArguments>(
-        orElse: () => OtpViewArguments(),
-      );
+      final args = data.getArgs<OtpViewArguments>(nullOk: false);
       return buildAdaptivePageRoute<dynamic>(
         builder: (context) => OtpView(
           key: args.key,
-          userId: args.userId,
-          resendCode: args.resendCode,
+          phoneNumber: args.phoneNumber,
+          email: args.email,
+          customerType: args.customerType,
         ),
         settings: data,
         fullscreenDialog: true,
@@ -133,7 +134,8 @@ class Router extends RouterBase {
 /// SignInView arguments holder class
 class SignInViewArguments {
   final Key key;
-  SignInViewArguments({this.key});
+  final String phoneNumber;
+  SignInViewArguments({this.key, this.phoneNumber});
 }
 
 /// SignUpView arguments holder class
@@ -145,7 +147,12 @@ class SignUpViewArguments {
 /// OtpView arguments holder class
 class OtpViewArguments {
   final Key key;
-  final String userId;
-  final bool resendCode;
-  OtpViewArguments({this.key, this.userId, this.resendCode});
+  final String phoneNumber;
+  final String email;
+  final int customerType;
+  OtpViewArguments(
+      {this.key,
+      @required this.phoneNumber,
+      this.email,
+      @required this.customerType});
 }

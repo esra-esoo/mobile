@@ -76,14 +76,14 @@ class SignUpView extends StatelessWidget with $SignUpView {
                                 keyboardType: TextInputType.number,
                                 textInputAction: TextInputAction.next,
                                 autocorrect: false,
-                                maxLength: 9,
+                                maxLength: 10,
                                 style: textFormFieldStyle,
                                 decoration: kformFieldInputDecoration.copyWith(
-                                  hintText: '9xxxxxxxx',
+                                  hintText: '09xxxxxxxx',
                                   labelText: 'رقم الهاتف (*)',
                                 ),
                               ),
-                              SizedBox(height: 40.h),
+                              SizedBox(height: 20.h),
                               TextFormField(
                                 cursorColor: kcolorPrimaryBlue,
                                 controller: emailController,
@@ -97,17 +97,15 @@ class SignUpView extends StatelessWidget with $SignUpView {
                                 ),
                               ),
                               SizedBox(height: 40.h),
-                              // PasswordFormField(
-                              //   controller: passwordController,
-                              //   onFieldSubmitted: (_) => viewModel.saveData(),
-                              // ),
-                              // SizedBox(height: 40.h),
                               Text(
                                 'نوع المستخدم (*) :',
-                                style: TextStyle(color: Colors.white),
+                                style: TextStyle(
+                                  color: Colors.white,
+                                  fontWeight: FontWeight.w600,
+                                ),
                               ),
                               const AccountTypesRadio(),
-                              SizedBox(height: 60.h),
+                              SizedBox(height: 40.h),
                               LinkButton(
                                 label: 'لدي حساب',
                                 bold: true,

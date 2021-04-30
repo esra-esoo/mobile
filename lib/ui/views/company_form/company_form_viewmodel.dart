@@ -1,5 +1,5 @@
 import 'package:huayati/app/locator.dart';
-import 'package:huayati/enums/extra_file_type.dart';
+import 'package:huayati/enums/group_file_type.dart';
 import 'package:huayati/models/authorizer_form.dart';
 import 'package:huayati/models/company_form.dart';
 import 'package:huayati/services/third_party/snackbar_service.dart';
@@ -19,8 +19,8 @@ class CompanyFormViewModel extends IndexTrackingViewModel {
     _authorizers.add(
       AuthorizerForm(
         passport: null,
-        extraFile: null,
-        extraFileType: null,
+        groupFile: null,
+        groupFileType: null,
       ),
     );
     notifyListeners();
@@ -45,6 +45,6 @@ class CompanyFormViewModel extends IndexTrackingViewModel {
   Future saveData() async {}
 
   void onAuthorizerExtraTypeChanged(int authorizerIndex, int value) {
-    _authorizers[authorizerIndex].extraFileType = ExtraFileType.values[value];
+    _authorizers[authorizerIndex].groupFileType = GroupFileType.values[value];
   }
 }
