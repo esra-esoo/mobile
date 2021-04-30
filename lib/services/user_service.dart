@@ -24,6 +24,12 @@ class UserService {
     print('user has been added : ${user.toJson()}');
   }
 
+  Future<void> update(User user) async {
+    await _storage.addString(StorageKeys.USER, jsonEncode(user));
+    _userController.sink.add(user);
+    print('user has been updated : ${user.toJson()}');
+  }
+
   Future<User> loadUser() async {
     try {
       final userString = await _storage.readString(StorageKeys.USER);

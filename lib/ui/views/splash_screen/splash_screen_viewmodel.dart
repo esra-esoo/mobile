@@ -28,7 +28,7 @@ class SplashScreenViewModel extends BaseViewModel {
           isUploaded = await _companyService.getCompanyUploadState();
           print('company file upload state => $isUploaded');
         }
-        await _userService.addUser(
+        await _userService.update(
           User(
             phoneNumbaer: user.phoneNumbaer,
             sub: user.sub,

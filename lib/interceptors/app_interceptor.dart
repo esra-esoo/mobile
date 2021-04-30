@@ -91,7 +91,7 @@ class AppInterceptor extends Interceptor {
         StorageKeys.TOKEN,
         newCredentials.accessToken,
       );
-      await _userService.addUser(
+      await _userService.update(
         User.fromToken(newCredentials.accessToken),
       );
       print('new Credintails has been granted !!');

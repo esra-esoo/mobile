@@ -1,4 +1,5 @@
 import 'package:huayati/consts/documents_names.dart';
+import 'package:huayati/models/user.dart';
 import 'package:huayati/utils/file_utils.dart';
 import 'package:stacked/stacked.dart';
 import 'package:flutter/material.dart';
@@ -47,6 +48,14 @@ class IndividualFormViewModel extends BaseViewModel {
           phoneNumber: user.phoneNumbaer,
           filesModels: filesModels,
           length: FileUtils.getFilesTotalLength(filesModels),
+        ),
+      );
+      await _userService.update(
+        User(
+          phoneNumbaer: user.phoneNumbaer,
+          sub: user.sub,
+          role: user.role,
+          editMode: true,
         ),
       );
       setBusy(false);
