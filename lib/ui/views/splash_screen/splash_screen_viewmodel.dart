@@ -22,7 +22,7 @@ class SplashScreenViewModel extends BaseViewModel {
       try {
         var isUploaded = false;
         if (user.role == AccountType.INDIVISUAL) {
-          isUploaded = await _individualService.getIndividualUploadState();
+          isUploaded = await _individualService.getUploadState();
           print('individual file upload state => $isUploaded');
         } else {
           isUploaded = await _companyService.getCompanyUploadState();
