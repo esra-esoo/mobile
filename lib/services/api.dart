@@ -62,6 +62,24 @@ class Api {
     }
   }
 
+    Future putCallWithToken({
+    @required String url,
+    @required dynamic data,
+  }) async {
+    try {
+      final response = await _dio.put(
+        endpoint + url,
+        data: data,
+        options: Options(
+          headers: {"requires-token": true},
+        ),
+      );
+      return response.data;
+    } catch (e) {
+      throw e;
+    }
+  }
+
   Future getCallWithToken({
     @required String url,
   }) async {
