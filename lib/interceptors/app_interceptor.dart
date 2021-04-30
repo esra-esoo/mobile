@@ -4,6 +4,7 @@ import 'dart:io';
 import 'package:dio/dio.dart';
 import 'package:huayati/app/locator.dart';
 import 'package:huayati/app/router.gr.dart';
+import 'package:huayati/config/config.dart';
 import 'package:huayati/consts/storage_keys.dart';
 import 'package:huayati/models/user.dart';
 import 'package:huayati/services/third_party/navigation_service.dart';
@@ -26,7 +27,6 @@ class AppInterceptor extends Interceptor {
       options.headers.remove("requires-token");
 
       var token = await _secureStorageService.readString(StorageKeys.TOKEN);
-
       options.headers.addAll({"Authorization": "Bearer " + token});
       return options;
     }
@@ -79,7 +79,10 @@ class AppInterceptor extends Interceptor {
       var credintailsJson =
           await _secureStorageService.readString(StorageKeys.CREDENTIALS);
       var credentials = oauth2.Credentials.fromJson(credintailsJson);
-      var newCredentials = await credentials.refresh();
+      var newCredentials = await credentials.refresh(
+        identifier: Config.identifier,
+        secret: Config.secret,
+      );
       await _secureStorageService.addString(
         StorageKeys.CREDENTIALS,
         newCredentials.toJson(),
