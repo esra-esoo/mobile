@@ -13,7 +13,7 @@ import 'package:huayati/services/third_party/snackbar_service.dart';
 import 'package:huayati/services/user_service.dart';
 import 'package:huayati/ui/widgets/success_upload_modal.dart';
 
-class IndividualFormViewModel extends BaseViewModel {
+class IndividualCreateFilesViewModel extends BaseViewModel {
   final _individualService = locator<IndividualService>();
   final _snackbarService = locator<SnackbarService>();
   final _userService = locator<UserService>();

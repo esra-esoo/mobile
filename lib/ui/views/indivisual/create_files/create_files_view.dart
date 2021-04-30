@@ -11,15 +11,15 @@ import 'package:huayati/ui/widgets/form/image_picker_field.dart';
 import 'package:huayati/ui/widgets/form/text_field_label.dart';
 import 'package:stacked/stacked.dart';
 
-import 'individual_form_viewmodel.dart';
+import 'create_files_viewmodel.dart';
 
-class IndividualFormView extends StatelessWidget {
-  const IndividualFormView({Key key}) : super(key: key);
+class IndividualCreateFilesView extends StatelessWidget {
+  const IndividualCreateFilesView({Key key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return ViewModelBuilder<IndividualFormViewModel>.reactive(
-      viewModelBuilder: () => IndividualFormViewModel(),
+    return ViewModelBuilder<IndividualCreateFilesViewModel>.reactive(
+      viewModelBuilder: () => IndividualCreateFilesViewModel(),
       builder: (context, viewModel, child) => BusyOverlay(
         primaryColors: true,
         show: viewModel.isBusy,

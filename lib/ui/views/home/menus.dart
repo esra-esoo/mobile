@@ -31,8 +31,8 @@ const List<MenuItem> individualMenu = [
     title: 'بيانات الحساب',
   ),
   MenuItem(
-    title: 'المستندات',
-    route: Routes.individualFormView,
+    title: 'رفع المستندات',
+    route: Routes.individualCreateFilesView,
     // notifciation: 2,
   ),
 ];
