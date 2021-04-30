@@ -43,7 +43,7 @@ class DialogService {
               if (!_dialogCompleter.isCompleted)
                 completeDialog(DialogResponse(confirmed: true));
             },
-            child: Text(closeTitle.toUpperCase()),
+            child: Text(closeTitle ?? 'تراجع'),
           ),
         ],
       ),
@@ -90,7 +90,7 @@ class DialogService {
                 completeDialog(DialogResponse(confirmed: true));
             },
             child: Text(
-              confirmationTitle,
+              confirmationTitle ?? 'نعم',
             ),
           ),
           PlatformDialogAction(
@@ -98,7 +98,7 @@ class DialogService {
               if (!_dialogCompleter.isCompleted)
                 completeDialog(DialogResponse(confirmed: false));
             },
-            child: Text(cancelTitle),
+            child: Text(cancelTitle ?? 'تراجع'),
           ),
         ],
       ),

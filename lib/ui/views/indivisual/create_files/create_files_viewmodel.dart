@@ -1,5 +1,6 @@
 import 'package:huayati/consts/documents_names.dart';
 import 'package:huayati/models/user.dart';
+import 'package:huayati/services/third_party/dialog_service.dart';
 import 'package:huayati/utils/file_utils.dart';
 import 'package:stacked/stacked.dart';
 import 'package:flutter/material.dart';
@@ -17,10 +18,19 @@ class IndividualCreateFilesViewModel extends BaseViewModel {
   final _individualService = locator<IndividualService>();
   final _snackbarService = locator<SnackbarService>();
   final _userService = locator<UserService>();
+  final _dialogService = locator<DialogService>();
 
   IndividualForm individualForm = IndividualForm.initial();
 
   void initilizeView() {}
+
+  void onExtraTypeChanged(int value) {
+    individualForm.groupFileType = GroupFileType.values[value];
+  }
+
+  void onExtraType2Changed(int value) {
+    individualForm.groupFileType2 = GroupFileType2.values[value];
+  }
 
   Future saveData() async {
     if (individualForm.passport == null) {
@@ -39,6 +49,15 @@ class IndividualCreateFilesViewModel extends BaseViewModel {
       );
       return;
     }
+    var response = await _dialogService.showConfirmDialog(
+      title: 'تأكيد العملية',
+      description: 'هل أنت متأكد من رغبتك في حفظ التغييرات ؟',
+    );
+    if (!response.confirmed) return;
+    await _uploadFiles();
+  }
+
+  Future _uploadFiles() async {
     try {
       setBusy(true);
       var user = await _userService.loadUser();
@@ -67,14 +86,6 @@ class IndividualCreateFilesViewModel extends BaseViewModel {
         message: e.toString(),
       );
     }
-  }
-
-  void onExtraTypeChanged(int value) {
-    individualForm.groupFileType = GroupFileType.values[value];
-  }
-
-  void onExtraType2Changed(int value) {
-    individualForm.groupFileType2 = GroupFileType2.values[value];
   }
 
   Future<List<FilesModels>> _populateFilesModels() async {
