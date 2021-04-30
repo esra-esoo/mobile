@@ -95,7 +95,6 @@ class AppInterceptor extends Interceptor {
         User.fromToken(newCredentials.accessToken),
       );
       print('new Credintails has been granted !!');
-      print(newCredentials.toJson());
       return newCredentials.accessToken;
     } catch (e) {
       throw e;

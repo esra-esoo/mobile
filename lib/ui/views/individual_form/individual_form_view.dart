@@ -57,24 +57,28 @@ class IndividualFormView extends StatelessWidget {
                   imageFile: viewModel?.individualForm?.passport,
                 ),
                 SizedBox(height: 25.h),
-                TextFieldLabel(label: 'مستند أخر'),
+                TextFieldLabel(label: 'أختر مستند'),
                 FileRadioTile(
                   options: ['الرقم الوطني', 'شهادة الميلاد'],
-                  groupValue: viewModel.individualForm?.extraFileType?.index,
+                  groupValue: viewModel.individualForm?.groupFileType?.index,
                   onChanged: (int value) {
                     viewModel.onExtraTypeChanged(value);
                   },
                   onFileChanged: (file) =>
-                      viewModel.individualForm.extraFile = file,
-                  imageFile: viewModel?.individualForm?.extraFile,
+                      viewModel.individualForm.groupFile = file,
+                  imageFile: viewModel?.individualForm?.groupFile,
                 ),
-                SizedBox(height: 15.h),
-                TextFieldLabel(label: 'كشف الحساب'),
-                SizedBox(height: 10.h),
-                ImagePickerField(
-                  onChanged: (file) =>
-                      viewModel.individualForm.accountStatement = file,
-                  imageFile: viewModel?.individualForm?.accountStatement,
+                SizedBox(height: 25.h),
+                TextFieldLabel(label: 'أختر مستند'),
+                FileRadioTile(
+                  options: ['كشف الحساب', 'صك'],
+                  groupValue: viewModel.individualForm?.groupFileType2?.index,
+                  onChanged: (int value) {
+                    viewModel.onExtraType2Changed(value);
+                  },
+                  onFileChanged: (file) =>
+                      viewModel.individualForm.groupFile2 = file,
+                  imageFile: viewModel?.individualForm?.groupFile2,
                 ),
                 const BottomPadding(),
               ],

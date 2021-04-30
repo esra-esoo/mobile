@@ -64,13 +64,13 @@ class _AuthorizerFieldsCard extends ViewModelWidget<CompanyFormViewModel> {
           TextFieldLabel(label: 'مستند أخر'),
           FileRadioTile(
             options: ['الرقم الوطني', 'شهادة الميلاد'],
-            groupValue: viewModel.authorizers[index]?.extraFileType?.index,
+            groupValue: viewModel.authorizers[index]?.groupFileType?.index,
             onChanged: (int value) {
               viewModel.onAuthorizerExtraTypeChanged(index, value);
             },
-            imageFile: viewModel.authorizers[index]?.extraFile,
+            imageFile: viewModel.authorizers[index]?.groupFile,
             onFileChanged: (file) =>
-                viewModel.authorizers[index].extraFile = file,
+                viewModel.authorizers[index].groupFile = file,
           ),
           SizedBox(height: 15.h),
           Row(

@@ -20,19 +20,22 @@ class SplashScreenViewModel extends BaseViewModel {
 
     if (userLoggedIn) {
       try {
+        var isUploaded = false;
         if (user.role == AccountType.INDIVISUAL) {
-          var isUploaded = await _individualService.getIndividualUploadState();
+          isUploaded = await _individualService.getIndividualUploadState();
           print('individual file upload state => $isUploaded');
-          await _userService.addUser(
-            User(role: user.role, editMode: isUploaded),
-          );
         } else {
-          var isUploaded = await _companyService.getCompanyUploadState();
+          isUploaded = await _companyService.getCompanyUploadState();
           print('company file upload state => $isUploaded');
-          await _userService.addUser(
-            User(role: user.role, editMode: isUploaded),
-          );
         }
+        await _userService.addUser(
+          User(
+            phoneNumbaer: user.phoneNumbaer,
+            sub: user.sub,
+            role: user.role,
+            editMode: isUploaded,
+          ),
+        );
       } catch (e) {
         print(e);
         await _userService.signOut();
@@ -52,7 +55,7 @@ class SplashScreenViewModel extends BaseViewModel {
   }
 
   Future _navigateToStartUp() async {
-    await Future.delayed(const Duration(seconds: 2));
+    await Future.delayed(const Duration(milliseconds: 500));
     _navigationService.pushNamedAndRemoveUntil(
       Routes.startUpView,
     );
