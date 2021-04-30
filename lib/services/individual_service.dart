@@ -33,7 +33,7 @@ class IndividualService {
           )
           ?.toList();
     } on DioError catch (e) {
-      throw e;
+      throw e.message;
     } catch (e) {
       throw e;
     }
@@ -46,7 +46,7 @@ class IndividualService {
       );
       return PersonalData.fromJson(response);
     } on DioError catch (e) {
-      throw e;
+      throw e.message;
     } catch (e) {
       throw e;
     }
@@ -59,7 +59,7 @@ class IndividualService {
         data: payload,
       );
     } on DioError catch (e) {
-      throw e;
+      throw e.message;
     } catch (e) {
       throw e;
     }
@@ -72,7 +72,7 @@ class IndividualService {
         data: images,
       );
     } on DioError catch (e) {
-      throw e;
+      throw e.message;
     } catch (e) {
       throw e;
     }

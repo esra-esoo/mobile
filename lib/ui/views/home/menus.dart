@@ -26,6 +26,7 @@ const List<MenuItem> companyMenu = [
 const List<MenuItem> individualMenu = [
   MenuItem(
     title: 'البيانات الشخصية',
+    route: Routes.individualPersonalDataView,
   ),
   MenuItem(
     title: 'بيانات الحساب',

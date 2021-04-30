@@ -1,9 +1,12 @@
 import 'package:badges/badges.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:huayati/app/locator.dart';
 import 'package:huayati/consts/styles.dart';
 import 'package:huayati/models/menu_item.dart';
+import 'package:huayati/models/navigation_result.dart';
 import 'package:huayati/services/third_party/navigation_service.dart';
+import 'package:huayati/services/third_party/snackbar_service.dart';
 
 class GridItem extends StatelessWidget {
   final MenuItem menuItem;
@@ -11,9 +14,23 @@ class GridItem extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: () {
-        if (menuItem.route != null)
-          locator<NavigationService>().navigateTo(menuItem.route);
+      onTap: () async {
+        if (menuItem.route == null) return;
+        NavigationResult result =
+            await locator<NavigationService>().navigateTo(menuItem.route);
+        if (result != null) {
+          NavigationResult navigationResult = result;
+          await HapticFeedback.mediumImpact();
+          if (navigationResult.success) {
+            locator<SnackbarService>().showBottomSuccessSnackbar(
+              message: navigationResult.message,
+            );
+          } else {
+            locator<SnackbarService>().showBottomErrorSnackbar(
+              message: navigationResult.message,
+            );
+          }
+        }
       },
       child: Card(
         elevation: 4,

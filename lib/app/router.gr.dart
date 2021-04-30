@@ -11,7 +11,8 @@ import 'package:flutter/material.dart';
 
 import '../ui/views/company_data/company_data_view.dart';
 import '../ui/views/company_form/company_form_view.dart';
-import '../ui/views/indivisual/create_files/create_files_view.dart';
+import '../ui/views/individual/create_files/create_files_view.dart';
+import '../ui/views/individual/personal_data/personal_data_view.dart';
 import '../ui/views/otp/otp_view.dart';
 import '../ui/views/signin/signin_view.dart';
 import '../ui/views/signup/signup_view.dart';
@@ -24,6 +25,8 @@ class Routes {
   static const String companyDataView = '/company-data-view';
   static const String individualCreateFilesView =
       '/individual-create-files-view';
+  static const String individualPersonalDataView =
+      '/individual-personal-data-view';
   static const String startUpView = '/start-up-view';
   static const String signInView = '/sign-in-view';
   static const String signUpView = '/sign-up-view';
@@ -33,6 +36,7 @@ class Routes {
     companyFormView,
     companyDataView,
     individualCreateFilesView,
+    individualPersonalDataView,
     startUpView,
     signInView,
     signUpView,
@@ -48,6 +52,8 @@ class Router extends RouterBase {
     RouteDef(Routes.companyFormView, page: CompanyFormView),
     RouteDef(Routes.companyDataView, page: CompanyDataView),
     RouteDef(Routes.individualCreateFilesView, page: IndividualCreateFilesView),
+    RouteDef(Routes.individualPersonalDataView,
+        page: IndividualPersonalDataView),
     RouteDef(Routes.startUpView, page: StartUpView),
     RouteDef(Routes.signInView, page: SignInView),
     RouteDef(Routes.signUpView, page: SignUpView),
@@ -77,6 +83,12 @@ class Router extends RouterBase {
     IndividualCreateFilesView: (data) {
       return buildAdaptivePageRoute<dynamic>(
         builder: (context) => const IndividualCreateFilesView(),
+        settings: data,
+      );
+    },
+    IndividualPersonalDataView: (data) {
+      return buildAdaptivePageRoute<dynamic>(
+        builder: (context) => const IndividualPersonalDataView(),
         settings: data,
       );
     },
