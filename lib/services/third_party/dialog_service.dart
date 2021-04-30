@@ -83,6 +83,13 @@ class DialogService {
         ),
         actions: <Widget>[
           PlatformDialogAction(
+            onPressed: () {
+              if (!_dialogCompleter.isCompleted)
+                completeDialog(DialogResponse(confirmed: false));
+            },
+            child: Text(cancelTitle ?? 'تراجع'),
+          ),
+          PlatformDialogAction(
             cupertino: (_, __) =>
                 CupertinoDialogActionData(isDefaultAction: true),
             onPressed: () {
@@ -92,13 +99,6 @@ class DialogService {
             child: Text(
               confirmationTitle ?? 'نعم',
             ),
-          ),
-          PlatformDialogAction(
-            onPressed: () {
-              if (!_dialogCompleter.isCompleted)
-                completeDialog(DialogResponse(confirmed: false));
-            },
-            child: Text(cancelTitle ?? 'تراجع'),
           ),
         ],
       ),
