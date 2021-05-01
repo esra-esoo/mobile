@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:huayati/consts/account_type.dart';
 import 'package:huayati/models/menu_item.dart';
 import 'package:huayati/models/user.dart';
-import 'package:huayati/ui/views/home/menus.dart';
+import 'package:huayati/ui/views/home/menu.dart';
 import 'package:huayati/ui/views/home/widgets/grid_item.dart';
 import 'package:provider/provider.dart';
 import 'package:responsive_builder/responsive_builder.dart';
