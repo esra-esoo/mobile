@@ -26,6 +26,12 @@ class FileUtils {
   }
 
   static Uint8List base64ToBytes(String base64String) {
-    return base64Decode(base64String);
+    try {
+      var bytes = base64Decode(base64String.split(',')[1]);
+      return bytes;
+    } catch (e) {
+      print(e);
+      return null;
+    }
   }
 }

@@ -27,6 +27,10 @@ const List<MenuItem> individualMenu = [
     route: Routes.individualCreateFilesView,
   ),
   MenuItem(
+    title: 'المستندات',
+    route: Routes.individualUpdateFilesView,
+  ),
+  MenuItem(
     title: 'البيانات الشخصية',
     route: Routes.individualPersonalDataView,
   ),

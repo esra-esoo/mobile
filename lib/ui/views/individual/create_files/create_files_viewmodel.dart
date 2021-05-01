@@ -22,8 +22,6 @@ class IndividualCreateFilesViewModel extends BaseViewModel {
 
   IndividualForm individualForm = IndividualForm.initial();
 
-  void initilizeView() {}
-
   void onExtraTypeChanged(int value) {
     individualForm.groupFileType = GroupFileType.values[value];
   }

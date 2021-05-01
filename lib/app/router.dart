@@ -5,6 +5,7 @@ import 'package:huayati/ui/views/company_form/company_form_view.dart';
 import 'package:huayati/ui/views/individual/bank_account/bank_account_view.dart';
 import 'package:huayati/ui/views/individual/create_files/create_files_view.dart';
 import 'package:huayati/ui/views/individual/personal_data/personal_data_view.dart';
+import 'package:huayati/ui/views/individual/update_files/update_files_view.dart';
 import 'package:huayati/ui/views/otp/otp_view.dart';
 import 'package:huayati/ui/views/signin/signin_view.dart';
 import 'package:huayati/ui/views/signup/signup_view.dart';
@@ -16,6 +17,7 @@ import 'package:huayati/ui/views/startup/startup_view.dart';
   AdaptiveRoute(page: CompanyFormView),
   AdaptiveRoute(page: CompanyDataView),
   AdaptiveRoute(page: IndividualCreateFilesView),
+  AdaptiveRoute(page: IndividualUpdateFilesView),
   AdaptiveRoute(page: IndividualPersonalDataView),
   AdaptiveRoute(page: IndividualBankAccountDataView),
   CustomRoute(
