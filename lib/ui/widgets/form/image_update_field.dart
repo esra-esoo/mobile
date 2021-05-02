@@ -61,29 +61,32 @@ class ImageUpdateField extends StatelessWidget {
                     ),
                   ),
                   alignment: Alignment.bottomRight,
-                  child: Container(
-                    padding: EdgeInsets.symmetric(horizontal: 10, vertical: 5),
-                    decoration: BoxDecoration(
-                      color: Colors.black.withOpacity(0.3),
-                      borderRadius: BorderRadius.circular(10),
-                    ),
-                    child: Row(
-                      children: [
-                        const SizedBox(width: 5),
-                        const Icon(
-                          Icons.swap_vert_circle_outlined,
-                          color: Colors.white,
-                        ),
-                        const SizedBox(width: 10),
-                        Text(
-                          'تعديل',
-                          style: TextStyle(
-                            color: Colors.white,
+                  child: imageFile.isEditDisabled
+                      ? SizedBox.shrink()
+                      : Container(
+                          padding:
+                              EdgeInsets.symmetric(horizontal: 10, vertical: 5),
+                          decoration: BoxDecoration(
+                            color: Colors.black.withOpacity(0.3),
+                            borderRadius: BorderRadius.circular(10),
+                          ),
+                          child: Row(
+                            children: [
+                              const SizedBox(width: 5),
+                              const Icon(
+                                Icons.swap_vert_circle_outlined,
+                                color: Colors.white,
+                              ),
+                              const SizedBox(width: 10),
+                              Text(
+                                'تعديل',
+                                style: TextStyle(
+                                  color: Colors.white,
+                                ),
+                              ),
+                            ],
                           ),
                         ),
-                      ],
-                    ),
-                  ),
                 ),
               ),
             ),
