@@ -33,7 +33,7 @@ class HomeView extends StatelessWidget {
           ),
           mainAxisSpacing: 30,
           crossAxisSpacing: 15,
-          childAspectRatio: 5 / 4,
+          childAspectRatio: 3 / 4,
         ),
         itemBuilder: (context, index) => GridItem(menuItem: menu[index]),
       ),
