@@ -53,7 +53,10 @@ class IndividualCreateFilesView extends StatelessWidget {
                 TextFieldLabel(label: 'جواز السفر'),
                 SizedBox(height: 10.h),
                 ImagePickerField(
-                  onChanged: (file) => viewModel.individualForm.passport = file,
+                  onChanged: (file) {
+                    viewModel.individualForm.passport = file;
+                    viewModel.notifyListeners();
+                  },
                   imageFile: viewModel?.individualForm?.passport,
                 ),
                 SizedBox(height: 25.h),
@@ -64,8 +67,10 @@ class IndividualCreateFilesView extends StatelessWidget {
                   onChanged: (int value) {
                     viewModel.onExtraTypeChanged(value);
                   },
-                  onFileChanged: (file) =>
-                      viewModel.individualForm.groupFile = file,
+                  onFileChanged: (file) {
+                    viewModel.individualForm.groupFile = file;
+                    viewModel.notifyListeners();
+                  },
                   imageFile: viewModel?.individualForm?.groupFile,
                 ),
                 SizedBox(height: 25.h),
@@ -76,8 +81,10 @@ class IndividualCreateFilesView extends StatelessWidget {
                   onChanged: (int value) {
                     viewModel.onExtraType2Changed(value);
                   },
-                  onFileChanged: (file) =>
-                      viewModel.individualForm.groupFile2 = file,
+                  onFileChanged: (file) {
+                    viewModel.individualForm.groupFile2 = file;
+                    viewModel.notifyListeners();
+                  },
                   imageFile: viewModel?.individualForm?.groupFile2,
                 ),
                 const BottomPadding(),
