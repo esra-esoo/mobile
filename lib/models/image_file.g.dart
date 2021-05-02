@@ -8,12 +8,12 @@ part of 'image_file.dart';
 
 ImageFile _$ImageFileFromJson(Map<String, dynamic> json) {
   return ImageFile(
-    json['individualFileId'] as String,
-    json['name'] as String,
-    json['base64Content'] as String,
-    json['isEditDisabled'] as bool,
-    json['fileFullName'] as String,
-    json['editBtnShow'] as bool,
+    individualFileId: json['individualFileId'] as String,
+    name: json['name'] as String,
+    base64Content: json['base64Content'] as String,
+    isEditDisabled: json['isEditDisabled'] as bool,
+    fileFullName: json['fileFullName'] as String,
+    editBtnShow: json['editBtnShow'] as bool,
   );
 }
 
