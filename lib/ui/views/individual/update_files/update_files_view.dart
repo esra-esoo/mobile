@@ -1,12 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:huayati/consts/styles.dart';
-import 'package:huayati/ui/widgets/botton_padding.dart';
 import 'package:huayati/ui/widgets/busy_overlay.dart';
 import 'package:huayati/ui/widgets/form/bottom_submit_button.dart';
 import 'package:huayati/ui/widgets/form/form_title.dart';
 import 'package:huayati/ui/widgets/form/image_update_field.dart';
-import 'package:huayati/utils/file_utils.dart';
 import 'package:responsive_builder/responsive_builder.dart';
 import 'package:stacked/stacked.dart';
 
@@ -44,22 +42,28 @@ class IndividualUpdateFilesView extends StatelessWidget {
               left: 30.w,
               right: 30.w,
             ),
-            child: ListView.builder(
-              shrinkWrap: true,
-              itemCount: viewModel.imageFiles.length,
-              itemBuilder: (context, index) {
-                return ImageUpdateField(
-                  imageFile: viewModel.imageFiles[index],
-                  onChanged: (file) {
-                    print('new file : ${file.path}');
-                  },
-                );
-              },
-              // children: [
-              //   const _RefuseStateMessage(),
-              //   SizedBox(height: 30.h),
-              //   const BottomPadding(),
-              // ],
+            child: Column(
+              children: [
+                const _RefuseStateMessage(),
+                Expanded(
+                  child: ListView.builder(
+                    shrinkWrap: true,
+                    itemCount: viewModel.imageFiles.length,
+                    itemBuilder: (context, index) {
+                      return ImageUpdateField(
+                        imageFile: viewModel.imageFiles[index],
+                        newFile: viewModel.getNewRawImageFileById(
+                          viewModel.imageFiles[index].individualFileId,
+                        ),
+                        onChanged: (file) => viewModel.addToNewImageFiles(
+                          viewModel.imageFiles[index],
+                          file,
+                        ),
+                      );
+                    },
+                  ),
+                ),
+              ],
             ),
           ),
           bottomNavigationBar: BottomSubmitButton(
@@ -83,14 +87,17 @@ class _RefuseStateMessage
     IndividualUpdateFilesViewModel viewModel,
   ) {
     return viewModel.refuseMessage != null
-        ? Text(
-            viewModel.refuseMessage,
-            style: TextStyle(
-              color: Colors.red,
-              fontSize: getValueForScreenType<double>(
-                context: context,
-                mobile: 16,
-                tablet: 18,
+        ? Padding(
+            padding: EdgeInsets.only(bottom: 20.h),
+            child: Text(
+              viewModel.refuseMessage,
+              style: TextStyle(
+                color: Colors.red,
+                fontSize: getValueForScreenType<double>(
+                  context: context,
+                  mobile: 16,
+                  tablet: 18,
+                ),
               ),
             ),
           )

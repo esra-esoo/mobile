@@ -3,12 +3,11 @@ import 'dart:io';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:huayati/app/locator.dart';
-import 'package:huayati/consts/styles.dart';
 import 'package:huayati/services/third_party/media_picker.dart';
 import 'package:huayati/services/third_party/snackbar_service.dart';
 import 'package:image_picker/image_picker.dart';
 
-class ImagePickerField extends StatefulWidget {
+class ImagePickerField extends StatelessWidget {
   final File imageFile;
   final ValueChanged<File> onChanged;
   final VoidCallback onDelete;
@@ -21,80 +20,62 @@ class ImagePickerField extends StatefulWidget {
   });
 
   @override
-  _ImagePickerFieldState createState() => _ImagePickerFieldState();
-}
-
-class _ImagePickerFieldState extends State<ImagePickerField> {
-  File _image;
-  final ImagePicker _imagePicker = ImagePicker();
-  @override
-  void initState() {
-    _image = widget.imageFile;
-    super.initState();
-  }
-
-  @override
   Widget build(BuildContext context) {
-    return GestureDetector(
-      onTap: widget.disabled ? null : _selectFile,
-      child: AnimatedContainer(
-        duration: const Duration(milliseconds: 300),
-        curve: Curves.easeIn,
-        height: _image != null ? 120 : 55,
-        padding: EdgeInsets.symmetric(horizontal: 10, vertical: 15),
-        decoration: BoxDecoration(
-          color: widget.disabled ? Colors.grey.shade300 : Colors.white,
-          border: Border.all(color: Colors.grey.shade400),
-          borderRadius: BorderRadius.circular(10),
-        ),
-        child: _image == null
-            ? Row(
-                children: <Widget>[
-                  Icon(
-                    Icons.image,
-                    color: Colors.grey.shade600,
-                    size: 20,
-                  ),
-                  const SizedBox(width: 20),
-                  Expanded(
-                    child: Text(
-                      'إختر الصورة ..',
-                      style: TextStyle(color: Colors.grey.shade600),
-                    ),
-                  ),
-                  Icon(
-                    Icons.arrow_forward_ios,
-                    color: Colors.grey.shade600,
-                    size: 20,
-                  ),
-                ],
-              )
-            : Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: <Widget>[
-                  AspectRatio(
-                    aspectRatio: 4 / 3,
-                    child: Image.file(
-                      _image,
-                      fit: BoxFit.contain,
-                    ),
-                  ),
-                  IconButton(
-                    splashColor: kColorCard,
-                    icon: Icon(
-                      CupertinoIcons.delete_right,
-                      color: kColorText,
-                    ),
-                    onPressed: () {
-                      setState(() {
-                        _image = null;
-                      });
-                      widget.onChanged(null);
-                    },
-                  ),
-                ],
+    return Row(
+      children: [
+        GestureDetector(
+          onTap: disabled ? null : _selectFile,
+          child: Container(
+            padding: EdgeInsets.symmetric(horizontal: 10, vertical: 15),
+            decoration: BoxDecoration(
+              color: disabled ? Colors.grey.shade300 : Colors.white,
+              border: Border.all(color: Colors.grey.shade400),
+              borderRadius: BorderRadius.circular(10),
+            ),
+            child: Container(
+              height: 200,
+              width: 160,
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(10),
+                image: imageFile != null
+                    ? DecorationImage(
+                        fit: BoxFit.cover,
+                        image: FileImage(
+                          imageFile,
+                        ),
+                      )
+                    : null,
               ),
-      ),
+              alignment: Alignment.bottomRight,
+              child: Container(
+                padding: EdgeInsets.symmetric(horizontal: 10, vertical: 5),
+                decoration: BoxDecoration(
+                  color: Colors.black.withOpacity(0.3),
+                  borderRadius: BorderRadius.circular(10),
+                ),
+                child: Row(
+                  children: [
+                    const SizedBox(width: 5),
+                    Icon(
+                      imageFile != null
+                          ? Icons.swap_vert_circle_outlined
+                          : Icons.add,
+                      color: disabled ? Colors.white60 : Colors.white,
+                    ),
+                    const SizedBox(width: 10),
+                    Text(
+                      imageFile != null ? 'تعديل' : 'إضافة',
+                      style: TextStyle(
+                        color: disabled ? Colors.white60 : Colors.white,
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+            ),
+          ),
+        ),
+      ],
     );
   }
 
@@ -103,7 +84,7 @@ class _ImagePickerFieldState extends State<ImagePickerField> {
       var imageSource = await locator<MediaPickerService>().showBottomSheet();
       if (imageSource == null) return;
       await Future.delayed(const Duration(milliseconds: 350));
-      PickedFile pickedFile = await _imagePicker.getImage(
+      PickedFile pickedFile = await ImagePicker().getImage(
         source: imageSource,
         maxHeight: 810,
         maxWidth: 1080,
@@ -117,10 +98,8 @@ class _ImagePickerFieldState extends State<ImagePickerField> {
         );
         return;
       }
-      setState(() {
-        _image = imageFile;
-      });
-      widget.onChanged(imageFile);
+
+      onChanged(imageFile);
     } on Exception catch (e) {
       print(e.toString());
     } catch (e) {

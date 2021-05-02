@@ -59,12 +59,12 @@ class IndividualCreateFilesViewModel extends BaseViewModel {
     try {
       setBusy(true);
       var user = await _userService.loadUser();
-      var filesModels = await _populateFilesModels();
+      var fileModels = await _getFileModels();
       await _individualService.createFiles(
         IndivisualCreateFilePayload(
           phoneNumber: user.phoneNumbaer,
-          filesModels: filesModels,
-          length: FileUtils.getFilesTotalLength(filesModels),
+          filesModels: fileModels,
+          length: FileUtils.getFilesTotalLength(fileModels),
         ),
       );
       await _userService.update(
@@ -86,7 +86,7 @@ class IndividualCreateFilesViewModel extends BaseViewModel {
     }
   }
 
-  Future<List<FilesModels>> _populateFilesModels() async {
+  Future<List<FilesModels>> _getFileModels() async {
     return [
       await FileUtils.fromRawFileToFileModel(
         'جواز السفر',

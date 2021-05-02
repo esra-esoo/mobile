@@ -1,11 +1,8 @@
 import 'dart:io';
-import 'dart:typed_data';
-
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:huayati/app/locator.dart';
-import 'package:huayati/consts/styles.dart';
 import 'package:huayati/models/image_file.dart';
 import 'package:huayati/services/third_party/media_picker.dart';
 import 'package:huayati/services/third_party/snackbar_service.dart';
@@ -14,81 +11,83 @@ import 'package:image_picker/image_picker.dart';
 
 import 'text_field_label.dart';
 
-class ImageUpdateField extends StatefulWidget {
+class ImageUpdateField extends StatelessWidget {
   final ImageFile imageFile;
+  final File newFile;
   final ValueChanged<File> onChanged;
   const ImageUpdateField({
     @required this.imageFile,
+    this.newFile,
     this.onChanged,
   });
 
   @override
-  _ImageUpdateFieldState createState() => _ImageUpdateFieldState();
-}
-
-class _ImageUpdateFieldState extends State<ImageUpdateField> {
-  File _image;
-  Uint8List _oldImageBytes;
-  final ImagePicker _imagePicker = ImagePicker();
-  @override
-  void initState() {
-    super.initState();
-    _oldImageBytes = FileUtils.base64ToBytes(widget.imageFile.base64Content);
-  }
-
-  @override
   Widget build(BuildContext context) {
+    var _oldImageBytes = FileUtils.base64ToBytes(
+      imageFile?.base64Content ?? '',
+    );
+    Color borderColor = imageFile.editBtnShow && newFile == null
+        ? Colors.red
+        : Colors.grey.shade400;
     return Column(
       crossAxisAlignment: CrossAxisAlignment.stretch,
       children: [
         TextFieldLabel(
-          label: widget.imageFile?.name ?? '',
+          label: imageFile?.name ?? '',
         ),
-        SizedBox(height: 10.h),
-        GestureDetector(
-          onTap: widget.imageFile.isEditDisabled ? null : _selectFile,
-          child: Container(
-            margin: EdgeInsets.only(bottom: 20),
-            padding: EdgeInsets.symmetric(horizontal: 10, vertical: 15),
-            decoration: BoxDecoration(
-              color: Colors.white,
-              border: Border.all(color: Colors.grey.shade400),
-              borderRadius: BorderRadius.circular(10),
-            ),
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: <Widget>[
-                Container(
-                  height: 200.h,
-                  width: 160.w,
+        SizedBox(height: 15.h),
+        Row(
+          children: [
+            GestureDetector(
+              onTap: imageFile.isEditDisabled ? null : _selectFile,
+              child: Container(
+                margin: EdgeInsets.only(bottom: 20),
+                padding: EdgeInsets.symmetric(horizontal: 10, vertical: 15),
+                decoration: BoxDecoration(
+                  color: Colors.white,
+                  border: Border.all(color: borderColor),
+                  borderRadius: BorderRadius.circular(10),
+                ),
+                child: Container(
+                  height: 200,
+                  width: 160,
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(10),
                     image: DecorationImage(
                       fit: BoxFit.cover,
-                      image: _image != null
-                          ? FileImage(
-                              _image,
-                            )
-                          : MemoryImage(
-                              _oldImageBytes,
-                            ),
+                      image: newFile != null
+                          ? FileImage(newFile)
+                          : MemoryImage(_oldImageBytes),
+                    ),
+                  ),
+                  alignment: Alignment.bottomRight,
+                  child: Container(
+                    padding: EdgeInsets.symmetric(horizontal: 10, vertical: 5),
+                    decoration: BoxDecoration(
+                      color: Colors.black.withOpacity(0.3),
+                      borderRadius: BorderRadius.circular(10),
+                    ),
+                    child: Row(
+                      children: [
+                        const SizedBox(width: 5),
+                        const Icon(
+                          Icons.swap_vert_circle_outlined,
+                          color: Colors.white,
+                        ),
+                        const SizedBox(width: 10),
+                        Text(
+                          'تعديل',
+                          style: TextStyle(
+                            color: Colors.white,
+                          ),
+                        ),
+                      ],
                     ),
                   ),
                 ),
-                FlatButton.icon(
-                  splashColor: kColorCard,
-                  textColor: kcolorPrimaryBlue,
-                  onPressed:
-                      widget.imageFile.isEditDisabled ? null : _selectFile,
-                  icon: Icon(
-                    Icons.swap_vert_circle_outlined,
-                    size: 22.sp,
-                  ),
-                  label: Text('تعديل'),
-                )
-              ],
+              ),
             ),
-          ),
+          ],
         ),
       ],
     );
@@ -99,7 +98,7 @@ class _ImageUpdateFieldState extends State<ImageUpdateField> {
       var imageSource = await locator<MediaPickerService>().showBottomSheet();
       if (imageSource == null) return;
       await Future.delayed(const Duration(milliseconds: 350));
-      PickedFile pickedFile = await _imagePicker.getImage(
+      PickedFile pickedFile = await ImagePicker().getImage(
         source: imageSource,
         maxHeight: 810,
         maxWidth: 1080,
@@ -113,10 +112,8 @@ class _ImageUpdateFieldState extends State<ImageUpdateField> {
         );
         return;
       }
-      setState(() {
-        _image = imageFile;
-      });
-      widget.onChanged(imageFile);
+
+      onChanged(imageFile);
     } on Exception catch (e) {
       print(e.toString());
     } catch (e) {

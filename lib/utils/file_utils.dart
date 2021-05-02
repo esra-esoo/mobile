@@ -21,6 +21,17 @@ class FileUtils {
     );
   }
 
+  static Future<String> fromRawFileToBase64String(File file) async {
+    try {
+      List<int> imageBytes = await file.readAsBytes();
+      String base64Image = base64Encode(imageBytes);
+      return base64Image;
+    } catch (e) {
+      print(e);
+      return null;
+    }
+  }
+
   static int getFilesTotalLength(List<FilesModels> filesModel) {
     return filesModel.fold<int>(0, (x, y) => x + y.length);
   }
