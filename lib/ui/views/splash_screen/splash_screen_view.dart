@@ -37,11 +37,18 @@ class SplashScreenView extends StatelessWidget {
                 child: Hero(tag: 'logo', child: FullLogo(height: 220.w)),
               ),
               const Spacer(),
-              SizedBox(
-                width: MediaQuery.of(context).size.width / 3,
-                child: const LinearProgressIndicator(
-                  backgroundColor: kcolorBluelight,
+              AnimatedCrossFade(
+                duration: const Duration(milliseconds: 300),
+                crossFadeState: model.isBusy
+                    ? CrossFadeState.showFirst
+                    : CrossFadeState.showSecond,
+                firstChild: SizedBox(
+                  width: MediaQuery.of(context).size.width / 3,
+                  child: const LinearProgressIndicator(
+                    backgroundColor: kcolorBluelight,
+                  ),
                 ),
+                secondChild: const SizedBox.shrink(),
               ),
               FadeFromBottomAnimation(
                 duration: 300,
