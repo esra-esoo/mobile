@@ -43,6 +43,7 @@ class IndividualUpdateFilesView extends StatelessWidget {
               right: 30.w,
             ),
             child: Column(
+              crossAxisAlignment: CrossAxisAlignment.stretch,
               children: [
                 const _RefuseStateMessage(),
                 Expanded(

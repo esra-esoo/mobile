@@ -4,6 +4,7 @@ import 'package:huayati/services/api.dart';
 import 'package:huayati/services/auth_service.dart';
 import 'package:huayati/services/company_service.dart';
 import 'package:huayati/services/individual_service.dart';
+import 'package:huayati/services/shared_service.dart';
 import 'package:huayati/services/third_party/dialog_service.dart';
 import 'package:huayati/services/third_party/media_picker.dart';
 import 'package:huayati/services/third_party/navigation_service.dart';
@@ -30,6 +31,7 @@ void setupLocator({@required String endpoint}) {
   locator.registerLazySingleton(() => AuthService());
   locator.registerLazySingleton(() => IndividualService());
   locator.registerLazySingleton(() => CompanyService());
+  locator.registerLazySingleton(() => SharedService());
 
   //////////////////////////////////////////////////////////////////////////
   locator.registerLazySingleton(() => StartUpViewModel());

@@ -4,6 +4,7 @@ import 'dart:io';
 import 'package:huayati/models/image_file.dart';
 import 'package:huayati/models/image_raw_file.dart';
 import 'package:huayati/models/navigation_result.dart';
+import 'package:huayati/services/shared_service.dart';
 import 'package:huayati/services/third_party/dialog_service.dart';
 import 'package:huayati/services/third_party/navigation_service.dart';
 import 'package:huayati/ui/widgets/success_update_modal.dart';
@@ -21,6 +22,7 @@ class IndividualUpdateFilesViewModel extends BaseViewModel {
   final _snackbarService = locator<SnackbarService>();
   final _navigationService = locator<NavigationService>();
   final _dialogService = locator<DialogService>();
+  final _sharedService = locator<SharedService>();
 
   List<ImageFile> imageFiles = [];
   List<ImageRawFile> newImageFiles = [];
@@ -66,6 +68,7 @@ class IndividualUpdateFilesViewModel extends BaseViewModel {
 
   void initilizeView() async {
     try {
+      refuseMessage = _sharedService.refuseMessage.message;
       imageFiles = await runBusyFuture(
         _individualService.getImages(),
         throwException: true,
@@ -101,6 +104,7 @@ class IndividualUpdateFilesViewModel extends BaseViewModel {
       setBusy(true);
       var updatedImages = await _getUpdatedImageFiles();
       await _individualService.changeAllImages(updatedImages);
+      await _sharedService.getRefuseMessage();
       setBusy(false);
       await _showSuccessModal();
     } catch (e) {

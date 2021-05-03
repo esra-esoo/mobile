@@ -2,6 +2,7 @@ import 'package:flutter/material.dart' hide Router;
 import 'package:flutter/services.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:huayati/models/refuse_message.dart';
 import 'package:provider/provider.dart';
 import 'app/app_config.dart';
 import 'app/locator.dart';
@@ -9,6 +10,7 @@ import 'app/locator.dart';
 import 'app/router.gr.dart';
 import 'consts/styles.dart';
 import 'models/user.dart';
+import 'services/shared_service.dart';
 import 'services/third_party/navigation_service.dart';
 import 'services/user_service.dart';
 import 'ui/views/splash_screen/splash_screen_view.dart';
@@ -36,6 +38,10 @@ class MyApp extends StatelessWidget {
             StreamProvider<User>(
               create: (context) => locator<UserService>().userStream,
               initialData: User.initial(),
+            ),
+            StreamProvider<RefuseMessage>(
+              create: (context) => locator<SharedService>().refuseMessageStream,
+              initialData: RefuseMessage.initial(),
             ),
           ],
           child: MaterialApp(
