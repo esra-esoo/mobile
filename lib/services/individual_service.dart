@@ -10,19 +10,6 @@ import 'api.dart';
 class IndividualService {
   final _api = locator<Api>();
 
-  Future<bool> getUploadState() async {
-    try {
-      await _api.getCallWithToken(url: '/api/Individual/IndividualUploadState');
-      return false;
-    } on DioError catch (e) {
-      print(e.message);
-      return true;
-    } catch (e) {
-      print(e);
-      return true;
-    }
-  }
-
   Future<List<ImageFile>> getImages() async {
     try {
       final response = await _api.getCallWithToken(
@@ -70,7 +57,7 @@ class IndividualService {
     }
   }
 
-  Future<void> createFiles(IndivisualCreateFilePayload payload) async {
+  Future<void> createFiles(IndivisualCreateFilesPayload payload) async {
     try {
       await _api.putCallWithToken(
         url: '/api/Individual/CreateFiles',
