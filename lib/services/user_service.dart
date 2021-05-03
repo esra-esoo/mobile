@@ -4,13 +4,11 @@ import 'dart:convert';
 import 'package:huayati/app/locator.dart';
 import 'package:huayati/consts/storage_keys.dart';
 import 'package:huayati/models/user.dart';
-import 'package:huayati/services/shared_service.dart';
 
 import 'third_party/secure_storage_service.dart';
 
 class UserService {
   final _storage = locator<SecureStorageService>();
-  final _sharedService = locator<SharedService>();
   final _userController = StreamController<User>();
 
   Stream<User> get userStream => _userController.stream;
@@ -45,10 +43,9 @@ class UserService {
     }
   }
 
-  Future<void> signOut() async {
+  Future<void> clearUser() async {
     await _storage.deleteAll();
     _userController.sink.add(User.initial());
-    _sharedService.resetRefuseState();
   }
 
   void dispose() {

@@ -12,6 +12,7 @@ class SplashScreenViewModel extends BaseViewModel {
 
   Future<void> initializeView() async {
     var user = await _userService.loadUser();
+    print(user.toJson());
     var userLoggedIn = user?.customerType != null;
 
     if (userLoggedIn) {

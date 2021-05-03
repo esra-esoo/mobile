@@ -7,6 +7,7 @@ import 'package:huayati/app/router.gr.dart';
 import 'package:huayati/config/config.dart';
 import 'package:huayati/consts/storage_keys.dart';
 import 'package:huayati/models/user.dart';
+import 'package:huayati/services/shared_service.dart';
 import 'package:huayati/services/third_party/navigation_service.dart';
 import 'package:huayati/services/third_party/secure_storage_service.dart';
 import 'package:huayati/services/user_service.dart';
@@ -17,6 +18,7 @@ class AppInterceptor extends Interceptor {
   final _secureStorageService = locator<SecureStorageService>();
   final _navigationService = locator<NavigationService>();
   final _userService = locator<UserService>();
+  // final _sharedService = locator<SharedService>();
 
   AppInterceptor(this._dio);
 
@@ -70,7 +72,7 @@ class AppInterceptor extends Interceptor {
   }
 
   Future<void> signOut() async {
-    await _userService.signOut();
+    await _userService.clearUser();
     await _navigationService.pushNamedAndRemoveUntil(Routes.signInView);
   }
 

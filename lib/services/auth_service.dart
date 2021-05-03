@@ -4,13 +4,16 @@ import 'package:huayati/app/locator.dart';
 import 'package:huayati/consts/storage_keys.dart';
 import 'package:huayati/models/customer_created_result.dart';
 import 'package:huayati/models/signup_result.dart';
+import 'package:huayati/models/user.dart';
 import 'package:huayati/services/api.dart';
 
 import 'third_party/secure_storage_service.dart';
+import 'user_service.dart';
 
 class AuthService {
   final _api = locator<Api>();
   final _secureStorageService = locator<SecureStorageService>();
+  final _userService = locator<UserService>();
 
   Future<SignUpResult> signUp({
     String email,
@@ -76,6 +79,9 @@ class AuthService {
       await _secureStorageService.addString(
         StorageKeys.CREDENTIALS,
         client.credentials.toJson(),
+      );
+      await _userService.addUser(
+        User.fromToken(client.credentials.accessToken),
       );
     } on DioError catch (e) {
       throw e.message;

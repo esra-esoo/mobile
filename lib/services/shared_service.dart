@@ -13,14 +13,15 @@ import 'user_service.dart';
 
 class SharedService {
   final _api = locator<Api>();
-  final _sharedRefuseStateController = StreamController<SharedRefuseState>();
   final _userService = locator<UserService>();
-
+  
+  SharedRefuseState _sharedRefuseState = SharedRefuseState.initial();
+  SharedRefuseState get sharedRefuseState => _sharedRefuseState;
+  final _sharedRefuseStateController = StreamController<SharedRefuseState>();
   Stream<SharedRefuseState> get sharedRefuseStateStream =>
       _sharedRefuseStateController.stream;
 
-  SharedRefuseState _sharedRefuseState = SharedRefuseState.initial();
-  SharedRefuseState get sharedRefuseState => _sharedRefuseState;
+
 
   Future<User> updateAccountInfo() async {
     try {
