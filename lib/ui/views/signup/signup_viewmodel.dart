@@ -45,7 +45,7 @@ class SignUpViewModel extends FormViewModel {
       );
     } else {
       try {
-        SignUpResult result = await runBusyFuture(
+        await runBusyFuture(
           _authService.signUp(
             email: emailValue,
             phoneNumber: phoneValue,
@@ -55,8 +55,6 @@ class SignUpViewModel extends FormViewModel {
           ),
           throwException: true,
         );
-        print(result.verificationCode);
-
         await _navigationService.pushNamedAndRemoveUntil(
           Routes.otpView,
           arguments: OtpViewArguments(

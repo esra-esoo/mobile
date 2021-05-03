@@ -1,5 +1,6 @@
 import 'package:huayati/consts/documents_names.dart';
 import 'package:huayati/models/user.dart';
+import 'package:huayati/services/shared_service.dart';
 import 'package:huayati/services/third_party/dialog_service.dart';
 import 'package:huayati/utils/file_utils.dart';
 import 'package:stacked/stacked.dart';
@@ -17,6 +18,7 @@ import 'package:huayati/ui/widgets/success_upload_modal.dart';
 class IndividualCreateFilesViewModel extends BaseViewModel {
   final _individualService = locator<IndividualService>();
   final _snackbarService = locator<SnackbarService>();
+  final _sharedService = locator<SharedService>();
   final _userService = locator<UserService>();
   final _dialogService = locator<DialogService>();
 
@@ -74,6 +76,8 @@ class IndividualCreateFilesViewModel extends BaseViewModel {
           hasUploaded: true,
         ),
       );
+      await _sharedService.getRefuseState();
+
       setBusy(false);
       await _showSuccessModal();
     } catch (e) {

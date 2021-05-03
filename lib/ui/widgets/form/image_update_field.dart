@@ -119,6 +119,9 @@ class ImageUpdateField extends StatelessWidget {
       onChanged(imageFile);
     } on Exception catch (e) {
       print(e.toString());
+      locator<SnackbarService>().showTopErrorSnackbar(
+        message: 'حدث خطأ أثناء معالجة الصورة ، نرجو اختيار صورة اخرى',
+      );
     } catch (e) {
       print(e.toString());
       locator<SnackbarService>().showTopErrorSnackbar(

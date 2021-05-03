@@ -56,7 +56,7 @@ class SharedService {
   Future<void> _getIndivisualRefuseState() async {
     try {
       final response = await _api.getCallWithToken(
-        url: '/api/Indivisual/GetFilesRefuseMessage',
+        url: '/api/Individual/GetFilesRefuseMessage',
       );
       if (response == null) return resetRefuseState();
 

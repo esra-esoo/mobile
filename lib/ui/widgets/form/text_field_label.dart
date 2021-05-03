@@ -14,8 +14,8 @@ class TextFieldLabel extends StatelessWidget {
         fontWeight: FontWeight.w600,
         fontSize: getValueForScreenType<double>(
           context: context,
-          mobile: 14,
-          tablet: 16,
+          mobile: 16,
+          tablet: 18,
         ),
       ),
     );

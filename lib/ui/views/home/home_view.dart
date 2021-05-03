@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:huayati/app/router.gr.dart';
 import 'package:huayati/consts/account_type.dart';
 import 'package:huayati/models/menu_item.dart';
 import 'package:huayati/models/shared_refuse_state.dart';
 import 'package:huayati/models/user.dart';
-import 'package:huayati/ui/views/home/menu.dart';
 import 'package:huayati/ui/views/home/widgets/grid_item.dart';
 import 'package:provider/provider.dart';
 import 'package:responsive_builder/responsive_builder.dart';
@@ -13,31 +13,9 @@ class HomeView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    String customerType = Provider.of<User>(context).customerType;
-    SharedRefuseState sharedRefuseState =
-        Provider.of<SharedRefuseState>(context);
-    List<MenuItem> menuList = [];
-    if (customerType == AccountTypeEng.INDIVISUAL) {
-      menuList = individualMenu;
-      int numberOfIndivisualRefusedFiles =
-          sharedRefuseState?.indivisualRefuseState?.numberOfFiles ?? 0;
-      if (numberOfIndivisualRefusedFiles > 0) {
-        menuList[1].notifciation = numberOfIndivisualRefusedFiles;
-      }
-    } else {
-      menuList = companyMenu;
-      int numberOfCompanyRefusedFiles =
-          sharedRefuseState?.companyRefuseState?.numberOfCompanyFiles ?? 0;
-      int numberOfRepresentativeRefusedFiles =
-          sharedRefuseState?.companyRefuseState?.numberOfRepresentativeFiles ??
-              0;
-      if (numberOfCompanyRefusedFiles > 0) {
-        //TODO add notification to compnay docs form
-      }
-      if (numberOfRepresentativeRefusedFiles > 0) {
-        //TODO add notification to Representative docs form
-      }
-    }
+    var user = Provider.of<User>(context);
+    var sharedRefuseState = Provider.of<SharedRefuseState>(context);
+    List<MenuItem> menuList = getMenuList(user, sharedRefuseState);
 
     return Container(
       height: MediaQuery.of(context).size.height,
@@ -62,5 +40,78 @@ class HomeView extends StatelessWidget {
         itemBuilder: (context, index) => GridItem(menuItem: menuList[index]),
       ),
     );
+  }
+
+  List<MenuItem> getMenuList(
+    User user,
+    SharedRefuseState sharedRefuseState,
+  ) {
+    List<MenuItem> menuList = [];
+    if (user.customerType == AccountTypeEng.INDIVISUAL) {
+      if (user.hasUploaded) {
+        menuList.add(MenuItem(
+          title: 'المستندات',
+          route: Routes.individualUpdateFilesView,
+          notifciation:
+              sharedRefuseState?.indivisualRefuseState?.numberOfFiles ?? 0,
+        ));
+      } else {
+        menuList.add(MenuItem(
+          title: 'رفع المستندات',
+          route: Routes.individualCreateFilesView,
+        ));
+      }
+
+      menuList.addAll([
+        MenuItem(
+          title: 'البيانات الشخصية',
+          route: Routes.individualPersonalDataView,
+        ),
+        MenuItem(
+          title: 'بيانات الحساب',
+          route: Routes.individualBankAccountDataView,
+        ),
+      ]);
+    } else {
+      //Company Account type
+      if (user.hasUploaded) {
+        menuList.addAll([
+          MenuItem(
+            title: 'مستندات الشركة',
+            route: Routes.companyFormView,
+            notifciation:
+                sharedRefuseState?.companyRefuseState?.numberOfCompanyFiles ??
+                    0,
+          ),
+          MenuItem(
+            title: 'مستندات المخولين',
+            route: Routes.companyFormView,
+            notifciation: sharedRefuseState
+                    ?.companyRefuseState?.numberOfRepresentativeFiles ??
+                0,
+          ),
+        ]);
+      } else {
+        menuList.addAll([
+          MenuItem(
+            title: 'رفع مستندات الشركة',
+            route: Routes.companyFormView,
+          ),
+          MenuItem(
+            title: 'رفع مستندات المخولين',
+            route: Routes.companyFormView,
+          ),
+        ]);
+      }
+      menuList.addAll([
+        MenuItem(
+          title: 'بيانات الحساب',
+        ),
+        MenuItem(
+          title: 'بيانات المخول',
+        ),
+      ]);
+    }
+    return menuList;
   }
 }
