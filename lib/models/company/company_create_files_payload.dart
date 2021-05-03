@@ -7,21 +7,21 @@ import 'company_employee_model.dart';
 part 'company_create_files_payload.g.dart';
 
 @JsonSerializable(explicitToJson: true)
-class CompanyCreateFilePayload {
+class CompanyCreateFilesPayload {
   final String phoneNumber;
   final List<FilesModels> companyFilesModel;
   final CompanyEmployeeModel companyEmployeeModel;
   final int totalFilesLength;
 
-  const CompanyCreateFilePayload({
+  const CompanyCreateFilesPayload({
     @required this.phoneNumber,
     @required this.companyFilesModel,
     @required this.companyEmployeeModel,
     this.totalFilesLength,
   });
 
-  factory CompanyCreateFilePayload.fromJson(Map<String, dynamic> json) =>
-      _$CompanyCreateFilePayloadFromJson(json);
+  factory CompanyCreateFilesPayload.fromJson(Map<String, dynamic> json) =>
+      _$CompanyCreateFilesPayloadFromJson(json);
 
-  Map<String, dynamic> toJson() => _$CompanyCreateFilePayloadToJson(this);
+  Map<String, dynamic> toJson() => _$CompanyCreateFilesPayloadToJson(this);
 }

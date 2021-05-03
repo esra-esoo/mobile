@@ -6,19 +6,19 @@ import '../file_models.dart';
 part 'indivisual_create_files_payload.g.dart';
 
 @JsonSerializable(explicitToJson: true)
-class IndivisualCreateFilePayload {
+class IndivisualCreateFilesPayload {
   final String phoneNumber;
   final List<FilesModels> filesModels;
   final int length;
 
-  const IndivisualCreateFilePayload({
+  const IndivisualCreateFilesPayload({
     @required this.phoneNumber,
     @required this.filesModels,
     this.length,
   });
 
-  factory IndivisualCreateFilePayload.fromJson(Map<String, dynamic> json) =>
-      _$IndivisualCreateFilePayloadFromJson(json);
+  factory IndivisualCreateFilesPayload.fromJson(Map<String, dynamic> json) =>
+      _$IndivisualCreateFilesPayloadFromJson(json);
 
-  Map<String, dynamic> toJson() => _$IndivisualCreateFilePayloadToJson(this);
+  Map<String, dynamic> toJson() => _$IndivisualCreateFilesPayloadToJson(this);
 }

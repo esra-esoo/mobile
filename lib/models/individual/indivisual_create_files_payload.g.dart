@@ -6,9 +6,9 @@ part of 'indivisual_create_files_payload.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-IndivisualCreateFilePayload _$IndivisualCreateFilePayloadFromJson(
+IndivisualCreateFilesPayload _$IndivisualCreateFilesPayloadFromJson(
     Map<String, dynamic> json) {
-  return IndivisualCreateFilePayload(
+  return IndivisualCreateFilesPayload(
     phoneNumber: json['phoneNumber'] as String,
     filesModels: (json['filesModels'] as List)
         ?.map((e) =>
@@ -18,8 +18,8 @@ IndivisualCreateFilePayload _$IndivisualCreateFilePayloadFromJson(
   );
 }
 
-Map<String, dynamic> _$IndivisualCreateFilePayloadToJson(
-        IndivisualCreateFilePayload instance) =>
+Map<String, dynamic> _$IndivisualCreateFilesPayloadToJson(
+        IndivisualCreateFilesPayload instance) =>
     <String, dynamic>{
       'phoneNumber': instance.phoneNumber,
       'filesModels': instance.filesModels?.map((e) => e?.toJson())?.toList(),

@@ -64,7 +64,7 @@ class IndividualCreateFilesViewModel extends BaseViewModel {
       var user = await _userService.loadUser();
       var fileModels = await _getFileModels();
       await _individualService.createFiles(
-        IndivisualCreateFilePayload(
+        IndivisualCreateFilesPayload(
           phoneNumber: user.phoneNumber,
           filesModels: fileModels,
           length: FileUtils.getFilesTotalLength(fileModels),

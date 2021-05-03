@@ -6,9 +6,9 @@ part of 'company_create_files_payload.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-CompanyCreateFilePayload _$CompanyCreateFilePayloadFromJson(
+CompanyCreateFilesPayload _$CompanyCreateFilesPayloadFromJson(
     Map<String, dynamic> json) {
-  return CompanyCreateFilePayload(
+  return CompanyCreateFilesPayload(
     phoneNumber: json['phoneNumber'] as String,
     companyFilesModel: (json['companyFilesModel'] as List)
         ?.map((e) =>
@@ -22,8 +22,8 @@ CompanyCreateFilePayload _$CompanyCreateFilePayloadFromJson(
   );
 }
 
-Map<String, dynamic> _$CompanyCreateFilePayloadToJson(
-        CompanyCreateFilePayload instance) =>
+Map<String, dynamic> _$CompanyCreateFilesPayloadToJson(
+        CompanyCreateFilesPayload instance) =>
     <String, dynamic>{
       'phoneNumber': instance.phoneNumber,
       'companyFilesModel':
