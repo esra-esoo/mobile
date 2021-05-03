@@ -2,7 +2,7 @@ import 'package:flutter/material.dart' hide Router;
 import 'package:flutter/services.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:huayati/models/refuse_message.dart';
+import 'package:huayati/models/shared_refuse_state.dart';
 import 'package:provider/provider.dart';
 import 'app/app_config.dart';
 import 'app/locator.dart';
@@ -39,9 +39,10 @@ class MyApp extends StatelessWidget {
               create: (context) => locator<UserService>().userStream,
               initialData: User.initial(),
             ),
-            StreamProvider<RefuseMessage>(
-              create: (context) => locator<SharedService>().refuseMessageStream,
-              initialData: RefuseMessage.initial(),
+            StreamProvider<SharedRefuseState>(
+              create: (context) =>
+                  locator<SharedService>().sharedRefuseStateStream,
+              initialData: SharedRefuseState.initial(),
             ),
           ],
           child: MaterialApp(

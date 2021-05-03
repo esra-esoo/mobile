@@ -62,17 +62,16 @@ class IndividualCreateFilesViewModel extends BaseViewModel {
       var fileModels = await _getFileModels();
       await _individualService.createFiles(
         IndivisualCreateFilePayload(
-          phoneNumber: user.phoneNumbaer,
+          phoneNumber: user.phoneNumber,
           filesModels: fileModels,
           length: FileUtils.getFilesTotalLength(fileModels),
         ),
       );
       await _userService.update(
         User(
-          phoneNumbaer: user.phoneNumbaer,
-          sub: user.sub,
-          role: user.role,
-          editMode: true,
+          phoneNumber: user.phoneNumber,
+          customerType: user.customerType,
+          hasUploaded: true,
         ),
       );
       setBusy(false);

@@ -1,29 +1,29 @@
 import 'package:json_annotation/json_annotation.dart';
 
-part 'refuse_message.g.dart';
+part 'refuse_state.g.dart';
 
-@JsonSerializable(explicitToJson: false)
-class RefuseMessage {
+@JsonSerializable()
+class IndivisualRefuseState {
   final int numberOfFiles;
   final String message;
   final String refuseType;
   final List<String> files;
 
-  const RefuseMessage(
+  const IndivisualRefuseState(
     this.numberOfFiles,
     this.message,
     this.refuseType,
     this.files,
   );
 
-  RefuseMessage.initial()
+  IndivisualRefuseState.initial()
       : numberOfFiles = 0,
         message = null,
         refuseType = null,
         files = null;
 
-  factory RefuseMessage.fromJson(Map<String, dynamic> json) =>
-      _$RefuseMessageFromJson(json);
+  factory IndivisualRefuseState.fromJson(Map<String, dynamic> json) =>
+      _$IndivisualRefuseStateFromJson(json);
 
-  Map<String, dynamic> toJson() => _$RefuseMessageToJson(this);
+  Map<String, dynamic> toJson() => _$IndivisualRefuseStateToJson(this);
 }

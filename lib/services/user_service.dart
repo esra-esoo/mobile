@@ -48,7 +48,7 @@ class UserService {
   Future<void> signOut() async {
     await _storage.deleteAll();
     _userController.sink.add(User.initial());
-    _sharedService.resetMessageState();
+    _sharedService.resetRefuseState();
   }
 
   void dispose() {

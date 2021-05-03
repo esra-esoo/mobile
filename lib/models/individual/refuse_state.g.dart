@@ -1,13 +1,14 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'refuse_message.dart';
+part of 'refuse_state.dart';
 
 // **************************************************************************
 // JsonSerializableGenerator
 // **************************************************************************
 
-RefuseMessage _$RefuseMessageFromJson(Map<String, dynamic> json) {
-  return RefuseMessage(
+IndivisualRefuseState _$IndivisualRefuseStateFromJson(
+    Map<String, dynamic> json) {
+  return IndivisualRefuseState(
     json['numberOfFiles'] as int,
     json['message'] as String,
     json['refuseType'] as String,
@@ -15,7 +16,8 @@ RefuseMessage _$RefuseMessageFromJson(Map<String, dynamic> json) {
   );
 }
 
-Map<String, dynamic> _$RefuseMessageToJson(RefuseMessage instance) =>
+Map<String, dynamic> _$IndivisualRefuseStateToJson(
+        IndivisualRefuseState instance) =>
     <String, dynamic>{
       'numberOfFiles': instance.numberOfFiles,
       'message': instance.message,

@@ -36,7 +36,7 @@ class SignInViewModel extends FormViewModel {
           throwException: true,
         );
 
-        await _sharedService.getRefuseMessage();
+        await _sharedService.getRefuseState();
 
         await _navigationService.pushNamedAndRemoveUntil(
           Routes.startUpView,

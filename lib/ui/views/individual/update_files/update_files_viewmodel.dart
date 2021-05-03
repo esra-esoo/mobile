@@ -68,7 +68,8 @@ class IndividualUpdateFilesViewModel extends BaseViewModel {
 
   void initilizeView() async {
     try {
-      refuseMessage = _sharedService.refuseMessage.message;
+      refuseMessage =
+          _sharedService?.sharedRefuseState?.indivisualRefuseState?.message;
       imageFiles = await runBusyFuture(
         _individualService.getImages(),
         throwException: true,
@@ -104,7 +105,7 @@ class IndividualUpdateFilesViewModel extends BaseViewModel {
       setBusy(true);
       var updatedImages = await _getUpdatedImageFiles();
       await _individualService.changeAllImages(updatedImages);
-      await _sharedService.getRefuseMessage();
+      await _sharedService.getRefuseState();
       setBusy(false);
       await _showSuccessModal();
     } catch (e) {

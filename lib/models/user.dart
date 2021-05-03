@@ -7,23 +7,20 @@ part 'user.g.dart';
 
 @JsonSerializable()
 class User {
-  final String phoneNumbaer;
-  final String role;
-  final String sub;
-  final bool editMode;
+  final bool hasUploaded;
+  final String customerType;
+  final String phoneNumber;
 
   const User({
-    @required this.phoneNumbaer,
-    @required this.role,
-    @required this.sub,
-    this.editMode = false,
+    @required this.hasUploaded,
+    @required this.customerType,
+    @required this.phoneNumber,
   });
 
   User.initial()
-      : phoneNumbaer = null,
-        role = null,
-        sub = null,
-        editMode = false;
+      : hasUploaded = false,
+        customerType = null,
+        phoneNumber = null;
 
   factory User.fromJson(Map<String, dynamic> json) => _$UserFromJson(json);
 
@@ -31,17 +28,16 @@ class User {
     Map<String, dynamic> decodedToken = JwtDecoder.decode(token);
     List<dynamic> roles = decodedToken['role'] ?? [];
     String phoneNumber = decodedToken['given_name'] ?? null;
-    String sub = decodedToken['sub'] ?? null;
 
     var role = roles.contains('Indivisual')
-        ? AccountType.INDIVISUAL
-        : AccountType.COMPANY;
+        ? AccountTypeEng.INDIVISUAL
+        : AccountTypeEng.COMPANY;
     return User(
-      phoneNumbaer: phoneNumber,
-      role: role,
-      sub: sub,
-      editMode: false,
+      phoneNumber: phoneNumber,
+      customerType: role,
+      hasUploaded: false,
     );
   }
+
   Map<String, dynamic> toJson() => _$UserToJson(this);
 }
