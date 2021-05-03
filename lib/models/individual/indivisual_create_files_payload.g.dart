@@ -1,6 +1,6 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'indivisual_create_file_payload.dart';
+part of 'indivisual_create_files_payload.dart';
 
 // **************************************************************************
 // JsonSerializableGenerator
@@ -23,22 +23,5 @@ Map<String, dynamic> _$IndivisualCreateFilePayloadToJson(
     <String, dynamic>{
       'phoneNumber': instance.phoneNumber,
       'filesModels': instance.filesModels?.map((e) => e?.toJson())?.toList(),
-      'length': instance.length,
-    };
-
-FilesModels _$FilesModelsFromJson(Map<String, dynamic> json) {
-  return FilesModels(
-    name: json['name'] as String,
-    fileFullName: json['fileFullName'] as String,
-    fileBytes: json['fileBytes'] as String,
-    length: json['length'] as int,
-  );
-}
-
-Map<String, dynamic> _$FilesModelsToJson(FilesModels instance) =>
-    <String, dynamic>{
-      'name': instance.name,
-      'fileFullName': instance.fileFullName,
-      'fileBytes': instance.fileBytes,
       'length': instance.length,
     };

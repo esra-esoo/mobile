@@ -1,4 +1,5 @@
 import 'package:huayati/consts/documents_names.dart';
+import 'package:huayati/models/file_models.dart';
 import 'package:huayati/models/user.dart';
 import 'package:huayati/services/shared_service.dart';
 import 'package:huayati/services/third_party/dialog_service.dart';
@@ -9,7 +10,7 @@ import 'package:get/get.dart';
 import 'package:huayati/app/locator.dart';
 import 'package:huayati/enums/group_file_type.dart';
 import 'package:huayati/models/individual/individual_form.dart';
-import 'package:huayati/models/individual/indivisual_create_file_payload.dart';
+import 'package:huayati/models/individual/indivisual_create_files_payload.dart';
 import 'package:huayati/services/individual_service.dart';
 import 'package:huayati/services/third_party/snackbar_service.dart';
 import 'package:huayati/services/user_service.dart';

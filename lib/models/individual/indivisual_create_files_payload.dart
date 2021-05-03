@@ -1,7 +1,9 @@
-import 'package:flutter/material.dart';
+import 'package:flutter/foundation.dart';
 import 'package:json_annotation/json_annotation.dart';
 
-part 'indivisual_create_file_payload.g.dart';
+import '../file_models.dart';
+
+part 'indivisual_create_files_payload.g.dart';
 
 @JsonSerializable(explicitToJson: true)
 class IndivisualCreateFilePayload {
@@ -19,24 +21,4 @@ class IndivisualCreateFilePayload {
       _$IndivisualCreateFilePayloadFromJson(json);
 
   Map<String, dynamic> toJson() => _$IndivisualCreateFilePayloadToJson(this);
-}
-
-@JsonSerializable()
-class FilesModels {
-  final String name;
-  final String fileFullName;
-  final String fileBytes;
-  final int length;
-
-  FilesModels({
-    @required this.name,
-    this.fileFullName,
-    @required this.fileBytes,
-    this.length,
-  });
-
-  factory FilesModels.fromJson(Map<String, dynamic> json) =>
-      _$FilesModelsFromJson(json);
-
-  Map<String, dynamic> toJson() => _$FilesModelsToJson(this);
 }
