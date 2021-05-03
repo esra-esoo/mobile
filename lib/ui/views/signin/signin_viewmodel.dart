@@ -1,6 +1,7 @@
 import 'package:huayati/app/locator.dart';
 import 'package:huayati/app/router.gr.dart';
 import 'package:huayati/services/auth_service.dart';
+import 'package:huayati/services/shared_service.dart';
 import 'package:huayati/services/third_party/navigation_service.dart';
 import 'package:huayati/services/third_party/snackbar_service.dart';
 import 'package:huayati/ui/views/signin/signin_view.form.dart';
@@ -11,13 +12,12 @@ class SignInViewModel extends FormViewModel {
   final _navigationService = locator<NavigationService>();
   final _snackbarService = locator<SnackbarService>();
   final _authService = locator<AuthService>();
+  final _sharedService = locator<SharedService>();
 
   @override
   void setFormStatus() {}
 
   Future saveData() async {
-    print(phoneValue);
-    print(passwordValue);
     if ((phoneValue?.isEmpty ?? true) || (passwordValue?.isEmpty ?? true)) {
       _snackbarService.showTopErrorSnackbar(
         message: 'كل الحقول مطلوبة !',
@@ -35,6 +35,8 @@ class SignInViewModel extends FormViewModel {
           ),
           throwException: true,
         );
+
+        await _sharedService.getRefuseMessage();
 
         await _navigationService.pushNamedAndRemoveUntil(
           Routes.startUpView,
