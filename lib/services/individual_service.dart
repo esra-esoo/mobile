@@ -15,7 +15,7 @@ class IndividualService {
       await _api.getCallWithToken(url: '/api/Individual/IndividualUploadState');
       return false;
     } on DioError catch (e) {
-      print(e);
+      print(e.message);
       return true;
     } catch (e) {
       print(e);
