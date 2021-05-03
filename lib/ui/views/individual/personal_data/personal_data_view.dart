@@ -21,6 +21,7 @@ class IndividualPersonalDataView extends StatelessWidget {
       builder: (context, viewModel, child) => Scaffold(
         backgroundColor: Colors.white,
         appBar: AppBar(
+          brightness: Brightness.light,
           backgroundColor: Colors.white,
           elevation: 0,
           leading: IconButton(
