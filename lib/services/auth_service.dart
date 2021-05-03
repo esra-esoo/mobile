@@ -20,8 +20,13 @@ class AuthService {
     @required String phoneNumber,
     @required int customerType,
   }) async {
+    print({
+      "email": email,
+      "phoneNumber": phoneNumber,
+      'customerType': customerType,
+    });
     try {
-      final response = await _api.postCall(
+      final response = await _api.postCallAuth(
         url: '/api/Users/SignUp',
         data: {
           "email": email,
@@ -45,7 +50,7 @@ class AuthService {
     @required int verificationCode,
   }) async {
     try {
-      final response = await _api.postCall(
+      final response = await _api.postCallAuth(
         url: '/api/SignUpVerificationCode/CheckSignUpVerificationCode',
         data: {
           "phoneNumber": phoneNumber,

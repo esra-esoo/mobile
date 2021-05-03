@@ -5,13 +5,10 @@ import 'package:huayati/interceptors/app_interceptor.dart';
 import 'package:oauth2/oauth2.dart' as oauth2;
 
 class Api {
-  // final Dio _dioAuth = Dio();
   final Dio _dio = Dio();
-
-  final endpoint;
+  final String endpoint;
 
   Api(this.endpoint) {
-    // _dioAuth.interceptors.add(AuthInterceptor(_dioAuth));
     _dio.interceptors.add(AppInterceptor(_dio));
   }
 
@@ -30,6 +27,18 @@ class Api {
         print('onCredentialsRefreshed');
       },
     );
+  }
+
+  Future postCallAuth({@required String url, @required dynamic data}) async {
+    try {
+      final response = await _dio.post(
+        Config.authenticationEndpoint + url,
+        data: data,
+      );
+      return response.data;
+    } catch (e) {
+      throw e;
+    }
   }
 
   Future postCall({@required String url, @required dynamic data}) async {
@@ -62,7 +71,7 @@ class Api {
     }
   }
 
-    Future putCallWithToken({
+  Future putCallWithToken({
     @required String url,
     @required dynamic data,
   }) async {
