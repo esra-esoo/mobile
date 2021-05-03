@@ -101,6 +101,7 @@ class ImagePickerField extends StatelessWidget {
 
       onChanged(imageFile);
     } on Exception catch (e) {
+      print(e);
       locator<SnackbarService>().showTopErrorSnackbar(
         message: 'حدث خطأ أثناء معالجة الصورة ، نرجو اختيار صورة اخرى',
       );

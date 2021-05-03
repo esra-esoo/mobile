@@ -2,7 +2,6 @@ import 'package:email_validator/email_validator.dart';
 import 'package:huayati/app/locator.dart';
 import 'package:huayati/app/router.gr.dart';
 import 'package:huayati/consts/account_type.dart';
-import 'package:huayati/models/signup_result.dart';
 import 'package:huayati/services/auth_service.dart';
 import 'package:huayati/services/third_party/navigation_service.dart';
 import 'package:huayati/services/third_party/snackbar_service.dart';
