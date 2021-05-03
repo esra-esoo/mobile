@@ -7,17 +7,17 @@ import 'package:huayati/ui/widgets/form/bottom_submit_button.dart';
 import 'package:huayati/ui/widgets/form/form_title.dart';
 import 'package:stacked/stacked.dart';
 
-import 'authorizers_form_view.dart';
-import 'basic_form_view.dart';
-import 'company_form_viewmodel.dart';
+import 'create_files_viewmodel.dart';
+import 'forms/company_form_view.dart';
+import 'forms/representatives_form_view.dart';
 
-class CompanyFormView extends StatelessWidget {
-  const CompanyFormView({Key key}) : super(key: key);
+class CompanyCreateFilesView extends StatelessWidget {
+  const CompanyCreateFilesView({Key key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return ViewModelBuilder<CompanyFormViewModel>.reactive(
-      viewModelBuilder: () => CompanyFormViewModel(),
+    return ViewModelBuilder<CompanyCreateFilesViewModel>.reactive(
+      viewModelBuilder: () => CompanyCreateFilesViewModel(),
       builder: (context, viewModel, child) => BusyOverlay(
         primaryColors: true,
         show: viewModel.isBusy,
@@ -83,13 +83,13 @@ class CompanyFormView extends StatelessWidget {
   Widget getViewForIndex(int index, BuildContext context) {
     switch (index) {
       case 0:
-        return BasicFormView();
+        return CompanyFormView();
         break;
       case 1:
-        return AuthorizersFormView();
+        return RepresentativesFormView();
         break;
       default:
-        return BasicFormView();
+        return CompanyFormView();
     }
   }
 }

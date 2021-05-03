@@ -6,13 +6,13 @@ import 'package:huayati/ui/widgets/form/text_field_label.dart';
 import 'package:stacked/stacked.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-import 'company_form_viewmodel.dart';
+import '../create_files_viewmodel.dart';
 
-class BasicFormView extends ViewModelWidget<CompanyFormViewModel> {
-  const BasicFormView({Key key}) : super(key: key);
+class CompanyFormView extends ViewModelWidget<CompanyCreateFilesViewModel> {
+  const CompanyFormView({Key key}) : super(key: key);
 
   @override
-  Widget build(BuildContext context, CompanyFormViewModel viewModel) {
+  Widget build(BuildContext context, CompanyCreateFilesViewModel viewModel) {
     return ListView(
       shrinkWrap: true,
       children: [

@@ -9,8 +9,8 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 
+import '../ui/views/company/create_files/create_files_view.dart';
 import '../ui/views/company_data/company_data_view.dart';
-import '../ui/views/company_form/company_form_view.dart';
 import '../ui/views/individual/bank_account/bank_account_view.dart';
 import '../ui/views/individual/create_files/create_files_view.dart';
 import '../ui/views/individual/personal_data/personal_data_view.dart';
@@ -23,7 +23,7 @@ import '../ui/views/startup/startup_view.dart';
 
 class Routes {
   static const String splashScreenView = '/';
-  static const String companyFormView = '/company-form-view';
+  static const String companyCreateFilesView = '/company-create-files-view';
   static const String companyDataView = '/company-data-view';
   static const String individualCreateFilesView =
       '/individual-create-files-view';
@@ -39,7 +39,7 @@ class Routes {
   static const String otpView = '/otp-view';
   static const all = <String>{
     splashScreenView,
-    companyFormView,
+    companyCreateFilesView,
     companyDataView,
     individualCreateFilesView,
     individualUpdateFilesView,
@@ -57,7 +57,7 @@ class Router extends RouterBase {
   List<RouteDef> get routes => _routes;
   final _routes = <RouteDef>[
     RouteDef(Routes.splashScreenView, page: SplashScreenView),
-    RouteDef(Routes.companyFormView, page: CompanyFormView),
+    RouteDef(Routes.companyCreateFilesView, page: CompanyCreateFilesView),
     RouteDef(Routes.companyDataView, page: CompanyDataView),
     RouteDef(Routes.individualCreateFilesView, page: IndividualCreateFilesView),
     RouteDef(Routes.individualUpdateFilesView, page: IndividualUpdateFilesView),
@@ -79,9 +79,9 @@ class Router extends RouterBase {
         settings: data,
       );
     },
-    CompanyFormView: (data) {
+    CompanyCreateFilesView: (data) {
       return buildAdaptivePageRoute<dynamic>(
-        builder: (context) => const CompanyFormView(),
+        builder: (context) => const CompanyCreateFilesView(),
         settings: data,
       );
     },

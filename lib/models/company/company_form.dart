@@ -2,7 +2,7 @@ import 'dart:io';
 
 import 'package:flutter/material.dart';
 
-import 'authorizer_form.dart';
+import 'representative_form.dart';
 
 class CompanyForm {
   File commercialLicense;
@@ -10,7 +10,7 @@ class CompanyForm {
   File importersRecord;
   File chamberOfCommerce;
   File accountStatement;
-  AuthorizerForm authorizer;
+  RepresentativeForm representativeForm;
 
   CompanyForm.initial()
       : commercialLicense = null,
@@ -18,7 +18,7 @@ class CompanyForm {
         importersRecord = null,
         chamberOfCommerce = null,
         accountStatement = null,
-        authorizer = null;
+        representativeForm = null;
 
   CompanyForm({
     @required this.commercialLicense,
@@ -26,6 +26,6 @@ class CompanyForm {
     @required this.importersRecord,
     @required this.chamberOfCommerce,
     @required this.accountStatement,
-    @required this.authorizer,
+    @required this.representativeForm,
   });
 }

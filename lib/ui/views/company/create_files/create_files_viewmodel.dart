@@ -1,23 +1,23 @@
 import 'package:huayati/app/locator.dart';
 import 'package:huayati/enums/group_file_type.dart';
-import 'package:huayati/models/company/authorizer_form.dart';
+import 'package:huayati/models/company/representative_form.dart';
 import 'package:huayati/models/company/company_form.dart';
 import 'package:huayati/services/third_party/snackbar_service.dart';
 import 'package:stacked/stacked.dart';
 
-class CompanyFormViewModel extends IndexTrackingViewModel {
+class CompanyCreateFilesViewModel extends IndexTrackingViewModel {
   final _snackbarService = locator<SnackbarService>();
 
   CompanyForm companyForm = CompanyForm.initial();
 
-  List<AuthorizerForm> _authorizers = [];
-  List<AuthorizerForm> get authorizers => _authorizers;
+  List<RepresentativeForm> _representatives = [];
+  List<RepresentativeForm> get representatives => _representatives;
 
   void initilizeView() {}
 
-  void addAuthorizer() {
-    _authorizers.add(
-      AuthorizerForm(
+  void addRepresentative() {
+    _representatives.add(
+      RepresentativeForm(
         passport: null,
         groupFile: null,
         groupFileType: null,
@@ -26,8 +26,8 @@ class CompanyFormViewModel extends IndexTrackingViewModel {
     notifyListeners();
   }
 
-  void removeAuthorizer(int index) {
-    _authorizers.removeAt(index);
+  void removeRepresentative(int index) {
+    _representatives.removeAt(index);
     notifyListeners();
   }
 
@@ -44,7 +44,7 @@ class CompanyFormViewModel extends IndexTrackingViewModel {
 
   Future saveData() async {}
 
-  void onAuthorizerExtraTypeChanged(int authorizerIndex, int value) {
-    _authorizers[authorizerIndex].groupFileType = GroupFileType.values[value];
+  void onRepresentativeExtraTypeChanged(int index, int value) {
+    _representatives[index].groupFileType = GroupFileType.values[value];
   }
 }

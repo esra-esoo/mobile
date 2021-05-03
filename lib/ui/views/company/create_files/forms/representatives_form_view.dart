@@ -3,27 +3,28 @@ import 'package:flutter/material.dart';
 import 'package:huayati/consts/styles.dart';
 import 'package:huayati/ui/widgets/form/file_radio_tile.dart';
 import 'package:huayati/ui/widgets/form/image_picker_field.dart';
+import 'package:huayati/ui/widgets/form/text_field_label.dart';
 import 'package:stacked/stacked.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-import 'company_form_viewmodel.dart';
-import 'widgets/add_authorizer_btn.dart';
-import '../../widgets/form/text_field_label.dart';
+import '../create_files_viewmodel.dart';
+import '../widgets/add_authorizer_btn.dart';
 
-class AuthorizersFormView extends ViewModelWidget<CompanyFormViewModel> {
-  const AuthorizersFormView({Key key}) : super(key: key);
+class RepresentativesFormView
+    extends ViewModelWidget<CompanyCreateFilesViewModel> {
+  const RepresentativesFormView({Key key}) : super(key: key);
 
   @override
-  Widget build(BuildContext context, CompanyFormViewModel viewModel) {
+  Widget build(BuildContext context, CompanyCreateFilesViewModel viewModel) {
     return Container(
       height: MediaQuery.of(context).size.height,
       child: ListView.builder(
         shrinkWrap: true,
-        itemCount: viewModel.authorizers.length + 1,
+        itemCount: viewModel.representatives.length + 1,
         itemBuilder: (context, index) {
-          if (viewModel.authorizers.length == index)
+          if (viewModel.representatives.length == index)
             return AddAuthorizerButton(
-              onPressed: () => viewModel.addAuthorizer(),
+              onPressed: () => viewModel.addRepresentative(),
             );
           else
             return _AuthorizerFieldsCard(index: index);
@@ -33,7 +34,8 @@ class AuthorizersFormView extends ViewModelWidget<CompanyFormViewModel> {
   }
 }
 
-class _AuthorizerFieldsCard extends ViewModelWidget<CompanyFormViewModel> {
+class _AuthorizerFieldsCard
+    extends ViewModelWidget<CompanyCreateFilesViewModel> {
   final int index;
   const _AuthorizerFieldsCard({
     Key key,
@@ -41,8 +43,8 @@ class _AuthorizerFieldsCard extends ViewModelWidget<CompanyFormViewModel> {
   }) : super(key: key);
 
   @override
-  Widget build(BuildContext context, CompanyFormViewModel viewModel) {
-    var authorizer = viewModel.authorizers[index];
+  Widget build(BuildContext context, CompanyCreateFilesViewModel viewModel) {
+    var authorizer = viewModel.representatives[index];
     return Container(
       decoration: BoxDecoration(
         borderRadius: BorderRadius.all(const Radius.circular(15.0)),
@@ -57,20 +59,21 @@ class _AuthorizerFieldsCard extends ViewModelWidget<CompanyFormViewModel> {
           TextFieldLabel(label: 'جواز السفر'),
           SizedBox(height: 10.h),
           ImagePickerField(
-            onChanged: (file) => viewModel.authorizers[index].passport = file,
+            onChanged: (file) =>
+                viewModel.representatives[index].passport = file,
             imageFile: authorizer.passport,
           ),
           SizedBox(height: 25.h),
           TextFieldLabel(label: 'مستند أخر'),
           FileRadioTile(
             options: ['الرقم الوطني', 'شهادة الميلاد'],
-            groupValue: viewModel.authorizers[index]?.groupFileType?.index,
+            groupValue: viewModel.representatives[index]?.groupFileType?.index,
             onChanged: (int value) {
-              viewModel.onAuthorizerExtraTypeChanged(index, value);
+              viewModel.onRepresentativeExtraTypeChanged(index, value);
             },
-            imageFile: viewModel.authorizers[index]?.groupFile,
+            imageFile: viewModel.representatives[index]?.groupFile,
             onFileChanged: (file) =>
-                viewModel.authorizers[index].groupFile = file,
+                viewModel.representatives[index].groupFile = file,
           ),
           SizedBox(height: 15.h),
           Row(
@@ -83,7 +86,7 @@ class _AuthorizerFieldsCard extends ViewModelWidget<CompanyFormViewModel> {
                 ),
                 color: Colors.red,
                 icon: Icon(CupertinoIcons.delete),
-                onPressed: () => viewModel.removeAuthorizer(index),
+                onPressed: () => viewModel.removeRepresentative(index),
               ),
             ],
           ),

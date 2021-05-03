@@ -78,14 +78,12 @@ class HomeView extends StatelessWidget {
         menuList.addAll([
           MenuItem(
             title: 'مستندات الشركة',
-            route: Routes.companyFormView,
             notifciation:
                 sharedRefuseState?.companyRefuseState?.numberOfCompanyFiles ??
                     0,
           ),
           MenuItem(
             title: 'مستندات المخولين',
-            route: Routes.companyFormView,
             notifciation: sharedRefuseState
                     ?.companyRefuseState?.numberOfRepresentativeFiles ??
                 0,
@@ -95,11 +93,7 @@ class HomeView extends StatelessWidget {
         menuList.addAll([
           MenuItem(
             title: 'رفع مستندات الشركة',
-            route: Routes.companyFormView,
-          ),
-          MenuItem(
-            title: 'رفع مستندات المخولين',
-            route: Routes.companyFormView,
+            route: Routes.companyCreateFilesView,
           ),
         ]);
       }
