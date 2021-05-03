@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:huayati/consts/account_type.dart';
 import 'package:huayati/models/menu_item.dart';
+import 'package:huayati/models/refuse_message.dart';
 import 'package:huayati/models/user.dart';
 import 'package:huayati/ui/views/home/menu.dart';
 import 'package:huayati/ui/views/home/widgets/grid_item.dart';
@@ -13,8 +14,13 @@ class HomeView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     var userRole = Provider.of<User>(context).role;
+    var numberOfFiles = Provider.of<RefuseMessage>(context).numberOfFiles;
     List<MenuItem> menu =
         userRole == AccountType.INDIVISUAL ? individualMenu : companyMenu;
+
+    if (numberOfFiles > 0) {
+      menu[1].notifciation = numberOfFiles;
+    }
     return Container(
       height: MediaQuery.of(context).size.height,
       child: GridView.builder(

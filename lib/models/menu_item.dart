@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 
 class MenuItem {
-  final String title;
-  final String route;
-  final int notifciation;
+  String title;
+  String route;
+  int notifciation;
 
-  const MenuItem({
+  MenuItem({
     @required this.title,
     this.route,
     this.notifciation = 0,

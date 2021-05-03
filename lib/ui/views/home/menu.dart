@@ -1,7 +1,7 @@
 import 'package:huayati/app/router.gr.dart';
 import 'package:huayati/models/menu_item.dart';
 
-const List<MenuItem> companyMenu = [
+List<MenuItem> companyMenu = [
   MenuItem(
     title: 'رفع مستندات الشركة',
     route: Routes.companyFormView,
@@ -21,7 +21,7 @@ const List<MenuItem> companyMenu = [
   ),
 ];
 
-const List<MenuItem> individualMenu = [
+List<MenuItem> individualMenu = [
   MenuItem(
     title: 'رفع المستندات',
     route: Routes.individualCreateFilesView,
