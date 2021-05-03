@@ -27,10 +27,17 @@ class SharedService {
       _refuseMessage = refuseMessage;
       return refuseMessage;
     } on DioError catch (_) {
+      resetMessageState();
       return RefuseMessage.initial();
     } catch (e) {
+      resetMessageState();
       return RefuseMessage.initial();
     }
+  }
+
+  void resetMessageState() {
+    _refuseMessageController.add(RefuseMessage.initial());
+    _refuseMessage = RefuseMessage.initial();
   }
 
   void dispose() {
