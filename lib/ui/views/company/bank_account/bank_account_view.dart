@@ -9,13 +9,13 @@ import 'package:stacked/stacked.dart';
 
 import 'bank_account_viewmodel.dart';
 
-class IndividualBankAccountDataView extends StatelessWidget {
-  const IndividualBankAccountDataView({Key key}) : super(key: key);
+class CompanyBankAccountsDataView extends StatelessWidget {
+  const CompanyBankAccountsDataView({Key key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return ViewModelBuilder<IndividualBankAccountDataViewModel>.reactive(
-      viewModelBuilder: () => IndividualBankAccountDataViewModel(),
+    return ViewModelBuilder<CompanyBankAccountsDataViewModel>.reactive(
+      viewModelBuilder: () => CompanyBankAccountsDataViewModel(),
       onModelReady: (viewModel) => viewModel.initilizeView(),
       builder: (context, viewModel, child) => Scaffold(
         backgroundColor: Colors.white,
@@ -48,12 +48,12 @@ class _LoadingIndicator extends StatelessWidget {
   }
 }
 
-class _DataView extends ViewModelWidget<IndividualBankAccountDataViewModel> {
+class _DataView extends ViewModelWidget<CompanyBankAccountsDataViewModel> {
   const _DataView({Key key}) : super(key: key);
 
   @override
   Widget build(
-      BuildContext context, IndividualBankAccountDataViewModel viewModel) {
+      BuildContext context, CompanyBankAccountsDataViewModel viewModel) {
     return PlatformScrollBar(
       child: Container(
         constraints: BoxConstraints.expand(),
@@ -66,13 +66,12 @@ class _DataView extends ViewModelWidget<IndividualBankAccountDataViewModel> {
                 MediaQuery.of(context).viewPadding.bottom,
           ),
           shrinkWrap: true,
-          itemCount: viewModel?.indivisualBankAccount?.length,
+          itemCount: viewModel?.companyBankAccounts?.length,
           itemBuilder: (context, index) {
             return BankItem(
               accountNumber:
-                  viewModel?.indivisualBankAccount[index]?.accountNumber,
-              branchNumber:
-                  viewModel?.indivisualBankAccount[index]?.branchNumber,
+                  viewModel?.companyBankAccounts[index]?.accountNumber,
+              branchNumber: viewModel?.companyBankAccounts[index]?.branchNumber,
               no: index + 1,
             );
           },

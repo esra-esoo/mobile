@@ -1,19 +1,19 @@
 import 'package:huayati/app/locator.dart';
-import 'package:huayati/models/individual/bank_account.dart';
+import 'package:huayati/models/company/bank_account.dart';
 import 'package:huayati/models/navigation_result.dart';
-import 'package:huayati/services/individual_service.dart';
+import 'package:huayati/services/company_service.dart';
 import 'package:huayati/services/third_party/navigation_service.dart';
 import 'package:stacked/stacked.dart';
 
-class IndividualBankAccountDataViewModel extends BaseViewModel {
-  final _individualService = locator<IndividualService>();
+class CompanyBankAccountsDataViewModel extends BaseViewModel {
+  final _companyService = locator<CompanyService>();
   final _navigationService = locator<NavigationService>();
 
-  List<IndivisualBankAccount> indivisualBankAccount = [];
+  List<CompanyBankAccount> companyBankAccounts = [];
   Future initilizeView() async {
     try {
-      indivisualBankAccount = await runBusyFuture(
-        _individualService.getBankAccounts(),
+      companyBankAccounts = await runBusyFuture(
+        _companyService.getBankAccounts(),
         throwException: true,
       );
     } catch (e) {

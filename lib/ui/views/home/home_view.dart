@@ -69,7 +69,7 @@ class HomeView extends StatelessWidget {
         ),
         MenuItem(
           title: 'بيانات الحساب',
-          route: Routes.individualBankAccountDataView,
+          route: Routes.individualBankAccountsDataView,
         ),
       ]);
     } else {
@@ -104,6 +104,7 @@ class HomeView extends StatelessWidget {
         ),
         MenuItem(
           title: 'بيانات الحساب',
+          route: Routes.companyBankAccountsDataView,
         ),
         MenuItem(
           title: 'بيانات المخول',

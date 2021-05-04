@@ -9,9 +9,10 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 
+import '../ui/views/company/bank_account/bank_account_view.dart';
+import '../ui/views/company/company_data/company_data_view.dart';
 import '../ui/views/company/create_files/create_files_view.dart';
-import '../ui/views/company_data/company_data_view.dart';
-import '../ui/views/individual/bank_account/bank_account_view.dart';
+import '../ui/views/individual/bank_accounts/bank_accounts_view.dart';
 import '../ui/views/individual/create_files/create_files_view.dart';
 import '../ui/views/individual/personal_data/personal_data_view.dart';
 import '../ui/views/individual/update_files/update_files_view.dart';
@@ -25,14 +26,16 @@ class Routes {
   static const String splashScreenView = '/';
   static const String companyCreateFilesView = '/company-create-files-view';
   static const String companyDataView = '/company-data-view';
+  static const String companyBankAccountsDataView =
+      '/company-bank-accounts-data-view';
   static const String individualCreateFilesView =
       '/individual-create-files-view';
   static const String individualUpdateFilesView =
       '/individual-update-files-view';
   static const String individualPersonalDataView =
       '/individual-personal-data-view';
-  static const String individualBankAccountDataView =
-      '/individual-bank-account-data-view';
+  static const String individualBankAccountsDataView =
+      '/individual-bank-accounts-data-view';
   static const String startUpView = '/start-up-view';
   static const String signInView = '/sign-in-view';
   static const String signUpView = '/sign-up-view';
@@ -41,10 +44,11 @@ class Routes {
     splashScreenView,
     companyCreateFilesView,
     companyDataView,
+    companyBankAccountsDataView,
     individualCreateFilesView,
     individualUpdateFilesView,
     individualPersonalDataView,
-    individualBankAccountDataView,
+    individualBankAccountsDataView,
     startUpView,
     signInView,
     signUpView,
@@ -59,12 +63,14 @@ class Router extends RouterBase {
     RouteDef(Routes.splashScreenView, page: SplashScreenView),
     RouteDef(Routes.companyCreateFilesView, page: CompanyCreateFilesView),
     RouteDef(Routes.companyDataView, page: CompanyDataView),
+    RouteDef(Routes.companyBankAccountsDataView,
+        page: CompanyBankAccountsDataView),
     RouteDef(Routes.individualCreateFilesView, page: IndividualCreateFilesView),
     RouteDef(Routes.individualUpdateFilesView, page: IndividualUpdateFilesView),
     RouteDef(Routes.individualPersonalDataView,
         page: IndividualPersonalDataView),
-    RouteDef(Routes.individualBankAccountDataView,
-        page: IndividualBankAccountDataView),
+    RouteDef(Routes.individualBankAccountsDataView,
+        page: IndividualBankAccountsDataView),
     RouteDef(Routes.startUpView, page: StartUpView),
     RouteDef(Routes.signInView, page: SignInView),
     RouteDef(Routes.signUpView, page: SignUpView),
@@ -91,6 +97,12 @@ class Router extends RouterBase {
         settings: data,
       );
     },
+    CompanyBankAccountsDataView: (data) {
+      return buildAdaptivePageRoute<dynamic>(
+        builder: (context) => const CompanyBankAccountsDataView(),
+        settings: data,
+      );
+    },
     IndividualCreateFilesView: (data) {
       return buildAdaptivePageRoute<dynamic>(
         builder: (context) => const IndividualCreateFilesView(),
@@ -109,9 +121,9 @@ class Router extends RouterBase {
         settings: data,
       );
     },
-    IndividualBankAccountDataView: (data) {
+    IndividualBankAccountsDataView: (data) {
       return buildAdaptivePageRoute<dynamic>(
-        builder: (context) => const IndividualBankAccountDataView(),
+        builder: (context) => const IndividualBankAccountsDataView(),
         settings: data,
       );
     },
