@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:huayati/consts/styles.dart';
+import 'package:huayati/ui/widgets/bank_item.dart';
 import 'package:huayati/ui/widgets/form/form_title.dart';
 import 'package:huayati/ui/widgets/loading_indicator.dart';
 import 'package:huayati/ui/widgets/scrollbar.dart';
 import 'package:stacked/stacked.dart';
 
 import 'bank_account_viewmodel.dart';
-import 'widgets/bank_item.dart';
 
 class IndividualBankAccountDataView extends StatelessWidget {
   const IndividualBankAccountDataView({Key key}) : super(key: key);
@@ -69,7 +69,10 @@ class _DataView extends ViewModelWidget<IndividualBankAccountDataViewModel> {
           itemCount: viewModel?.indivisualBankAccount?.length,
           itemBuilder: (context, index) {
             return BankItem(
-              indivisualBankAccount: viewModel?.indivisualBankAccount[index],
+              accountNumber:
+                  viewModel?.indivisualBankAccount[index]?.accountNumber,
+              branchNumber:
+                  viewModel?.indivisualBankAccount[index]?.branchNumber,
               no: index + 1,
             );
           },
