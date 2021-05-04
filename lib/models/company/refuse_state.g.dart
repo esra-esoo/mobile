@@ -13,10 +13,6 @@ CompanyRefuseState _$CompanyRefuseStateFromJson(Map<String, dynamic> json) {
     json['numberOfCompanyFiles'] as int,
     json['numberOfRepresentativeFiles'] as int,
     json['refuseType'] as String,
-    (json['companyRefuseFiles'] as List)?.map((e) => e as String)?.toList(),
-    (json['representativeRefuseFiles'] as List)
-        ?.map((e) => e as String)
-        ?.toList(),
   );
 }
 
@@ -27,6 +23,4 @@ Map<String, dynamic> _$CompanyRefuseStateToJson(CompanyRefuseState instance) =>
       'numberOfCompanyFiles': instance.numberOfCompanyFiles,
       'numberOfRepresentativeFiles': instance.numberOfRepresentativeFiles,
       'refuseType': instance.refuseType,
-      'companyRefuseFiles': instance.companyRefuseFiles,
-      'representativeRefuseFiles': instance.representativeRefuseFiles,
     };

@@ -77,7 +77,6 @@ class SharedService {
         url: '/api/Company/GetFilesRefuseMessage',
       );
       if (response == null) resetRefuseState();
-
       var companyRefuseState = CompanyRefuseState.fromJson(response);
       _sharedRefuseState = SharedRefuseState(
         companyRefuseState: companyRefuseState,

@@ -9,8 +9,6 @@ class CompanyRefuseState {
   final int numberOfCompanyFiles;
   final int numberOfRepresentativeFiles;
   final String refuseType;
-  final List<String> companyRefuseFiles;
-  final List<String> representativeRefuseFiles;
 
   const CompanyRefuseState(
     this.hasRefusedCompanyFiles,
@@ -18,8 +16,6 @@ class CompanyRefuseState {
     this.numberOfCompanyFiles,
     this.numberOfRepresentativeFiles,
     this.refuseType,
-    this.companyRefuseFiles,
-    this.representativeRefuseFiles,
   );
 
   CompanyRefuseState.initial()
@@ -27,9 +23,7 @@ class CompanyRefuseState {
         hasRefusedRepresentativeFiles = false,
         numberOfCompanyFiles = 0,
         numberOfRepresentativeFiles = 0,
-        refuseType = null,
-        companyRefuseFiles = null,
-        representativeRefuseFiles = null;
+        refuseType = null;
 
   factory CompanyRefuseState.fromJson(Map<String, dynamic> json) =>
       _$CompanyRefuseStateFromJson(json);
