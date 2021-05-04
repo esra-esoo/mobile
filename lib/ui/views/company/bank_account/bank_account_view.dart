@@ -29,7 +29,7 @@ class CompanyBankAccountsDataView extends StatelessWidget {
           ),
           centerTitle: true,
           title: FormTitle(
-            title: 'البيانات الشخصية',
+            title: 'بيانات الحساب',
             color: kcolorPrimaryBlue,
           ),
         ),
