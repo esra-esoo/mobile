@@ -3,6 +3,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:huayati/app/locator.dart';
+import 'package:huayati/consts/styles.dart';
 import 'package:huayati/models/image_file.dart';
 import 'package:huayati/services/third_party/media_picker.dart';
 import 'package:huayati/services/third_party/snackbar_service.dart';
@@ -67,7 +68,7 @@ class ImageUpdateField extends StatelessWidget {
                           padding:
                               EdgeInsets.symmetric(horizontal: 10, vertical: 5),
                           decoration: BoxDecoration(
-                            color: Colors.black.withOpacity(0.3),
+                            color: kcolorBluelight.withOpacity(0.3),
                             borderRadius: BorderRadius.circular(10),
                           ),
                           child: Row(
