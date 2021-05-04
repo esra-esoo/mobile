@@ -15,7 +15,7 @@ class HomeView extends StatelessWidget {
   Widget build(BuildContext context) {
     var user = Provider.of<User>(context);
     var sharedRefuseState = Provider.of<SharedRefuseState>(context);
-    List<MenuItem> menuList = getMenuList(user, sharedRefuseState);
+    List<MenuItem> menuList = _getMenuList(user, sharedRefuseState);
 
     return Container(
       height: MediaQuery.of(context).size.height,
@@ -42,7 +42,7 @@ class HomeView extends StatelessWidget {
     );
   }
 
-  List<MenuItem> getMenuList(
+  List<MenuItem> _getMenuList(
     User user,
     SharedRefuseState sharedRefuseState,
   ) {
