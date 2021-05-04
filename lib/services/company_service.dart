@@ -42,7 +42,7 @@ class CompanyService {
   Future<CompanyData> getCompanyData() async {
     try {
       final response = await _api.getCallWithToken(
-        url: '/api/Company/GetPersonalData',
+        url: '/api/Company/GetCompanyData',
       );
       return CompanyData.fromJson(response);
     } on DioError catch (e) {
