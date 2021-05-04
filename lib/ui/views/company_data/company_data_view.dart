@@ -17,6 +17,7 @@ class CompanyDataView extends StatelessWidget {
   Widget build(BuildContext context) {
     return ViewModelBuilder<CompanyDataViewModel>.reactive(
       viewModelBuilder: () => CompanyDataViewModel(),
+      onModelReady: (viewModel) => viewModel.initilizeView(),
       builder: (context, viewModel, child) => Scaffold(
         backgroundColor: Colors.white,
         appBar: AppBar(
