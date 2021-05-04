@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:huayati/ui/widgets/botton_padding.dart';
+import 'package:huayati/ui/widgets/form/file_radio_tile.dart';
 import 'package:huayati/ui/widgets/form/file_size_note.dart';
 import 'package:huayati/ui/widgets/form/image_picker_field.dart';
 import 'package:huayati/ui/widgets/form/text_field_label.dart';
@@ -22,36 +23,55 @@ class CompanyFormView extends ViewModelWidget<CompanyCreateFilesViewModel> {
         TextFieldLabel(label: 'الرخصة التجارية'),
         SizedBox(height: 10.h),
         ImagePickerField(
-          onChanged: (file) => viewModel.companyForm.commercialLicense = file,
+          onChanged: (file) {
+            viewModel.companyForm.commercialLicense = file;
+            viewModel.notifyListeners();
+          },
           imageFile: viewModel?.companyForm?.commercialLicense,
         ),
         SizedBox(height: 25.h),
         TextFieldLabel(label: 'السجل التجاري'),
         SizedBox(height: 10.h),
         ImagePickerField(
-          onChanged: (file) => viewModel.companyForm.commercialRegister = file,
-          imageFile: viewModel?.companyForm?.commercialLicense,
+          onChanged: (file) {
+            viewModel.companyForm.commercialRegister = file;
+            viewModel.notifyListeners();
+          },
+          imageFile: viewModel?.companyForm?.commercialRegister,
         ),
         SizedBox(height: 25.h),
         TextFieldLabel(label: 'سجل المستوردين'),
         SizedBox(height: 10.h),
         ImagePickerField(
-          onChanged: (file) => viewModel.companyForm.importersRecord = file,
+          onChanged: (file) {
+            viewModel.companyForm.importersRecord = file;
+            viewModel.notifyListeners();
+          },
           imageFile: viewModel?.companyForm?.importersRecord,
         ),
         SizedBox(height: 25.h),
         TextFieldLabel(label: 'الغرفة التجارية'),
         SizedBox(height: 10.h),
         ImagePickerField(
-          onChanged: (file) => viewModel.companyForm.chamberOfCommerce = file,
+          onChanged: (file) {
+            viewModel.companyForm.chamberOfCommerce = file;
+            viewModel.notifyListeners();
+          },
           imageFile: viewModel?.companyForm?.chamberOfCommerce,
         ),
         SizedBox(height: 25.h),
-        TextFieldLabel(label: 'كشف الحساب'),
-        SizedBox(height: 10.h),
-        ImagePickerField(
-          onChanged: (file) => viewModel.companyForm.accountStatement = file,
-          imageFile: viewModel?.companyForm?.accountStatement,
+        TextFieldLabel(label: 'أختر مستند'),
+        FileRadioTile(
+          options: ['كشف الحساب', 'صك'],
+          groupValue: viewModel.companyForm?.groupFileType2?.index,
+          onChanged: (int value) {
+            viewModel.onExtraType2Changed(value);
+          },
+          onFileChanged: (file) {
+            viewModel.companyForm.groupFile2 = file;
+            viewModel.notifyListeners();
+          },
+          imageFile: viewModel?.companyForm?.groupFile2,
         ),
         const BottomPadding(),
       ],

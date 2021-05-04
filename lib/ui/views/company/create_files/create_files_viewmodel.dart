@@ -13,6 +13,10 @@ class CompanyCreateFilesViewModel extends IndexTrackingViewModel {
   List<RepresentativeForm> _representatives = [];
   List<RepresentativeForm> get representatives => _representatives;
 
+  void onExtraType2Changed(int value) {
+    companyForm.groupFileType2 = GroupFileType2.values[value];
+  }
+
   void initilizeView() {}
 
   void addRepresentative() {
@@ -32,19 +36,39 @@ class CompanyCreateFilesViewModel extends IndexTrackingViewModel {
   }
 
   void goNext() {
-    //TODO validation
-    bool isValid = true;
-    if (isValid)
-      setIndex(1);
-    else
+    if (companyForm.commercialLicense == null) {
       _snackbarService.showBottomErrorSnackbar(
-        message: 'جميع المستندات مطلوبة !',
+        message: 'يجب عليك تحميل صورة الرخصة التجارية',
       );
-  }
+      return;
+    } else if (companyForm.commercialRegister == null) {
+      _snackbarService.showBottomErrorSnackbar(
+        message: 'يجب عليك تحميل صورة السجل التجاري',
+      );
+      return;
+    } else if (companyForm.importersRecord == null) {
+      _snackbarService.showBottomErrorSnackbar(
+        message: 'يجب عليك تحميل صورة سجل المستوردين',
+      );
+      return;
+    } else if (companyForm.chamberOfCommerce == null) {
+      _snackbarService.showBottomErrorSnackbar(
+        message: 'يجب عليك تحميل صورة الغرفة التجارية',
+      );
+      return;
+    } else if (companyForm.groupFile2 == null) {
+      _snackbarService.showBottomErrorSnackbar(
+        message: 'يجب عليك تحميل صورة من كشف الحساب أو الصك',
+      );
+      return;
+    }
 
-  Future saveData() async {}
+    setIndex(1);
+  }
 
   void onRepresentativeExtraTypeChanged(int index, int value) {
     _representatives[index].groupFileType = GroupFileType.values[value];
   }
+
+  saveData() {}
 }

@@ -1,6 +1,7 @@
 import 'dart:io';
 
 import 'package:flutter/material.dart';
+import 'package:huayati/enums/group_file_type.dart';
 
 import 'representative_form.dart';
 
@@ -9,7 +10,8 @@ class CompanyForm {
   File commercialRegister;
   File importersRecord;
   File chamberOfCommerce;
-  File accountStatement;
+  File groupFile2;
+  GroupFileType2 groupFileType2;
   RepresentativeForm representativeForm;
 
   CompanyForm.initial()
@@ -17,7 +19,8 @@ class CompanyForm {
         commercialRegister = null,
         importersRecord = null,
         chamberOfCommerce = null,
-        accountStatement = null,
+        groupFile2 = null,
+        groupFileType2 = null,
         representativeForm = null;
 
   CompanyForm({
@@ -25,7 +28,8 @@ class CompanyForm {
     @required this.commercialRegister,
     @required this.importersRecord,
     @required this.chamberOfCommerce,
-    @required this.accountStatement,
+    @required this.groupFile2,
+    @required this.groupFileType2,
     @required this.representativeForm,
   });
 }
