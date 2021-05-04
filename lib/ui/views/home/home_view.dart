@@ -81,6 +81,7 @@ class HomeView extends StatelessWidget {
             notifciation:
                 sharedRefuseState?.companyRefuseState?.numberOfCompanyFiles ??
                     0,
+            route: Routes.companyUpdateFilesView,
           ),
           MenuItem(
             title: 'مستندات المخولين',
