@@ -50,7 +50,7 @@ class ImagePickerField extends StatelessWidget {
               child: Container(
                 padding: EdgeInsets.symmetric(horizontal: 10, vertical: 5),
                 decoration: BoxDecoration(
-                  color: Colors.black.withOpacity(0.3),
+                  color:disabled ? Colors.grey: Colors.black.withOpacity(0.3),
                   borderRadius: BorderRadius.circular(10),
                 ),
                 child: Row(

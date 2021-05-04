@@ -7,12 +7,12 @@ part 'user.g.dart';
 
 @JsonSerializable()
 class User {
-  final bool hasUploaded;
-  final String customerType;
-  final String phoneNumber;
-  final String sub;
+  bool hasUploaded;
+  String customerType;
+  String phoneNumber;
+  String sub;
 
-  const User({
+  User({
     @required this.hasUploaded,
     @required this.customerType,
     @required this.phoneNumber,

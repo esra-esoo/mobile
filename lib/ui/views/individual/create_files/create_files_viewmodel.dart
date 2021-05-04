@@ -93,7 +93,7 @@ class IndividualCreateFilesViewModel extends BaseViewModel {
   Future<List<FilesModels>> _getFileModels() async {
     return [
       await FileUtils.fromRawFileToFileModel(
-        'جواز السفر',
+        DocumentsNames.PASSPORT,
         individualForm.passport,
       ),
       await FileUtils.fromRawFileToFileModel(

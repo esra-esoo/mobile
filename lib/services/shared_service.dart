@@ -14,14 +14,12 @@ import 'user_service.dart';
 class SharedService {
   final _api = locator<Api>();
   final _userService = locator<UserService>();
-  
+
   SharedRefuseState _sharedRefuseState = SharedRefuseState.initial();
   SharedRefuseState get sharedRefuseState => _sharedRefuseState;
   final _sharedRefuseStateController = StreamController<SharedRefuseState>();
   Stream<SharedRefuseState> get sharedRefuseStateStream =>
       _sharedRefuseStateController.stream;
-
-
 
   Future<User> updateAccountInfo() async {
     try {
@@ -31,7 +29,7 @@ class SharedService {
       if (response == null) return User.initial();
 
       var user = User.fromJson(response);
-      _userService.addUser(user);
+      _userService.update(user);
       return user;
     } on DioError catch (_) {
       _userService.addUser(User.initial());

@@ -23,7 +23,7 @@ class BankItem extends StatelessWidget {
           Text(
             'حساب رقم $no',
             style: TextStyle(
-              color: kColorText,
+              color: kcolorBluelight,
               fontWeight: FontWeight.bold,
             ),
           ),

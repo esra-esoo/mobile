@@ -16,7 +16,7 @@ class CompanyEmployeeModel {
     @required this.userId,
     @required this.companyEmployeeFilesModel,
     this.totalFilesLength,
-    this.isFirstRepresentative = true,
+    @required this.isFirstRepresentative,
   });
 
   factory CompanyEmployeeModel.fromJson(Map<String, dynamic> json) =>

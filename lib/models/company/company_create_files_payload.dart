@@ -10,7 +10,7 @@ part 'company_create_files_payload.g.dart';
 class CompanyCreateFilesPayload {
   final String phoneNumber;
   final List<FilesModels> companyFilesModel;
-  final CompanyEmployeeModel companyEmployeeModel;
+  final List<CompanyEmployeeModel> companyEmployeeModel;
   final int totalFilesLength;
 
   const CompanyCreateFilesPayload({

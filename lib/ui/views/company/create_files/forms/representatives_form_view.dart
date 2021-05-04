@@ -77,58 +77,70 @@ class _RepresentativeFieldsCard
   @override
   Widget build(BuildContext context, CompanyCreateFilesViewModel viewModel) {
     var authorizer = viewModel.representatives[index];
-    return Container(
-      decoration: BoxDecoration(
-        borderRadius: BorderRadius.all(const Radius.circular(15.0)),
-        border: Border.all(color: kcolorBluelight.withOpacity(0.3), width: 2),
-        color: Colors.white,
-      ),
-      padding: const EdgeInsets.symmetric(vertical: 15, horizontal: 15),
-      margin: const EdgeInsets.symmetric(vertical: 15),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.stretch,
-        children: [
-          TextFieldLabel(label: 'جواز السفر'),
-          SizedBox(height: 10.h),
-          ImagePickerField(
-            onChanged: (file) {
-              viewModel.representatives[index].passport = file;
-              viewModel.notifyListeners();
-            },
-            imageFile: authorizer.passport,
+    return Column(
+      children: [
+        Text(
+          'مخول رقم ${index + 1}',
+          style: TextStyle(
+            color: kcolorBluelight,
+            fontWeight: FontWeight.bold,
           ),
-          SizedBox(height: 25.h),
-          TextFieldLabel(label: 'مستند أخر'),
-          TextFieldLabel(label: 'أختر مستند'),
-          FileRadioTile(
-            options: ['الرقم الوطني', 'شهادة الميلاد'],
-            groupValue: viewModel.representatives[index]?.groupFileType?.index,
-            onChanged: (int value) {
-              viewModel.onRepresentativeExtraTypeChanged(index, value);
-            },
-            onFileChanged: (file) {
-              viewModel.representatives[index].groupFile = file;
-              viewModel.notifyListeners();
-            },
-            imageFile: viewModel.representatives[index]?.groupFile,
+        ),
+        Container(
+          decoration: BoxDecoration(
+            borderRadius: BorderRadius.all(const Radius.circular(15.0)),
+            border:
+                Border.all(color: kcolorBluelight.withOpacity(0.3), width: 2),
+            color: Colors.white,
           ),
-          SizedBox(height: 15.h),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: <Widget>[
-              IconButton(
-                visualDensity: VisualDensity(
-                  horizontal: VisualDensity.minimumDensity,
-                  vertical: VisualDensity.minimumDensity,
-                ),
-                color: Colors.red,
-                icon: Icon(CupertinoIcons.delete),
-                onPressed: () => viewModel.removeRepresentative(index),
+          padding: const EdgeInsets.symmetric(vertical: 15, horizontal: 15),
+          margin: const EdgeInsets.symmetric(vertical: 15),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.stretch,
+            children: [
+              TextFieldLabel(label: 'جواز السفر'),
+              SizedBox(height: 10.h),
+              ImagePickerField(
+                onChanged: (file) {
+                  viewModel.representatives[index].passport = file;
+                  viewModel.notifyListeners();
+                },
+                imageFile: authorizer.passport,
+              ),
+              SizedBox(height: 25.h),
+              TextFieldLabel(label: 'أختر مستند'),
+              FileRadioTile(
+                options: ['الرقم الوطني', 'شهادة الميلاد'],
+                groupValue:
+                    viewModel.representatives[index]?.groupFileType?.index,
+                onChanged: (int value) {
+                  viewModel.onRepresentativeExtraTypeChanged(index, value);
+                },
+                onFileChanged: (file) {
+                  viewModel.representatives[index].groupFile = file;
+                  viewModel.notifyListeners();
+                },
+                imageFile: viewModel.representatives[index]?.groupFile,
+              ),
+              SizedBox(height: 15.h),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: <Widget>[
+                  IconButton(
+                    visualDensity: VisualDensity(
+                      horizontal: VisualDensity.minimumDensity,
+                      vertical: VisualDensity.minimumDensity,
+                    ),
+                    color: Colors.red,
+                    icon: Icon(CupertinoIcons.delete),
+                    onPressed: () => viewModel.removeRepresentative(index),
+                  ),
+                ],
               ),
             ],
           ),
-        ],
-      ),
+        ),
+      ],
     );
   }
 }

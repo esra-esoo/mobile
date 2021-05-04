@@ -14,10 +14,11 @@ CompanyCreateFilesPayload _$CompanyCreateFilesPayloadFromJson(
         ?.map((e) =>
             e == null ? null : FilesModels.fromJson(e as Map<String, dynamic>))
         ?.toList(),
-    companyEmployeeModel: json['companyEmployeeModel'] == null
-        ? null
-        : CompanyEmployeeModel.fromJson(
-            json['companyEmployeeModel'] as Map<String, dynamic>),
+    companyEmployeeModel: (json['companyEmployeeModel'] as List)
+        ?.map((e) => e == null
+            ? null
+            : CompanyEmployeeModel.fromJson(e as Map<String, dynamic>))
+        ?.toList(),
     totalFilesLength: json['totalFilesLength'] as int,
   );
 }
@@ -28,6 +29,7 @@ Map<String, dynamic> _$CompanyCreateFilesPayloadToJson(
       'phoneNumber': instance.phoneNumber,
       'companyFilesModel':
           instance.companyFilesModel?.map((e) => e?.toJson())?.toList(),
-      'companyEmployeeModel': instance.companyEmployeeModel?.toJson(),
+      'companyEmployeeModel':
+          instance.companyEmployeeModel?.map((e) => e?.toJson())?.toList(),
       'totalFilesLength': instance.totalFilesLength,
     };
