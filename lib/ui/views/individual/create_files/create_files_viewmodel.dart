@@ -75,6 +75,7 @@ class IndividualCreateFilesViewModel extends BaseViewModel {
           phoneNumber: user.phoneNumber,
           customerType: user.customerType,
           hasUploaded: true,
+          sub: user.sub,
         ),
       );
       await _sharedService.getRefuseState();

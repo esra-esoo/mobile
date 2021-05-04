@@ -19,10 +19,7 @@ class UserService {
     print('user has been added : ${user.toJson()}');
   }
 
-  Future<void> update(User newUser) async {
-    var oldUser = await loadUser();
-    var updatedUser = newUser;
-    updatedUser.sub = oldUser.sub;
+  Future<void> update(User updatedUser) async {
     await _storage.addString(StorageKeys.USER, jsonEncode(updatedUser));
     _userController.sink.add(updatedUser);
     print('user has been updated : ${updatedUser.toJson()}');

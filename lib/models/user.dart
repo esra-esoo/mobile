@@ -16,7 +16,7 @@ class User {
     @required this.hasUploaded,
     @required this.customerType,
     @required this.phoneNumber,
-    this.sub,
+    @required this.sub,
   });
 
   User.initial()

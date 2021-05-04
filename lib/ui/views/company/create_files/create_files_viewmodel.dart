@@ -134,6 +134,7 @@ class CompanyCreateFilesViewModel extends IndexTrackingViewModel {
         phoneNumber: user.phoneNumber,
         customerType: user.customerType,
         hasUploaded: true,
+        sub: user.sub,
       ));
       await _sharedService.getRefuseState();
       setBusy(false);
