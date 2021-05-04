@@ -1,13 +1,14 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'bank_account_data.dart';
+part of 'bank_account.dart';
 
 // **************************************************************************
 // JsonSerializableGenerator
 // **************************************************************************
 
-BankAccountData _$BankAccountDataFromJson(Map<String, dynamic> json) {
-  return BankAccountData(
+IndivisualBankAccount _$IndivisualBankAccountFromJson(
+    Map<String, dynamic> json) {
+  return IndivisualBankAccount(
     json['individualBankAccountId'] as String,
     json['accountNumber'] as String,
     json['branchNumber'] as String,
@@ -15,7 +16,8 @@ BankAccountData _$BankAccountDataFromJson(Map<String, dynamic> json) {
   );
 }
 
-Map<String, dynamic> _$BankAccountDataToJson(BankAccountData instance) =>
+Map<String, dynamic> _$IndivisualBankAccountToJson(
+        IndivisualBankAccount instance) =>
     <String, dynamic>{
       'individualBankAccountId': instance.individualBankAccountId,
       'accountNumber': instance.accountNumber,

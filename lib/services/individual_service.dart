@@ -1,7 +1,7 @@
 import 'package:dio/dio.dart';
 import 'package:huayati/app/locator.dart';
 import 'package:huayati/models/image_file.dart';
-import 'package:huayati/models/individual/bank_account_data.dart';
+import 'package:huayati/models/individual/bank_account.dart';
 import 'package:huayati/models/individual/indivisual_create_files_payload.dart';
 import 'package:huayati/models/individual/personal_data.dart';
 
@@ -40,14 +40,14 @@ class IndividualService {
     }
   }
 
-  Future<List<BankAccountData>> getBankAccounts() async {
+  Future<List<IndivisualBankAccount>> getBankAccounts() async {
     try {
       final response = await _api.getCallWithToken(
         url: '/api/Individual/GetBankAccounts',
       );
       return response
-          ?.map<BankAccountData>(
-            (json) => BankAccountData.fromJson(json),
+          ?.map<IndivisualBankAccount>(
+            (json) => IndivisualBankAccount.fromJson(json),
           )
           ?.toList();
     } on DioError catch (e) {

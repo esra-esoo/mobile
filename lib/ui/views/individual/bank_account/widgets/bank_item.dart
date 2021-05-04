@@ -1,21 +1,21 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:huayati/consts/styles.dart';
-import 'package:huayati/models/individual/bank_account_data.dart';
+import 'package:huayati/models/individual/bank_account.dart';
 import 'package:huayati/ui/widgets/data_item.dart';
 
 class BankItem extends StatelessWidget {
   final int no;
-  final BankAccountData bankAccountData;
+  final IndivisualBankAccount indivisualBankAccount;
   const BankItem({
     Key key,
-    @required this.bankAccountData,
+    @required this.indivisualBankAccount,
     @required this.no,
   }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    if (bankAccountData == null)
+    if (indivisualBankAccount == null)
       return SizedBox.shrink();
     else
       return Column(
@@ -41,12 +41,12 @@ class BankItem extends StatelessWidget {
                 SizedBox(height: 30.h),
                 DataItem(
                   label: 'رقم الحساب',
-                  value: bankAccountData?.accountNumber ?? '',
+                  value: indivisualBankAccount?.accountNumber ?? '',
                 ),
                 SizedBox(height: 25.h),
                 DataItem(
                   label: 'رقم الفرع',
-                  value: bankAccountData?.branchNumber ?? '',
+                  value: indivisualBankAccount?.branchNumber ?? '',
                 ),
               ],
             ),

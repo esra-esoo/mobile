@@ -1,23 +1,23 @@
 import 'package:json_annotation/json_annotation.dart';
 
-part 'bank_account_data.g.dart';
+part 'bank_account.g.dart';
 
 @JsonSerializable()
-class BankAccountData {
+class IndivisualBankAccount {
   final String individualBankAccountId;
   final String accountNumber;
   final String branchNumber;
   final bool isEditDisabled;
 
-  const BankAccountData(
+  const IndivisualBankAccount(
     this.individualBankAccountId,
     this.accountNumber,
     this.branchNumber,
     this.isEditDisabled,
   );
 
-  factory BankAccountData.fromJson(Map<String, dynamic> json) =>
-      _$BankAccountDataFromJson(json);
+  factory IndivisualBankAccount.fromJson(Map<String, dynamic> json) =>
+      _$IndivisualBankAccountFromJson(json);
 
-  Map<String, dynamic> toJson() => _$BankAccountDataToJson(this);
+  Map<String, dynamic> toJson() => _$IndivisualBankAccountToJson(this);
 }

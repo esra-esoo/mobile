@@ -66,10 +66,10 @@ class _DataView extends ViewModelWidget<IndividualBankAccountDataViewModel> {
                 MediaQuery.of(context).viewPadding.bottom,
           ),
           shrinkWrap: true,
-          itemCount: viewModel?.bankAccountData?.length,
+          itemCount: viewModel?.indivisualBankAccount?.length,
           itemBuilder: (context, index) {
             return BankItem(
-              bankAccountData: viewModel?.bankAccountData[index],
+              indivisualBankAccount: viewModel?.indivisualBankAccount[index],
               no: index + 1,
             );
           },
