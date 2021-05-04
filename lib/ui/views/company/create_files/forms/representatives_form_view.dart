@@ -8,7 +8,6 @@ import 'package:stacked/stacked.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import '../create_files_viewmodel.dart';
-import '../widgets/add_authorizer_btn.dart';
 
 class RepresentativesFormView
     extends ViewModelWidget<CompanyCreateFilesViewModel> {
@@ -23,21 +22,54 @@ class RepresentativesFormView
         itemCount: viewModel.representatives.length + 1,
         itemBuilder: (context, index) {
           if (viewModel.representatives.length == index)
-            return AddAuthorizerButton(
+            return _AddRepresentativeButton(
               onPressed: () => viewModel.addRepresentative(),
             );
           else
-            return _AuthorizerFieldsCard(index: index);
+            return _RepresentativeFieldsCard(index: index);
         },
       ),
     );
   }
 }
 
-class _AuthorizerFieldsCard
+class _AddRepresentativeButton extends StatelessWidget {
+  final VoidCallback onPressed;
+  const _AddRepresentativeButton({Key key, @required this.onPressed})
+      : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Padding(
+      padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 20),
+      child: FlatButton(
+        padding: const EdgeInsets.symmetric(vertical: 20, horizontal: 15),
+        color: Colors.transparent,
+        splashColor: kcolorBluelight,
+        onPressed: onPressed,
+        child: Column(
+          children: <Widget>[
+            const Icon(Icons.add, color: kcolorBluelight, size: 30),
+            const SizedBox(height: 5),
+            Text(
+              'إضافة مخول',
+              style: TextStyle(
+                color: kcolorBluelight,
+                fontSize: 18,
+                letterSpacing: 1,
+              ),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+}
+
+class _RepresentativeFieldsCard
     extends ViewModelWidget<CompanyCreateFilesViewModel> {
   final int index;
-  const _AuthorizerFieldsCard({
+  const _RepresentativeFieldsCard({
     Key key,
     this.index,
   }) : super(key: key);
@@ -59,21 +91,26 @@ class _AuthorizerFieldsCard
           TextFieldLabel(label: 'جواز السفر'),
           SizedBox(height: 10.h),
           ImagePickerField(
-            onChanged: (file) =>
-                viewModel.representatives[index].passport = file,
+            onChanged: (file) {
+              viewModel.representatives[index].passport = file;
+              viewModel.notifyListeners();
+            },
             imageFile: authorizer.passport,
           ),
           SizedBox(height: 25.h),
           TextFieldLabel(label: 'مستند أخر'),
+          TextFieldLabel(label: 'أختر مستند'),
           FileRadioTile(
             options: ['الرقم الوطني', 'شهادة الميلاد'],
             groupValue: viewModel.representatives[index]?.groupFileType?.index,
             onChanged: (int value) {
               viewModel.onRepresentativeExtraTypeChanged(index, value);
             },
+            onFileChanged: (file) {
+              viewModel.representatives[index].groupFile = file;
+              viewModel.notifyListeners();
+            },
             imageFile: viewModel.representatives[index]?.groupFile,
-            onFileChanged: (file) =>
-                viewModel.representatives[index].groupFile = file,
           ),
           SizedBox(height: 15.h),
           Row(

@@ -13,10 +13,6 @@ class CompanyCreateFilesViewModel extends IndexTrackingViewModel {
   List<RepresentativeForm> _representatives = [];
   List<RepresentativeForm> get representatives => _representatives;
 
-  void onExtraType2Changed(int value) {
-    companyForm.groupFileType2 = GroupFileType2.values[value];
-  }
-
   void initilizeView() {}
 
   void addRepresentative() {
@@ -62,13 +58,16 @@ class CompanyCreateFilesViewModel extends IndexTrackingViewModel {
       );
       return;
     }
-
     setIndex(1);
+  }
+
+  void onExtraType2Changed(int value) {
+    companyForm.groupFileType2 = GroupFileType2.values[value];
   }
 
   void onRepresentativeExtraTypeChanged(int index, int value) {
     _representatives[index].groupFileType = GroupFileType.values[value];
   }
 
-  saveData() {}
+  Future saveData() async {}
 }
