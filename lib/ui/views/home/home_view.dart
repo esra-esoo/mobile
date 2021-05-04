@@ -99,6 +99,10 @@ class HomeView extends StatelessWidget {
       }
       menuList.addAll([
         MenuItem(
+          title: 'بيانات الشركة',
+          route: Routes.companyDataView,
+        ),
+        MenuItem(
           title: 'بيانات الحساب',
         ),
         MenuItem(
