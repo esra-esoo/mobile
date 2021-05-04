@@ -22,6 +22,7 @@ class CompanyDataView extends StatelessWidget {
         backgroundColor: Colors.white,
         appBar: AppBar(
           backgroundColor: Colors.white,
+          brightness: Brightness.light,
           elevation: 0,
           leading: IconButton(
             onPressed: () => Navigator.pop(context),
