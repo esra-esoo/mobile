@@ -53,7 +53,11 @@ class IndividualUpdateFilesView extends StatelessWidget {
                     itemCount: viewModel.imageFiles.length,
                     itemBuilder: (context, index) {
                       return ImageUpdateField(
-                        imageFile: viewModel.imageFiles[index],
+                        fileName: viewModel.imageFiles[index].name,
+                        base64Content:
+                            viewModel.imageFiles[index].base64Content,
+                        isEditDisabled:
+                            viewModel.imageFiles[index].isEditDisabled,
                         newFile: viewModel.getNewRawImageFileById(
                           viewModel.imageFiles[index].individualFileId,
                         ),

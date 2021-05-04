@@ -4,16 +4,16 @@ import 'package:json_annotation/json_annotation.dart';
 part 'image_file.g.dart';
 
 @JsonSerializable()
-class ImageFile {
-  String individualFileId;
+class CompanyImageFile {
+  String companyFileId;
   String name;
   String base64Content;
   bool isEditDisabled;
   String fileFullName;
   bool editBtnShow;
 
-  ImageFile({
-    @required this.individualFileId,
+  CompanyImageFile({
+    @required this.companyFileId,
     @required this.name,
     @required this.base64Content,
     this.isEditDisabled,
@@ -21,8 +21,8 @@ class ImageFile {
     this.editBtnShow,
   });
 
-  factory ImageFile.fromJson(Map<String, dynamic> json) =>
-      _$ImageFileFromJson(json);
+  factory CompanyImageFile.fromJson(Map<String, dynamic> json) =>
+      _$CompanyImageFileFromJson(json);
 
-  Map<String, dynamic> toJson() => _$ImageFileToJson(this);
+  Map<String, dynamic> toJson() => _$CompanyImageFileToJson(this);
 }

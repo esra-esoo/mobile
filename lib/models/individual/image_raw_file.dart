@@ -2,7 +2,7 @@ import 'dart:io';
 
 import 'package:flutter/foundation.dart';
 
-class ImageRawFile {
+class IndivisualImageRawFile {
   String individualFileId;
   String name;
   File file;
@@ -10,7 +10,7 @@ class ImageRawFile {
   String fileFullName;
   bool editBtnShow;
 
-  ImageRawFile({
+  IndivisualImageRawFile({
     @required this.individualFileId,
     @required this.name,
     @required this.file,

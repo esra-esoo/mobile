@@ -1,8 +1,8 @@
 import 'dart:async';
 import 'dart:io';
 
-import 'package:huayati/models/image_file.dart';
-import 'package:huayati/models/image_raw_file.dart';
+import 'package:huayati/models/individual/image_file.dart';
+import 'package:huayati/models/individual/image_raw_file.dart';
 import 'package:huayati/models/navigation_result.dart';
 import 'package:huayati/services/shared_service.dart';
 import 'package:huayati/services/third_party/dialog_service.dart';
@@ -24,8 +24,8 @@ class IndividualUpdateFilesViewModel extends BaseViewModel {
   final _dialogService = locator<DialogService>();
   final _sharedService = locator<SharedService>();
 
-  List<ImageFile> imageFiles = [];
-  List<ImageRawFile> newImageFiles = [];
+  List<IndivisualImageFile> imageFiles = [];
+  List<IndivisualImageRawFile> newImageFiles = [];
   String refuseMessage;
 
   File getNewRawImageFileById(String individualFileId) {
@@ -38,13 +38,13 @@ class IndividualUpdateFilesViewModel extends BaseViewModel {
       return newImageFiles[index].file;
   }
 
-  Future addToNewImageFiles(ImageFile imageFile, File file) async {
+  Future addToNewImageFiles(IndivisualImageFile imageFile, File file) async {
     var index = newImageFiles.indexWhere(
       (element) => element.individualFileId == imageFile.individualFileId,
     );
     if (index == -1) {
       newImageFiles.add(
-        ImageRawFile(
+        IndivisualImageRawFile(
           individualFileId: imageFile.individualFileId,
           name: imageFile.name,
           file: file,
@@ -54,7 +54,7 @@ class IndividualUpdateFilesViewModel extends BaseViewModel {
         ),
       );
     } else {
-      newImageFiles[index] = ImageRawFile(
+      newImageFiles[index] = IndivisualImageRawFile(
         individualFileId: imageFile.individualFileId,
         name: imageFile.name,
         file: file,
@@ -117,13 +117,13 @@ class IndividualUpdateFilesViewModel extends BaseViewModel {
     }
   }
 
-  Future<List<ImageFile>> _getUpdatedImageFiles() async {
-    List<ImageFile> list = [];
+  Future<List<IndivisualImageFile>> _getUpdatedImageFiles() async {
+    List<IndivisualImageFile> list = [];
     for (var updatedImages in newImageFiles) {
       var base64Content = await FileUtils.fromRawFileToBase64String(
         updatedImages.file,
       );
-      list.add(ImageFile(
+      list.add(IndivisualImageFile(
         individualFileId: updatedImages.individualFileId,
         name: updatedImages.name,
         base64Content: base64Content,

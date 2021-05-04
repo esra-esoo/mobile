@@ -4,7 +4,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:huayati/app/locator.dart';
 import 'package:huayati/consts/styles.dart';
-import 'package:huayati/models/image_file.dart';
 import 'package:huayati/services/third_party/media_picker.dart';
 import 'package:huayati/services/third_party/snackbar_service.dart';
 import 'package:huayati/utils/file_utils.dart';
@@ -13,11 +12,15 @@ import 'package:image_picker/image_picker.dart';
 import 'text_field_label.dart';
 
 class ImageUpdateField extends StatelessWidget {
-  final ImageFile imageFile;
+  final String fileName;
+  final String base64Content;
   final File newFile;
   final ValueChanged<File> onChanged;
+  final bool isEditDisabled;
   const ImageUpdateField({
-    @required this.imageFile,
+    @required this.fileName,
+    @required this.base64Content,
+    @required this.isEditDisabled,
     this.newFile,
     this.onChanged,
   });
@@ -25,22 +28,21 @@ class ImageUpdateField extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     var _oldImageBytes = FileUtils.base64ToBytes(
-      imageFile?.base64Content ?? '',
+      base64Content ?? '',
     );
-    Color borderColor = imageFile.editBtnShow && newFile == null
-        ? Colors.red
-        : Colors.grey.shade400;
+    Color borderColor =
+        isEditDisabled && newFile == null ? Colors.red : Colors.grey.shade400;
     return Column(
       crossAxisAlignment: CrossAxisAlignment.stretch,
       children: [
         TextFieldLabel(
-          label: imageFile?.name ?? '',
+          label: fileName ?? '',
         ),
         SizedBox(height: 15.h),
         Row(
           children: [
             GestureDetector(
-              onTap: imageFile.isEditDisabled ? null : _selectFile,
+              onTap: isEditDisabled ? null : _selectFile,
               child: Container(
                 margin: EdgeInsets.only(bottom: 20),
                 padding: EdgeInsets.symmetric(horizontal: 10, vertical: 15),
@@ -62,7 +64,7 @@ class ImageUpdateField extends StatelessWidget {
                     ),
                   ),
                   alignment: Alignment.bottomRight,
-                  child: imageFile.isEditDisabled
+                  child: isEditDisabled
                       ? SizedBox.shrink()
                       : Container(
                           padding:

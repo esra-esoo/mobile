@@ -6,9 +6,11 @@ part of 'image_file.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-ImageFile _$ImageFileFromJson(Map<String, dynamic> json) {
-  return ImageFile(
-    individualFileId: json['individualFileId'] as String,
+RepresentativeImageFile _$RepresentativeImageFileFromJson(
+    Map<String, dynamic> json) {
+  return RepresentativeImageFile(
+    representativeFileId: json['representativeFileId'] as String,
+    representativeId: json['representativeId'] as String,
     name: json['name'] as String,
     base64Content: json['base64Content'] as String,
     isEditDisabled: json['isEditDisabled'] as bool,
@@ -17,8 +19,11 @@ ImageFile _$ImageFileFromJson(Map<String, dynamic> json) {
   );
 }
 
-Map<String, dynamic> _$ImageFileToJson(ImageFile instance) => <String, dynamic>{
-      'individualFileId': instance.individualFileId,
+Map<String, dynamic> _$RepresentativeImageFileToJson(
+        RepresentativeImageFile instance) =>
+    <String, dynamic>{
+      'representativeFileId': instance.representativeFileId,
+      'representativeId': instance.representativeId,
       'name': instance.name,
       'base64Content': instance.base64Content,
       'isEditDisabled': instance.isEditDisabled,
