@@ -37,7 +37,7 @@ class SuccessUploadModal extends StatelessWidget {
               ),
               SizedBox(height: 50.h),
               Text(
-                'تمت عملية رفع المستندات بنجاح',
+                'تمت عملية تعديل المستندات بنجاح',
                 style: TextStyle(
                   color: kcolorPrimaryBlue,
                   fontSize: getValueForScreenType<double>(
