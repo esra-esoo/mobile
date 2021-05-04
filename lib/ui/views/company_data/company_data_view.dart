@@ -4,6 +4,7 @@ import 'package:huayati/consts/styles.dart';
 import 'package:huayati/ui/widgets/botton_padding.dart';
 import 'package:huayati/ui/widgets/data_item.dart';
 import 'package:huayati/ui/widgets/form/form_title.dart';
+import 'package:huayati/ui/widgets/loading_indicator.dart';
 import 'package:huayati/ui/widgets/scrollbar.dart';
 import 'package:stacked/stacked.dart';
 
@@ -31,46 +32,64 @@ class CompanyDataView extends StatelessWidget {
             color: kcolorPrimaryBlue,
           ),
         ),
-        body: PlatformScrollBar(
-          child: Container(
-            constraints: BoxConstraints.expand(),
-            padding: EdgeInsets.only(
-              top: 30.h,
-              left: 30.w,
-              right: 30.w,
+        body: viewModel.isBusy ? const _LoadingIndicator() : const _DataView(),
+      ),
+    );
+  }
+}
+
+class _LoadingIndicator extends StatelessWidget {
+  const _LoadingIndicator({Key key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return const Center(child: const LoadingIndicator());
+  }
+}
+
+class _DataView extends ViewModelWidget<CompanyDataViewModel> {
+  const _DataView({Key key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context, CompanyDataViewModel viewModel) {
+    return PlatformScrollBar(
+      child: Container(
+        constraints: BoxConstraints.expand(),
+        padding: EdgeInsets.only(
+          top: 30.h,
+          left: 30.w,
+          right: 30.w,
+        ),
+        child: ListView(
+          shrinkWrap: true,
+          children: [
+            SizedBox(height: 30.h),
+            DataItem(
+              label: 'إسم الشركة',
+              value: viewModel?.companyData?.companyName ?? '',
             ),
-            child: ListView(
-              shrinkWrap: true,
-              children: [
-                SizedBox(height: 30.h),
-                DataItem(
-                  label: 'إسم الشركة',
-                  value: viewModel?.companyData?.companyName ?? '',
-                ),
-                SizedBox(height: 25.h),
-                DataItem(
-                  label: 'الغرفة التجارية',
-                  value: viewModel?.companyData?.chamberOfCommerce ?? '',
-                ),
-                SizedBox(height: 25.h),
-                DataItem(
-                  label: 'السجل التجاري',
-                  value: viewModel?.companyData?.commercialRegister ?? '',
-                ),
-                SizedBox(height: 25.h),
-                DataItem(
-                  label: 'سجل المستوردين',
-                  value: viewModel?.companyData?.importersRecord ?? '',
-                ),
-                SizedBox(height: 25.h),
-                DataItem(
-                  label: 'الرخصة التجارية',
-                  value: viewModel?.companyData?.commercialLicense ?? '',
-                ),
-                const BottomPadding(),
-              ],
+            SizedBox(height: 25.h),
+            DataItem(
+              label: 'الغرفة التجارية',
+              value: viewModel?.companyData?.chamberOfCommerce ?? '',
             ),
-          ),
+            SizedBox(height: 25.h),
+            DataItem(
+              label: 'السجل التجاري',
+              value: viewModel?.companyData?.commercialNo ?? '',
+            ),
+            SizedBox(height: 25.h),
+            DataItem(
+              label: 'سجل المستوردين',
+              value: viewModel?.companyData?.importersRecord ?? '',
+            ),
+            SizedBox(height: 25.h),
+            DataItem(
+              label: 'الرخصة التجارية',
+              value: viewModel?.companyData?.licenseNumber ?? '',
+            ),
+            const BottomPadding(),
+          ],
         ),
       ),
     );
