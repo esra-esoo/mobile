@@ -34,7 +34,7 @@ class GridItem extends StatelessWidget {
       },
       child: Card(
         elevation: 4,
-        shadowColor: Colors.grey.withOpacity(0.4),
+        shadowColor: kcolorBluelight.withOpacity(0.4),
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(20),
         ),

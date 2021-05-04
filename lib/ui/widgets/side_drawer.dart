@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:huayati/app/locator.dart';
 import 'package:huayati/app/router.gr.dart';
@@ -17,11 +18,18 @@ class SideDrawer extends StatelessWidget {
       child: Drawer(
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.stretch,
-          children: <Widget>[
+          children: [
             const _TopContainer(),
+            Expanded(
+              child: ListView(
+                children: <Widget>[
+                  const _ChangeProfile(),
+                  const _ChangePassword(),
+                  const _HelpButton(),
+                ],
+              ),
+            ),
             const SizedBox(height: 25),
-            const _HelpButton(),
-            const Spacer(),
             const _SignOutButton(),
             const BottomPadding(),
           ],
@@ -73,15 +81,77 @@ class _HelpButton extends StatelessWidget {
         child: ListTile(
           contentPadding: EdgeInsets.symmetric(vertical: 10, horizontal: 15),
           leading: const Icon(
-            Icons.help,
-            color: kcolorPrimaryBlue,
+            Icons.help_outline_rounded,
+            color: kColorText,
           ),
           title: Text(
             'مساعدة',
             overflow: TextOverflow.ellipsis,
             softWrap: false,
             style: TextStyle(
-              color: Colors.grey.shade700,
+              color: kColorText,
+              fontWeight: FontWeight.bold,
+              fontSize: 15,
+            ),
+          ),
+        ),
+      ),
+    );
+  }
+}
+
+class _ChangePassword extends StatelessWidget {
+  const _ChangePassword({Key key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Material(
+      type: MaterialType.transparency,
+      child: InkWell(
+        onTap: () {},
+        child: ListTile(
+          contentPadding: EdgeInsets.symmetric(vertical: 10, horizontal: 15),
+          leading: const Icon(
+            Icons.swap_vert_circle_outlined,
+            color: kColorText,
+          ),
+          title: Text(
+            'تغيير كلمة المرور',
+            overflow: TextOverflow.ellipsis,
+            softWrap: false,
+            style: TextStyle(
+            color: kColorText,
+              fontWeight: FontWeight.bold,
+              fontSize: 15,
+            ),
+          ),
+        ),
+      ),
+    );
+  }
+}
+
+class _ChangeProfile extends StatelessWidget {
+  const _ChangeProfile({Key key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Material(
+      type: MaterialType.transparency,
+      child: InkWell(
+        onTap: () {},
+        child: ListTile(
+          contentPadding: EdgeInsets.symmetric(vertical: 10, horizontal: 15),
+          leading: const Icon(
+            CupertinoIcons.person_circle,
+            color: kColorText,
+          ),
+          title: Text(
+            'تعديل بيانات الملف الشخصي',
+            overflow: TextOverflow.ellipsis,
+            softWrap: false,
+            style: TextStyle(
+              color: kColorText,
               fontWeight: FontWeight.bold,
               fontSize: 15,
             ),

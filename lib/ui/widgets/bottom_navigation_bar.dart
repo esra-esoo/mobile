@@ -16,7 +16,6 @@ class AppBottomNavigationBar extends StatelessWidget {
     return Container(
       clipBehavior: Clip.antiAlias,
       decoration: BoxDecoration(
-        color: Colors.white,
         borderRadius: BorderRadius.only(
           topRight: Radius.circular(30),
           topLeft: Radius.circular(30),
@@ -24,15 +23,15 @@ class AppBottomNavigationBar extends StatelessWidget {
         // border: Border.all(color: kcolorPrimaryBlue, width: 1),
         boxShadow: [
           BoxShadow(
-            color: kcolorPrimaryBlue.withOpacity(0.2),
+            color: kcolorBluelight.withOpacity(0.2),
             spreadRadius: 2,
             blurRadius: 3,
           ),
         ],
       ),
       child: BottomNavigationBar(
-        backgroundColor: Colors.transparent,
-        selectedItemColor: kcolorPrimaryBlue,
+        backgroundColor: kcolorPrimaryBlue,
+        selectedItemColor: Colors.white,
         unselectedItemColor: Colors.grey,
         currentIndex: currentIndex,
         elevation: 0,
