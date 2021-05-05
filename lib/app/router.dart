@@ -9,6 +9,7 @@ import 'package:huayati/ui/views/individual/create_files/create_files_view.dart'
 import 'package:huayati/ui/views/individual/personal_data/personal_data_view.dart';
 import 'package:huayati/ui/views/individual/update_files/update_files_view.dart';
 import 'package:huayati/ui/views/otp/otp_view.dart';
+import 'package:huayati/ui/views/profile/edit_form/edit_profile_view.dart';
 import 'package:huayati/ui/views/signin/signin_view.dart';
 import 'package:huayati/ui/views/signup/signup_view.dart';
 import 'package:huayati/ui/views/splash_screen/splash_screen_view.dart';
@@ -38,5 +39,6 @@ import 'package:huayati/ui/views/startup/startup_view.dart';
     transitionsBuilder: TransitionsBuilders.fadeIn,
   ),
   AdaptiveRoute(page: OtpView, fullscreenDialog: true),
+  AdaptiveRoute(page: EditProfileView, fullscreenDialog: true),
 ])
 class $Router {}

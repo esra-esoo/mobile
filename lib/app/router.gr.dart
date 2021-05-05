@@ -9,6 +9,7 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 
+import '../models/profile_info.dart';
 import '../ui/views/company/bank_account/bank_account_view.dart';
 import '../ui/views/company/company_data/company_data_view.dart';
 import '../ui/views/company/create_files/create_files_view.dart';
@@ -18,6 +19,7 @@ import '../ui/views/individual/create_files/create_files_view.dart';
 import '../ui/views/individual/personal_data/personal_data_view.dart';
 import '../ui/views/individual/update_files/update_files_view.dart';
 import '../ui/views/otp/otp_view.dart';
+import '../ui/views/profile/edit_form/edit_profile_view.dart';
 import '../ui/views/signin/signin_view.dart';
 import '../ui/views/signup/signup_view.dart';
 import '../ui/views/splash_screen/splash_screen_view.dart';
@@ -42,6 +44,7 @@ class Routes {
   static const String signInView = '/sign-in-view';
   static const String signUpView = '/sign-up-view';
   static const String otpView = '/otp-view';
+  static const String editProfileView = '/edit-profile-view';
   static const all = <String>{
     splashScreenView,
     companyCreateFilesView,
@@ -56,6 +59,7 @@ class Routes {
     signInView,
     signUpView,
     otpView,
+    editProfileView,
   };
 }
 
@@ -79,6 +83,7 @@ class Router extends RouterBase {
     RouteDef(Routes.signInView, page: SignInView),
     RouteDef(Routes.signUpView, page: SignUpView),
     RouteDef(Routes.otpView, page: OtpView),
+    RouteDef(Routes.editProfileView, page: EditProfileView),
   ];
   @override
   Map<Type, AutoRouteFactory> get pagesMap => _pagesMap;
@@ -182,6 +187,19 @@ class Router extends RouterBase {
         fullscreenDialog: true,
       );
     },
+    EditProfileView: (data) {
+      final args = data.getArgs<EditProfileViewArguments>(
+        orElse: () => EditProfileViewArguments(),
+      );
+      return buildAdaptivePageRoute<dynamic>(
+        builder: (context) => EditProfileView(
+          key: args.key,
+          profileInfo: args.profileInfo,
+        ),
+        settings: data,
+        fullscreenDialog: true,
+      );
+    },
   };
 }
 
@@ -213,4 +231,11 @@ class OtpViewArguments {
       @required this.phoneNumber,
       this.email,
       @required this.customerType});
+}
+
+/// EditProfileView arguments holder class
+class EditProfileViewArguments {
+  final Key key;
+  final ProfileInfo profileInfo;
+  EditProfileViewArguments({this.key, this.profileInfo});
 }
