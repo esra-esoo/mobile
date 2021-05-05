@@ -182,13 +182,13 @@ class CompanyCreateFilesViewModel extends IndexTrackingViewModel {
       RepresentativeForm representative = _representatives[i];
       List<FilesModels> companyEmployeeFilesModel = [
         await FileUtils.fromRawFileToFileModel(
-          DocumentsNames.PASSPORT,
+          DocumentsNames.AUTHORIZER_PASSPORT,
           representative.passport,
         ),
         await FileUtils.fromRawFileToFileModel(
           representative.groupFileType == GroupFileType.nid
-              ? DocumentsNames.NID
-              : DocumentsNames.BIRTH_CERTIFICATE,
+              ? DocumentsNames.AUTHORIZER_NID
+              : DocumentsNames.AUTHORIZER_BIRTH_CERTIFICATE,
           representative.groupFile,
         ),
       ];
