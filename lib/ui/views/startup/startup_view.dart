@@ -43,7 +43,10 @@ class StartUpView extends StatelessWidget {
                 icon: const Icon(Icons.menu),
                 onPressed: () => _scaffoldKey.currentState.openDrawer(),
               ),
-              title: Text('الرئيسية', style: const TextStyle(fontSize: 18)),
+              title: Text(
+                getTitle(model.currentIndex),
+                style: const TextStyle(fontSize: 18),
+              ),
               centerTitle: true,
               actions: [
                 IconButton(
@@ -68,7 +71,7 @@ class StartUpView extends StatelessWidget {
                   transitionType: SharedAxisTransitionType.horizontal,
                 );
               },
-              child: getViewForIndex(model.currentIndex, context),
+              child: getViewForIndex(model.currentIndex),
             ),
             bottomNavigationBar: AppBottomNavigationBar(
               currentIndex: model.currentIndex,
@@ -78,7 +81,7 @@ class StartUpView extends StatelessWidget {
         });
   }
 
-  Widget getViewForIndex(int index, BuildContext context) {
+  Widget getViewForIndex(int index) {
     switch (index) {
       case 0:
         return HomeView();
@@ -88,6 +91,19 @@ class StartUpView extends StatelessWidget {
         break;
       default:
         return HomeView();
+    }
+  }
+
+  String getTitle(int index) {
+    switch (index) {
+      case 0:
+        return 'الرئيسية';
+        break;
+      case 2:
+        return 'الملف الشخصي';
+        break;
+      default:
+        return 'الرئيسية';
     }
   }
 }
