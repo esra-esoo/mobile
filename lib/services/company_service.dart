@@ -1,7 +1,5 @@
-import 'dart:convert';
 
 import 'package:dio/dio.dart';
-import 'package:flutter/material.dart';
 import 'package:huayati/app/locator.dart';
 import 'package:huayati/models/company/bank_account.dart';
 import 'package:huayati/models/company/company_create_files_payload.dart';
