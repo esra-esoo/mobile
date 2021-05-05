@@ -31,7 +31,7 @@ class ImageUpdateField extends StatelessWidget {
       base64Content ?? '',
     );
     Color borderColor =
-        isEditDisabled && newFile == null ? Colors.red : Colors.grey.shade400;
+        !isEditDisabled && newFile == null ? Colors.red : Colors.grey.shade400;
     return Column(
       crossAxisAlignment: CrossAxisAlignment.stretch,
       children: [

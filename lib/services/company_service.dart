@@ -1,4 +1,7 @@
+import 'dart:convert';
+
 import 'package:dio/dio.dart';
+import 'package:flutter/material.dart';
 import 'package:huayati/app/locator.dart';
 import 'package:huayati/models/company/bank_account.dart';
 import 'package:huayati/models/company/company_create_files_payload.dart';
@@ -74,7 +77,7 @@ class CompanyService {
   Future<void> changeCompanyImages(List<CompanyImageFile> images) async {
     try {
       await _api.putCallWithToken(
-        url: '/api/Company/ChangeImage',
+        url: '/api/Company/ChangeAllImages',
         data: images,
       );
     } on DioError catch (e) {
@@ -105,7 +108,7 @@ class CompanyService {
       List<RepresentativeImageFile> images) async {
     try {
       await _api.putCallWithToken(
-        url: '/api/Company/ChangeRepresentativeImage',
+        url: '/api/Company/ChangeAllRepresentativeImages',
         data: images,
       );
     } on DioError catch (e) {
