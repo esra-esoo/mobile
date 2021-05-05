@@ -6,6 +6,7 @@ import 'package:huayati/ui/widgets/busy_overlay.dart';
 import 'package:huayati/ui/widgets/form/bottom_submit_button.dart';
 import 'package:huayati/ui/widgets/form/form_title.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:huayati/ui/widgets/form/text_field_label.dart';
 import 'package:stacked/stacked.dart';
 import 'package:stacked/stacked_annotations.dart';
 
@@ -13,11 +14,11 @@ import 'edit_profile_view.form.dart';
 import 'edit_profile_viewmodel.dart';
 
 @FormView(fields: [
+  FormTextField(name: 'phoneNumber'),
   FormTextField(name: 'username'),
   FormTextField(name: 'fullname'),
   FormTextField(name: 'familyName'),
   FormTextField(name: 'email'),
-  FormTextField(name: 'phoneNumber'),
 ])
 class EditProfileView extends StatelessWidget with $EditProfileView {
   final ProfileInfo profileInfo;
@@ -26,15 +27,14 @@ class EditProfileView extends StatelessWidget with $EditProfileView {
   @override
   Widget build(BuildContext context) {
     return ViewModelBuilder<EditProfileViewModel>.reactive(
-      onModelReady: (viewModel) {
+      onModelReady: (viewModel) async {
         listenToFormUpdated(viewModel);
-        if (profileInfo != null) {
-          usernameController.text = profileInfo.username;
-          fullnameController.text = profileInfo.fullname;
-          familyNameController.text = profileInfo.familyName;
-          emailController.text = profileInfo.email;
-          phoneNumberController.text = profileInfo.phoneNumber;
-        }
+        await viewModel.initilizeView(profileInfo);
+        phoneNumberController.text = viewModel.profileInfo.phoneNumber;
+        usernameController.text = viewModel.profileInfo.username;
+        fullnameController.text = viewModel.profileInfo.fullname;
+        familyNameController.text = viewModel.profileInfo.familyName;
+        emailController.text = viewModel.profileInfo.email;
       },
       onDispose: () => disposeForm(),
       viewModelBuilder: () => EditProfileViewModel(),
@@ -46,7 +46,6 @@ class EditProfileView extends StatelessWidget with $EditProfileView {
           show: viewModel.isBusy,
           child: Container(
             constraints: BoxConstraints.expand(),
-            color: kcolorPrimaryBlue,
             child: Scaffold(
               backgroundColor: Colors.transparent,
               appBar: AppBar(
@@ -76,32 +75,75 @@ class EditProfileView extends StatelessWidget with $EditProfileView {
                       crossAxisAlignment: CrossAxisAlignment.stretch,
                       children: [
                         SizedBox(height: 30.h),
+                        TextFieldLabel(label: 'رقم الهاتف'),
+                        SizedBox(height: 10.h),
                         TextFormField(
                           cursorColor: kcolorPrimaryBlue,
                           controller: phoneNumberController,
                           keyboardType: TextInputType.number,
-                          textInputAction: TextInputAction.next,
-                          autocorrect: false,
-                          maxLength: 10,
                           readOnly: true,
                           enabled: false,
-                          style: textFormFieldStyle,
-                          decoration: kformFieldInputDecoration.copyWith(
-                            hintText: '09xxxxxxxx',
+                          style: textFormFieldAccentStyle,
+                          decoration: kformFieldInputAccentDecoration.copyWith(
                             labelText: 'رقم الهاتف (*)',
+                            fillColor: kColorCard,
                           ),
                         ),
                         SizedBox(height: 20.h),
+                        TextFieldLabel(label: 'اسم المستخدم'),
+                        SizedBox(height: 10.h),
+                        TextFormField(
+                          cursorColor: kcolorPrimaryBlue,
+                          controller: usernameController,
+                          keyboardType: TextInputType.text,
+                          readOnly: true,
+                          enabled: false,
+                          style: textFormFieldAccentStyle,
+                          decoration: kformFieldInputAccentDecoration.copyWith(
+                            hintText: 'إسم المستخدم',
+                            fillColor: kColorCard,
+                          ),
+                        ),
+                        SizedBox(height: 20.h),
+                        TextFieldLabel(label: 'الإسم كامل(*)'),
+                        SizedBox(height: 10.h),
+                        TextFormField(
+                          cursorColor: kcolorPrimaryBlue,
+                          controller: fullnameController,
+                          keyboardType: TextInputType.text,
+                          textInputAction: TextInputAction.next,
+                          autocorrect: false,
+                          style: textFormFieldAccentStyle,
+                          decoration: kformFieldInputAccentDecoration.copyWith(
+                            hintText: 'أدخل الاسم كامل هنا ..',
+                          ),
+                        ),
+                        SizedBox(height: 20.h),
+                        TextFieldLabel(label: 'اللقب(*)'),
+                        SizedBox(height: 10.h),
+                        TextFormField(
+                          cursorColor: kcolorPrimaryBlue,
+                          controller: familyNameController,
+                          keyboardType: TextInputType.text,
+                          textInputAction: TextInputAction.next,
+                          autocorrect: false,
+                          style: textFormFieldAccentStyle,
+                          decoration: kformFieldInputAccentDecoration.copyWith(
+                            hintText: 'أدخل اللقب هنا ..',
+                          ),
+                        ),
+                        SizedBox(height: 20.h),
+                        TextFieldLabel(label: 'البريد الإلكتروني'),
+                        SizedBox(height: 10.h),
                         TextFormField(
                           cursorColor: kcolorPrimaryBlue,
                           controller: emailController,
                           keyboardType: TextInputType.emailAddress,
                           textInputAction: TextInputAction.next,
                           autocorrect: false,
-                          style: textFormFieldStyle,
-                          decoration: kformFieldInputDecoration.copyWith(
+                          style: textFormFieldAccentStyle,
+                          decoration: kformFieldInputAccentDecoration.copyWith(
                             hintText: 'ادخل عنوان البريد الالكتروني',
-                            labelText: 'البريد الالكتروني (اختياري)',
                           ),
                         ),
                         const BottomPadding(),
@@ -111,6 +153,7 @@ class EditProfileView extends StatelessWidget with $EditProfileView {
                 ),
               ),
               bottomNavigationBar: BottomSubmitButton(
+                accentColors: false,
                 label: 'حفظ التعديلات',
                 onPressed: () => viewModel.saveData(),
               ),

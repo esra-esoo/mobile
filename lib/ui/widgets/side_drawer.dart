@@ -120,7 +120,7 @@ class _ChangePassword extends StatelessWidget {
             overflow: TextOverflow.ellipsis,
             softWrap: false,
             style: TextStyle(
-            color: kColorText,
+              color: kColorText,
               fontWeight: FontWeight.bold,
               fontSize: 15,
             ),
@@ -139,7 +139,7 @@ class _ChangeProfile extends StatelessWidget {
     return Material(
       type: MaterialType.transparency,
       child: InkWell(
-        onTap: () {},
+        onTap: () => Navigator.of(context).pushNamed(Routes.editProfileView),
         child: ListTile(
           contentPadding: EdgeInsets.symmetric(vertical: 10, horizontal: 15),
           leading: const Icon(
@@ -147,7 +147,7 @@ class _ChangeProfile extends StatelessWidget {
             color: kColorText,
           ),
           title: Text(
-            'تعديل بيانات الملف الشخصي',
+            'تعديل الملف الشخصي',
             overflow: TextOverflow.ellipsis,
             softWrap: false,
             style: TextStyle(

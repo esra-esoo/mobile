@@ -23,6 +23,7 @@ const kMaterialColor = MaterialColor(
 );
 
 const textFormFieldStyle = TextStyle(color: kcolorPrimaryBlue);
+const textFormFieldAccentStyle = TextStyle(color: kColorText);
 const kformFieldInputDecoration = InputDecoration(
   focusedBorder: OutlineInputBorder(
     borderRadius: const BorderRadius.all(
@@ -47,4 +48,32 @@ const kformFieldInputDecoration = InputDecoration(
   isDense: true,
   counterStyle: TextStyle(color: Colors.white),
   // counterText: '',
+);
+
+const kformFieldInputAccentDecoration = InputDecoration(
+  focusedBorder: OutlineInputBorder(
+    borderRadius: const BorderRadius.all(
+      const Radius.circular(15.0),
+    ),
+    borderSide: BorderSide(color: kcolorBluelight),
+  ),
+  disabledBorder: OutlineInputBorder(
+    borderRadius: const BorderRadius.all(
+      const Radius.circular(15.0),
+    ),
+    borderSide: BorderSide(color: Colors.grey),
+  ),
+  enabledBorder: OutlineInputBorder(
+    borderRadius: const BorderRadius.all(
+      const Radius.circular(15.0),
+    ),
+    borderSide: BorderSide(color: kColorText),
+  ),
+  fillColor: Colors.white,
+  filled: true,
+  hintStyle: TextStyle(color: Colors.grey),
+  labelStyle: TextStyle(color: kColorText),
+  floatingLabelBehavior: FloatingLabelBehavior.never,
+  isDense: true,
+  counterStyle: TextStyle(color: kColorCard),
 );
