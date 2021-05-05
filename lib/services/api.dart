@@ -46,6 +46,9 @@ class Api {
       final response = await _dio.put(
         Config.authenticationEndpoint + url,
         data: data,
+        options: Options(
+          headers: {"requires-token": true},
+        ),
       );
       return response.data;
     } catch (e) {
@@ -57,18 +60,9 @@ class Api {
     try {
       final response = await _dio.get(
         Config.authenticationEndpoint + url,
-      );
-      return response.data;
-    } catch (e) {
-      throw e;
-    }
-  }
-
-  Future postCall({@required String url, @required dynamic data}) async {
-    try {
-      final response = await _dio.post(
-        endpoint + url,
-        data: data,
+        options: Options(
+          headers: {"requires-token": true},
+        ),
       );
       return response.data;
     } catch (e) {

@@ -100,6 +100,7 @@ class AuthService {
 
   Future<ProfileInfo> getProfileInfo() async {
     try {
+      // await Future.delayed(Duration(seconds: 5));
       final response = await _api.getCallAuth(url: '/api/Users/ProfileInfo');
 
       if (response['phoneNumber'] == null)
