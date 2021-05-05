@@ -4,6 +4,7 @@ import 'package:flutter/scheduler.dart';
 import 'package:flutter/services.dart';
 import 'package:huayati/app/locator.dart';
 import 'package:huayati/ui/views/home/home_view.dart';
+import 'package:huayati/ui/views/profile/profile_view.dart';
 import 'package:huayati/ui/widgets/bottom_navigation_bar.dart';
 import 'package:huayati/ui/widgets/side_drawer.dart';
 import 'package:stacked/stacked.dart';
@@ -81,6 +82,9 @@ class StartUpView extends StatelessWidget {
     switch (index) {
       case 0:
         return HomeView();
+        break;
+      case 2:
+        return ProfileView();
         break;
       default:
         return HomeView();
