@@ -10,5 +10,6 @@ class Config {
     'customergate.fullaccess',
     'customerApi.fullaccess',
     'offline_access',
+    'IdentityServerApi',
   ];
 }
