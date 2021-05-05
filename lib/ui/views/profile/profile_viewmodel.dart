@@ -1,4 +1,5 @@
 import 'package:huayati/app/locator.dart';
+import 'package:huayati/app/router.gr.dart';
 import 'package:huayati/models/profile_info.dart';
 import 'package:huayati/services/auth_service.dart';
 import 'package:huayati/services/third_party/navigation_service.dart';
@@ -25,9 +26,12 @@ class ProfileViewModel extends BaseViewModel {
   }
 
   Future updateProfile() async {
-    //TODO  Navigation to update profile view
-    // var updatedProfile = await _navigationService.navigateTo('');
-    var updatedProfile = profileInfo;
+    var updatedProfile = await _navigationService.navigateTo(
+      Routes.editProfileView,
+      arguments: EditProfileViewArguments(
+        profileInfo: profileInfo,
+      ),
+    );
     if (updatedProfile != null) {
       profileInfo = updatedProfile;
       notifyListeners();
