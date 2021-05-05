@@ -69,7 +69,7 @@ class CompanyUpdateFilesViewModel extends BaseViewModel {
   void initilizeView() async {
     try {
       refuseMessage =
-          _sharedService?.sharedRefuseState?.companyRefuseState?.refuseType;
+          _sharedService?.sharedRefuseState?.companyRefuseState?.message;
       imageFiles = await runBusyFuture(
         _companyService.getCompanyImages(),
         throwException: true,
