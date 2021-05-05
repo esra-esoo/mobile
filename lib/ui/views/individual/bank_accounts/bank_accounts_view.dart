@@ -33,9 +33,14 @@ class IndividualBankAccountsDataView extends StatelessWidget {
             color: kcolorPrimaryBlue,
           ),
         ),
-        body: viewModel.isBusy
-            ? const CenterLoadingIndicator()
-            : const _DataView(),
+        body: AnimatedSwitcher(
+          duration: const Duration(milliseconds: 375),
+          child: viewModel.isBusy
+              ? const CenterLoadingIndicator()
+              : viewModel.indivisualBankAccount.length > 0
+                  ? const _DataView()
+                  : const _RefreshView(),
+        ),
       ),
     );
   }
@@ -70,6 +75,38 @@ class _DataView extends ViewModelWidget<IndividualBankAccountsDataViewModel> {
             );
           },
         ),
+      ),
+    );
+  }
+}
+
+class _RefreshView
+    extends ViewModelWidget<IndividualBankAccountsDataViewModel> {
+  const _RefreshView({Key key}) : super(key: key);
+
+  @override
+  Widget build(
+      BuildContext context, IndividualBankAccountsDataViewModel viewModel) {
+    return RefreshIndicator(
+      backgroundColor: kcolorPrimaryBlue,
+      color: Colors.white,
+      onRefresh: () => viewModel.initilizeView(),
+      child: ListView(
+        shrinkWrap: true,
+        children: <Widget>[
+          Container(
+            height: MediaQuery.of(context).size.height - kToolbarHeight,
+            alignment: Alignment.center,
+            child: Text(
+              'لايوجد بيانات, قم بسحب الصفحة لاسفل لتحديثها.',
+              style: const TextStyle(
+                color: Colors.black,
+              ),
+              softWrap: true,
+              textAlign: TextAlign.center,
+            ),
+          ),
+        ],
       ),
     );
   }

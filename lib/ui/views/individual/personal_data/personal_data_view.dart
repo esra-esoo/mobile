@@ -34,9 +34,14 @@ class IndividualPersonalDataView extends StatelessWidget {
             color: kcolorPrimaryBlue,
           ),
         ),
-        body: viewModel.isBusy
-            ? const CenterLoadingIndicator()
-            : const _DataView(),
+        body: AnimatedSwitcher(
+          duration: const Duration(milliseconds: 375),
+          child: viewModel.isBusy
+              ? const CenterLoadingIndicator()
+              : viewModel.personalData == null
+                  ? const _RefreshView()
+                  : const _DataView(),
+        ),
       ),
     );
   }
@@ -77,6 +82,37 @@ class _DataView extends ViewModelWidget<IndividualPersonalDataViewModel> {
             const BottomPadding(),
           ],
         ),
+      ),
+    );
+  }
+}
+
+class _RefreshView extends ViewModelWidget<IndividualPersonalDataViewModel> {
+  const _RefreshView({Key key}) : super(key: key);
+
+  @override
+  Widget build(
+      BuildContext context, IndividualPersonalDataViewModel viewModel) {
+    return RefreshIndicator(
+      backgroundColor: kcolorPrimaryBlue,
+      color: Colors.white,
+      onRefresh: () => viewModel.initilizeView(),
+      child: ListView(
+        shrinkWrap: true,
+        children: <Widget>[
+          Container(
+            height: MediaQuery.of(context).size.height - kToolbarHeight,
+            alignment: Alignment.center,
+            child: Text(
+              'لايوجد بيانات, قم بسحب الصفحة لاسفل لتحديثها.',
+              style: const TextStyle(
+                color: Colors.black,
+              ),
+              softWrap: true,
+              textAlign: TextAlign.center,
+            ),
+          ),
+        ],
       ),
     );
   }
