@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:huayati/app/locator.dart';
 import 'package:huayati/consts/storage_keys.dart';
 import 'package:huayati/models/customer_created_result.dart';
+import 'package:huayati/models/profile_info.dart';
 import 'package:huayati/models/signup_result.dart';
 import 'package:huayati/models/user.dart';
 import 'package:huayati/services/api.dart';
@@ -92,6 +93,34 @@ class AuthService {
       throw e.message;
     } on Exception catch (_) {
       throw 'حدث خطأ أثناء محاولة عرض البيانات ، نرجو مخاطبة مسؤول النظام';
+    } catch (e) {
+      throw e;
+    }
+  }
+
+  Future<ProfileInfo> getProfileInfo() async {
+    try {
+      final response = await _api.getCallAuth(url: '/api/Users/ProfileInfo');
+
+      if (response['phoneNumber'] == null)
+        throw 'حدث خطأ نرجو المحاولة مرة اخر،او في وقت لاحق.';
+      else
+        return ProfileInfo.fromJson(response);
+    } on DioError catch (e) {
+      throw e.message;
+    } catch (e) {
+      throw e;
+    }
+  }
+
+  Future<void> updateProfileInfo({@required ProfileInfo profileInfo}) async {
+    try {
+      await _api.putCallAuth(
+        url: '/api/Users/ProfileInfo',
+        data: profileInfo,
+      );
+    } on DioError catch (e) {
+      throw e.message;
     } catch (e) {
       throw e;
     }

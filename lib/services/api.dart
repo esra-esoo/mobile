@@ -41,6 +41,29 @@ class Api {
     }
   }
 
+  Future putCallAuth({@required String url, @required dynamic data}) async {
+    try {
+      final response = await _dio.put(
+        Config.authenticationEndpoint + url,
+        data: data,
+      );
+      return response.data;
+    } catch (e) {
+      throw e;
+    }
+  }
+
+  Future getCallAuth({@required String url}) async {
+    try {
+      final response = await _dio.get(
+        Config.authenticationEndpoint + url,
+      );
+      return response.data;
+    } catch (e) {
+      throw e;
+    }
+  }
+
   Future postCall({@required String url, @required dynamic data}) async {
     try {
       final response = await _dio.post(
