@@ -13,3 +13,12 @@ class LoadingIndicator extends StatelessWidget {
     );
   }
 }
+
+class CenterLoadingIndicator extends StatelessWidget {
+  const CenterLoadingIndicator({Key key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return const Center(child: const LoadingIndicator());
+  }
+}

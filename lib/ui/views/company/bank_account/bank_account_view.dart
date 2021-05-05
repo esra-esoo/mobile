@@ -33,18 +33,11 @@ class CompanyBankAccountsDataView extends StatelessWidget {
             color: kcolorPrimaryBlue,
           ),
         ),
-        body: viewModel.isBusy ? const _LoadingIndicator() : const _DataView(),
+        body: viewModel.isBusy
+            ? const CenterLoadingIndicator()
+            : const _DataView(),
       ),
     );
-  }
-}
-
-class _LoadingIndicator extends StatelessWidget {
-  const _LoadingIndicator({Key key}) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return const Center(child: const LoadingIndicator());
   }
 }
 
