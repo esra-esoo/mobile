@@ -6,6 +6,7 @@ import 'package:huayati/consts/styles.dart';
 import 'package:huayati/services/shared_service.dart';
 import 'package:huayati/services/third_party/navigation_service.dart';
 import 'package:huayati/services/user_service.dart';
+import 'package:huayati/ui/views/profile/profile_viewmodel.dart';
 import 'package:huayati/ui/widgets/botton_padding.dart';
 
 class SideDrawer extends StatelessWidget {
@@ -139,7 +140,14 @@ class _ChangeProfile extends StatelessWidget {
     return Material(
       type: MaterialType.transparency,
       child: InkWell(
-        onTap: () => Navigator.of(context).pushNamed(Routes.editProfileView),
+        onTap: () async {
+          var updatedProfile = await locator<NavigationService>().navigateTo(
+            Routes.editProfileView,
+          );
+          if (updatedProfile != null) {
+            locator<ProfileViewModel>().profileInfo = updatedProfile;
+          }
+        },
         child: ListTile(
           contentPadding: EdgeInsets.symmetric(vertical: 10, horizontal: 15),
           leading: const Icon(

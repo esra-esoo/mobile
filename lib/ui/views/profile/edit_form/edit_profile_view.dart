@@ -44,6 +44,7 @@ class EditProfileView extends StatelessWidget with $EditProfileView {
         },
         child: BusyOverlay(
           show: viewModel.isBusy,
+          primaryColors: true,
           child: Container(
             constraints: BoxConstraints.expand(),
             child: Scaffold(
@@ -105,7 +106,7 @@ class EditProfileView extends StatelessWidget with $EditProfileView {
                           ),
                         ),
                         SizedBox(height: 20.h),
-                        TextFieldLabel(label: 'الإسم كامل(*)'),
+                        TextFieldLabel(label: 'الإسم كامل (*)'),
                         SizedBox(height: 10.h),
                         TextFormField(
                           cursorColor: kcolorPrimaryBlue,
@@ -119,7 +120,7 @@ class EditProfileView extends StatelessWidget with $EditProfileView {
                           ),
                         ),
                         SizedBox(height: 20.h),
-                        TextFieldLabel(label: 'اللقب(*)'),
+                        TextFieldLabel(label: 'اللقب (*)'),
                         SizedBox(height: 10.h),
                         TextFormField(
                           cursorColor: kcolorPrimaryBlue,
@@ -139,12 +140,13 @@ class EditProfileView extends StatelessWidget with $EditProfileView {
                           cursorColor: kcolorPrimaryBlue,
                           controller: emailController,
                           keyboardType: TextInputType.emailAddress,
-                          textInputAction: TextInputAction.next,
+                          textInputAction: TextInputAction.done,
                           autocorrect: false,
                           style: textFormFieldAccentStyle,
                           decoration: kformFieldInputAccentDecoration.copyWith(
                             hintText: 'ادخل عنوان البريد الالكتروني',
                           ),
+                          onFieldSubmitted: (_) => viewModel.saveData(),
                         ),
                         const BottomPadding(),
                       ],

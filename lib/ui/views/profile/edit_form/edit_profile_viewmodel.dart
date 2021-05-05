@@ -43,12 +43,12 @@ class EditProfileViewModel extends FormViewModel {
   void setFormStatus() {}
 
   Future<void> saveData() async {
-    if ((fullnameValue?.isEmpty ?? true)) {
+    if ((fullnameValue?.trim()?.isEmpty ?? true)) {
       _snackbarService.showTopErrorSnackbar(
         message: 'نرجو إدخال الاسم كامل',
       );
       return;
-    } else if ((familyNameValue?.isEmpty ?? true)) {
+    } else if ((familyNameValue?.trim()?.isEmpty ?? true)) {
       _snackbarService.showTopErrorSnackbar(
         message: 'نرجو إدخال اللقب',
       );
@@ -79,10 +79,10 @@ class EditProfileViewModel extends FormViewModel {
         email: emailValue,
       );
       print(updatedProfile.toJson());
-      // await runBusyFuture(
-      //   _authService.updateProfileInfo(profileInfo: updatedProfile),
-      //   throwException: true,
-      // );
+      await runBusyFuture(
+        _authService.updateProfileInfo(profileInfo: updatedProfile),
+        throwException: true,
+      );
 
       _navigationService.back(result: updatedProfile);
     } catch (e) {

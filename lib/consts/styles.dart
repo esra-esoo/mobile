@@ -23,7 +23,7 @@ const kMaterialColor = MaterialColor(
 );
 
 const textFormFieldStyle = TextStyle(color: kcolorPrimaryBlue);
-const textFormFieldAccentStyle = TextStyle(color: kColorText);
+const textFormFieldAccentStyle = TextStyle(color: kColorBlackButton);
 const kformFieldInputDecoration = InputDecoration(
   focusedBorder: OutlineInputBorder(
     borderRadius: const BorderRadius.all(
@@ -55,7 +55,7 @@ const kformFieldInputAccentDecoration = InputDecoration(
     borderRadius: const BorderRadius.all(
       const Radius.circular(15.0),
     ),
-    borderSide: BorderSide(color: kcolorBluelight),
+    borderSide: BorderSide(color: kColorBlackButton),
   ),
   disabledBorder: OutlineInputBorder(
     borderRadius: const BorderRadius.all(
