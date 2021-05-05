@@ -9,6 +9,7 @@ import 'package:huayati/ui/widgets/scrollbar.dart';
 import 'package:stacked/stacked.dart';
 
 import 'profile_viewmodel.dart';
+import 'widgets/update_button.dart';
 
 class ProfileView extends StatelessWidget {
   const ProfileView({Key key}) : super(key: key);
@@ -56,7 +57,7 @@ class _DataView extends ViewModelWidget<ProfileViewModel> {
           child: ListView(
             shrinkWrap: true,
             children: [
-              SizedBox(height: 30.h),
+              SizedBox(height: 20.h),
               DataItem(
                 label: 'رقم الهاتف',
                 value: viewModel?.profileInfo?.phoneNumber ?? '',
@@ -81,6 +82,8 @@ class _DataView extends ViewModelWidget<ProfileViewModel> {
                 label: 'البريد الإلكتروني',
                 value: viewModel?.profileInfo?.email ?? '',
               ),
+              SizedBox(height: 50.h),
+              const UpdateProfileButton(),
               const BottomPadding(),
             ],
           ),
