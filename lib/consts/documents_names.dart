@@ -9,7 +9,7 @@ class DocumentsNames {
   static const String CHAMBER_OF_COMMERCE = 'الغرفة التجارية';
   static const String CHEQUE = 'صك';
   ////////
-  static const String AUTHORIZER_PASSPORT = 'جواز السفر مخول';
-  static const String AUTHORIZER_NID = 'الرقم الوطني مخول';
-  static const String AUTHORIZER_BIRTH_CERTIFICATE = 'شهادة الميلاد مخول';
+  static const String REPRESENTATIVE_PASSPORT = 'جواز السفر مخول';
+  static const String REPRESENTATIVE_NID = 'الرقم الوطني مخول';
+  static const String REPRESENTATIVE_BIRTH_CERTIFICATE = 'شهادة الميلاد مخول';
 }
