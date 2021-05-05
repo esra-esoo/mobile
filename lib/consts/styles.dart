@@ -75,5 +75,5 @@ const kformFieldInputAccentDecoration = InputDecoration(
   labelStyle: TextStyle(color: kColorText),
   floatingLabelBehavior: FloatingLabelBehavior.never,
   isDense: true,
-  counterStyle: TextStyle(color: kColorCard),
+  counterStyle: TextStyle(color: Colors.grey),
 );

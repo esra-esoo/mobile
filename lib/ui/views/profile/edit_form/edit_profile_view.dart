@@ -113,13 +113,13 @@ class EditProfileView extends StatelessWidget with $EditProfileView {
                           controller: fullnameController,
                           keyboardType: TextInputType.text,
                           textInputAction: TextInputAction.next,
+                          maxLength: 40,
                           autocorrect: false,
                           style: textFormFieldAccentStyle,
                           decoration: kformFieldInputAccentDecoration.copyWith(
                             hintText: 'أدخل الاسم كامل هنا ..',
                           ),
                         ),
-                        SizedBox(height: 20.h),
                         TextFieldLabel(label: 'اللقب (*)'),
                         SizedBox(height: 10.h),
                         TextFormField(

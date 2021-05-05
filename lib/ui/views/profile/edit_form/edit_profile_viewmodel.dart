@@ -48,6 +48,11 @@ class EditProfileViewModel extends FormViewModel {
         message: 'نرجو إدخال الاسم كامل',
       );
       return;
+    } else if ((fullnameValue.trim().length < 5)) {
+      _snackbarService.showTopErrorSnackbar(
+        message: 'يجب أن يكون طول الاسم كامل  من 5 إلى 40 حرف',
+      );
+      return;
     } else if ((familyNameValue?.trim()?.isEmpty ?? true)) {
       _snackbarService.showTopErrorSnackbar(
         message: 'نرجو إدخال اللقب',
