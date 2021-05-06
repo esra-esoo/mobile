@@ -14,6 +14,7 @@ import '../ui/views/company/bank_account/bank_account_view.dart';
 import '../ui/views/company/company_data/company_data_view.dart';
 import '../ui/views/company/create_files/create_files_view.dart';
 import '../ui/views/company/update_files/company/update_files_view.dart';
+import '../ui/views/company/update_files/representative/update_files_view.dart';
 import '../ui/views/individual/bank_accounts/bank_accounts_view.dart';
 import '../ui/views/individual/create_files/create_files_view.dart';
 import '../ui/views/individual/personal_data/personal_data_view.dart';
@@ -32,6 +33,8 @@ class Routes {
   static const String companyBankAccountsDataView =
       '/company-bank-accounts-data-view';
   static const String companyUpdateFilesView = '/company-update-files-view';
+  static const String representativeUpdateFilesView =
+      '/representative-update-files-view';
   static const String individualCreateFilesView =
       '/individual-create-files-view';
   static const String individualUpdateFilesView =
@@ -51,6 +54,7 @@ class Routes {
     companyDataView,
     companyBankAccountsDataView,
     companyUpdateFilesView,
+    representativeUpdateFilesView,
     individualCreateFilesView,
     individualUpdateFilesView,
     individualPersonalDataView,
@@ -73,6 +77,8 @@ class Router extends RouterBase {
     RouteDef(Routes.companyBankAccountsDataView,
         page: CompanyBankAccountsDataView),
     RouteDef(Routes.companyUpdateFilesView, page: CompanyUpdateFilesView),
+    RouteDef(Routes.representativeUpdateFilesView,
+        page: RepresentativeUpdateFilesView),
     RouteDef(Routes.individualCreateFilesView, page: IndividualCreateFilesView),
     RouteDef(Routes.individualUpdateFilesView, page: IndividualUpdateFilesView),
     RouteDef(Routes.individualPersonalDataView,
@@ -115,6 +121,12 @@ class Router extends RouterBase {
     CompanyUpdateFilesView: (data) {
       return buildAdaptivePageRoute<dynamic>(
         builder: (context) => const CompanyUpdateFilesView(),
+        settings: data,
+      );
+    },
+    RepresentativeUpdateFilesView: (data) {
+      return buildAdaptivePageRoute<dynamic>(
+        builder: (context) => const RepresentativeUpdateFilesView(),
         settings: data,
       );
     },

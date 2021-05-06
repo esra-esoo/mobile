@@ -88,6 +88,7 @@ class HomeView extends StatelessWidget {
             notifciation: sharedRefuseState
                     ?.companyRefuseState?.numberOfRepresentativeFiles ??
                 0,
+            route: Routes.representativeUpdateFilesView,
           ),
         ]);
       } else {
