@@ -51,7 +51,7 @@ class EditProfileView extends StatelessWidget with $EditProfileView {
               backgroundColor: Colors.transparent,
               appBar: AppBar(
                 brightness: Brightness.light,
-                backgroundColor: Colors.white,
+                backgroundColor: Colors.transparent,
                 elevation: 0,
                 leading: IconButton(
                   onPressed: () => Navigator.pop(context),

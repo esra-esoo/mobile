@@ -11,7 +11,7 @@ class PasswordFormField extends StatefulWidget {
   final String labelText;
   final InputDecoration inputDecoration;
   final TextStyle style;
-
+  final TextInputAction textInputAction;
   const PasswordFormField({
     @required this.controller,
     this.onFieldSubmitted,
@@ -21,6 +21,7 @@ class PasswordFormField extends StatefulWidget {
     this.style = textFormFieldStyle,
     this.hintText,
     this.labelText,
+    this.textInputAction,
   });
 
   @override
@@ -34,11 +35,11 @@ class _PasswordFormFieldState extends State<PasswordFormField> {
   Widget build(BuildContext context) {
     return TextFormField(
       controller: widget.controller,
-      cursorColor: Colors.white,
+      cursorColor: kcolorPrimaryBlue,
       autocorrect: false,
       obscureText: _obscureText,
       keyboardType: TextInputType.visiblePassword,
-      textInputAction: TextInputAction.done,
+      textInputAction: widget.textInputAction ?? TextInputAction.done,
       style: widget.style,
       decoration: widget.inputDecoration.copyWith(
         hintText: widget.hintText ?? 'أدخل كلمة المرور هنا ..',
