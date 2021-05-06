@@ -48,12 +48,12 @@ class StartUpView extends StatelessWidget {
                 style: const TextStyle(fontSize: 18),
               ),
               centerTitle: true,
-              actions: [
-                IconButton(
-                  icon: const Icon(Icons.notifications),
-                  onPressed: () {},
-                ),
-              ],
+              // actions: [
+              //   IconButton(
+              //     icon: const Icon(Icons.notifications),
+              //     onPressed: () {},
+              //   ),
+              // ],
             ),
             body: PageTransitionSwitcher(
               duration: const Duration(milliseconds: 300),
