@@ -57,32 +57,31 @@ class _DataView extends ViewModelWidget<ProfileViewModel> {
           child: ListView(
             shrinkWrap: true,
             children: [
-              SizedBox(height: 20.h),
               DataItem(
                 label: 'رقم الهاتف',
                 value: viewModel?.profileInfo?.phoneNumber ?? '',
               ),
-              SizedBox(height: 25.h),
+              SizedBox(height: 20.h),
               DataItem(
                 label: 'اسم المستخدم',
                 value: viewModel?.profileInfo?.username ?? '',
               ),
-              SizedBox(height: 25.h),
+              SizedBox(height: 20.h),
               DataItem(
                 label: 'الاسم كامل',
                 value: viewModel?.profileInfo?.fullname ?? '',
               ),
-              SizedBox(height: 25.h),
+              SizedBox(height: 20.h),
               DataItem(
                 label: 'اللقب',
                 value: viewModel?.profileInfo?.familyName ?? '',
               ),
-              SizedBox(height: 25.h),
+              SizedBox(height: 20.h),
               DataItem(
                 label: 'البريد الإلكتروني',
                 value: viewModel?.profileInfo?.email ?? '',
               ),
-              SizedBox(height: 50.h),
+              SizedBox(height: 20.h),
               const UpdateProfileButton(),
               const BottomPadding(),
             ],
