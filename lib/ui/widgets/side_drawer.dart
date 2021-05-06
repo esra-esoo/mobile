@@ -109,7 +109,9 @@ class _ChangePassword extends StatelessWidget {
     return Material(
       type: MaterialType.transparency,
       child: InkWell(
-        onTap: () {},
+        onTap: () => locator<NavigationService>().navigateTo(
+          Routes.changePasswordView,
+        ),
         child: ListTile(
           contentPadding: EdgeInsets.symmetric(vertical: 10, horizontal: 15),
           leading: const Icon(
