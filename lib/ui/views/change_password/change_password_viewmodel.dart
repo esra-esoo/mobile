@@ -1,4 +1,5 @@
 import 'package:huayati/app/locator.dart';
+import 'package:huayati/models/navigation_result.dart';
 import 'package:huayati/services/auth_service.dart';
 import 'package:huayati/services/third_party/dialog_service.dart';
 import 'package:huayati/services/third_party/navigation_service.dart';
@@ -48,8 +49,12 @@ class ChangePasswordViewModel extends FormViewModel {
           ),
           throwException: true,
         );
-        
-        _navigationService.back();
+
+        _navigationService.back(
+            result: NavigationResult(
+          success: true,
+          message: 'لقد تم تغيير كلمة المرور بنجاح !',
+        ));
       } catch (e) {
         print(e.toString());
         _snackbarService.showBottomErrorSnackbar(message: e.toString());

@@ -1,10 +1,13 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:huayati/app/locator.dart';
 import 'package:huayati/app/router.gr.dart';
 import 'package:huayati/consts/styles.dart';
+import 'package:huayati/models/navigation_result.dart';
 import 'package:huayati/services/shared_service.dart';
 import 'package:huayati/services/third_party/navigation_service.dart';
+import 'package:huayati/services/third_party/snackbar_service.dart';
 import 'package:huayati/services/user_service.dart';
 import 'package:huayati/ui/views/profile/profile_viewmodel.dart';
 import 'package:huayati/ui/widgets/botton_padding.dart';
@@ -109,9 +112,25 @@ class _ChangePassword extends StatelessWidget {
     return Material(
       type: MaterialType.transparency,
       child: InkWell(
-        onTap: () => locator<NavigationService>().navigateTo(
-          Routes.changePasswordView,
-        ),
+        onTap: () async {
+          NavigationResult result =
+              await locator<NavigationService>().navigateTo(
+            Routes.changePasswordView,
+          );
+          if (result != null) {
+            NavigationResult navigationResult = result;
+            await HapticFeedback.mediumImpact();
+            if (navigationResult.success) {
+              locator<SnackbarService>().showBottomSuccessSnackbar(
+                message: navigationResult.message,
+              );
+            } else {
+              locator<SnackbarService>().showBottomErrorSnackbar(
+                message: navigationResult.message,
+              );
+            }
+          }
+        },
         child: ListTile(
           contentPadding: EdgeInsets.symmetric(vertical: 10, horizontal: 15),
           leading: const Icon(
