@@ -40,6 +40,11 @@ const kformFieldInputDecoration = InputDecoration(
       const Radius.circular(15.0),
     ),
   ),
+  errorBorder: OutlineInputBorder(
+    borderRadius: const BorderRadius.all(
+      const Radius.circular(15.0),
+    ),
+  ),
   fillColor: Colors.white,
   filled: true,
   hintStyle: TextStyle(color: Colors.grey),
@@ -62,6 +67,16 @@ const kformFieldInputAccentDecoration = InputDecoration(
       const Radius.circular(15.0),
     ),
     borderSide: BorderSide(color: Colors.grey),
+  ),
+  errorBorder: OutlineInputBorder(
+    borderRadius: const BorderRadius.all(
+      const Radius.circular(15.0),
+    ),
+  ),
+  border: OutlineInputBorder(
+    borderRadius: const BorderRadius.all(
+      const Radius.circular(15.0),
+    ),
   ),
   enabledBorder: OutlineInputBorder(
     borderRadius: const BorderRadius.all(
