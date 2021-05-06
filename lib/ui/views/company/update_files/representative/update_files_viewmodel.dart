@@ -79,7 +79,7 @@ class RepresentativeUpdateFilesViewModel extends BaseViewModel {
       refuseMessage =
           _sharedService?.sharedRefuseState?.companyRefuseState?.message;
       imageFiles = await runBusyFuture(
-        _companyService.getCompanyImages(),
+        _companyService.getRepresentativeImages(),
         throwException: true,
       );
     } catch (e) {
