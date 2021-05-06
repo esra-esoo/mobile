@@ -88,7 +88,7 @@ class IndividualUpdateFilesViewModel extends BaseViewModel {
   Future saveData() async {
     if (newImageFiles.length != imageFiles.length) {
       _snackbarService.showBottomErrorSnackbar(
-        message: 'يجب عليك إعادة رفع كافة المستندات',
+        message: 'يجب عليك إعادة رفع كافة المستندات المشار إليهم باللون الاحمر',
       );
       return;
     }
