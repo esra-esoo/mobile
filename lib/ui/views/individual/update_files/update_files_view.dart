@@ -6,7 +6,6 @@ import 'package:huayati/ui/widgets/form/bottom_submit_button.dart';
 import 'package:huayati/ui/widgets/form/form_title.dart';
 import 'package:huayati/ui/widgets/form/image_update_field.dart';
 import 'package:huayati/ui/widgets/refuse_error_message.dart';
-import 'package:responsive_builder/responsive_builder.dart';
 import 'package:stacked/stacked.dart';
 
 import 'update_files_viewmodel.dart';
