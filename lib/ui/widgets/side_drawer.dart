@@ -146,6 +146,7 @@ class _ChangeProfile extends StatelessWidget {
           );
           if (updatedProfile != null) {
             locator<ProfileViewModel>().profileInfo = updatedProfile;
+            locator<ProfileViewModel>().notifyListeners();
           }
         },
         child: ListTile(
