@@ -227,8 +227,11 @@ class Router extends RouterBase {
       );
     },
     ChangePasswordView: (data) {
+      final args = data.getArgs<ChangePasswordViewArguments>(
+        orElse: () => ChangePasswordViewArguments(),
+      );
       return buildAdaptivePageRoute<dynamic>(
-        builder: (context) => const ChangePasswordView(),
+        builder: (context) => ChangePasswordView(key: args.key),
         settings: data,
         fullscreenDialog: true,
       );
@@ -271,4 +274,10 @@ class EditProfileViewArguments {
   final Key key;
   final ProfileInfo profileInfo;
   EditProfileViewArguments({this.key, this.profileInfo});
+}
+
+/// ChangePasswordView arguments holder class
+class ChangePasswordViewArguments {
+  final Key key;
+  ChangePasswordViewArguments({this.key});
 }
