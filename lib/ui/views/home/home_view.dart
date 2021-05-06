@@ -109,7 +109,7 @@ class HomeView extends StatelessWidget {
           route: Routes.companyBankAccountsDataView,
         ),
         MenuItem(
-          title: 'بيانات المخول',
+          title: 'بيانات المخولين',
           route: Routes.representativeDataView,
         ),
       ]);
