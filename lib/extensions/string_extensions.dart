@@ -24,6 +24,12 @@ extension StringExtension on String {
     return regExp.hasMatch(this);
   }
 
+  get isStrongPassword {
+    RegExp regExp = RegExp(
+        r'^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%#^?&])[A-Za-z\d@$!%#^?&]{8,}$');
+    return regExp.hasMatch(this);
+  }
+
   get toCapitalize {
     if (this == null) {
       throw ArgumentError("string: $this");
