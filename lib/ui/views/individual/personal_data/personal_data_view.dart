@@ -3,6 +3,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:huayati/consts/styles.dart';
 import 'package:huayati/ui/widgets/botton_padding.dart';
 import 'package:huayati/ui/widgets/data_item.dart';
+import 'package:huayati/ui/widgets/empty_list_refresh_view.dart';
 import 'package:huayati/ui/widgets/form/form_title.dart';
 import 'package:huayati/ui/widgets/loading_indicator.dart';
 import 'package:huayati/ui/widgets/scrollbar.dart';
@@ -38,9 +39,11 @@ class IndividualPersonalDataView extends StatelessWidget {
           duration: const Duration(milliseconds: 375),
           child: viewModel.isBusy
               ? const CenterLoadingIndicator()
-              : viewModel.personalData == null
-                  ? const _RefreshView()
-                  : const _DataView(),
+              : viewModel.personalData != null
+                  ? const _DataView()
+                  : EmptyListRefreshView(
+                      onRefresh: () => viewModel.initilizeView(),
+                    ),
         ),
       ),
     );
@@ -82,37 +85,6 @@ class _DataView extends ViewModelWidget<IndividualPersonalDataViewModel> {
             const BottomPadding(),
           ],
         ),
-      ),
-    );
-  }
-}
-
-class _RefreshView extends ViewModelWidget<IndividualPersonalDataViewModel> {
-  const _RefreshView({Key key}) : super(key: key);
-
-  @override
-  Widget build(
-      BuildContext context, IndividualPersonalDataViewModel viewModel) {
-    return RefreshIndicator(
-      backgroundColor: kcolorPrimaryBlue,
-      color: Colors.white,
-      onRefresh: () => viewModel.initilizeView(),
-      child: ListView(
-        shrinkWrap: true,
-        children: <Widget>[
-          Container(
-            height: MediaQuery.of(context).size.height - kToolbarHeight,
-            alignment: Alignment.center,
-            child: Text(
-              'لايوجد بيانات, قم بسحب الصفحة لاسفل لتحديثها.',
-              style: const TextStyle(
-                color: Colors.black,
-              ),
-              softWrap: true,
-              textAlign: TextAlign.center,
-            ),
-          ),
-        ],
       ),
     );
   }

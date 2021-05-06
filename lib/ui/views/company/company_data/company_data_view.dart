@@ -3,6 +3,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:huayati/consts/styles.dart';
 import 'package:huayati/ui/widgets/botton_padding.dart';
 import 'package:huayati/ui/widgets/data_item.dart';
+import 'package:huayati/ui/widgets/empty_list_refresh_view.dart';
 import 'package:huayati/ui/widgets/form/form_title.dart';
 import 'package:huayati/ui/widgets/loading_indicator.dart';
 import 'package:huayati/ui/widgets/scrollbar.dart';
@@ -39,7 +40,9 @@ class CompanyDataView extends StatelessWidget {
           child: viewModel.isBusy
               ? const CenterLoadingIndicator()
               : viewModel.companyData == null
-                  ? const _RefreshView()
+                  ? EmptyListRefreshView(
+                      onRefresh: () => viewModel.initilizeView(),
+                    )
                   : const _DataView(),
         ),
       ),
@@ -91,36 +94,6 @@ class _DataView extends ViewModelWidget<CompanyDataViewModel> {
             const BottomPadding(),
           ],
         ),
-      ),
-    );
-  }
-}
-
-class _RefreshView extends ViewModelWidget<CompanyDataViewModel> {
-  const _RefreshView({Key key}) : super(key: key);
-
-  @override
-  Widget build(BuildContext context, CompanyDataViewModel viewModel) {
-    return RefreshIndicator(
-      backgroundColor: kcolorPrimaryBlue,
-      color: Colors.white,
-      onRefresh: () => viewModel.initilizeView(),
-      child: ListView(
-        shrinkWrap: true,
-        children: <Widget>[
-          Container(
-            height: MediaQuery.of(context).size.height - kToolbarHeight,
-            alignment: Alignment.center,
-            child: Text(
-              'لايوجد بيانات, قم بسحب الصفحة لاسفل لتحديثها.',
-              style: const TextStyle(
-                color: Colors.black,
-              ),
-              softWrap: true,
-              textAlign: TextAlign.center,
-            ),
-          ),
-        ],
       ),
     );
   }
