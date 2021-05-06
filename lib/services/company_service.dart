@@ -116,12 +116,16 @@ class CompanyService {
     }
   }
 
-  Future<RepresentativeData> getRepresentativeData() async {
+  Future<List<RepresentativeData>> getRepresentativeData() async {
     try {
       final response = await _api.getCallWithToken(
         url: '/api/Company/GetRepresentativeData',
       );
-      return RepresentativeData.fromJson(response);
+      return response
+          ?.map<RepresentativeData>(
+            (json) => RepresentativeData.fromJson(json),
+          )
+          ?.toList();
     } on DioError catch (e) {
       throw e.message;
     } catch (e) {
