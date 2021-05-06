@@ -5,6 +5,7 @@ import 'package:huayati/models/company/company_create_files_payload.dart';
 import 'package:huayati/models/company/company_data.dart';
 import 'package:huayati/models/company/image_file.dart';
 import 'package:huayati/models/representative/image_file.dart';
+import 'package:huayati/models/representative/representative_data.dart';
 
 import 'api.dart';
 
@@ -108,6 +109,19 @@ class CompanyService {
         url: '/api/Company/ChangeAllRepresentativeImages',
         data: images,
       );
+    } on DioError catch (e) {
+      throw e.message;
+    } catch (e) {
+      throw e;
+    }
+  }
+
+  Future<RepresentativeData> getRepresentativeData() async {
+    try {
+      final response = await _api.getCallWithToken(
+        url: '/api/Company/GetRepresentativeData',
+      );
+      return RepresentativeData.fromJson(response);
     } on DioError catch (e) {
       throw e.message;
     } catch (e) {
