@@ -110,6 +110,7 @@ class HomeView extends StatelessWidget {
         ),
         MenuItem(
           title: 'بيانات المخول',
+          route: Routes.representativeDataView,
         ),
       ]);
     }
