@@ -3,7 +3,7 @@ import 'package:auto_route/auto_route_annotations.dart';
 import 'package:huayati/ui/views/company/bank_account/bank_account_view.dart';
 import 'package:huayati/ui/views/company/company_data/company_data_view.dart';
 import 'package:huayati/ui/views/company/create_files/create_files_view.dart';
-import 'package:huayati/ui/views/company/update_files/update_files_view.dart';
+import 'package:huayati/ui/views/company/update_files/company/update_files_view.dart';
 import 'package:huayati/ui/views/individual/bank_accounts/bank_accounts_view.dart';
 import 'package:huayati/ui/views/individual/create_files/create_files_view.dart';
 import 'package:huayati/ui/views/individual/personal_data/personal_data_view.dart';

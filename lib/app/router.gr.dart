@@ -13,7 +13,7 @@ import '../models/profile_info.dart';
 import '../ui/views/company/bank_account/bank_account_view.dart';
 import '../ui/views/company/company_data/company_data_view.dart';
 import '../ui/views/company/create_files/create_files_view.dart';
-import '../ui/views/company/update_files/update_files_view.dart';
+import '../ui/views/company/update_files/company/update_files_view.dart';
 import '../ui/views/individual/bank_accounts/bank_accounts_view.dart';
 import '../ui/views/individual/create_files/create_files_view.dart';
 import '../ui/views/individual/personal_data/personal_data_view.dart';
