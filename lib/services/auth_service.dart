@@ -126,4 +126,25 @@ class AuthService {
       throw e;
     }
   }
+
+  Future<void> changePassword({
+    @required String currentPassword,
+    @required String password,
+    @required String confirmPassword,
+  }) async {
+    try {
+      await _api.putCallAuth(
+        url: '/api/Users/ChangePassword',
+        data: {
+          "currentPassword": currentPassword,
+          "password": password,
+          "confirmPassword": confirmPassword,
+        },
+      );
+    } on DioError catch (e) {
+      throw e.message;
+    } catch (e) {
+      throw e;
+    }
+  }
 }
