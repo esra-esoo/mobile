@@ -38,7 +38,7 @@ class IndividualUpdateFilesViewModel extends BaseViewModel {
       return newImageFiles[index].file;
   }
 
-  Future addToNewImageFiles(IndivisualImageFile imageFile, File file) async {
+  void addToNewImageFiles(IndivisualImageFile imageFile, File file) {
     var index = newImageFiles.indexWhere(
       (element) => element.individualFileId == imageFile.individualFileId,
     );

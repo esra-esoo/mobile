@@ -38,7 +38,7 @@ class CompanyUpdateFilesViewModel extends BaseViewModel {
       return newImageFiles[index].file;
   }
 
-  Future addToNewImageFiles(CompanyImageFile imageFile, File file) async {
+  void addToNewImageFiles(CompanyImageFile imageFile, File file) {
     var index = newImageFiles.indexWhere(
       (element) => element.companyFileId == imageFile.companyFileId,
     );
