@@ -10,6 +10,7 @@ import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 
 import '../models/profile_info.dart';
+import '../ui/views/change_password/change_password_view.dart';
 import '../ui/views/company/bank_account/bank_account_view.dart';
 import '../ui/views/company/company_data/company_data_view.dart';
 import '../ui/views/company/create_files/create_files_view.dart';
@@ -50,6 +51,7 @@ class Routes {
   static const String signUpView = '/sign-up-view';
   static const String otpView = '/otp-view';
   static const String editProfileView = '/edit-profile-view';
+  static const String changePasswordView = '/change-password-view';
   static const all = <String>{
     splashScreenView,
     companyCreateFilesView,
@@ -67,6 +69,7 @@ class Routes {
     signUpView,
     otpView,
     editProfileView,
+    changePasswordView,
   };
 }
 
@@ -94,6 +97,7 @@ class Router extends RouterBase {
     RouteDef(Routes.signUpView, page: SignUpView),
     RouteDef(Routes.otpView, page: OtpView),
     RouteDef(Routes.editProfileView, page: EditProfileView),
+    RouteDef(Routes.changePasswordView, page: ChangePasswordView),
   ];
   @override
   Map<Type, AutoRouteFactory> get pagesMap => _pagesMap;
@@ -218,6 +222,13 @@ class Router extends RouterBase {
           key: args.key,
           profileInfo: args.profileInfo,
         ),
+        settings: data,
+        fullscreenDialog: true,
+      );
+    },
+    ChangePasswordView: (data) {
+      return buildAdaptivePageRoute<dynamic>(
+        builder: (context) => const ChangePasswordView(),
         settings: data,
         fullscreenDialog: true,
       );

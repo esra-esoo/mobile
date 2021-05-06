@@ -1,5 +1,6 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:auto_route/auto_route_annotations.dart';
+import 'package:huayati/ui/views/change_password/change_password_view.dart';
 import 'package:huayati/ui/views/company/bank_account/bank_account_view.dart';
 import 'package:huayati/ui/views/company/company_data/company_data_view.dart';
 import 'package:huayati/ui/views/company/create_files/create_files_view.dart';
@@ -44,5 +45,6 @@ import 'package:huayati/ui/views/startup/startup_view.dart';
   ),
   AdaptiveRoute(page: OtpView, fullscreenDialog: true),
   AdaptiveRoute(page: EditProfileView, fullscreenDialog: true),
+  AdaptiveRoute(page: ChangePasswordView, fullscreenDialog: true),
 ])
 class $Router {}
