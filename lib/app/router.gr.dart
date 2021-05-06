@@ -13,6 +13,7 @@ import '../models/profile_info.dart';
 import '../ui/views/company/bank_account/bank_account_view.dart';
 import '../ui/views/company/company_data/company_data_view.dart';
 import '../ui/views/company/create_files/create_files_view.dart';
+import '../ui/views/company/representative_data/representative_data_view.dart';
 import '../ui/views/company/update_files/company/update_files_view.dart';
 import '../ui/views/company/update_files/representative/update_files_view.dart';
 import '../ui/views/individual/bank_accounts/bank_accounts_view.dart';
@@ -35,6 +36,7 @@ class Routes {
   static const String companyUpdateFilesView = '/company-update-files-view';
   static const String representativeUpdateFilesView =
       '/representative-update-files-view';
+  static const String representativeDataView = '/representative-data-view';
   static const String individualCreateFilesView =
       '/individual-create-files-view';
   static const String individualUpdateFilesView =
@@ -55,6 +57,7 @@ class Routes {
     companyBankAccountsDataView,
     companyUpdateFilesView,
     representativeUpdateFilesView,
+    representativeDataView,
     individualCreateFilesView,
     individualUpdateFilesView,
     individualPersonalDataView,
@@ -79,6 +82,7 @@ class Router extends RouterBase {
     RouteDef(Routes.companyUpdateFilesView, page: CompanyUpdateFilesView),
     RouteDef(Routes.representativeUpdateFilesView,
         page: RepresentativeUpdateFilesView),
+    RouteDef(Routes.representativeDataView, page: RepresentativeDataView),
     RouteDef(Routes.individualCreateFilesView, page: IndividualCreateFilesView),
     RouteDef(Routes.individualUpdateFilesView, page: IndividualUpdateFilesView),
     RouteDef(Routes.individualPersonalDataView,
@@ -127,6 +131,12 @@ class Router extends RouterBase {
     RepresentativeUpdateFilesView: (data) {
       return buildAdaptivePageRoute<dynamic>(
         builder: (context) => const RepresentativeUpdateFilesView(),
+        settings: data,
+      );
+    },
+    RepresentativeDataView: (data) {
+      return buildAdaptivePageRoute<dynamic>(
+        builder: (context) => const RepresentativeDataView(),
         settings: data,
       );
     },

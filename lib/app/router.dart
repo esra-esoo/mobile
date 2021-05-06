@@ -3,6 +3,7 @@ import 'package:auto_route/auto_route_annotations.dart';
 import 'package:huayati/ui/views/company/bank_account/bank_account_view.dart';
 import 'package:huayati/ui/views/company/company_data/company_data_view.dart';
 import 'package:huayati/ui/views/company/create_files/create_files_view.dart';
+import 'package:huayati/ui/views/company/representative_data/representative_data_view.dart';
 import 'package:huayati/ui/views/company/update_files/company/update_files_view.dart';
 import 'package:huayati/ui/views/company/update_files/representative/update_files_view.dart';
 import 'package:huayati/ui/views/individual/bank_accounts/bank_accounts_view.dart';
@@ -23,6 +24,7 @@ import 'package:huayati/ui/views/startup/startup_view.dart';
   AdaptiveRoute(page: CompanyBankAccountsDataView),
   AdaptiveRoute(page: CompanyUpdateFilesView),
   AdaptiveRoute(page: RepresentativeUpdateFilesView),
+  AdaptiveRoute(page: RepresentativeDataView),
   AdaptiveRoute(page: IndividualCreateFilesView),
   AdaptiveRoute(page: IndividualUpdateFilesView),
   AdaptiveRoute(page: IndividualPersonalDataView),
