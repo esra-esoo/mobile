@@ -120,9 +120,10 @@ class _RepresentativeItemCard extends StatelessWidget {
   Widget build(BuildContext context) {
     return representativeData != null
         ? Column(
+            crossAxisAlignment: CrossAxisAlignment.stretch,
             children: [
               Text(
-                isFirst ? '' : 'المخول الاخر',
+                isFirst ? 'بياناتك' : 'المخول الاخر',
                 style: TextStyle(
                   color: kcolorBluelight,
                   fontWeight: FontWeight.bold,
