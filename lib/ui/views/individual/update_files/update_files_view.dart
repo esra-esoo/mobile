@@ -5,6 +5,7 @@ import 'package:huayati/ui/widgets/busy_overlay.dart';
 import 'package:huayati/ui/widgets/form/bottom_submit_button.dart';
 import 'package:huayati/ui/widgets/form/form_title.dart';
 import 'package:huayati/ui/widgets/form/image_update_field.dart';
+import 'package:huayati/ui/widgets/refuse_error_message.dart';
 import 'package:responsive_builder/responsive_builder.dart';
 import 'package:stacked/stacked.dart';
 
@@ -46,7 +47,8 @@ class IndividualUpdateFilesView extends StatelessWidget {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.stretch,
               children: [
-                const _RefuseStateMessage(),
+                RefuseFilesErrorMessage(viewModel.refuseMessage),
+                SizedBox(height: 20.h),
                 Expanded(
                   child: ListView.builder(
                     shrinkWrap: true,
@@ -80,33 +82,5 @@ class IndividualUpdateFilesView extends StatelessWidget {
         ),
       ),
     );
-  }
-}
-
-class _RefuseStateMessage
-    extends ViewModelWidget<IndividualUpdateFilesViewModel> {
-  const _RefuseStateMessage();
-
-  @override
-  Widget build(
-    BuildContext context,
-    IndividualUpdateFilesViewModel viewModel,
-  ) {
-    return viewModel.refuseMessage != null
-        ? Padding(
-            padding: EdgeInsets.only(bottom: 20.h),
-            child: Text(
-              viewModel.refuseMessage,
-              style: TextStyle(
-                color: Colors.red,
-                fontSize: getValueForScreenType<double>(
-                  context: context,
-                  mobile: 16,
-                  tablet: 18,
-                ),
-              ),
-            ),
-          )
-        : SizedBox.shrink();
   }
 }
