@@ -107,7 +107,7 @@ class CompanyCreateFilesViewModel extends IndexTrackingViewModel {
       }
     var response = await _dialogService.showConfirmDialog(
       title: 'تأكيد العملية',
-      description: 'هل أنت متأكد من رغبتك في حفظ التغييرات ؟',
+      description: 'هل أنت متأكد من رغبتك في حفظ التغييرات؟',
     );
     if (!response.confirmed) return;
     await _uploadFiles();

@@ -74,7 +74,7 @@ class CompanyUpdateFilesView extends StatelessWidget {
             ),
           ),
           bottomNavigationBar: BottomSubmitButton(
-            label: 'حفظ التغييرات ',
+            label: 'حفظ التغييرات',
             accentColors: false,
             onPressed: () => viewModel.saveData(),
           ),
