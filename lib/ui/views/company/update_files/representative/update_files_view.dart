@@ -33,7 +33,7 @@ class RepresentativeUpdateFilesView extends StatelessWidget {
             ),
             centerTitle: true,
             title: FormTitle(
-              title: 'مستندات الشركة',
+              title: 'مستندات المخولين',
               color: kcolorPrimaryBlue,
             ),
           ),
@@ -53,8 +53,10 @@ class RepresentativeUpdateFilesView extends StatelessWidget {
                     shrinkWrap: true,
                     itemCount: viewModel.imageFiles.length,
                     itemBuilder: (context, index) {
+                      var isFirst = viewModel.imageFiles[index].isFirst;
                       return ImageUpdateField(
-                        fileName: viewModel.imageFiles[index].name,
+                        fileName: viewModel.imageFiles[index].name +
+                            (isFirst ? ' (بياناتك)' : ''),
                         base64Content:
                             viewModel.imageFiles[index].base64Content,
                         isEditDisabled:
