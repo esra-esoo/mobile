@@ -23,7 +23,9 @@ class RepresentativesFormView
         itemBuilder: (context, index) {
           if (viewModel.representatives.length == index)
             return _AddRepresentativeButton(
-              onPressed: () => viewModel.addRepresentative(),
+              onPressed: viewModel.representatives.length < 2
+                  ? () => viewModel.addRepresentative()
+                  : null,
             );
           else
             return _RepresentativeFieldsCard(index: index);
@@ -40,6 +42,7 @@ class _AddRepresentativeButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    var isDisabled = onPressed == null;
     return Padding(
       padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 20),
       child: FlatButton(
@@ -49,12 +52,13 @@ class _AddRepresentativeButton extends StatelessWidget {
         onPressed: onPressed,
         child: Column(
           children: <Widget>[
-            const Icon(Icons.add, color: kcolorBluelight, size: 30),
+            Icon(Icons.add,
+                color: isDisabled ? kColorCard : kcolorBluelight, size: 30),
             const SizedBox(height: 5),
             Text(
               'إضافة مخول',
               style: TextStyle(
-                color: kcolorBluelight,
+                color: isDisabled ? kColorCard : kcolorBluelight,
                 fontSize: 18,
                 letterSpacing: 1,
               ),
