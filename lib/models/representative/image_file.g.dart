@@ -16,6 +16,7 @@ RepresentativeImageFile _$RepresentativeImageFileFromJson(
     isEditDisabled: json['isEditDisabled'] as bool,
     fileFullName: json['fileFullName'] as String,
     editBtnShow: json['editBtnShow'] as bool,
+    isFirst: json['isFirst'] as bool,
   );
 }
 
@@ -29,4 +30,5 @@ Map<String, dynamic> _$RepresentativeImageFileToJson(
       'isEditDisabled': instance.isEditDisabled,
       'fileFullName': instance.fileFullName,
       'editBtnShow': instance.editBtnShow,
+      'isFirst': instance.isFirst,
     };

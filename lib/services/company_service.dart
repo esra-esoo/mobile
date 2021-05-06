@@ -1,4 +1,3 @@
-
 import 'package:dio/dio.dart';
 import 'package:huayati/app/locator.dart';
 import 'package:huayati/models/company/bank_account.dart';
@@ -88,7 +87,7 @@ class CompanyService {
   Future<List<RepresentativeImageFile>> getRepresentativeImages() async {
     try {
       final response = await _api.getCallWithToken(
-        url: '',
+        url: '/api/Company/GetRepresentativeImages',
       );
       return response
           ?.map<RepresentativeImageFile>(

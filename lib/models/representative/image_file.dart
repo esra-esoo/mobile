@@ -12,15 +12,17 @@ class RepresentativeImageFile {
   bool isEditDisabled;
   String fileFullName;
   bool editBtnShow;
+  bool isFirst;
 
   RepresentativeImageFile({
     @required this.representativeFileId,
     @required this.representativeId,
     @required this.name,
     @required this.base64Content,
-    this.isEditDisabled,
-    this.fileFullName,
-    this.editBtnShow,
+    @required this.isEditDisabled,
+    @required this.fileFullName,
+    @required this.editBtnShow,
+    @required this.isFirst,
   });
 
   factory RepresentativeImageFile.fromJson(Map<String, dynamic> json) =>

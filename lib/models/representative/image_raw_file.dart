@@ -10,6 +10,7 @@ class RepresentativeImageRawFile {
   bool isEditDisabled;
   String fileFullName;
   bool editBtnShow;
+  bool isFirst;
 
   RepresentativeImageRawFile({
     @required this.representativeFileId,
@@ -19,5 +20,6 @@ class RepresentativeImageRawFile {
     @required this.isEditDisabled,
     @required this.fileFullName,
     @required this.editBtnShow,
+    @required this.isFirst,
   });
 }
