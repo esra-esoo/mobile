@@ -4,7 +4,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:huayati/app/locator.dart';
 import 'package:huayati/consts/styles.dart';
-import 'package:huayati/services/third_party/media_picker.dart';
+import 'package:huayati/services/third_party/picker_services.dart';
 import 'package:huayati/services/third_party/snackbar_service.dart';
 import 'package:image_picker/image_picker.dart';
 
@@ -51,7 +51,8 @@ class ImagePickerField extends StatelessWidget {
               child: Container(
                 padding: EdgeInsets.symmetric(horizontal: 10, vertical: 5),
                 decoration: BoxDecoration(
-                  color:disabled ? Colors.grey: kcolorBluelight.withOpacity(0.4),
+                  color:
+                      disabled ? Colors.grey : kcolorBluelight.withOpacity(0.4),
                   borderRadius: BorderRadius.circular(10),
                 ),
                 child: Row(
@@ -82,7 +83,7 @@ class ImagePickerField extends StatelessWidget {
 
   Future _selectFile() async {
     try {
-      var imageSource = await locator<MediaPickerService>().showBottomSheet();
+      var imageSource = await locator<PickerService>().showMediaType();
       if (imageSource == null) return;
       await Future.delayed(const Duration(milliseconds: 350));
       PickedFile pickedFile = await ImagePicker().getImage(

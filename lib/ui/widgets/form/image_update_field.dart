@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:huayati/app/locator.dart';
 import 'package:huayati/consts/styles.dart';
-import 'package:huayati/services/third_party/media_picker.dart';
+import 'package:huayati/services/third_party/picker_services.dart';
 import 'package:huayati/services/third_party/snackbar_service.dart';
 import 'package:huayati/utils/file_utils.dart';
 import 'package:image_picker/image_picker.dart';
@@ -101,7 +101,7 @@ class ImageUpdateField extends StatelessWidget {
 
   Future _selectFile() async {
     try {
-      var imageSource = await locator<MediaPickerService>().showBottomSheet();
+      var imageSource = await locator<PickerService>().showMediaType();
       if (imageSource == null) return;
       await Future.delayed(const Duration(milliseconds: 350));
       PickedFile pickedFile = await ImagePicker().getImage(

@@ -6,8 +6,8 @@ import 'package:get/get.dart';
 import 'package:huayati/consts/styles.dart';
 import 'package:image_picker/image_picker.dart';
 
-class MediaPickerService {
-  Future<ImageSource> showBottomSheet() async {
+class ResetMethodPickerService {
+  Future<int> showBottomSheet() async {
     await HapticFeedback.mediumImpact();
     return await showPlatformModalSheet(
         androidEnableDrag: true,
