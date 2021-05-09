@@ -19,6 +19,7 @@ class ForgetPasswordViewModel extends BaseViewModel {
     @required int verificationCode,
     @required int sentBy,
   }) async {
+    String sentByString = sentBy == SentByValue.SMS ? SentBy.SMS : SentBy.EMAIL;
     if (verificationCode.toString().length < 6) {
       _snackbarService.showTopErrorSnackbar(
         message: 'نرجو منك ملء كافة الخانات ..',
@@ -29,7 +30,7 @@ class ForgetPasswordViewModel extends BaseViewModel {
           _authService.checkVerificationCode(
             phoneNumberOrEmail: phoneNumberOrEmail,
             verificationCode: verificationCode,
-            sentBy: sentBy == SentByValue.SMS ? SentBy.SMS : SentBy.EMAIL,
+            sentBy: sentByString,
           ),
           throwException: true,
         );
@@ -37,7 +38,7 @@ class ForgetPasswordViewModel extends BaseViewModel {
         await _dialogService.showAlertDialog(
           title: 'نجحت العملية',
           description:
-              'يمكنك الان تسجيل الدخول بإستخدام كلمة المرور الجديدة التي تم إسالها إليك عبر $sentBy',
+              'يمكنك الان تسجيل الدخول بإستخدام كلمة المرور الجديدة التي تم إسالها إليك عبر $sentByString',
           closeTitle: 'تسجيل الدخول',
         );
 

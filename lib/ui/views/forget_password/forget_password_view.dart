@@ -78,8 +78,8 @@ class _ForgetPasswordViewState extends State<ForgetPasswordView> {
                       padding: const EdgeInsets.all(8.0),
                       child: Text(
                         widget.sentBy == SentByValue.SMS
-                            ? 'ادخل رمز التحقق الذي تم ارساله لهاتفك لاستكمال الاجراء, الرمز صالح لدقيقتين.'
-                            : 'ادخل رمز التحقق الذي تم ارساله لعنوان البريد الالكتروني لاستكمال الاجراء, الرمز صالح لدقيقتين.',
+                            ? 'ادخل رمز التحقق الذي تم ارساله لهاتفك. الرمز صالح لدقيقتين.'
+                            : 'ادخل رمز التحقق الذي تم ارساله لعنوان البريد الالكتروني . الرمز صالح لدقيقتين.',
                         style: TextStyle(
                           color: Colors.white,
                           fontSize: getValueForScreenType<double>(
