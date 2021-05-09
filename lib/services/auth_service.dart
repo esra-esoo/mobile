@@ -153,7 +153,7 @@ class AuthService {
     @required int resetMethod,
   }) async {
     try {
-      await _api.putCallAuth(
+      await _api.postCallAuth(
         url: '/api/ForgetPasswordVerificationCode/ForgotPassword',
         data: {
           "phoneNumberOrEmail": phoneNumberOrEmail,
@@ -172,7 +172,7 @@ class AuthService {
     @required String sentBy,
   }) async {
     try {
-      await _api.putCallAuth(
+      await _api.postCallAuth(
         url: '/api/ForgetPasswordVerificationCode/ResendVerificationCode',
         data: {
           "phoneNumberOrEmail": phoneNumberOrEmail,
@@ -192,7 +192,7 @@ class AuthService {
     @required String sentBy,
   }) async {
     try {
-      await _api.putCallAuth(
+      await _api.postCallAuth(
         url: '/api/ForgetPasswordVerificationCode/CheckVerificationCode',
         data: {
           "phoneNumberOrEmail": phoneNumberOrEmail,
