@@ -91,8 +91,8 @@ class AuthService {
       );
     } on DioError catch (e) {
       throw e.message;
-    } on Exception catch (_) {
-      throw 'حدث خطأ أثناء محاولة عرض البيانات ، نرجو مخاطبة مسؤول النظام';
+    } on Exception catch (e) {
+      throw 'نرجو التحقق من كلمة البيانات التي ادخلتها';
     } catch (e) {
       throw e;
     }
