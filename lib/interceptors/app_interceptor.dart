@@ -34,9 +34,8 @@ class AppInterceptor extends Interceptor {
 
   @override
   Future onError(DioError dioError) async {
-    print('status code =::${dioError.response.statusCode}');
     try {
-      if (dioError.response?.statusCode == 401) {
+      if (dioError?.response?.statusCode == 401) {
         try {
           _dio.interceptors.requestLock.lock();
           _dio.interceptors.responseLock.lock();
@@ -57,8 +56,11 @@ class AppInterceptor extends Interceptor {
 
           await signOut();
         }
+      } else if (dioError?.response?.statusCode == 500) {
+        return _dio.reject(
+            'حدث خطأ أثناء محاولة تنفيذ طلبك ، نرجو المحاولة في وقت مرة أخر او الاتصال بمسؤول النظام.');
       } else if (dioError.response != null) {
-        return _dio.reject(dioError.response.data);
+        return _dio.reject(dioError?.response?.data);
       } else if (dioError.error is SocketException) {
         return _dio.reject(
             'لم نتمكن من الاتصال بالخدمة ،نرحو التحقق من اتصالك بالشبكة.');
