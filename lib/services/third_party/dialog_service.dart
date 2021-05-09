@@ -106,14 +106,11 @@ class DialogService {
     return _dialogCompleter.future;
   }
 
-  Future<DialogResponse> showPhoneNoDialog({
-    String title,
-    String description,
-    String confirmationTitle,
-    String cancelTitle,
+  Future<DialogResponse> showPhoneOrEmailDialog({
+    @required bool isEmail,
   }) {
     _dialogCompleter = Completer<DialogResponse>();
-    var phoneText = '';
+    var inputValue = '';
     showPlatformDialog(
       context: Get.overlayContext,
       androidBarrierDismissible: false,
@@ -124,7 +121,7 @@ class DialogService {
           ),
         ),
         title: Text(
-          title,
+          isEmail ? 'أدخل البريد الالكتروني' : 'أدخل رقم الهاتف',
           textAlign: TextAlign.center,
         ),
         content: Material(
@@ -132,16 +129,12 @@ class DialogService {
           child: Container(
             padding: const EdgeInsets.only(top: 20, right: 15, left: 15),
             child: PlatformTextField(
-              keyboardType: TextInputType.number,
+              keyboardType:
+                  isEmail ? TextInputType.emailAddress : TextInputType.number,
+              maxLength: isEmail ? null : 10,
               autofocus: true,
-              onChanged: (value) => phoneText = value,
+              onChanged: (value) => inputValue = value,
               textAlign: TextAlign.center,
-              cupertino: (_, __) => CupertinoTextFieldData(
-                placeholder: 'ex: 21891000000',
-              ),
-              material: (_, __) => MaterialTextFieldData(
-                decoration: InputDecoration(hintText: 'ex: 21891000000'),
-              ),
             ),
           ),
         ),
@@ -155,12 +148,12 @@ class DialogService {
                 completeDialog(
                   DialogResponse(
                     confirmed: true,
-                    responseData: [phoneText],
+                    responseData: [inputValue],
                   ),
                 );
             },
             child: Text(
-              confirmationTitle,
+              'تأكيد',
             ),
           ),
           PlatformDialogAction(
@@ -169,11 +162,11 @@ class DialogService {
                 completeDialog(
                   DialogResponse(
                     confirmed: false,
-                    responseData: [phoneText],
+                    responseData: [inputValue],
                   ),
                 );
             },
-            child: Text(cancelTitle),
+            child: Text('تراجع'),
           ),
         ],
       ),
