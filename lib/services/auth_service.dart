@@ -147,4 +147,63 @@ class AuthService {
       throw e;
     }
   }
+
+  Future<void> forgotPassword({
+    @required String phoneNumberOrEmail,
+    @required int resetMethod,
+  }) async {
+    try {
+      await _api.putCallAuth(
+        url: '/api/ForgetPasswordVerificationCode/ForgotPassword',
+        data: {
+          "phoneNumberOrEmail": phoneNumberOrEmail,
+          "resetMethod": resetMethod,
+        },
+      );
+    } on DioError catch (e) {
+      throw e.message;
+    } catch (e) {
+      throw e;
+    }
+  }
+
+  Future<void> resendVerificationCode({
+    @required String phoneNumberOrEmail,
+    @required String sentBy,
+  }) async {
+    try {
+      await _api.putCallAuth(
+        url: '/api/ForgetPasswordVerificationCode/ResendVerificationCode',
+        data: {
+          "phoneNumberOrEmail": phoneNumberOrEmail,
+          "sentBy": sentBy,
+        },
+      );
+    } on DioError catch (e) {
+      throw e.message;
+    } catch (e) {
+      throw e;
+    }
+  }
+
+  Future<void> checkVerificationCode({
+    @required String phoneNumberOrEmail,
+    @required int verificationCode,
+    @required String sentBy,
+  }) async {
+    try {
+      await _api.putCallAuth(
+        url: '/api/ForgetPasswordVerificationCode/CheckVerificationCode',
+        data: {
+          "phoneNumberOrEmail": phoneNumberOrEmail,
+          "verificationCode": verificationCode,
+          "sentBy": sentBy,
+        },
+      );
+    } on DioError catch (e) {
+      throw e.message;
+    } catch (e) {
+      throw e;
+    }
+  }
 }
