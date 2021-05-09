@@ -82,8 +82,8 @@ class SignInViewModel extends FormViewModel {
     try {
       await runBusyFuture(
         _authService.forgotPassword(
-          phoneNumberOrEmail: null,
-          resetMethod: null,
+          phoneNumberOrEmail: phoneNumberOrEmail,
+          resetMethod: resetMethod,
         ),
         throwException: true,
       );

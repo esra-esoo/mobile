@@ -1,7 +1,7 @@
 import 'package:circular_countdown_timer/circular_countdown_timer.dart';
 import 'package:flutter/material.dart';
+import 'package:huayati/consts/pass_sent_by.dart';
 import 'package:huayati/consts/styles.dart';
-import 'package:huayati/ui/views/otp/widgets/otp_tip.dart';
 import 'package:huayati/ui/views/otp/widgets/resend_button.dart';
 import 'package:huayati/ui/widgets/botton_padding.dart';
 import 'package:huayati/ui/widgets/busy_overlay.dart';
@@ -9,6 +9,7 @@ import 'package:huayati/ui/widgets/form/bottom_submit_button.dart';
 import 'package:huayati/ui/widgets/form/form_title.dart';
 import 'package:pin_code_fields/pin_code_fields.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:responsive_builder/responsive_builder.dart';
 import 'package:stacked/stacked.dart';
 import 'forget_password_viewmodel.dart';
 import 'package:huayati/extensions/string_extensions.dart';
@@ -73,7 +74,22 @@ class _ForgetPasswordViewState extends State<ForgetPasswordView> {
                       left: 30.w,
                       right: 30.w,
                     ),
-                    child: const OtpTip(),
+                    child: Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: Text(
+                        widget.sentBy == SentByValue.SMS
+                            ? 'ادخل رمز التحقق الذي تم ارساله لهاتفك لاستكمال الاجراء, الرمز صالح لدقيقتين.'
+                            : 'ادخل رمز التحقق الذي تم ارساله لعنوان البريد الالكتروني لاستكمال الاجراء, الرمز صالح لدقيقتين.',
+                        style: TextStyle(
+                          color: Colors.white,
+                          fontSize: getValueForScreenType<double>(
+                            context: context,
+                            mobile: 16,
+                            tablet: 18,
+                          ),
+                        ),
+                      ),
+                    ),
                   ),
                   Expanded(
                     child: SingleChildScrollView(

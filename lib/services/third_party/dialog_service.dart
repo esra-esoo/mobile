@@ -133,6 +133,7 @@ class DialogService {
                   isEmail ? TextInputType.emailAddress : TextInputType.number,
               maxLength: isEmail ? null : 10,
               autofocus: true,
+              autocorrect: false,
               inputFormatters: isEmail
                   ? []
                   : [

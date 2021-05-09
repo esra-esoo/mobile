@@ -37,7 +37,7 @@ class ForgetPasswordViewModel extends BaseViewModel {
         await _dialogService.showAlertDialog(
           title: 'نجحت العملية',
           description:
-              'يمكنك الان تسجيل الدخول بإستخدام كلمة المرور التي تم إسالها إليك عبر $sentBy',
+              'يمكنك الان تسجيل الدخول بإستخدام كلمة المرور الجديدة التي تم إسالها إليك عبر $sentBy',
           closeTitle: 'تسجيل الدخول',
         );
 
@@ -70,8 +70,8 @@ class ForgetPasswordViewModel extends BaseViewModel {
       );
       _snackbarService.showTopSuccessSnackbar(
         message: sentBy == SentByValue.SMS
-            ? 'تم طلب رمز التفعيل بنجاح ، ستصلك رسالة على رقم هاتفك.'
-            : 'تم طلب رمز التفعيل بنجاح ، ستصلك رسالة على البريد الالكتروني.',
+            ? 'تم طلب رمز التحقق من جديد، ستصلك رسالة على رقم هاتفك.'
+            : 'تم طلب رمز التحقق من جديد، ستصلك رسالة على البريد الالكتروني.',
       );
       return true;
     } catch (e) {
