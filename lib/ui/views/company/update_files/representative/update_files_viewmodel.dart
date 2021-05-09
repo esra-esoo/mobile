@@ -77,7 +77,7 @@ class RepresentativeUpdateFilesViewModel extends BaseViewModel {
   void initilizeView() async {
     try {
       refuseMessage =
-          _sharedService?.sharedRefuseState?.companyRefuseState?.message;
+          _sharedService?.sharedRefuseState?.companyRefuseState?.representativeMessage;
       imageFiles = await runBusyFuture(
         _companyService.getRepresentativeImages(),
         throwException: true,

@@ -8,7 +8,8 @@ part of 'refuse_state.dart';
 
 CompanyRefuseState _$CompanyRefuseStateFromJson(Map<String, dynamic> json) {
   return CompanyRefuseState(
-    json['message'] as String,
+    json['companyMessage'] as String,
+    json['representativeMessage'] as String,
     json['hasRefusedCompanyFiles'] as bool,
     json['hasRefusedRepresentativeFiles'] as bool,
     json['numberOfCompanyFiles'] as int,
@@ -19,7 +20,8 @@ CompanyRefuseState _$CompanyRefuseStateFromJson(Map<String, dynamic> json) {
 
 Map<String, dynamic> _$CompanyRefuseStateToJson(CompanyRefuseState instance) =>
     <String, dynamic>{
-      'message': instance.message,
+      'companyMessage': instance.companyMessage,
+      'representativeMessage': instance.representativeMessage,
       'hasRefusedCompanyFiles': instance.hasRefusedCompanyFiles,
       'hasRefusedRepresentativeFiles': instance.hasRefusedRepresentativeFiles,
       'numberOfCompanyFiles': instance.numberOfCompanyFiles,

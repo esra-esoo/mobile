@@ -4,7 +4,8 @@ part 'refuse_state.g.dart';
 
 @JsonSerializable()
 class CompanyRefuseState {
-  final String message;
+  final String companyMessage;
+  final String representativeMessage;
   final bool hasRefusedCompanyFiles;
   final bool hasRefusedRepresentativeFiles;
   final int numberOfCompanyFiles;
@@ -12,7 +13,8 @@ class CompanyRefuseState {
   final String refuseType;
 
   const CompanyRefuseState(
-    this.message,
+    this.companyMessage,
+    this.representativeMessage,
     this.hasRefusedCompanyFiles,
     this.hasRefusedRepresentativeFiles,
     this.numberOfCompanyFiles,
@@ -21,7 +23,8 @@ class CompanyRefuseState {
   );
 
   CompanyRefuseState.initial()
-      : message = null,
+      : companyMessage = null,
+        representativeMessage = null,
         hasRefusedCompanyFiles = false,
         hasRefusedRepresentativeFiles = false,
         numberOfCompanyFiles = 0,
