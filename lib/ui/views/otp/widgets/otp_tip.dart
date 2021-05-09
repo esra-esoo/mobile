@@ -9,7 +9,7 @@ class OtpTip extends StatelessWidget {
     return Padding(
       padding: const EdgeInsets.all(8.0),
       child: Text(
-        'ادخل رمز التفعيل الذي تم ارساله لهاتف, الرمز صالح لدقيقتين.',
+        'ادخل رمز التفعيل الذي تم ارساله لهاتفك, الرمز صالح لدقيقتين.',
         style: TextStyle(
           color: Colors.white,
           fontSize: getValueForScreenType<double>(
