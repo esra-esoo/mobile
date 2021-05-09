@@ -61,15 +61,4 @@ class SignInViewModel extends FormViewModel {
   }
 
   Future recoverPassword() async {}
-
-  // Future _showSuccessModal() async {
-  //   await showGeneralDialog(
-  //     context: Get.overlayContext,
-  //     barrierColor: Colors.white,
-  //     barrierDismissible: false,
-  //     barrierLabel: "success dialog",
-  //     transitionDuration: const Duration(milliseconds: 400),
-  //     pageBuilder: (_, __, ___) => SuccessUploadModal(),
-  //   );
-  // }
 }

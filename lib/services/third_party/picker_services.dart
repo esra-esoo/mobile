@@ -4,6 +4,7 @@ import 'package:flutter/services.dart';
 import 'package:flutter_platform_widgets/flutter_platform_widgets.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
+import 'package:huayati/consts/pass_sent_by.dart';
 import 'package:huayati/consts/styles.dart';
 import 'package:image_picker/image_picker.dart';
 
@@ -189,7 +190,7 @@ class PickerService {
         });
   }
 
-  Future<int> shoResetMethod() async {
+  Future<int> showResetMethod() async {
     await HapticFeedback.mediumImpact();
     return await showPlatformModalSheet(
         androidEnableDrag: true,
@@ -223,7 +224,7 @@ class PickerService {
                       splashColor: kcolorBluelight,
                       minWidth: 150.w,
                       height: 90.h,
-                      onPressed: () => Navigator.pop(context, 2),
+                      onPressed: () => Navigator.pop(context, SentByValue.SMS),
                       icon: Icon(Icons.phone_android, color: kcolorPrimaryBlue),
                       label: Text(
                         'رقم الهاتف',
@@ -244,7 +245,8 @@ class PickerService {
                       minWidth: 150.w,
                       height: 90.h,
                       splashColor: kcolorBluelight,
-                      onPressed: () => Navigator.pop(context, 1),
+                      onPressed: () =>
+                          Navigator.pop(context, SentByValue.EMAIL),
                       icon:
                           Icon(Icons.email_outlined, color: kcolorPrimaryBlue),
                       label: Text(
