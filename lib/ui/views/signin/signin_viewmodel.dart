@@ -1,8 +1,11 @@
 import 'package:huayati/app/locator.dart';
 import 'package:huayati/app/router.gr.dart';
+import 'package:huayati/consts/pass_sent_by.dart';
 import 'package:huayati/services/auth_service.dart';
 import 'package:huayati/services/shared_service.dart';
+import 'package:huayati/services/third_party/dialog_service.dart';
 import 'package:huayati/services/third_party/navigation_service.dart';
+import 'package:huayati/services/third_party/picker_services.dart';
 import 'package:huayati/services/third_party/snackbar_service.dart';
 import 'package:huayati/ui/views/signin/signin_view.form.dart';
 import 'package:stacked/stacked.dart';
@@ -13,6 +16,8 @@ class SignInViewModel extends FormViewModel {
   final _snackbarService = locator<SnackbarService>();
   final _authService = locator<AuthService>();
   final _sharedService = locator<SharedService>();
+  final _pickerService = locator<PickerService>();
+  final _dialogService = locator<DialogService>();
 
   @override
   void setFormStatus() {}
@@ -60,5 +65,38 @@ class SignInViewModel extends FormViewModel {
     );
   }
 
-  Future recoverPassword() async {}
+  Future recoverPassword() async {
+    var resetMethod = await _pickerService.showResetMethod();
+    if (resetMethod != null) {
+      DialogResponse dialogResponse =
+          await _dialogService.showPhoneOrEmailDialog(
+        isEmail: resetMethod == SentByValue.EMAIL,
+      );
+      if (dialogResponse.confirmed && dialogResponse.responseData[0] != null) {
+        await _forgetPassword(dialogResponse.responseData[0], resetMethod);
+      }
+    }
+  }
+
+  Future _forgetPassword(String phoneNumberOrEmail, int resetMethod) async {
+    try {
+      await runBusyFuture(
+        _authService.forgotPassword(
+          phoneNumberOrEmail: null,
+          resetMethod: null,
+        ),
+        throwException: true,
+      );
+      await _navigationService.pushNamedAndRemoveUntil(
+        Routes.forgetPasswordView,
+        arguments: ForgetPasswordViewArguments(
+          phoneNumberOrEmail: phoneNumberOrEmail,
+          sentBy: resetMethod,
+        ),
+      );
+    } catch (e) {
+      print(e.toString());
+      _snackbarService.showBottomErrorSnackbar(message: e.toString());
+    }
+  }
 }
