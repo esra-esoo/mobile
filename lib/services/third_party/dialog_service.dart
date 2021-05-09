@@ -121,7 +121,7 @@ class DialogService {
           ),
         ),
         title: Text(
-          isEmail ? 'أدخل البريد الالكتروني' : 'أدخل رقم الهاتف',
+          isEmail ? 'أدخل عنوان البريد الالكتروني' : 'أدخل رقم الهاتف',
           textAlign: TextAlign.center,
         ),
         content: Material(
@@ -133,6 +133,19 @@ class DialogService {
                   isEmail ? TextInputType.emailAddress : TextInputType.number,
               maxLength: isEmail ? null : 10,
               autofocus: true,
+              inputFormatters: isEmail
+                  ? []
+                  : [
+                      LengthLimitingTextInputFormatter(10),
+                      FilteringTextInputFormatter.digitsOnly
+                    ],
+              cupertino: (_, __) => CupertinoTextFieldData(
+                placeholder: isEmail ? 'email@mail.com' : '09XXXXXXXX',
+              ),
+              material: (_, __) => MaterialTextFieldData(
+                decoration: InputDecoration(
+                    hintText: isEmail ? 'email@mail.com' : '09XXXXXXXX'),
+              ),
               onChanged: (value) => inputValue = value,
               textAlign: TextAlign.center,
             ),

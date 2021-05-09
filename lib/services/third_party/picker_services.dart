@@ -198,7 +198,7 @@ class PickerService {
         context: Get.overlayContext,
         builder: (context) {
           return Container(
-            height: 200,
+            height: MediaQuery.of(context).size.height / 3,
             decoration: BoxDecoration(
               borderRadius: const BorderRadius.only(
                 topLeft: Radius.circular(25),
@@ -209,7 +209,18 @@ class PickerService {
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                SizedBox(height: 20.h),
+                SizedBox(height: 10.h),
+                Material(
+                  child: Text(
+                    'إستعادة بإستعمال',
+                    style: TextStyle(
+                      color: kcolorPrimaryBlue,
+                      fontSize: 18.sp,
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
+                ),
+                SizedBox(height: 40.h),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   children: [
@@ -230,7 +241,7 @@ class PickerService {
                         'رقم الهاتف',
                         style: TextStyle(
                           color: kcolorPrimaryBlue,
-                          fontSize: 18,
+                          fontSize: 16.sp,
                         ),
                       ),
                     ),
@@ -238,7 +249,7 @@ class PickerService {
                       shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(10),
                         side: BorderSide(
-                          color: Colors.white,
+                          color: kcolorPrimaryBlue,
                           width: 1,
                         ),
                       ),
@@ -253,7 +264,7 @@ class PickerService {
                         'البريد',
                         style: TextStyle(
                           color: kcolorPrimaryBlue,
-                          fontSize: 18.sp,
+                          fontSize: 16.sp,
                         ),
                       ),
                     ),
