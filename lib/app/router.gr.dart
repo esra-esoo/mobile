@@ -17,6 +17,7 @@ import '../ui/views/company/create_files/create_files_view.dart';
 import '../ui/views/company/representative_data/representative_data_view.dart';
 import '../ui/views/company/update_files/company/update_files_view.dart';
 import '../ui/views/company/update_files/representative/update_files_view.dart';
+import '../ui/views/forget_password/forget_password_view.dart';
 import '../ui/views/individual/bank_accounts/bank_accounts_view.dart';
 import '../ui/views/individual/create_files/create_files_view.dart';
 import '../ui/views/individual/personal_data/personal_data_view.dart';
@@ -50,6 +51,7 @@ class Routes {
   static const String signInView = '/sign-in-view';
   static const String signUpView = '/sign-up-view';
   static const String otpView = '/otp-view';
+  static const String forgetPasswordView = '/forget-password-view';
   static const String editProfileView = '/edit-profile-view';
   static const String changePasswordView = '/change-password-view';
   static const all = <String>{
@@ -68,6 +70,7 @@ class Routes {
     signInView,
     signUpView,
     otpView,
+    forgetPasswordView,
     editProfileView,
     changePasswordView,
   };
@@ -96,6 +99,7 @@ class Router extends RouterBase {
     RouteDef(Routes.signInView, page: SignInView),
     RouteDef(Routes.signUpView, page: SignUpView),
     RouteDef(Routes.otpView, page: OtpView),
+    RouteDef(Routes.forgetPasswordView, page: ForgetPasswordView),
     RouteDef(Routes.editProfileView, page: EditProfileView),
     RouteDef(Routes.changePasswordView, page: ChangePasswordView),
   ];
@@ -213,6 +217,18 @@ class Router extends RouterBase {
         fullscreenDialog: true,
       );
     },
+    ForgetPasswordView: (data) {
+      final args = data.getArgs<ForgetPasswordViewArguments>(nullOk: false);
+      return buildAdaptivePageRoute<dynamic>(
+        builder: (context) => ForgetPasswordView(
+          key: args.key,
+          phoneNumberOrEmail: args.phoneNumberOrEmail,
+          sentBy: args.sentBy,
+        ),
+        settings: data,
+        fullscreenDialog: true,
+      );
+    },
     EditProfileView: (data) {
       final args = data.getArgs<EditProfileViewArguments>(
         orElse: () => EditProfileViewArguments(),
@@ -267,6 +283,15 @@ class OtpViewArguments {
       @required this.phoneNumber,
       this.email,
       @required this.customerType});
+}
+
+/// ForgetPasswordView arguments holder class
+class ForgetPasswordViewArguments {
+  final Key key;
+  final String phoneNumberOrEmail;
+  final int sentBy;
+  ForgetPasswordViewArguments(
+      {this.key, @required this.phoneNumberOrEmail, @required this.sentBy});
 }
 
 /// EditProfileView arguments holder class

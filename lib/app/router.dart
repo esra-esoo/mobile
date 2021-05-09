@@ -7,6 +7,7 @@ import 'package:huayati/ui/views/company/create_files/create_files_view.dart';
 import 'package:huayati/ui/views/company/representative_data/representative_data_view.dart';
 import 'package:huayati/ui/views/company/update_files/company/update_files_view.dart';
 import 'package:huayati/ui/views/company/update_files/representative/update_files_view.dart';
+import 'package:huayati/ui/views/forget_password/forget_password_view.dart';
 import 'package:huayati/ui/views/individual/bank_accounts/bank_accounts_view.dart';
 import 'package:huayati/ui/views/individual/create_files/create_files_view.dart';
 import 'package:huayati/ui/views/individual/personal_data/personal_data_view.dart';
@@ -44,6 +45,7 @@ import 'package:huayati/ui/views/startup/startup_view.dart';
     transitionsBuilder: TransitionsBuilders.fadeIn,
   ),
   AdaptiveRoute(page: OtpView, fullscreenDialog: true),
+  AdaptiveRoute(page: ForgetPasswordView, fullscreenDialog: true),
   AdaptiveRoute(page: EditProfileView, fullscreenDialog: true),
   AdaptiveRoute(page: ChangePasswordView, fullscreenDialog: true),
 ])
