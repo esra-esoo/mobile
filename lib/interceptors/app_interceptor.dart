@@ -12,7 +12,7 @@ import 'package:huayati/services/third_party/secure_storage_service.dart';
 import 'package:huayati/services/user_service.dart';
 import 'package:oauth2/oauth2.dart' as oauth2;
 
-class AppInterceptor extends Interceptor {
+class AppInterceptor extends InterceptorsWrapper {
   final Dio _dio;
   final _secureStorageService = locator<SecureStorageService>();
   final _navigationService = locator<NavigationService>();
@@ -21,25 +21,28 @@ class AppInterceptor extends Interceptor {
   AppInterceptor(this._dio);
 
   @override
-  Future onRequest(RequestOptions options) async {
+  void onRequest(
+    RequestOptions options,
+    RequestInterceptorHandler handler,
+  ) async {
     if (options.headers.containsKey("requires-token")) {
       //remove the auxiliary header
       options.headers.remove("requires-token");
 
       var token = await _secureStorageService.readString(StorageKeys.TOKEN);
       options.headers.addAll({"Authorization": "Bearer " + token});
-      return options;
+      handler.next(options);
     }
   }
 
   @override
-  Future onError(DioError dioError) async {
+  void onError(DioError dioError, ErrorInterceptorHandler handler) async {
     try {
       if (dioError?.response?.statusCode == 401) {
         try {
           _dio.interceptors.requestLock.lock();
           _dio.interceptors.responseLock.lock();
-          RequestOptions options = dioError.response.request;
+          RequestOptions options = dioError.requestOptions;
 
           final newToken = await _refrshToken();
 
@@ -48,7 +51,8 @@ class AppInterceptor extends Interceptor {
           _dio.interceptors.responseLock.unlock();
           print('token was refreshed successfully');
 
-          return _dio.request(options.path, options: options);
+          final Response response = await _dio.fetch(options);
+          return handler.resolve(response);
         } catch (e) {
           print('AppInterceptor refresh token => $e');
           _dio.interceptors.requestLock.unlock();
@@ -57,17 +61,28 @@ class AppInterceptor extends Interceptor {
           await signOut();
         }
       } else if (dioError?.response?.statusCode == 500) {
-        return _dio.reject(
-            'حدث خطأ أثناء محاولة تنفيذ طلبك ، نرجو المحاولة في وقت مرة أخر او الاتصال بمسؤول النظام.');
+        return handler.reject(DioError(
+          error:
+              'حدث خطأ أثناء محاولة تنفيذ طلبك ، نرجو المحاولة في وقت مرة أخر او الاتصال بمسؤول النظام.',
+          requestOptions: dioError.requestOptions,
+        ));
       } else if (dioError.response != null) {
-        return _dio.reject(dioError?.response?.data);
+        return handler.reject(DioError(
+          error: dioError?.response?.data,
+          requestOptions: dioError.requestOptions,
+        ));
       } else if (dioError.error is SocketException) {
-        return _dio.reject(
-            'لم نتمكن من الاتصال بالخدمة ،نرحو التحقق من اتصالك بالشبكة.');
+        return handler.reject(DioError(
+          error: 'لم نتمكن من الاتصال بالخدمة ،نرحو التحقق من اتصالك بالشبكة.',
+          requestOptions: dioError.requestOptions,
+        ));
       } else
-        return dioError;
+        return handler.next(dioError);
     } catch (e) {
-      return _dio.reject('حدث خطأ أثناء محاولة الاتصال بالخدمة.');
+      return handler.reject(DioError(
+        error: 'حدث خطأ أثناء محاولة الاتصال بالخدمة.',
+        requestOptions: dioError.requestOptions,
+      ));
     }
   }
 
