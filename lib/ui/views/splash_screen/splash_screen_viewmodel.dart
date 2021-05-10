@@ -1,12 +1,12 @@
 import 'package:huayati/app/locator.dart';
-import 'package:huayati/app/router.gr.dart';
+import 'package:huayati/app/app.router.dart';
 import 'package:huayati/services/shared_service.dart';
-import 'package:huayati/services/third_party/navigation_service.dart';
+import 'package:stacked_services/stacked_services.dart' as stacked_services;
 import 'package:huayati/services/user_service.dart';
 import 'package:stacked/stacked.dart';
 
 class SplashScreenViewModel extends BaseViewModel {
-  final _navigationService = locator<NavigationService>();
+  final _navigationService = locator<stacked_services.NavigationService>();
   final _userService = locator<UserService>();
   final _sharedService = locator<SharedService>();
 

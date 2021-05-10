@@ -2,11 +2,11 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:huayati/app/locator.dart';
-import 'package:huayati/app/router.gr.dart';
+import 'package:huayati/app/app.router.dart';
 import 'package:huayati/consts/styles.dart';
 import 'package:huayati/models/navigation_result.dart';
 import 'package:huayati/services/shared_service.dart';
-import 'package:huayati/services/third_party/navigation_service.dart';
+import 'package:stacked_services/stacked_services.dart' as stacked_services;
 import 'package:huayati/services/third_party/snackbar_service.dart';
 import 'package:huayati/services/user_service.dart';
 import 'package:huayati/ui/views/profile/profile_viewmodel.dart';
@@ -114,7 +114,7 @@ class _ChangePassword extends StatelessWidget {
       child: InkWell(
         onTap: () async {
           NavigationResult result =
-              await locator<NavigationService>().navigateTo(
+              await locator<stacked_services.NavigationService>().navigateTo(
             Routes.changePasswordView,
           );
           if (result != null) {
@@ -162,7 +162,7 @@ class _ChangeProfile extends StatelessWidget {
       type: MaterialType.transparency,
       child: InkWell(
         onTap: () async {
-          var updatedProfile = await locator<NavigationService>().navigateTo(
+          var updatedProfile = await locator<stacked_services.NavigationService>().navigateTo(
             Routes.editProfileView,
           );
           if (updatedProfile != null) {
@@ -203,7 +203,7 @@ class _SignOutButton extends StatelessWidget {
         onTap: () async {
           await locator<UserService>().clearUser();
           locator<SharedService>().resetRefuseState();
-          await locator<NavigationService>()
+          await locator<stacked_services.NavigationService>()
               .pushNamedAndRemoveUntil(Routes.signInView);
         },
         splashColor: Colors.red,

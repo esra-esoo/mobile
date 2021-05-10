@@ -1,5 +1,3 @@
-import 'package:auto_route/auto_route.dart';
-import 'package:auto_route/auto_route_annotations.dart';
 import 'package:huayati/ui/views/change_password/change_password_view.dart';
 import 'package:huayati/ui/views/company/bank_account/bank_account_view.dart';
 import 'package:huayati/ui/views/company/company_data/company_data_view.dart';
@@ -18,35 +16,38 @@ import 'package:huayati/ui/views/signin/signin_view.dart';
 import 'package:huayati/ui/views/signup/signup_view.dart';
 import 'package:huayati/ui/views/splash_screen/splash_screen_view.dart';
 import 'package:huayati/ui/views/startup/startup_view.dart';
+import 'package:stacked/stacked_annotations.dart';
 
-@AdaptiveAutoRouter(routes: [
-  AdaptiveRoute(page: SplashScreenView, initial: true),
-  AdaptiveRoute(page: CompanyCreateFilesView),
-  AdaptiveRoute(page: CompanyDataView),
-  AdaptiveRoute(page: CompanyBankAccountsDataView),
-  AdaptiveRoute(page: CompanyUpdateFilesView),
-  AdaptiveRoute(page: RepresentativeUpdateFilesView),
-  AdaptiveRoute(page: RepresentativeDataView),
-  AdaptiveRoute(page: IndividualCreateFilesView),
-  AdaptiveRoute(page: IndividualUpdateFilesView),
-  AdaptiveRoute(page: IndividualPersonalDataView),
-  AdaptiveRoute(page: IndividualBankAccountsDataView),
+@StackedApp(routes: [
+  MaterialRoute(page: SplashScreenView, initial: true),
+  MaterialRoute(page: CompanyCreateFilesView),
+  MaterialRoute(page: CompanyDataView),
+  MaterialRoute(page: CompanyBankAccountsDataView),
+  MaterialRoute(page: CompanyUpdateFilesView),
+  MaterialRoute(page: RepresentativeUpdateFilesView),
+  MaterialRoute(page: RepresentativeDataView),
+  MaterialRoute(page: IndividualCreateFilesView),
+  MaterialRoute(page: IndividualUpdateFilesView),
+  MaterialRoute(page: IndividualPersonalDataView),
+  MaterialRoute(page: IndividualBankAccountsDataView),
   CustomRoute(
     page: StartUpView,
-    transitionsBuilder: TransitionsBuilders.fadeIn,
+    // transitionsBuilder: TransitionsBuilders.fadeIn,
     durationInMilliseconds: 500,
   ),
   CustomRoute(
     page: SignInView,
-    transitionsBuilder: TransitionsBuilders.fadeIn,
+    // transitionsBuilder: TransitionsBuilders.fadeIn,
   ),
   CustomRoute(
     page: SignUpView,
-    transitionsBuilder: TransitionsBuilders.fadeIn,
+    // transitionsBuilder: TransitionsBuilders.fadeIn,
   ),
-  AdaptiveRoute(page: OtpView, fullscreenDialog: true),
-  AdaptiveRoute(page: ForgetPasswordView, fullscreenDialog: true),
-  AdaptiveRoute(page: EditProfileView, fullscreenDialog: true),
-  AdaptiveRoute(page: ChangePasswordView, fullscreenDialog: true),
+  MaterialRoute(page: OtpView, fullscreenDialog: true),
+  MaterialRoute(page: ForgetPasswordView, fullscreenDialog: true),
+  MaterialRoute(page: EditProfileView, fullscreenDialog: true),
+  MaterialRoute(page: ChangePasswordView, fullscreenDialog: true),
 ])
-class $Router {}
+class AppSetup {
+  /** Serves no purpose besides having an annotation attached to it */
+}

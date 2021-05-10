@@ -5,13 +5,13 @@ import 'package:huayati/services/company_service.dart';
 import 'package:huayati/services/individual_service.dart';
 import 'package:huayati/services/shared_service.dart';
 import 'package:huayati/services/third_party/dialog_service.dart';
-import 'package:huayati/services/third_party/navigation_service.dart';
 import 'package:huayati/services/third_party/picker_services.dart';
 import 'package:huayati/services/third_party/secure_storage_service.dart';
 import 'package:huayati/services/third_party/snackbar_service.dart';
 import 'package:huayati/services/user_service.dart';
 import 'package:huayati/ui/views/profile/profile_viewmodel.dart';
 import 'package:huayati/ui/views/startup/startup_viewmodel.dart';
+import 'package:stacked_services/stacked_services.dart' as stacked_services;
 
 GetIt locator = GetIt.instance;
 
@@ -19,7 +19,7 @@ void setupLocator() {
   //////////////////////////////////////////////////////////////////////////
   //##Services
   locator.registerLazySingleton(() => Api());
-  locator.registerLazySingleton(() => NavigationService());
+  locator.registerLazySingleton(() => stacked_services.NavigationService());
   locator.registerLazySingleton(() => SnackbarService());
   locator.registerLazySingleton(() => DialogService());
   locator.registerLazySingleton(() => SecureStorageService());

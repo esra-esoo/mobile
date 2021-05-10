@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:huayati/app/locator.dart';
-import 'package:huayati/app/router.gr.dart';
+import 'package:huayati/app/app.router.dart';
 import 'package:huayati/consts/styles.dart';
-import 'package:huayati/services/third_party/navigation_service.dart';
+import 'package:stacked_services/stacked_services.dart' as stacked_services;
 import 'package:huayati/ui/animations/fade_animation.dart';
 import 'package:huayati/ui/widgets/botton_padding.dart';
 import 'package:responsive_builder/responsive_builder.dart';
@@ -106,7 +106,7 @@ class SuccessUploadModal extends StatelessWidget {
                   ),
                 ),
                 textColor: kcolorPrimaryBlue,
-                onPressed: () => locator<NavigationService>()
+                onPressed: () => locator<stacked_services.NavigationService>()
                     .pushNamedAndRemoveUntil(Routes.startUpView),
               ),
               const BottomPadding(),

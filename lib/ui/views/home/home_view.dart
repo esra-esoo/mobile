@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:huayati/app/router.gr.dart';
+import 'package:huayati/app/app.router.dart';
 import 'package:huayati/consts/account_type.dart';
 import 'package:huayati/models/menu_item.dart';
 import 'package:huayati/models/shared_refuse_state.dart';

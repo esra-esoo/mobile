@@ -7,7 +7,7 @@ import 'package:huayati/models/navigation_result.dart';
 import 'package:huayati/services/company_service.dart';
 import 'package:huayati/services/shared_service.dart';
 import 'package:huayati/services/third_party/dialog_service.dart';
-import 'package:huayati/services/third_party/navigation_service.dart';
+import 'package:stacked_services/stacked_services.dart' as stacked_services;
 import 'package:huayati/ui/widgets/success_update_modal.dart';
 import 'package:huayati/utils/file_utils.dart';
 import 'package:stacked/stacked.dart';
@@ -20,7 +20,7 @@ import 'package:huayati/extensions/file_extensions.dart';
 class CompanyUpdateFilesViewModel extends BaseViewModel {
   final _companyService = locator<CompanyService>();
   final _snackbarService = locator<SnackbarService>();
-  final _navigationService = locator<NavigationService>();
+  final _navigationService = locator<stacked_services.NavigationService>();
   final _dialogService = locator<DialogService>();
   final _sharedService = locator<SharedService>();
 

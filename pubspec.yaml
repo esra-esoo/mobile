@@ -32,7 +32,6 @@ dependencies:
   flutter_hooks:
   responsive_builder: ^0.3.0
   observable_ish: ^2.1.4
-  auto_route: ^0.6.9
   get: ^3.24.0
   badges: ^1.1.6
   flutter_spinkit: ^4.1.2+1
@@ -44,6 +43,7 @@ dependencies:
   oauth2: ^1.6.3
   circular_countdown_timer: ^0.1.0
   jwt_decoder: ^1.0.4
+  stacked_services: ^0.7.3
 
 dev_dependencies:
   flutter_test:
@@ -51,7 +51,6 @@ dev_dependencies:
   json_serializable:
   build_runner:
   stacked_generator: ^0.2.0
-  auto_route_generator:
  
 
 # The following section is specific to Flutter.

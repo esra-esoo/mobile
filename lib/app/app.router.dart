@@ -1,13 +1,13 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
 // **************************************************************************
-// AutoRouteGenerator
+// StackedRouterGenerator
 // **************************************************************************
 
 // ignore_for_file: public_member_api_docs
 
-import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
+import 'package:stacked/stacked.dart';
 
 import '../models/profile_info.dart';
 import '../ui/views/change_password/change_password_view.dart';
@@ -76,7 +76,7 @@ class Routes {
   };
 }
 
-class Router extends RouterBase {
+class StackedRouter extends RouterBase {
   @override
   List<RouteDef> get routes => _routes;
   final _routes = <RouteDef>[
@@ -104,70 +104,70 @@ class Router extends RouterBase {
     RouteDef(Routes.changePasswordView, page: ChangePasswordView),
   ];
   @override
-  Map<Type, AutoRouteFactory> get pagesMap => _pagesMap;
-  final _pagesMap = <Type, AutoRouteFactory>{
+  Map<Type, StackedRouteFactory> get pagesMap => _pagesMap;
+  final _pagesMap = <Type, StackedRouteFactory>{
     SplashScreenView: (data) {
-      return buildAdaptivePageRoute<dynamic>(
+      return MaterialPageRoute<dynamic>(
         builder: (context) => SplashScreenView(),
         settings: data,
       );
     },
     CompanyCreateFilesView: (data) {
-      return buildAdaptivePageRoute<dynamic>(
+      return MaterialPageRoute<dynamic>(
         builder: (context) => const CompanyCreateFilesView(),
         settings: data,
       );
     },
     CompanyDataView: (data) {
-      return buildAdaptivePageRoute<dynamic>(
+      return MaterialPageRoute<dynamic>(
         builder: (context) => const CompanyDataView(),
         settings: data,
       );
     },
     CompanyBankAccountsDataView: (data) {
-      return buildAdaptivePageRoute<dynamic>(
+      return MaterialPageRoute<dynamic>(
         builder: (context) => const CompanyBankAccountsDataView(),
         settings: data,
       );
     },
     CompanyUpdateFilesView: (data) {
-      return buildAdaptivePageRoute<dynamic>(
+      return MaterialPageRoute<dynamic>(
         builder: (context) => const CompanyUpdateFilesView(),
         settings: data,
       );
     },
     RepresentativeUpdateFilesView: (data) {
-      return buildAdaptivePageRoute<dynamic>(
+      return MaterialPageRoute<dynamic>(
         builder: (context) => const RepresentativeUpdateFilesView(),
         settings: data,
       );
     },
     RepresentativeDataView: (data) {
-      return buildAdaptivePageRoute<dynamic>(
+      return MaterialPageRoute<dynamic>(
         builder: (context) => const RepresentativeDataView(),
         settings: data,
       );
     },
     IndividualCreateFilesView: (data) {
-      return buildAdaptivePageRoute<dynamic>(
+      return MaterialPageRoute<dynamic>(
         builder: (context) => const IndividualCreateFilesView(),
         settings: data,
       );
     },
     IndividualUpdateFilesView: (data) {
-      return buildAdaptivePageRoute<dynamic>(
+      return MaterialPageRoute<dynamic>(
         builder: (context) => const IndividualUpdateFilesView(),
         settings: data,
       );
     },
     IndividualPersonalDataView: (data) {
-      return buildAdaptivePageRoute<dynamic>(
+      return MaterialPageRoute<dynamic>(
         builder: (context) => const IndividualPersonalDataView(),
         settings: data,
       );
     },
     IndividualBankAccountsDataView: (data) {
-      return buildAdaptivePageRoute<dynamic>(
+      return MaterialPageRoute<dynamic>(
         builder: (context) => const IndividualBankAccountsDataView(),
         settings: data,
       );
@@ -176,12 +176,11 @@ class Router extends RouterBase {
       return PageRouteBuilder<dynamic>(
         pageBuilder: (context, animation, secondaryAnimation) => StartUpView(),
         settings: data,
-        transitionsBuilder: TransitionsBuilders.fadeIn,
         transitionDuration: const Duration(milliseconds: 500),
       );
     },
     SignInView: (data) {
-      final args = data.getArgs<SignInViewArguments>(
+      var args = data.getArgs<SignInViewArguments>(
         orElse: () => SignInViewArguments(),
       );
       return PageRouteBuilder<dynamic>(
@@ -190,23 +189,21 @@ class Router extends RouterBase {
           phoneNumber: args.phoneNumber,
         ),
         settings: data,
-        transitionsBuilder: TransitionsBuilders.fadeIn,
       );
     },
     SignUpView: (data) {
-      final args = data.getArgs<SignUpViewArguments>(
+      var args = data.getArgs<SignUpViewArguments>(
         orElse: () => SignUpViewArguments(),
       );
       return PageRouteBuilder<dynamic>(
         pageBuilder: (context, animation, secondaryAnimation) =>
             SignUpView(key: args.key),
         settings: data,
-        transitionsBuilder: TransitionsBuilders.fadeIn,
       );
     },
     OtpView: (data) {
-      final args = data.getArgs<OtpViewArguments>(nullOk: false);
-      return buildAdaptivePageRoute<dynamic>(
+      var args = data.getArgs<OtpViewArguments>(nullOk: false);
+      return MaterialPageRoute<dynamic>(
         builder: (context) => OtpView(
           key: args.key,
           phoneNumber: args.phoneNumber,
@@ -218,8 +215,8 @@ class Router extends RouterBase {
       );
     },
     ForgetPasswordView: (data) {
-      final args = data.getArgs<ForgetPasswordViewArguments>(nullOk: false);
-      return buildAdaptivePageRoute<dynamic>(
+      var args = data.getArgs<ForgetPasswordViewArguments>(nullOk: false);
+      return MaterialPageRoute<dynamic>(
         builder: (context) => ForgetPasswordView(
           key: args.key,
           phoneNumberOrEmail: args.phoneNumberOrEmail,
@@ -230,10 +227,10 @@ class Router extends RouterBase {
       );
     },
     EditProfileView: (data) {
-      final args = data.getArgs<EditProfileViewArguments>(
+      var args = data.getArgs<EditProfileViewArguments>(
         orElse: () => EditProfileViewArguments(),
       );
-      return buildAdaptivePageRoute<dynamic>(
+      return MaterialPageRoute<dynamic>(
         builder: (context) => EditProfileView(
           key: args.key,
           profileInfo: args.profileInfo,
@@ -243,10 +240,10 @@ class Router extends RouterBase {
       );
     },
     ChangePasswordView: (data) {
-      final args = data.getArgs<ChangePasswordViewArguments>(
+      var args = data.getArgs<ChangePasswordViewArguments>(
         orElse: () => ChangePasswordViewArguments(),
       );
-      return buildAdaptivePageRoute<dynamic>(
+      return MaterialPageRoute<dynamic>(
         builder: (context) => ChangePasswordView(key: args.key),
         settings: data,
         fullscreenDialog: true,
