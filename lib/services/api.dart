@@ -1,14 +1,15 @@
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:huayati/app/app_config.dart';
 import 'package:huayati/config/config.dart';
 import 'package:huayati/interceptors/app_interceptor.dart';
 import 'package:oauth2/oauth2.dart' as oauth2;
 
 class Api {
   final Dio _dio = Dio();
-  final String endpoint;
 
-  Api(this.endpoint) {
+  Api() {
     _dio.interceptors.add(AppInterceptor(_dio));
   }
 
@@ -16,8 +17,9 @@ class Api {
     @required String username,
     @required String password,
   }) async {
+    var authEndpoint = AppConfig.of(Get.context).authEndpoint;
     return await oauth2.resourceOwnerPasswordGrant(
-      Uri.parse(Config.authorizationEndpoint),
+      Uri.parse(authEndpoint + '/connect/token'),
       username,
       password,
       identifier: Config.identifier,
@@ -31,8 +33,9 @@ class Api {
 
   Future postCallAuth({@required String url, @required dynamic data}) async {
     try {
+      var authEndpoint = AppConfig.of(Get.context).authEndpoint;
       final response = await _dio.post(
-        Config.authenticationEndpoint + url,
+        authEndpoint + url,
         data: data,
       );
       return response.data;
@@ -43,8 +46,9 @@ class Api {
 
   Future putCallAuth({@required String url, @required dynamic data}) async {
     try {
+      var authEndpoint = AppConfig.of(Get.context).authEndpoint;
       final response = await _dio.put(
-        Config.authenticationEndpoint + url,
+        authEndpoint + url,
         data: data,
         options: Options(
           headers: {"requires-token": true},
@@ -58,8 +62,9 @@ class Api {
 
   Future getCallAuth({@required String url}) async {
     try {
+      var authEndpoint = AppConfig.of(Get.context).authEndpoint;
       final response = await _dio.get(
-        Config.authenticationEndpoint + url,
+        authEndpoint + url,
         options: Options(
           headers: {"requires-token": true},
         ),
@@ -75,6 +80,7 @@ class Api {
     @required dynamic data,
   }) async {
     try {
+      var endpoint = AppConfig.of(Get.context).endpoint;
       final response = await _dio.post(
         endpoint + url,
         data: data,
@@ -93,6 +99,7 @@ class Api {
     @required dynamic data,
   }) async {
     try {
+      var endpoint = AppConfig.of(Get.context).endpoint;
       final response = await _dio.put(
         endpoint + url,
         data: data,
@@ -110,6 +117,7 @@ class Api {
     @required String url,
   }) async {
     try {
+      var endpoint = AppConfig.of(Get.context).endpoint;
       final response = await _dio.get(
         endpoint + url,
         options: Options(

@@ -6,12 +6,16 @@ class AppConfig extends InheritedWidget {
   final String buildFlavor;
   final Widget child;
   final bool isDevEnviroment;
+  final String authEndpoint;
+  final String endpoint;
 
   AppConfig({
     @required this.child,
     @required this.appTitle,
     @required this.buildFlavor,
     @required this.isDevEnviroment,
+    @required this.authEndpoint,
+    @required this.endpoint,
   });
 
   static AppConfig of(BuildContext context) {

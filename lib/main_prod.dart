@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'app/app_config.dart';
 import 'app/locator.dart';
+import 'config/config.dart';
 import 'main.dart';
 
 void main() async {
@@ -12,8 +13,10 @@ void main() async {
     appTitle: "هويتي",
     buildFlavor: "Production",
     isDevEnviroment: false,
+    authEndpoint: Config.prodAuthEndpoint,
+    endpoint: Config.prodEndpoint,
     child: MyApp(),
   );
-  setupLocator(endpoint: 'https://mobile.tatweer.ly:44356');
+  setupLocator();
   return runApp(configuredApp);
 }

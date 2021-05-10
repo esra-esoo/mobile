@@ -1,4 +1,3 @@
-import 'package:flutter/material.dart';
 import 'package:get_it/get_it.dart';
 import 'package:huayati/services/api.dart';
 import 'package:huayati/services/auth_service.dart';
@@ -16,10 +15,10 @@ import 'package:huayati/ui/views/startup/startup_viewmodel.dart';
 
 GetIt locator = GetIt.instance;
 
-void setupLocator({@required String endpoint}) {
+void setupLocator() {
   //////////////////////////////////////////////////////////////////////////
   //##Services
-  locator.registerLazySingleton(() => Api(endpoint));
+  locator.registerLazySingleton(() => Api());
   locator.registerLazySingleton(() => NavigationService());
   locator.registerLazySingleton(() => SnackbarService());
   locator.registerLazySingleton(() => DialogService());

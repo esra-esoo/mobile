@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:huayati/config/config.dart';
 
 import 'app/app_config.dart';
 import 'app/locator.dart';
@@ -13,8 +14,10 @@ void main() async {
     appTitle: "هويتي.DEV",
     buildFlavor: "Development",
     isDevEnviroment: true,
+    authEndpoint: Config.devAuthEndpoint,
+    endpoint: Config.devEndpoint,
     child: MyApp(),
   );
-  setupLocator(endpoint: 'https://mobile.tatweer.ly:44356');
+  setupLocator();
   runApp(configuredApp);
 }
