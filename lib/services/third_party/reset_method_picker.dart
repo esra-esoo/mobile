@@ -10,8 +10,10 @@ class ResetMethodPickerService {
   Future<int> showBottomSheet() async {
     await HapticFeedback.mediumImpact();
     return await showPlatformModalSheet(
-        androidEnableDrag: true,
-        androidBackgroundColor: Colors.transparent,
+        material: MaterialModalSheetData(
+          enableDrag: true,
+          backgroundColor: Colors.transparent,
+        ),
         context: Get.overlayContext,
         builder: (context) {
           return Container(

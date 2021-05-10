@@ -117,8 +117,10 @@ class PickerService {
   Future<ImageSource> showMediaType() async {
     await HapticFeedback.mediumImpact();
     return await showPlatformModalSheet(
-        androidEnableDrag: true,
-        androidBackgroundColor: Colors.transparent,
+        material: MaterialModalSheetData(
+          enableDrag: true,
+          backgroundColor: Colors.transparent,
+        ),
         context: Get.overlayContext,
         builder: (context) {
           return Container(
@@ -193,8 +195,10 @@ class PickerService {
   Future<int> showResetMethod() async {
     await HapticFeedback.mediumImpact();
     return await showPlatformModalSheet(
-        androidEnableDrag: true,
-        androidBackgroundColor: Colors.transparent,
+        material: MaterialModalSheetData(
+          enableDrag: true,
+          backgroundColor: Colors.transparent,
+        ),
         context: Get.overlayContext,
         builder: (context) {
           return Container(

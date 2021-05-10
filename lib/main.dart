@@ -31,7 +31,6 @@ class MyApp extends StatelessWidget {
     );
     return ScreenUtilInit(
       designSize: Size(414.0, 896.0),
-      allowFontScaling: false,
       builder: () {
         return MultiProvider(
           providers: [
