@@ -22,13 +22,7 @@ class MyApp extends StatelessWidget {
       DeviceOrientation.portraitUp,
       DeviceOrientation.portraitDown,
     ]);
-    SystemChrome.setSystemUIOverlayStyle(
-      SystemUiOverlayStyle(
-        statusBarColor: Colors.transparent,
-        statusBarIconBrightness: Brightness.dark,
-        statusBarBrightness: Brightness.light,
-      ),
-    );
+
     return ScreenUtilInit(
       designSize: Size(414.0, 896.0),
       builder: () {
@@ -48,6 +42,7 @@ class MyApp extends StatelessWidget {
             title: AppConfig.of(context).appTitle,
             debugShowCheckedModeBanner: false,
             theme: ThemeData(
+              appBarTheme: AppBarTheme(brightness: Brightness.dark),
               primarySwatch: kMaterialColor,
               primaryColor: kcolorPrimaryBlue,
               accentColor: Colors.white,
