@@ -5,13 +5,13 @@ import 'package:huayati/enums/dialog_type.dart';
 import 'package:huayati/models/customer_created_result.dart';
 import 'package:huayati/services/auth_service.dart';
 
-import 'package:stacked_services/stacked_services.dart' hide SnackbarService;
+import 'package:stacked_services/stacked_services.dart' ;
 import 'package:huayati/services/third_party/snackbar_service.dart';
 import 'package:stacked/stacked.dart';
 
 class OtpViewModel extends BaseViewModel {
   final _navigationService = locator<NavigationService>();
-  final _snackbarService = locator<SnackbarService>();
+  final _snackbarService = locator<SnackBarsService>();
   final _authService = locator<AuthService>();
   final _dialogService = locator<DialogService>();
 

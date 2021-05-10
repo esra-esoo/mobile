@@ -27,7 +27,7 @@ import 'package:huayati/services/third_party/secure_storage_service.dart';
 import 'package:huayati/services/user_service.dart';
 import 'package:huayati/ui/views/profile/profile_viewmodel.dart';
 import 'package:huayati/ui/views/startup/startup_viewmodel.dart';
-import 'package:stacked_services/stacked_services.dart'hide SnackbarService;
+import 'package:stacked_services/stacked_services.dart';
 
 import 'package:stacked/stacked_annotations.dart';
 
@@ -66,7 +66,7 @@ import 'package:stacked/stacked_annotations.dart';
     LazySingleton(classType: Api),
     LazySingleton(classType: NavigationService),
     LazySingleton(classType: DialogService),
-    LazySingleton(classType: SnackbarService),
+    LazySingleton(classType: SnackBarsService),
     LazySingleton(classType: SecureStorageService),
     LazySingleton(classType: PickerService),
     LazySingleton(classType: UserService),

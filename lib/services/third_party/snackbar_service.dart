@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:huayati/consts/styles.dart';
 
-class SnackbarService {
+class SnackBarsService {
   /// Shows a snack bar with the details passed in
   void showTopSuccessSnackbar({
     @required String message,

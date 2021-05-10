@@ -6,7 +6,7 @@ import 'package:huayati/app/app.router.dart';
 import 'package:huayati/consts/styles.dart';
 import 'package:huayati/models/navigation_result.dart';
 import 'package:huayati/services/shared_service.dart';
-import 'package:stacked_services/stacked_services.dart'hide SnackbarService;
+import 'package:stacked_services/stacked_services.dart';
 import 'package:huayati/services/third_party/snackbar_service.dart';
 import 'package:huayati/services/user_service.dart';
 import 'package:huayati/ui/views/profile/profile_viewmodel.dart';
@@ -121,11 +121,11 @@ class _ChangePassword extends StatelessWidget {
             NavigationResult navigationResult = result;
             await HapticFeedback.mediumImpact();
             if (navigationResult.success) {
-              locator<SnackbarService>().showBottomSuccessSnackbar(
+              locator<SnackBarsService>().showBottomSuccessSnackbar(
                 message: navigationResult.message,
               );
             } else {
-              locator<SnackbarService>().showBottomErrorSnackbar(
+              locator<SnackBarsService>().showBottomErrorSnackbar(
                 message: navigationResult.message,
               );
             }

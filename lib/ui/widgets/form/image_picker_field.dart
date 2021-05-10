@@ -95,7 +95,7 @@ class ImagePickerField extends StatelessWidget {
       File imageFile = File(pickedFile.path);
       double megabyte = (await imageFile.length()) / 1024 / 1024;
       if (megabyte >= 2.0) {
-        locator<SnackbarService>().showTopInfoSnackbar(
+        locator<SnackBarsService>().showTopInfoSnackbar(
           message: 'حجم الصورة يجب ان يكون أقل من 2 ميجا',
         );
         return;
@@ -104,12 +104,12 @@ class ImagePickerField extends StatelessWidget {
       onChanged(imageFile);
     } on Exception catch (e) {
       print(e);
-      locator<SnackbarService>().showTopErrorSnackbar(
+      locator<SnackBarsService>().showTopErrorSnackbar(
         message: 'حدث خطأ أثناء معالجة الصورة ، نرجو اختيار صورة اخرى',
       );
     } catch (e) {
       print(e.toString());
-      locator<SnackbarService>().showTopErrorSnackbar(
+      locator<SnackBarsService>().showTopErrorSnackbar(
         message: 'حدث خطأ أثناء معالجة الصورة ، نرجو اختيار صورة اخرى',
       );
     }

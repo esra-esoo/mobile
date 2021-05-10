@@ -5,7 +5,7 @@ import 'package:huayati/app/app.locator.dart';
 import 'package:huayati/consts/styles.dart';
 import 'package:huayati/models/menu_item.dart';
 import 'package:huayati/models/navigation_result.dart';
-import 'package:stacked_services/stacked_services.dart'hide SnackbarService;
+import 'package:stacked_services/stacked_services.dart';
 import 'package:huayati/services/third_party/snackbar_service.dart';
 
 class GridItem extends StatelessWidget {
@@ -22,11 +22,11 @@ class GridItem extends StatelessWidget {
           NavigationResult navigationResult = result;
           await HapticFeedback.mediumImpact();
           if (navigationResult.success) {
-            locator<SnackbarService>().showBottomSuccessSnackbar(
+            locator<SnackBarsService>().showBottomSuccessSnackbar(
               message: navigationResult.message,
             );
           } else {
-            locator<SnackbarService>().showBottomErrorSnackbar(
+            locator<SnackBarsService>().showBottomErrorSnackbar(
               message: navigationResult.message,
             );
           }

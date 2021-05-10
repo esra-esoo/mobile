@@ -7,7 +7,7 @@ import 'package:huayati/models/individual/image_raw_file.dart';
 import 'package:huayati/models/navigation_result.dart';
 import 'package:huayati/services/shared_service.dart';
 
-import 'package:stacked_services/stacked_services.dart' hide SnackbarService;
+import 'package:stacked_services/stacked_services.dart' ;
 import 'package:huayati/ui/widgets/success_update_modal.dart';
 import 'package:huayati/utils/file_utils.dart';
 import 'package:stacked/stacked.dart';
@@ -20,7 +20,7 @@ import 'package:huayati/extensions/file_extensions.dart';
 
 class IndividualUpdateFilesViewModel extends BaseViewModel {
   final _individualService = locator<IndividualService>();
-  final _snackbarService = locator<SnackbarService>();
+  final _snackbarService = locator<SnackBarsService>();
   final _navigationService = locator<NavigationService>();
   final _dialogService = locator<DialogService>();
   final _sharedService = locator<SharedService>();

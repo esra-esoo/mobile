@@ -7,7 +7,7 @@ import 'package:huayati/app/app.router.dart';
 import 'package:huayati/config/config.dart';
 import 'package:huayati/consts/storage_keys.dart';
 import 'package:huayati/models/user.dart';
-import 'package:stacked_services/stacked_services.dart'hide SnackbarService;
+import 'package:stacked_services/stacked_services.dart';
 import 'package:huayati/services/third_party/secure_storage_service.dart';
 import 'package:huayati/services/user_service.dart';
 import 'package:oauth2/oauth2.dart' as oauth2;

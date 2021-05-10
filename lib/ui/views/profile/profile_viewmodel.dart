@@ -2,13 +2,13 @@ import 'package:huayati/app/app.locator.dart';
 import 'package:huayati/app/app.router.dart';
 import 'package:huayati/models/profile_info.dart';
 import 'package:huayati/services/auth_service.dart';
-import 'package:stacked_services/stacked_services.dart'hide SnackbarService;
+import 'package:stacked_services/stacked_services.dart';
 import 'package:huayati/services/third_party/snackbar_service.dart';
 import 'package:stacked/stacked.dart';
 
 class ProfileViewModel extends BaseViewModel {
   final _authService = locator<AuthService>();
-  final _snackbarService = locator<SnackbarService>();
+  final _snackbarService = locator<SnackBarsService>();
   final _navigationService = locator<NavigationService>();
 
   ProfileInfo profileInfo;

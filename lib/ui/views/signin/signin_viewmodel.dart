@@ -5,7 +5,7 @@ import 'package:huayati/enums/dialog_type.dart';
 import 'package:huayati/services/auth_service.dart';
 import 'package:huayati/services/shared_service.dart';
 
-import 'package:stacked_services/stacked_services.dart' hide SnackbarService;
+import 'package:stacked_services/stacked_services.dart' ;
 import 'package:huayati/services/third_party/picker_services.dart';
 import 'package:huayati/services/third_party/snackbar_service.dart';
 import 'package:huayati/ui/views/signin/signin_view.form.dart';
@@ -14,7 +14,7 @@ import 'package:huayati/extensions/string_extensions.dart';
 
 class SignInViewModel extends FormViewModel {
   final _navigationService = locator<NavigationService>();
-  final _snackbarService = locator<SnackbarService>();
+  final _snackbarService = locator<SnackBarsService>();
   final _authService = locator<AuthService>();
   final _sharedService = locator<SharedService>();
   final _pickerService = locator<PickerService>();

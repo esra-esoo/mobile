@@ -16,11 +16,11 @@ import 'package:huayati/services/individual_service.dart';
 import 'package:huayati/services/third_party/snackbar_service.dart';
 import 'package:huayati/services/user_service.dart';
 import 'package:huayati/ui/widgets/success_upload_modal.dart';
-import 'package:stacked_services/stacked_services.dart' hide SnackbarService;
+import 'package:stacked_services/stacked_services.dart' ;
 
 class IndividualCreateFilesViewModel extends BaseViewModel {
   final _individualService = locator<IndividualService>();
-  final _snackbarService = locator<SnackbarService>();
+  final _snackbarService = locator<SnackBarsService>();
   final _sharedService = locator<SharedService>();
   final _userService = locator<UserService>();
   final _dialogService = locator<DialogService>();

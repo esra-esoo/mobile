@@ -3,7 +3,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:huayati/app/app.locator.dart';
 import 'package:huayati/app/app.router.dart';
 import 'package:huayati/consts/styles.dart';
-import 'package:stacked_services/stacked_services.dart'hide SnackbarService;
+import 'package:stacked_services/stacked_services.dart';
 import 'package:huayati/ui/animations/fade_animation.dart';
 import 'package:huayati/ui/widgets/botton_padding.dart';
 import 'package:responsive_builder/responsive_builder.dart';

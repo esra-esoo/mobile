@@ -1,7 +1,7 @@
 import 'package:huayati/app/app.locator.dart';
 import 'package:huayati/app/app.router.dart';
 import 'package:huayati/services/shared_service.dart';
-import 'package:stacked_services/stacked_services.dart'hide SnackbarService;
+import 'package:stacked_services/stacked_services.dart';
 import 'package:huayati/services/user_service.dart';
 import 'package:stacked/stacked.dart';
 
