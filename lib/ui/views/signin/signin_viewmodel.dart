@@ -33,20 +33,18 @@ class SignInViewModel extends FormViewModel {
       );
     } else {
       try {
-        await runBusyFuture(
-          _authService.signIn(
-            username: phoneValue,
-            password: passwordValue,
-          ),
-          throwException: true,
+        setBusy(true);
+        await _authService.signIn(
+          username: phoneValue,
+          password: passwordValue,
         );
-
+        await _sharedService.updateAccountInfo();
         await _sharedService.getRefuseState();
-
         await _navigationService.pushNamedAndRemoveUntil(
           Routes.startUpView,
         );
       } catch (e) {
+        setBusy(false);
         print(e.toString());
         _snackbarService.showBottomErrorSnackbar(message: e.toString());
       }
