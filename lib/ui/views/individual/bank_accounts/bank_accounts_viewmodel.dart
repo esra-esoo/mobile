@@ -1,4 +1,4 @@
-import 'package:huayati/app/locator.dart';
+import 'package:huayati/app/app.locator.dart';
 import 'package:huayati/models/individual/bank_account.dart';
 import 'package:huayati/services/individual_service.dart';
 import 'package:stacked/stacked.dart';

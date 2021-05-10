@@ -1,3 +1,4 @@
+import 'package:huayati/services/third_party/snackbar_service.dart';
 import 'package:huayati/ui/views/change_password/change_password_view.dart';
 import 'package:huayati/ui/views/company/bank_account/bank_account_view.dart';
 import 'package:huayati/ui/views/company/company_data/company_data_view.dart';
@@ -16,38 +17,67 @@ import 'package:huayati/ui/views/signin/signin_view.dart';
 import 'package:huayati/ui/views/signup/signup_view.dart';
 import 'package:huayati/ui/views/splash_screen/splash_screen_view.dart';
 import 'package:huayati/ui/views/startup/startup_view.dart';
+import 'package:huayati/services/api.dart';
+import 'package:huayati/services/auth_service.dart';
+import 'package:huayati/services/company_service.dart';
+import 'package:huayati/services/individual_service.dart';
+import 'package:huayati/services/shared_service.dart';
+import 'package:huayati/services/third_party/picker_services.dart';
+import 'package:huayati/services/third_party/secure_storage_service.dart';
+import 'package:huayati/services/user_service.dart';
+import 'package:huayati/ui/views/profile/profile_viewmodel.dart';
+import 'package:huayati/ui/views/startup/startup_viewmodel.dart';
+import 'package:stacked_services/stacked_services.dart'hide SnackbarService;
+
 import 'package:stacked/stacked_annotations.dart';
 
-@StackedApp(routes: [
-  MaterialRoute(page: SplashScreenView, initial: true),
-  MaterialRoute(page: CompanyCreateFilesView),
-  MaterialRoute(page: CompanyDataView),
-  MaterialRoute(page: CompanyBankAccountsDataView),
-  MaterialRoute(page: CompanyUpdateFilesView),
-  MaterialRoute(page: RepresentativeUpdateFilesView),
-  MaterialRoute(page: RepresentativeDataView),
-  MaterialRoute(page: IndividualCreateFilesView),
-  MaterialRoute(page: IndividualUpdateFilesView),
-  MaterialRoute(page: IndividualPersonalDataView),
-  MaterialRoute(page: IndividualBankAccountsDataView),
-  CustomRoute(
-    page: StartUpView,
-    // transitionsBuilder: TransitionsBuilders.fadeIn,
-    durationInMilliseconds: 500,
-  ),
-  CustomRoute(
-    page: SignInView,
-    // transitionsBuilder: TransitionsBuilders.fadeIn,
-  ),
-  CustomRoute(
-    page: SignUpView,
-    // transitionsBuilder: TransitionsBuilders.fadeIn,
-  ),
-  MaterialRoute(page: OtpView, fullscreenDialog: true),
-  MaterialRoute(page: ForgetPasswordView, fullscreenDialog: true),
-  MaterialRoute(page: EditProfileView, fullscreenDialog: true),
-  MaterialRoute(page: ChangePasswordView, fullscreenDialog: true),
-])
+@StackedApp(
+  routes: [
+    MaterialRoute(page: SplashScreenView, initial: true),
+    MaterialRoute(page: CompanyCreateFilesView),
+    MaterialRoute(page: CompanyDataView),
+    MaterialRoute(page: CompanyBankAccountsDataView),
+    MaterialRoute(page: CompanyUpdateFilesView),
+    MaterialRoute(page: RepresentativeUpdateFilesView),
+    MaterialRoute(page: RepresentativeDataView),
+    MaterialRoute(page: IndividualCreateFilesView),
+    MaterialRoute(page: IndividualUpdateFilesView),
+    MaterialRoute(page: IndividualPersonalDataView),
+    MaterialRoute(page: IndividualBankAccountsDataView),
+    CustomRoute(
+      page: StartUpView,
+      // transitionsBuilder: TransitionsBuilders.fadeIn,
+      durationInMilliseconds: 500,
+    ),
+    CustomRoute(
+      page: SignInView,
+      // transitionsBuilder: TransitionsBuilders.fadeIn,
+    ),
+    CustomRoute(
+      page: SignUpView,
+      // transitionsBuilder: TransitionsBuilders.fadeIn,
+    ),
+    MaterialRoute(page: OtpView, fullscreenDialog: true),
+    MaterialRoute(page: ForgetPasswordView, fullscreenDialog: true),
+    MaterialRoute(page: EditProfileView, fullscreenDialog: true),
+    MaterialRoute(page: ChangePasswordView, fullscreenDialog: true),
+  ],
+  dependencies: [
+    LazySingleton(classType: Api),
+    LazySingleton(classType: NavigationService),
+    LazySingleton(classType: DialogService),
+    LazySingleton(classType: SnackbarService),
+    LazySingleton(classType: SecureStorageService),
+    LazySingleton(classType: PickerService),
+    LazySingleton(classType: UserService),
+    LazySingleton(classType: AuthService),
+    LazySingleton(classType: IndividualService),
+    LazySingleton(classType: CompanyService),
+    LazySingleton(classType: SharedService),
+    LazySingleton(classType: StartUpViewModel),
+    Singleton(classType: ProfileViewModel),
+  ],
+)
 class AppSetup {
   /** Serves no purpose besides having an annotation attached to it */
 }

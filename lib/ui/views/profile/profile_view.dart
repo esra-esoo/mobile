@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:huayati/app/locator.dart';
+import 'package:huayati/app/app.locator.dart';
 import 'package:huayati/consts/styles.dart';
 import 'package:huayati/ui/widgets/botton_padding.dart';
 import 'package:huayati/ui/widgets/data_item.dart';

@@ -1,8 +1,9 @@
-import 'package:huayati/app/locator.dart';
+import 'package:huayati/app/app.locator.dart';
+import 'package:huayati/enums/dialog_type.dart';
 import 'package:huayati/models/navigation_result.dart';
 import 'package:huayati/services/auth_service.dart';
-import 'package:huayati/services/third_party/dialog_service.dart';
-import 'package:stacked_services/stacked_services.dart' as stacked_services;
+
+import 'package:stacked_services/stacked_services.dart' hide SnackbarService;
 import 'package:huayati/services/third_party/snackbar_service.dart';
 import 'package:stacked/stacked.dart';
 
@@ -11,7 +12,7 @@ import 'package:huayati/extensions/string_extensions.dart';
 import 'change_password_view.form.dart';
 
 class ChangePasswordViewModel extends FormViewModel {
-  final _navigationService = locator<stacked_services.NavigationService>();
+  final _navigationService = locator<NavigationService>();
   final _snackbarService = locator<SnackbarService>();
   final _authService = locator<AuthService>();
   final _dialogService = locator<DialogService>();
@@ -35,7 +36,8 @@ class ChangePasswordViewModel extends FormViewModel {
         message: 'حقل التأكيد غير مطابق لكلمة المرور',
       );
     } else {
-      var response = await _dialogService.showConfirmDialog(
+      var response = await _dialogService.showCustomDialog(
+        variant: DialogType.confirm,
         title: 'تأكيد العملية',
         description: 'هل أنت متأكد من رغبتك في حفظ التعديلات ؟',
       );

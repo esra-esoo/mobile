@@ -1,26 +1,27 @@
 import 'dart:async';
 import 'dart:io';
 
+import 'package:huayati/enums/dialog_type.dart';
 import 'package:huayati/models/navigation_result.dart';
 import 'package:huayati/models/representative/image_file.dart';
 import 'package:huayati/models/representative/image_raw_file.dart';
 import 'package:huayati/services/company_service.dart';
 import 'package:huayati/services/shared_service.dart';
-import 'package:huayati/services/third_party/dialog_service.dart';
-import 'package:stacked_services/stacked_services.dart' as stacked_services;
+
+import 'package:stacked_services/stacked_services.dart' hide SnackbarService;
 import 'package:huayati/ui/widgets/success_update_modal.dart';
 import 'package:huayati/utils/file_utils.dart';
 import 'package:stacked/stacked.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:huayati/app/locator.dart';
+import 'package:huayati/app/app.locator.dart';
 import 'package:huayati/services/third_party/snackbar_service.dart';
 import 'package:huayati/extensions/file_extensions.dart';
 
 class RepresentativeUpdateFilesViewModel extends BaseViewModel {
   final _companyService = locator<CompanyService>();
   final _snackbarService = locator<SnackbarService>();
-  final _navigationService = locator<stacked_services.NavigationService>();
+  final _navigationService = locator<NavigationService>();
   final _dialogService = locator<DialogService>();
   final _sharedService = locator<SharedService>();
 
@@ -76,8 +77,8 @@ class RepresentativeUpdateFilesViewModel extends BaseViewModel {
 
   void initilizeView() async {
     try {
-      refuseMessage =
-          _sharedService?.sharedRefuseState?.companyRefuseState?.representativeMessage;
+      refuseMessage = _sharedService
+          ?.sharedRefuseState?.companyRefuseState?.representativeMessage;
       imageFiles = await runBusyFuture(
         _companyService.getRepresentativeImages(),
         throwException: true,
@@ -100,7 +101,8 @@ class RepresentativeUpdateFilesViewModel extends BaseViewModel {
       );
       return;
     }
-    var response = await _dialogService.showConfirmDialog(
+    var response = await _dialogService.showCustomDialog(
+      variant: DialogType.confirm,
       title: 'تأكيد العملية',
       description: 'هل أنت متأكد من رغبتك في حفظ التغييرات؟',
     );

@@ -1,10 +1,11 @@
-import 'package:huayati/app/locator.dart';
+import 'package:huayati/app/app.locator.dart';
 import 'package:huayati/app/app.router.dart';
 import 'package:huayati/consts/pass_sent_by.dart';
+import 'package:huayati/enums/dialog_type.dart';
 import 'package:huayati/services/auth_service.dart';
 import 'package:huayati/services/shared_service.dart';
-import 'package:huayati/services/third_party/dialog_service.dart';
-import 'package:stacked_services/stacked_services.dart' as stacked_services;
+
+import 'package:stacked_services/stacked_services.dart' hide SnackbarService;
 import 'package:huayati/services/third_party/picker_services.dart';
 import 'package:huayati/services/third_party/snackbar_service.dart';
 import 'package:huayati/ui/views/signin/signin_view.form.dart';
@@ -12,7 +13,7 @@ import 'package:stacked/stacked.dart';
 import 'package:huayati/extensions/string_extensions.dart';
 
 class SignInViewModel extends FormViewModel {
-  final _navigationService = locator<stacked_services.NavigationService>();
+  final _navigationService = locator<NavigationService>();
   final _snackbarService = locator<SnackbarService>();
   final _authService = locator<AuthService>();
   final _sharedService = locator<SharedService>();
@@ -66,11 +67,11 @@ class SignInViewModel extends FormViewModel {
   Future recoverPassword() async {
     var resetMethod = await _pickerService.showResetMethod();
     if (resetMethod != null) {
-      DialogResponse dialogResponse =
-          await _dialogService.showPhoneOrEmailDialog(
-        isEmail: resetMethod == SentByValue.EMAIL,
+      DialogResponse dialogResponse = await _dialogService.showCustomDialog(
+        variant: DialogType.phoneOrEmail,
+        customData: resetMethod == SentByValue.EMAIL,
       );
-      if (dialogResponse.confirmed && dialogResponse.responseData[0] != null) {
+      if (dialogResponse.confirmed && dialogResponse.responseData != null) {
         await _forgetPassword(dialogResponse.responseData[0], resetMethod);
       }
     }

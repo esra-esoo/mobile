@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:huayati/app/locator.dart';
+import 'package:huayati/app/app.locator.dart';
 import 'package:huayati/consts/documents_names.dart';
+import 'package:huayati/enums/dialog_type.dart';
 import 'package:huayati/enums/group_file_type.dart';
 import 'package:huayati/models/company/company_create_files_payload.dart';
 import 'package:huayati/models/company/company_employee_model.dart';
@@ -11,12 +12,13 @@ import 'package:huayati/models/file_models.dart';
 import 'package:huayati/models/user.dart';
 import 'package:huayati/services/company_service.dart';
 import 'package:huayati/services/shared_service.dart';
-import 'package:huayati/services/third_party/dialog_service.dart';
+
 import 'package:huayati/services/third_party/snackbar_service.dart';
 import 'package:huayati/services/user_service.dart';
 import 'package:huayati/ui/widgets/success_upload_modal.dart';
 import 'package:huayati/utils/file_utils.dart';
 import 'package:stacked/stacked.dart';
+import 'package:stacked_services/stacked_services.dart' hide SnackbarService;
 
 class CompanyCreateFilesViewModel extends IndexTrackingViewModel {
   final _snackbarService = locator<SnackbarService>();
@@ -105,10 +107,12 @@ class CompanyCreateFilesViewModel extends IndexTrackingViewModel {
           return;
         }
       }
-    var response = await _dialogService.showConfirmDialog(
+    var response = await _dialogService.showCustomDialog(
+      variant: DialogType.confirm,
       title: 'تأكيد العملية',
       description: 'هل أنت متأكد من رغبتك في حفظ التغييرات؟',
     );
+
     if (!response.confirmed) return;
     await _uploadFiles();
   }

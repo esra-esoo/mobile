@@ -2,12 +2,12 @@ import 'dart:async';
 import 'dart:io';
 
 import 'package:dio/dio.dart';
-import 'package:huayati/app/locator.dart';
+import 'package:huayati/app/app.locator.dart';
 import 'package:huayati/app/app.router.dart';
 import 'package:huayati/config/config.dart';
 import 'package:huayati/consts/storage_keys.dart';
 import 'package:huayati/models/user.dart';
-import 'package:stacked_services/stacked_services.dart' as stacked_services;
+import 'package:stacked_services/stacked_services.dart'hide SnackbarService;
 import 'package:huayati/services/third_party/secure_storage_service.dart';
 import 'package:huayati/services/user_service.dart';
 import 'package:oauth2/oauth2.dart' as oauth2;
@@ -15,7 +15,7 @@ import 'package:oauth2/oauth2.dart' as oauth2;
 class AppInterceptor extends Interceptor {
   final Dio _dio;
   final _secureStorageService = locator<SecureStorageService>();
-  final _navigationService = locator<stacked_services.NavigationService>();
+  final _navigationService = locator<NavigationService>();
   final _userService = locator<UserService>();
 
   AppInterceptor(this._dio);

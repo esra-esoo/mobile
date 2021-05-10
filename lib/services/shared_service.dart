@@ -1,7 +1,7 @@
 import 'dart:async';
 
 import 'package:dio/dio.dart';
-import 'package:huayati/app/locator.dart';
+import 'package:huayati/app/app.locator.dart';
 import 'package:huayati/consts/account_type.dart';
 import 'package:huayati/models/company/refuse_state.dart';
 import 'package:huayati/models/individual/refuse_state.dart';

@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
+import 'app/app.locator.dart';
 import 'app/app_config.dart';
-import 'app/locator.dart';
 import 'config/config.dart';
 import 'main.dart';
+import 'ui/setup_dialog_ui.dart';
 
 void main() async {
   // WidgetsFlutterBinding.ensureInitialized();
@@ -18,5 +19,6 @@ void main() async {
     child: MyApp(),
   );
   setupLocator();
+  setupDialogUi();
   return runApp(configuredApp);
 }

@@ -1,13 +1,14 @@
 import 'package:huayati/consts/documents_names.dart';
+import 'package:huayati/enums/dialog_type.dart';
 import 'package:huayati/models/file_models.dart';
 import 'package:huayati/models/user.dart';
 import 'package:huayati/services/shared_service.dart';
-import 'package:huayati/services/third_party/dialog_service.dart';
+
 import 'package:huayati/utils/file_utils.dart';
 import 'package:stacked/stacked.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:huayati/app/locator.dart';
+import 'package:huayati/app/app.locator.dart';
 import 'package:huayati/enums/group_file_type.dart';
 import 'package:huayati/models/individual/individual_form.dart';
 import 'package:huayati/models/individual/indivisual_create_files_payload.dart';
@@ -15,6 +16,7 @@ import 'package:huayati/services/individual_service.dart';
 import 'package:huayati/services/third_party/snackbar_service.dart';
 import 'package:huayati/services/user_service.dart';
 import 'package:huayati/ui/widgets/success_upload_modal.dart';
+import 'package:stacked_services/stacked_services.dart' hide SnackbarService;
 
 class IndividualCreateFilesViewModel extends BaseViewModel {
   final _individualService = locator<IndividualService>();
@@ -50,7 +52,8 @@ class IndividualCreateFilesViewModel extends BaseViewModel {
       );
       return;
     }
-    var response = await _dialogService.showConfirmDialog(
+    var response = await _dialogService.showCustomDialog(
+      variant: DialogType.confirm,
       title: 'تأكيد العملية',
       description: 'هل أنت متأكد من رغبتك في حفظ التغييرات؟',
     );

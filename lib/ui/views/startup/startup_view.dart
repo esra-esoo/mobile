@@ -2,7 +2,7 @@ import 'package:animations/animations.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
 import 'package:flutter/services.dart';
-import 'package:huayati/app/locator.dart';
+import 'package:huayati/app/app.locator.dart';
 import 'package:huayati/ui/views/home/home_view.dart';
 import 'package:huayati/ui/views/profile/profile_view.dart';
 import 'package:huayati/ui/widgets/bottom_navigation_bar.dart';

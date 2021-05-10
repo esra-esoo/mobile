@@ -1,5 +1,5 @@
 import 'package:dio/dio.dart';
-import 'package:huayati/app/locator.dart';
+import 'package:huayati/app/app.locator.dart';
 import 'package:huayati/models/individual/image_file.dart';
 import 'package:huayati/models/individual/bank_account.dart';
 import 'package:huayati/models/individual/indivisual_create_files_payload.dart';

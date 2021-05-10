@@ -1,11 +1,11 @@
 import 'package:badges/badges.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:huayati/app/locator.dart';
+import 'package:huayati/app/app.locator.dart';
 import 'package:huayati/consts/styles.dart';
 import 'package:huayati/models/menu_item.dart';
 import 'package:huayati/models/navigation_result.dart';
-import 'package:stacked_services/stacked_services.dart' as stacked_services;
+import 'package:stacked_services/stacked_services.dart'hide SnackbarService;
 import 'package:huayati/services/third_party/snackbar_service.dart';
 
 class GridItem extends StatelessWidget {
@@ -17,7 +17,7 @@ class GridItem extends StatelessWidget {
       onTap: () async {
         if (menuItem.route == null) return;
         NavigationResult result =
-            await locator<stacked_services.NavigationService>().navigateTo(menuItem.route);
+            await locator<NavigationService>().navigateTo(menuItem.route);
         if (result != null) {
           NavigationResult navigationResult = result;
           await HapticFeedback.mediumImpact();

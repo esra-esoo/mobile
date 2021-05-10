@@ -5,9 +5,9 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:huayati/models/shared_refuse_state.dart';
 import 'package:provider/provider.dart';
 import 'package:stacked_services/stacked_services.dart';
+import 'app/app.locator.dart';
 import 'app/app.router.dart';
 import 'app/app_config.dart';
-import 'app/locator.dart';
 
 import 'consts/styles.dart';
 import 'models/user.dart';
