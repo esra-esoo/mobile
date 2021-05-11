@@ -45,10 +45,19 @@ class _AddRepresentativeButton extends StatelessWidget {
     var isDisabled = onPressed == null;
     return Padding(
       padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 20),
-      child: FlatButton(
-        padding: const EdgeInsets.symmetric(vertical: 20, horizontal: 15),
-        color: Colors.transparent,
-        splashColor: kcolorBluelight,
+      child: TextButton(
+        style: TextButton.styleFrom(
+          padding: const EdgeInsets.symmetric(vertical: 20, horizontal: 15),
+        ).copyWith(
+          overlayColor:
+              MaterialStateProperty.resolveWith<Color>((states) => kColorCard),
+          backgroundColor: MaterialStateProperty.resolveWith<Color>(
+            (Set<MaterialState> states) => Colors.transparent,
+          ),
+          foregroundColor: MaterialStateProperty.resolveWith<Color>(
+            (Set<MaterialState> states) => kcolorBluelight,
+          ),
+        ),
         onPressed: onPressed,
         child: Column(
           children: <Widget>[

@@ -86,14 +86,17 @@ class SuccessUpdateModal extends StatelessWidget {
                 ),
               ),
               SizedBox(height: 50.h),
-              RaisedButton(
-                padding:
-                    const EdgeInsets.symmetric(horizontal: 10, vertical: 15),
-                splashColor: kcolorBluelight,
-                shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(0),
+              TextButton(
+                style: TextButton.styleFrom(
+                  padding:
+                      const EdgeInsets.symmetric(horizontal: 10, vertical: 15),
+                ).copyWith(
+                  overlayColor: MaterialStateProperty.resolveWith<Color>(
+                      (states) => kcolorBluelight),
+                  backgroundColor: MaterialStateProperty.resolveWith<Color>(
+                    (Set<MaterialState> states) => kcolorPrimaryBlue,
+                  ),
                 ),
-                color: kcolorPrimaryBlue,
                 child: Text(
                   'الرئيسية',
                   style: TextStyle(
@@ -105,7 +108,6 @@ class SuccessUpdateModal extends StatelessWidget {
                     ),
                   ),
                 ),
-                textColor: kcolorPrimaryBlue,
                 onPressed: () => locator<NavigationService>()
                     .pushNamedAndRemoveUntil(Routes.startUpView),
               ),

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 const Color kcolorPrimaryBlue = Color(0xFF124067);
 const Color kcolorBluelight = Color(0xFF1873ba);
@@ -91,4 +92,55 @@ const kformFieldInputAccentDecoration = InputDecoration(
   floatingLabelBehavior: FloatingLabelBehavior.never,
   isDense: true,
   counterStyle: TextStyle(color: Colors.grey),
+);
+
+final ButtonStyle flatButtonStyle = TextButton.styleFrom(
+  primary: Colors.black87,
+  minimumSize: Size(88, 36),
+  padding: EdgeInsets.symmetric(horizontal: 16.0),
+  shape: const RoundedRectangleBorder(
+    borderRadius: BorderRadius.all(Radius.circular(2.0)),
+  ),
+);
+
+final ButtonStyle raisedButtonStyle = ElevatedButton.styleFrom(
+  onPrimary: Colors.black87,
+  primary: Colors.grey[300],
+  minimumSize: Size(88, 36),
+  padding: EdgeInsets.symmetric(horizontal: 16),
+  shape: const RoundedRectangleBorder(
+    borderRadius: BorderRadius.all(Radius.circular(2)),
+  ),
+);
+
+final kmediaPickerFlatButtonPrimaryStyle = TextButton.styleFrom(
+  minimumSize: Size(150.w, 90.h),
+).copyWith(
+  shape: MaterialStateProperty.all<OutlinedBorder>(
+    RoundedRectangleBorder(
+      borderRadius: BorderRadius.circular(10),
+      side: BorderSide(
+        color: Colors.white,
+        width: 1,
+      ),
+    ),
+  ),
+  overlayColor:
+      MaterialStateProperty.resolveWith<Color>((states) => kcolorBluelight),
+);
+
+final kmediaPickerFlatButtonAccentStyle = TextButton.styleFrom(
+  minimumSize: Size(150.w, 90.h),
+).copyWith(
+  shape: MaterialStateProperty.all<OutlinedBorder>(
+    RoundedRectangleBorder(
+      borderRadius: BorderRadius.circular(10),
+      side: BorderSide(
+        color: kcolorPrimaryBlue,
+        width: 1,
+      ),
+    ),
+  ),
+  overlayColor:
+      MaterialStateProperty.resolveWith<Color>((states) => kcolorBluelight),
 );
