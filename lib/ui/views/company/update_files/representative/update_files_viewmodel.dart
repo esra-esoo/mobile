@@ -27,6 +27,7 @@ class RepresentativeUpdateFilesViewModel extends BaseViewModel {
   List<RepresentativeImageFile> imageFiles = [];
   List<RepresentativeImageRawFile> newImageFiles = [];
   String refuseMessage;
+  bool hasError = false;
 
   File getNewRawImageFileById(String representativeFileId) {
     var index = newImageFiles.indexWhere(
@@ -76,8 +77,11 @@ class RepresentativeUpdateFilesViewModel extends BaseViewModel {
 
   void initilizeView() async {
     try {
-      refuseMessage =
-          _sharedService?.sharedRefuseState?.companyRefuseState?.representativeMessage;
+      hasError = _sharedService?.sharedRefuseState?.companyRefuseState
+              ?.hasRefusedRepresentativeFiles ??
+          false;
+      refuseMessage = _sharedService
+          ?.sharedRefuseState?.companyRefuseState?.representativeMessage;
       imageFiles = await runBusyFuture(
         _companyService.getRepresentativeImages(),
         throwException: true,

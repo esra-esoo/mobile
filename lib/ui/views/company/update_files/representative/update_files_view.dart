@@ -75,11 +75,13 @@ class RepresentativeUpdateFilesView extends StatelessWidget {
               ],
             ),
           ),
-          bottomNavigationBar: BottomSubmitButton(
-            label: 'حفظ التغييرات',
-            accentColors: false,
-            onPressed: () => viewModel.saveData(),
-          ),
+          bottomNavigationBar: viewModel.hasError
+              ? BottomSubmitButton(
+                  label: 'حفظ التغييرات',
+                  accentColors: false,
+                  onPressed: () => viewModel.saveData(),
+                )
+              : SizedBox.shrink(),
         ),
       ),
     );
