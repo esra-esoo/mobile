@@ -57,7 +57,6 @@ class AppInterceptor extends InterceptorsWrapper {
           print('AppInterceptor refresh token => $e');
           _dio.interceptors.requestLock.unlock();
           _dio.interceptors.responseLock.unlock();
-
           await signOut();
         }
       } else if (dioError?.response?.statusCode == 500) {
