@@ -27,6 +27,7 @@ class IndividualUpdateFilesViewModel extends BaseViewModel {
   List<IndivisualImageFile> imageFiles = [];
   List<IndivisualImageRawFile> newImageFiles = [];
   String refuseMessage;
+  bool hasError = false;
 
   File getNewRawImageFileById(String individualFileId) {
     var index = newImageFiles.indexWhere(
@@ -68,6 +69,8 @@ class IndividualUpdateFilesViewModel extends BaseViewModel {
 
   void initilizeView() async {
     try {
+      hasError =
+          _sharedService?.sharedRefuseState?.indivisualRefuseState != null;
       refuseMessage =
           _sharedService?.sharedRefuseState?.indivisualRefuseState?.message;
       imageFiles = await runBusyFuture(
