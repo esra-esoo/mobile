@@ -5,20 +5,20 @@ import 'package:huayati/consts/pass_sent_by.dart';
 import 'package:huayati/enums/dialog_type.dart';
 import 'package:huayati/services/auth_service.dart';
 
-import 'package:stacked_services/stacked_services.dart' ;
+import 'package:stacked_services/stacked_services.dart';
 import 'package:huayati/services/third_party/snackbar_service.dart';
 import 'package:stacked/stacked.dart';
 
 class ForgetPasswordViewModel extends BaseViewModel {
-  final _navigationService = locator<NavigationService>();
-  final _snackbarService = locator<SnackBarsService>();
-  final _authService = locator<AuthService>();
-  final _dialogService = locator<DialogService>();
+  final NavigationService _navigationService = locator<NavigationService>();
+  final SnackBarsService _snackbarService = locator<SnackBarsService>();
+  final AuthService _authService = locator<AuthService>();
+  final DialogService _dialogService = locator<DialogService>();
 
   Future verifyOtp({
-    @required String phoneNumberOrEmail,
-    @required int verificationCode,
-    @required int sentBy,
+    required String? phoneNumberOrEmail,
+    required int verificationCode,
+    required int sentBy,
   }) async {
     String sentByString = sentBy == SentByValue.SMS ? SentBy.SMS : SentBy.EMAIL;
     if (verificationCode.toString().length < 6) {
@@ -60,8 +60,8 @@ class ForgetPasswordViewModel extends BaseViewModel {
   }
 
   Future<bool> resendCode({
-    @required String phoneNumberOrEmail,
-    @required int sentBy,
+    required String phoneNumberOrEmail,
+    required int sentBy,
   }) async {
     try {
       await runBusyFuture(

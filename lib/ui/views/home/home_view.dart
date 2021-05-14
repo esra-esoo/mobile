@@ -9,7 +9,7 @@ import 'package:provider/provider.dart';
 import 'package:responsive_builder/responsive_builder.dart';
 
 class HomeView extends StatelessWidget {
-  const HomeView({Key key}) : super(key: key);
+  const HomeView({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -48,12 +48,12 @@ class HomeView extends StatelessWidget {
   ) {
     List<MenuItem> menuList = [];
     if (user.customerType == AccountTypeEng.INDIVISUAL) {
-      if (user.hasUploaded) {
+      if (user.hasUploaded!) {
         menuList.add(MenuItem(
           title: 'المستندات',
           route: Routes.individualUpdateFilesView,
           notifciation:
-              sharedRefuseState?.indivisualRefuseState?.numberOfFiles ?? 0,
+              sharedRefuseState.indivisualRefuseState?.numberOfFiles ?? 0,
         ));
       } else {
         menuList.add(MenuItem(
@@ -74,19 +74,18 @@ class HomeView extends StatelessWidget {
       ]);
     } else {
       //Company Account type
-      if (user.hasUploaded) {
+      if (user.hasUploaded!) {
         menuList.addAll([
           MenuItem(
             title: 'مستندات الشركة',
             notifciation:
-                sharedRefuseState?.companyRefuseState?.numberOfCompanyFiles ??
-                    0,
+                sharedRefuseState.companyRefuseState?.numberOfCompanyFiles ?? 0,
             route: Routes.companyUpdateFilesView,
           ),
           MenuItem(
             title: 'مستندات المخولين',
             notifciation: sharedRefuseState
-                    ?.companyRefuseState?.numberOfRepresentativeFiles ??
+                    .companyRefuseState?.numberOfRepresentativeFiles ??
                 0,
             route: Routes.representativeUpdateFilesView,
           ),

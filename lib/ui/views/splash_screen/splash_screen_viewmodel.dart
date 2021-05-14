@@ -6,13 +6,13 @@ import 'package:huayati/services/user_service.dart';
 import 'package:stacked/stacked.dart';
 
 class SplashScreenViewModel extends BaseViewModel {
-  final _navigationService = locator<NavigationService>();
-  final _userService = locator<UserService>();
-  final _sharedService = locator<SharedService>();
+  final NavigationService _navigationService = locator<NavigationService>();
+  final UserService _userService = locator<UserService>();
+  final SharedService _sharedService = locator<SharedService>();
 
   Future<void> initializeView() async {
     var user = await _userService.loadUser();
-    var userLoggedIn = user?.customerType != null;
+    var userLoggedIn = user.customerType != null;
 
     if (userLoggedIn) {
       setBusy(true);

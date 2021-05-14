@@ -21,7 +21,7 @@ class FileUtils {
     );
   }
 
-  static Future<String> fromRawFileToBase64String(File file) async {
+  static Future<String?> fromRawFileToBase64String(File file) async {
     try {
       List<int> imageBytes = await file.readAsBytes();
       String base64Image = base64Encode(imageBytes);
@@ -33,10 +33,10 @@ class FileUtils {
   }
 
   static int getFilesTotalLength(List<FilesModels> filesModel) {
-    return filesModel.fold<int>(0, (x, y) => x + y.length);
+    return filesModel.fold<int>(0, (x, y) => x + y.length!);
   }
 
-  static Uint8List base64ToBytes(String base64String) {
+  static Uint8List? base64ToBytes(String base64String) {
     try {
       var bytes = base64Decode(base64String.split(',')[1]);
       return bytes;

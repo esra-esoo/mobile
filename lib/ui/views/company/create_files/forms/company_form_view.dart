@@ -10,7 +10,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import '../create_files_viewmodel.dart';
 
 class CompanyFormView extends ViewModelWidget<CompanyCreateFilesViewModel> {
-  const CompanyFormView({Key key}) : super(key: key);
+  const CompanyFormView({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context, CompanyCreateFilesViewModel viewModel) {
@@ -27,7 +27,7 @@ class CompanyFormView extends ViewModelWidget<CompanyCreateFilesViewModel> {
             viewModel.companyForm.commercialLicense = file;
             viewModel.notifyListeners();
           },
-          imageFile: viewModel?.companyForm?.commercialLicense,
+          imageFile: viewModel.companyForm.commercialLicense,
         ),
         SizedBox(height: 25.h),
         TextFieldLabel(label: 'السجل التجاري'),
@@ -37,7 +37,7 @@ class CompanyFormView extends ViewModelWidget<CompanyCreateFilesViewModel> {
             viewModel.companyForm.commercialRegister = file;
             viewModel.notifyListeners();
           },
-          imageFile: viewModel?.companyForm?.commercialRegister,
+          imageFile: viewModel.companyForm.commercialRegister,
         ),
         SizedBox(height: 25.h),
         TextFieldLabel(label: 'سجل المستوردين'),
@@ -47,7 +47,7 @@ class CompanyFormView extends ViewModelWidget<CompanyCreateFilesViewModel> {
             viewModel.companyForm.importersRecord = file;
             viewModel.notifyListeners();
           },
-          imageFile: viewModel?.companyForm?.importersRecord,
+          imageFile: viewModel.companyForm.importersRecord,
         ),
         SizedBox(height: 25.h),
         TextFieldLabel(label: 'الغرفة التجارية'),
@@ -57,13 +57,13 @@ class CompanyFormView extends ViewModelWidget<CompanyCreateFilesViewModel> {
             viewModel.companyForm.chamberOfCommerce = file;
             viewModel.notifyListeners();
           },
-          imageFile: viewModel?.companyForm?.chamberOfCommerce,
+          imageFile: viewModel.companyForm.chamberOfCommerce,
         ),
         SizedBox(height: 25.h),
         TextFieldLabel(label: 'أختر مستند'),
         FileRadioTile(
           options: ['كشف الحساب', 'صك'],
-          groupValue: viewModel.companyForm?.groupFileType2?.index,
+          groupValue: viewModel.companyForm.groupFileType2?.index,
           onChanged: (int value) {
             viewModel.onExtraType2Changed(value);
           },
@@ -71,7 +71,7 @@ class CompanyFormView extends ViewModelWidget<CompanyCreateFilesViewModel> {
             viewModel.companyForm.groupFile2 = file;
             viewModel.notifyListeners();
           },
-          imageFile: viewModel?.companyForm?.groupFile2,
+          imageFile: viewModel.companyForm.groupFile2,
         ),
         const BottomPadding(),
       ],

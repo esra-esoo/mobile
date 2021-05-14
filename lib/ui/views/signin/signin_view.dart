@@ -19,21 +19,21 @@ import 'signin_viewmodel.dart';
   FormTextField(name: 'password'),
 ])
 class SignInView extends StatelessWidget with $SignInView {
-  final String phoneNumber;
-  SignInView({Key key, this.phoneNumber}) : super(key: key);
+  final String? phoneNumber;
+  SignInView({Key? key, this.phoneNumber}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return ViewModelBuilder<SignInViewModel>.reactive(
       onModelReady: (viewModel) {
         listenToFormUpdated(viewModel);
-        phoneController.text = phoneNumber;
+        phoneController.text = phoneNumber!;
       },
       onDispose: () => disposeForm(),
       viewModelBuilder: () => SignInViewModel(),
       builder: (context, viewModel, child) => GestureDetector(
         onTap: () {
-          WidgetsBinding.instance.focusManager.primaryFocus?.unfocus();
+          WidgetsBinding.instance!.focusManager.primaryFocus?.unfocus();
         },
         child: BusyOverlay(
           show: viewModel.isBusy,

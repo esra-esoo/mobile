@@ -11,7 +11,7 @@ import 'package:stacked/stacked.dart';
 import 'bank_accounts_viewmodel.dart';
 
 class IndividualBankAccountsDataView extends StatelessWidget {
-  const IndividualBankAccountsDataView({Key key}) : super(key: key);
+  const IndividualBankAccountsDataView({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -38,7 +38,7 @@ class IndividualBankAccountsDataView extends StatelessWidget {
           duration: const Duration(milliseconds: 375),
           child: viewModel.isBusy
               ? const CenterLoadingIndicator()
-              : viewModel.indivisualBankAccount.length > 0
+              : viewModel.indivisualBankAccount!.length > 0
                   ? const _DataView()
                   : EmptyListRefreshView(
                       onRefresh: () => viewModel.initilizeView(),
@@ -50,7 +50,7 @@ class IndividualBankAccountsDataView extends StatelessWidget {
 }
 
 class _DataView extends ViewModelWidget<IndividualBankAccountsDataViewModel> {
-  const _DataView({Key key}) : super(key: key);
+  const _DataView({Key? key}) : super(key: key);
 
   @override
   Widget build(
@@ -67,13 +67,13 @@ class _DataView extends ViewModelWidget<IndividualBankAccountsDataViewModel> {
                 MediaQuery.of(context).viewPadding.bottom,
           ),
           shrinkWrap: true,
-          itemCount: viewModel?.indivisualBankAccount?.length,
+          itemCount: viewModel.indivisualBankAccount?.length,
           itemBuilder: (context, index) {
             return BankItem(
               accountNumber:
-                  viewModel?.indivisualBankAccount[index]?.accountNumber,
+                  viewModel.indivisualBankAccount![index].accountNumber,
               branchNumber:
-                  viewModel?.indivisualBankAccount[index]?.branchNumber,
+                  viewModel.indivisualBankAccount![index].branchNumber,
               no: index + 1,
             );
           },

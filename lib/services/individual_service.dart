@@ -8,11 +8,11 @@ import 'package:huayati/models/individual/personal_data.dart';
 import 'api.dart';
 
 class IndividualService {
-  final _api = locator<Api>();
+  final Api? _api = locator<Api>();
 
-  Future<List<IndivisualImageFile>> getImages() async {
+  Future<List<IndivisualImageFile>?> getImages() async {
     try {
-      final response = await _api.getCallWithToken(
+      final response = await _api!.getCallWithToken(
         url: '/api/Individual/GetImages',
       );
       return response
@@ -29,7 +29,7 @@ class IndividualService {
 
   Future<void> changeAllImages(List<IndivisualImageFile> images) async {
     try {
-      await _api.putCallWithToken(
+      await _api!.putCallWithToken(
         url: '/api/Individual/ChangeAllImages',
         data: images,
       );
@@ -42,7 +42,7 @@ class IndividualService {
 
   Future<PersonalData> getPersonalData() async {
     try {
-      final response = await _api.getCallWithToken(
+      final response = await _api!.getCallWithToken(
         url: '/api/Individual/GetPersonalData',
       );
       return PersonalData.fromJson(response);
@@ -53,9 +53,9 @@ class IndividualService {
     }
   }
 
-  Future<List<IndivisualBankAccount>> getBankAccounts() async {
+  Future<List<IndivisualBankAccount>?> getBankAccounts() async {
     try {
-      final response = await _api.getCallWithToken(
+      final response = await _api!.getCallWithToken(
         url: '/api/Individual/GetBankAccounts',
       );
       return response
@@ -72,7 +72,7 @@ class IndividualService {
 
   Future<void> createFiles(IndivisualCreateFilesPayload payload) async {
     try {
-      await _api.putCallWithToken(
+      await _api!.putCallWithToken(
         url: '/api/Individual/CreateFiles',
         data: payload,
       );

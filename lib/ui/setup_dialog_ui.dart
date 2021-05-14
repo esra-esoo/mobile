@@ -21,9 +21,9 @@ void setupDialogUi() {
 }
 
 class _AlertDialog extends StatelessWidget {
-  final DialogRequest request;
-  final Function(DialogResponse) completer;
-  const _AlertDialog({Key key, this.request, this.completer}) : super(key: key);
+  final DialogRequest? request;
+  final Function(DialogResponse)? completer;
+  const _AlertDialog({Key? key, this.request, this.completer}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -34,13 +34,13 @@ class _AlertDialog extends StatelessWidget {
         ),
       ),
       title: Text(
-        request.title,
+        request!.title!,
         textAlign: TextAlign.center,
       ),
       content: Container(
         padding: const EdgeInsets.only(top: 20, right: 15, left: 15),
         child: Text(
-          request.description,
+          request!.description!,
           textAlign: TextAlign.center,
           softWrap: true,
           overflow: TextOverflow.clip,
@@ -48,8 +48,8 @@ class _AlertDialog extends StatelessWidget {
       ),
       actions: <Widget>[
         PlatformDialogAction(
-          onPressed: () => completer(DialogResponse(confirmed: true)),
-          child: Text(request.mainButtonTitle),
+          onPressed: () => completer!(DialogResponse(confirmed: true)),
+          child: Text(request!.mainButtonTitle!),
         ),
       ],
     );
@@ -57,9 +57,9 @@ class _AlertDialog extends StatelessWidget {
 }
 
 class _ConfirmDialog extends StatelessWidget {
-  final DialogRequest request;
-  final Function(DialogResponse) completer;
-  const _ConfirmDialog({Key key, this.request, this.completer})
+  final DialogRequest? request;
+  final Function(DialogResponse)? completer;
+  const _ConfirmDialog({Key? key, this.request, this.completer})
       : super(key: key);
 
   @override
@@ -71,13 +71,13 @@ class _ConfirmDialog extends StatelessWidget {
         ),
       ),
       title: Text(
-        request.title,
+        request!.title!,
         textAlign: TextAlign.center,
       ),
       content: Container(
         padding: const EdgeInsets.only(top: 20, right: 15, left: 15),
         child: Text(
-          request.description,
+          request!.description!,
           textAlign: TextAlign.center,
           softWrap: true,
           overflow: TextOverflow.clip,
@@ -86,12 +86,12 @@ class _ConfirmDialog extends StatelessWidget {
       actions: <Widget>[
         PlatformDialogAction(
           child: Text('تراجع'),
-          onPressed: () => completer(DialogResponse(confirmed: false)),
+          onPressed: () => completer!(DialogResponse(confirmed: false)),
         ),
         PlatformDialogAction(
           cupertino: (_, __) =>
               CupertinoDialogActionData(isDefaultAction: true),
-          onPressed: () => completer(DialogResponse(confirmed: true)),
+          onPressed: () => completer!(DialogResponse(confirmed: true)),
           child: Text('نعم'),
         ),
       ],
@@ -100,14 +100,14 @@ class _ConfirmDialog extends StatelessWidget {
 }
 
 class _PhoneOrEmailDialog extends StatelessWidget {
-  final DialogRequest request;
-  final Function(DialogResponse) completer;
-  const _PhoneOrEmailDialog({Key key, this.request, this.completer})
+  final DialogRequest? request;
+  final Function(DialogResponse)? completer;
+  const _PhoneOrEmailDialog({Key? key, this.request, this.completer})
       : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    var isEmail = request.customData as bool;
+    var isEmail = request!.customData as bool;
     var inputValue;
     return PlatformAlertDialog(
       material: (_, __) => MaterialAlertDialogData(
@@ -152,14 +152,14 @@ class _PhoneOrEmailDialog extends StatelessWidget {
           cupertino: (_, __) => CupertinoDialogActionData(
             isDefaultAction: true,
           ),
-          onPressed: () => completer(
+          onPressed: () => completer!(
               DialogResponse(confirmed: true, responseData: inputValue)),
           child: Text(
             'تأكيد',
           ),
         ),
         PlatformDialogAction(
-          onPressed: () => completer(DialogResponse(confirmed: false)),
+          onPressed: () => completer!(DialogResponse(confirmed: false)),
           child: Text('تراجع'),
         ),
       ],

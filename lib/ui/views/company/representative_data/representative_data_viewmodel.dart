@@ -4,9 +4,9 @@ import 'package:huayati/services/company_service.dart';
 import 'package:stacked/stacked.dart';
 
 class RepresentativeDataViewModel extends BaseViewModel {
-  final _companyService = locator<CompanyService>();
+  final CompanyService _companyService = locator<CompanyService>();
 
-  List<RepresentativeData> representativeDataList = [];
+  List<RepresentativeData>? representativeDataList = [];
 
   Future<void> initilizeView() async {
     try {

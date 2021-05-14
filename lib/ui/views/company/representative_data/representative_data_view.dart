@@ -12,7 +12,7 @@ import 'package:stacked/stacked.dart';
 import 'representative_data_viewmodel.dart';
 
 class RepresentativeDataView extends StatelessWidget {
-  const RepresentativeDataView({Key key}) : super(key: key);
+  const RepresentativeDataView({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -39,7 +39,7 @@ class RepresentativeDataView extends StatelessWidget {
           duration: const Duration(milliseconds: 375),
           child: viewModel.isBusy
               ? const CenterLoadingIndicator()
-              : viewModel.representativeDataList.length > 0
+              : viewModel.representativeDataList!.length > 0
                   ? const _DataView()
                   : EmptyListRefreshView(
                       onRefresh: () => viewModel.initilizeView(),
@@ -51,7 +51,7 @@ class RepresentativeDataView extends StatelessWidget {
 }
 
 class _DataView extends ViewModelWidget<RepresentativeDataViewModel> {
-  const _DataView({Key key}) : super(key: key);
+  const _DataView({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context, RepresentativeDataViewModel viewModel) {
@@ -67,10 +67,10 @@ class _DataView extends ViewModelWidget<RepresentativeDataViewModel> {
                 MediaQuery.of(context).viewPadding.bottom,
           ),
           shrinkWrap: true,
-          itemCount: viewModel?.representativeDataList?.length,
+          itemCount: viewModel.representativeDataList?.length,
           itemBuilder: (context, index) {
             return _RepresentativeItemCard(
-              representativeData: viewModel?.representativeDataList[index],
+              representativeData: viewModel.representativeDataList![index],
               isFirst: index == 0,
             );
           },
@@ -84,54 +84,52 @@ class _RepresentativeItemCard extends StatelessWidget {
   final RepresentativeData representativeData;
   final bool isFirst;
   const _RepresentativeItemCard({
-    Key key,
-    @required this.representativeData,
+    Key? key,
+    required this.representativeData,
     this.isFirst = false,
   }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return representativeData != null
-        ? Column(
-            crossAxisAlignment: CrossAxisAlignment.stretch,
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.stretch,
+      children: [
+        Text(
+          isFirst ? 'بياناتك' : 'المخول الاخر',
+          style: TextStyle(
+            color: kcolorBluelight,
+            fontWeight: FontWeight.bold,
+          ),
+        ),
+        Container(
+          decoration: BoxDecoration(
+            borderRadius: BorderRadius.all(const Radius.circular(15.0)),
+            border:
+                Border.all(color: kcolorBluelight.withOpacity(0.3), width: 2),
+            color: Colors.white,
+          ),
+          padding: const EdgeInsets.all(15),
+          margin: const EdgeInsets.symmetric(vertical: 20),
+          child: Column(
             children: [
-              Text(
-                isFirst ? 'بياناتك' : 'المخول الاخر',
-                style: TextStyle(
-                  color: kcolorBluelight,
-                  fontWeight: FontWeight.bold,
-                ),
+              DataItem(
+                label: 'الاسم بالعربي',
+                value: representativeData.nameInArabic ?? '',
               ),
-              Container(
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.all(const Radius.circular(15.0)),
-                  border: Border.all(
-                      color: kcolorBluelight.withOpacity(0.3), width: 2),
-                  color: Colors.white,
-                ),
-                padding: const EdgeInsets.all(15),
-                margin: const EdgeInsets.symmetric(vertical: 20),
-                child: Column(
-                  children: [
-                    DataItem(
-                      label: 'الاسم بالعربي',
-                      value: representativeData.nameInArabic ?? '',
-                    ),
-                    SizedBox(height: 25.h),
-                    DataItem(
-                      label: 'الاسم بالانجليزي',
-                      value: representativeData.nameInEnglish ?? '',
-                    ),
-                    SizedBox(height: 25.h),
-                    DataItem(
-                      label: 'الرقم الوطني',
-                      value: representativeData.idNumber ?? '',
-                    ),
-                  ],
-                ),
+              SizedBox(height: 25.h),
+              DataItem(
+                label: 'الاسم بالانجليزي',
+                value: representativeData.nameInEnglish ?? '',
+              ),
+              SizedBox(height: 25.h),
+              DataItem(
+                label: 'الرقم الوطني',
+                value: representativeData.idNumber ?? '',
               ),
             ],
-          )
-        : const SizedBox.shrink();
+          ),
+        ),
+      ],
+    );
   }
 }

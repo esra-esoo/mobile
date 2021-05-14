@@ -9,9 +9,9 @@ import 'package:huayati/services/third_party/snackbar_service.dart';
 import 'package:image_picker/image_picker.dart';
 
 class ImagePickerField extends StatelessWidget {
-  final File imageFile;
-  final ValueChanged<File> onChanged;
-  final VoidCallback onDelete;
+  final File? imageFile;
+  final ValueChanged<File>? onChanged;
+  final VoidCallback? onDelete;
   final bool disabled;
   const ImagePickerField({
     this.imageFile,
@@ -42,7 +42,7 @@ class ImagePickerField extends StatelessWidget {
                     ? DecorationImage(
                         fit: BoxFit.cover,
                         image: FileImage(
-                          imageFile,
+                          imageFile!,
                         ),
                       )
                     : null,
@@ -86,7 +86,7 @@ class ImagePickerField extends StatelessWidget {
       var imageSource = await locator<PickerService>().showMediaType();
       if (imageSource == null) return;
       await Future.delayed(const Duration(milliseconds: 350));
-      PickedFile pickedFile = await ImagePicker().getImage(
+      PickedFile? pickedFile = await ImagePicker().getImage(
         source: imageSource,
         maxHeight: 810,
         maxWidth: 1080,
@@ -101,7 +101,7 @@ class ImagePickerField extends StatelessWidget {
         return;
       }
 
-      onChanged(imageFile);
+      onChanged!(imageFile);
     } on Exception catch (e) {
       print(e);
       locator<SnackBarsService>().showTopErrorSnackbar(

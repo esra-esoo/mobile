@@ -6,10 +6,10 @@ enum _AniProps { opacity, scale }
 
 class CustomScaleAnimation extends StatelessWidget {
   final double order;
-  final int duration;
+  final int? duration;
   final int opacityDuration;
   final int scaleDuration;
-  final Curve curve;
+  final Curve? curve;
   final double from;
   final double to;
   final Widget child;
@@ -22,7 +22,7 @@ class CustomScaleAnimation extends StatelessWidget {
     this.curve, //milliseconds
     this.from = 0.3,
     this.to = 1.0,
-    @required this.child,
+    required this.child,
   });
 
   @override

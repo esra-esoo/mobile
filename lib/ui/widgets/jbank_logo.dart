@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class JbankLogo extends StatelessWidget {
-  const JbankLogo({Key key}) : super(key: key);
+  const JbankLogo({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

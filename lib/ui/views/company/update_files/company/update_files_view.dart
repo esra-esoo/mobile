@@ -11,7 +11,7 @@ import 'package:stacked/stacked.dart';
 import 'update_files_viewmodel.dart';
 
 class CompanyUpdateFilesView extends StatelessWidget {
-  const CompanyUpdateFilesView({Key key}) : super(key: key);
+  const CompanyUpdateFilesView({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -51,19 +51,19 @@ class CompanyUpdateFilesView extends StatelessWidget {
                 Expanded(
                   child: ListView.builder(
                     shrinkWrap: true,
-                    itemCount: viewModel.imageFiles.length,
+                    itemCount: viewModel.imageFiles!.length,
                     itemBuilder: (context, index) {
                       return ImageUpdateField(
-                        fileName: viewModel.imageFiles[index].name,
+                        fileName: viewModel.imageFiles![index].name,
                         base64Content:
-                            viewModel.imageFiles[index].base64Content,
+                            viewModel.imageFiles![index].base64Content,
                         isEditDisabled:
-                            viewModel.imageFiles[index].isEditDisabled,
+                            viewModel.imageFiles![index].isEditDisabled,
                         newFile: viewModel.getNewRawImageFileById(
-                          viewModel.imageFiles[index].companyFileId,
+                          viewModel.imageFiles![index].companyFileId,
                         ),
                         onChanged: (file) => viewModel.addToNewImageFiles(
-                          viewModel.imageFiles[index],
+                          viewModel.imageFiles![index],
                           file,
                         ),
                       );

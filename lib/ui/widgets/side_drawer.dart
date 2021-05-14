@@ -13,7 +13,7 @@ import 'package:huayati/ui/views/profile/profile_viewmodel.dart';
 import 'package:huayati/ui/widgets/botton_padding.dart';
 
 class SideDrawer extends StatelessWidget {
-  const SideDrawer({Key key}) : super(key: key);
+  const SideDrawer({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -44,7 +44,7 @@ class SideDrawer extends StatelessWidget {
 }
 
 class _TopContainer extends StatelessWidget {
-  const _TopContainer({Key key}) : super(key: key);
+  const _TopContainer({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -74,7 +74,7 @@ class _TopContainer extends StatelessWidget {
 }
 
 class _HelpButton extends StatelessWidget {
-  const _HelpButton({Key key}) : super(key: key);
+  const _HelpButton({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -105,7 +105,7 @@ class _HelpButton extends StatelessWidget {
 }
 
 class _ChangePassword extends StatelessWidget {
-  const _ChangePassword({Key key}) : super(key: key);
+  const _ChangePassword({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -113,7 +113,7 @@ class _ChangePassword extends StatelessWidget {
       type: MaterialType.transparency,
       child: InkWell(
         onTap: () async {
-          NavigationResult result =
+          NavigationResult? result =
               await locator<NavigationService>().navigateTo(
             Routes.changePasswordView,
           );
@@ -122,11 +122,11 @@ class _ChangePassword extends StatelessWidget {
             await HapticFeedback.mediumImpact();
             if (navigationResult.success) {
               locator<SnackBarsService>().showBottomSuccessSnackbar(
-                message: navigationResult.message,
+                message: navigationResult.message!,
               );
             } else {
               locator<SnackBarsService>().showBottomErrorSnackbar(
-                message: navigationResult.message,
+                message: navigationResult.message!,
               );
             }
           }
@@ -154,7 +154,7 @@ class _ChangePassword extends StatelessWidget {
 }
 
 class _ChangeProfile extends StatelessWidget {
-  const _ChangeProfile({Key key}) : super(key: key);
+  const _ChangeProfile({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -193,7 +193,7 @@ class _ChangeProfile extends StatelessWidget {
 }
 
 class _SignOutButton extends StatelessWidget {
-  const _SignOutButton({Key key}) : super(key: key);
+  const _SignOutButton({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

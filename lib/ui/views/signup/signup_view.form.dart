@@ -49,7 +49,7 @@ mixin $SignUpView on StatelessWidget {
 }
 
 extension ValueProperties on FormViewModel {
-  String get phoneValue => this.formValueMap[PhoneValueKey];
-  String get emailValue => this.formValueMap[EmailValueKey];
-  String get passwordValue => this.formValueMap[PasswordValueKey];
+  String? get phoneValue => this.formValueMap[PhoneValueKey];
+  String? get emailValue => this.formValueMap[EmailValueKey];
+  String? get passwordValue => this.formValueMap[PasswordValueKey];
 }

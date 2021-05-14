@@ -15,13 +15,13 @@ import 'package:huayati/extensions/string_extensions.dart';
 
 class OtpView extends StatefulWidget {
   final String phoneNumber;
-  final String email;
+  final String? email;
   final int customerType;
   const OtpView({
-    Key key,
-    @required this.phoneNumber,
+    Key? key,
+    required this.phoneNumber,
     this.email,
-    @required this.customerType,
+    required this.customerType,
   }) : super(key: key);
 
   @override
@@ -39,7 +39,7 @@ class _OtpViewState extends State<OtpView> {
       viewModelBuilder: () => OtpViewModel(),
       builder: (context, viewModel, child) => GestureDetector(
         onTap: () {
-          WidgetsBinding.instance.focusManager.primaryFocus?.unfocus();
+          WidgetsBinding.instance!.focusManager.primaryFocus?.unfocus();
         },
         child: BusyOverlay(
           show: viewModel.isBusy,
@@ -95,7 +95,7 @@ class _OtpViewState extends State<OtpView> {
                               controller: _countDownController,
                               width: 100.w,
                               height: 100.w,
-                              ringColor: Colors.grey[300],
+                              ringColor: Colors.grey[300]!,
                               ringGradient: null,
                               fillColor: kcolorBluelight,
                               fillGradient: null,
@@ -156,7 +156,7 @@ class _OtpViewState extends State<OtpView> {
                                   ),
                                   enableActiveFill: false,
                                   beforeTextPaste: (text) {
-                                    if (text.length == 6)
+                                    if (text!.length == 6)
                                       return true;
                                     else
                                       return false;

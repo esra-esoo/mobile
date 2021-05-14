@@ -39,7 +39,7 @@ class MyApp extends StatelessWidget {
             ),
           ],
           child: MaterialApp(
-            title: AppConfig.of(context).appTitle,
+            title: AppConfig.of(context)!.appTitle,
             debugShowCheckedModeBanner: false,
             theme: ThemeData(
               appBarTheme: AppBarTheme(brightness: Brightness.dark),

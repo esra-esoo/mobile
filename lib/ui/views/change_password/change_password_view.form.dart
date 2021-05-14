@@ -51,7 +51,7 @@ mixin $ChangePasswordView on StatelessWidget {
 }
 
 extension ValueProperties on FormViewModel {
-  String get currentPasswordValue => this.formValueMap[CurrentPasswordValueKey];
-  String get passwordValue => this.formValueMap[PasswordValueKey];
-  String get confirmPasswordValue => this.formValueMap[ConfirmPasswordValueKey];
+  String? get currentPasswordValue => this.formValueMap[CurrentPasswordValueKey];
+  String? get passwordValue => this.formValueMap[PasswordValueKey];
+  String? get confirmPasswordValue => this.formValueMap[ConfirmPasswordValueKey];
 }

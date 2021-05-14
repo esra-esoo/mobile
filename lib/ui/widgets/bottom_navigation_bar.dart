@@ -7,8 +7,8 @@ class AppBottomNavigationBar extends StatelessWidget {
   final int currentIndex;
 
   const AppBottomNavigationBar({
-    @required this.onTap,
-    @required this.currentIndex,
+    required this.onTap,
+    required this.currentIndex,
   });
 
   @override
@@ -37,7 +37,7 @@ class AppBottomNavigationBar extends StatelessWidget {
         elevation: 0,
         type: BottomNavigationBarType.fixed,
         showUnselectedLabels: true,
-        onTap: onTap,
+        onTap: onTap as void Function(int)?,
         items: [
           BottomNavigationBarItem(
             icon: Icon(Icons.home),

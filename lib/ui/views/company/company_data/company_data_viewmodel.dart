@@ -4,9 +4,9 @@ import 'package:huayati/services/company_service.dart';
 import 'package:stacked/stacked.dart';
 
 class CompanyDataViewModel extends BaseViewModel {
-  final _companyService = locator<CompanyService>();
+  final CompanyService _companyService = locator<CompanyService>();
 
-  CompanyData companyData;
+  CompanyData? companyData;
 
   Future<void> initilizeView() async {
     try {
@@ -16,13 +16,6 @@ class CompanyDataViewModel extends BaseViewModel {
       );
     } catch (e) {
       print(e);
-      // await Future.delayed(const Duration(milliseconds: 500));
-      // _navigationService.back(
-      //   result: NavigationResult(
-      //     success: false,
-      //     message: e.toString(),
-      //   ),
-      // );
     }
   }
 }

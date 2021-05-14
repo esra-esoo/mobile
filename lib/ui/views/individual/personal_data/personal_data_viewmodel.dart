@@ -4,24 +4,17 @@ import 'package:huayati/services/individual_service.dart';
 import 'package:stacked/stacked.dart';
 
 class IndividualPersonalDataViewModel extends BaseViewModel {
-  final _individualService = locator<IndividualService>();
+  final IndividualService? _individualService = locator<IndividualService>();
 
-  PersonalData personalData;
+  PersonalData? personalData;
   Future initilizeView() async {
     try {
       personalData = await runBusyFuture(
-        _individualService.getPersonalData(),
+        _individualService!.getPersonalData(),
         throwException: true,
       );
     } catch (e) {
-       print(e);
-      // await Future.delayed(const Duration(milliseconds: 500));
-      // _navigationService.back(
-      //   result: NavigationResult(
-      //     success: false,
-      //     message: e.toString(),
-      //   ),
-      // );
+      print(e);
     }
   }
 }

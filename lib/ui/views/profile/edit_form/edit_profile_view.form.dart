@@ -61,9 +61,9 @@ mixin $EditProfileView on StatelessWidget {
 }
 
 extension ValueProperties on FormViewModel {
-  String get phoneNumberValue => this.formValueMap[PhoneNumberValueKey];
-  String get usernameValue => this.formValueMap[UsernameValueKey];
-  String get fullnameValue => this.formValueMap[FullnameValueKey];
-  String get familyNameValue => this.formValueMap[FamilyNameValueKey];
-  String get emailValue => this.formValueMap[EmailValueKey];
+  String? get phoneNumberValue => this.formValueMap[PhoneNumberValueKey];
+  String? get usernameValue => this.formValueMap[UsernameValueKey];
+  String? get fullnameValue => this.formValueMap[FullnameValueKey];
+  String? get familyNameValue => this.formValueMap[FamilyNameValueKey];
+  String? get emailValue => this.formValueMap[EmailValueKey];
 }

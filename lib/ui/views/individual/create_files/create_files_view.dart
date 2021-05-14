@@ -14,7 +14,7 @@ import 'package:stacked/stacked.dart';
 import 'create_files_viewmodel.dart';
 
 class IndividualCreateFilesView extends StatelessWidget {
-  const IndividualCreateFilesView({Key key}) : super(key: key);
+  const IndividualCreateFilesView({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -58,13 +58,13 @@ class IndividualCreateFilesView extends StatelessWidget {
                     viewModel.individualForm.passport = file;
                     viewModel.notifyListeners();
                   },
-                  imageFile: viewModel?.individualForm?.passport,
+                  imageFile: viewModel.individualForm.passport,
                 ),
                 SizedBox(height: 25.h),
                 TextFieldLabel(label: 'أختر مستند'),
                 FileRadioTile(
                   options: ['الرقم الوطني', 'شهادة الميلاد'],
-                  groupValue: viewModel.individualForm?.groupFileType?.index,
+                  groupValue: viewModel.individualForm.groupFileType?.index,
                   onChanged: (int value) {
                     viewModel.onExtraTypeChanged(value);
                   },
@@ -72,13 +72,13 @@ class IndividualCreateFilesView extends StatelessWidget {
                     viewModel.individualForm.groupFile = file;
                     viewModel.notifyListeners();
                   },
-                  imageFile: viewModel?.individualForm?.groupFile,
+                  imageFile: viewModel.individualForm.groupFile,
                 ),
                 SizedBox(height: 25.h),
                 TextFieldLabel(label: 'أختر مستند'),
                 FileRadioTile(
                   options: ['كشف الحساب', 'صك'],
-                  groupValue: viewModel.individualForm?.groupFileType2?.index,
+                  groupValue: viewModel.individualForm.groupFileType2?.index,
                   onChanged: (int value) {
                     viewModel.onExtraType2Changed(value);
                   },
@@ -86,7 +86,7 @@ class IndividualCreateFilesView extends StatelessWidget {
                     viewModel.individualForm.groupFile2 = file;
                     viewModel.notifyListeners();
                   },
-                  imageFile: viewModel?.individualForm?.groupFile2,
+                  imageFile: viewModel.individualForm.groupFile2,
                 ),
                 const BottomPadding(),
               ],

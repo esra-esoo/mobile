@@ -3,7 +3,7 @@ import 'package:huayati/consts/styles.dart';
 
 class EmptyListRefreshView extends StatelessWidget {
   final Future<void> Function() onRefresh;
-  const EmptyListRefreshView({Key key, @required this.onRefresh})
+  const EmptyListRefreshView({Key? key, required this.onRefresh})
       : super(key: key);
 
   @override

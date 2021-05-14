@@ -18,14 +18,14 @@ import 'package:huayati/services/user_service.dart';
 import 'package:huayati/ui/widgets/success_upload_modal.dart';
 import 'package:huayati/utils/file_utils.dart';
 import 'package:stacked/stacked.dart';
-import 'package:stacked_services/stacked_services.dart' ;
+import 'package:stacked_services/stacked_services.dart';
 
 class CompanyCreateFilesViewModel extends IndexTrackingViewModel {
-  final _snackbarService = locator<SnackBarsService>();
-  final _sharedService = locator<SharedService>();
-  final _userService = locator<UserService>();
-  final _dialogService = locator<DialogService>();
-  final _companyService = locator<CompanyService>();
+  final SnackBarsService _snackbarService = locator<SnackBarsService>();
+  final SharedService _sharedService = locator<SharedService>();
+  final UserService _userService = locator<UserService>();
+  final DialogService _dialogService = locator<DialogService>();
+  final CompanyService _companyService = locator<CompanyService>();
 
   CompanyForm companyForm = CompanyForm.initial();
 
@@ -113,7 +113,7 @@ class CompanyCreateFilesViewModel extends IndexTrackingViewModel {
       description: 'هل أنت متأكد من رغبتك في حفظ التغييرات؟',
     );
 
-    if (!response.confirmed) return;
+    if (response == null || !response.confirmed) return;
     await _uploadFiles();
   }
 
@@ -156,25 +156,25 @@ class CompanyCreateFilesViewModel extends IndexTrackingViewModel {
     return [
       await FileUtils.fromRawFileToFileModel(
         DocumentsNames.COMMERCIAL_LICENSE,
-        companyForm.commercialLicense,
+        companyForm.commercialLicense!,
       ),
       await FileUtils.fromRawFileToFileModel(
         DocumentsNames.COMMERCIAL_REGISTER,
-        companyForm.commercialRegister,
+        companyForm.commercialRegister!,
       ),
       await FileUtils.fromRawFileToFileModel(
         DocumentsNames.IMPORTERS_RECORD,
-        companyForm.importersRecord,
+        companyForm.importersRecord!,
       ),
       await FileUtils.fromRawFileToFileModel(
         DocumentsNames.CHAMBER_OF_COMMERCE,
-        companyForm.chamberOfCommerce,
+        companyForm.chamberOfCommerce!,
       ),
       await FileUtils.fromRawFileToFileModel(
         companyForm.groupFileType2 == GroupFileType2.account_statement
             ? DocumentsNames.ACCOUNT_STATEMENT
             : DocumentsNames.CHEQUE,
-        companyForm.groupFile2,
+        companyForm.groupFile2!,
       ),
     ];
   }
@@ -187,13 +187,13 @@ class CompanyCreateFilesViewModel extends IndexTrackingViewModel {
       List<FilesModels> companyEmployeeFilesModel = [
         await FileUtils.fromRawFileToFileModel(
           DocumentsNames.REPRESENTATIVE_PASSPORT,
-          representative.passport,
+          representative.passport!,
         ),
         await FileUtils.fromRawFileToFileModel(
           representative.groupFileType == GroupFileType.nid
               ? DocumentsNames.REPRESENTATIVE_NID
               : DocumentsNames.REPRESENTATIVE_BIRTH_CERTIFICATE,
-          representative.groupFile,
+          representative.groupFile!,
         ),
       ];
       modelList.add(CompanyEmployeeModel(
@@ -208,7 +208,7 @@ class CompanyCreateFilesViewModel extends IndexTrackingViewModel {
 
   Future _showSuccessModal() async {
     await showGeneralDialog(
-      context: Get.overlayContext,
+      context: Get.overlayContext!,
       barrierColor: Colors.white,
       barrierDismissible: false,
       barrierLabel: "success dialog",

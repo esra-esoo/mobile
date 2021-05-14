@@ -10,24 +10,24 @@ import 'package:huayati/services/third_party/snackbar_service.dart';
 
 class GridItem extends StatelessWidget {
   final MenuItem menuItem;
-  const GridItem({Key key, @required this.menuItem}) : super(key: key);
+  const GridItem({Key? key, required this.menuItem}) : super(key: key);
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () async {
         if (menuItem.route == null) return;
-        NavigationResult result =
-            await locator<NavigationService>().navigateTo(menuItem.route);
+        NavigationResult? result =
+            await locator<NavigationService>().navigateTo(menuItem.route!);
         if (result != null) {
           NavigationResult navigationResult = result;
           await HapticFeedback.mediumImpact();
           if (navigationResult.success) {
             locator<SnackBarsService>().showBottomSuccessSnackbar(
-              message: navigationResult.message,
+              message: navigationResult.message!,
             );
           } else {
             locator<SnackBarsService>().showBottomErrorSnackbar(
-              message: navigationResult.message,
+              message: navigationResult.message!,
             );
           }
         }
@@ -61,7 +61,7 @@ class GridItem extends StatelessWidget {
                 padding: const EdgeInsets.all(8),
                 elevation: 0,
                 badgeContent: Text(
-                  menuItem.notifciation?.toString() ?? '',
+                  menuItem.notifciation.toString(),
                   style: const TextStyle(color: Colors.white, fontSize: 14),
                 ),
               ),

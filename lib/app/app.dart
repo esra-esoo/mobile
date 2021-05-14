@@ -1,3 +1,5 @@
+// @dart=2.9
+
 import 'package:huayati/services/third_party/snackbar_service.dart';
 import 'package:huayati/ui/views/change_password/change_password_view.dart';
 import 'package:huayati/ui/views/company/bank_account/bank_account_view.dart';

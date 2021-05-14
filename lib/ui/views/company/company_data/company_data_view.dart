@@ -12,7 +12,7 @@ import 'package:stacked/stacked.dart';
 import 'company_data_viewmodel.dart';
 
 class CompanyDataView extends StatelessWidget {
-  const CompanyDataView({Key key}) : super(key: key);
+  const CompanyDataView({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -51,7 +51,7 @@ class CompanyDataView extends StatelessWidget {
 }
 
 class _DataView extends ViewModelWidget<CompanyDataViewModel> {
-  const _DataView({Key key}) : super(key: key);
+  const _DataView({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context, CompanyDataViewModel viewModel) {
@@ -69,27 +69,27 @@ class _DataView extends ViewModelWidget<CompanyDataViewModel> {
             SizedBox(height: 30.h),
             DataItem(
               label: 'إسم الشركة',
-              value: viewModel?.companyData?.companyName ?? '',
+              value: viewModel.companyData?.companyName ?? '',
             ),
             SizedBox(height: 25.h),
             DataItem(
               label: 'الغرفة التجارية',
-              value: viewModel?.companyData?.chamberOfCommerce ?? '',
+              value: viewModel.companyData?.chamberOfCommerce ?? '',
             ),
             SizedBox(height: 25.h),
             DataItem(
               label: 'السجل التجاري',
-              value: viewModel?.companyData?.commercialNo ?? '',
+              value: viewModel.companyData?.commercialNo ?? '',
             ),
             SizedBox(height: 25.h),
             DataItem(
               label: 'سجل المستوردين',
-              value: viewModel?.companyData?.importersRecord ?? '',
+              value: viewModel.companyData?.importersRecord ?? '',
             ),
             SizedBox(height: 25.h),
             DataItem(
               label: 'الرخصة التجارية',
-              value: viewModel?.companyData?.licenseNumber ?? '',
+              value: viewModel.companyData?.licenseNumber ?? '',
             ),
             const BottomPadding(),
           ],

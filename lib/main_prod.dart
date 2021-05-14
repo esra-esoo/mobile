@@ -11,12 +11,12 @@ void main() async {
   // FlutterError.onError = FirebaseCrashlytics.instance.recordFlutterError;
 
   var configuredApp = AppConfig(
+    MyApp(),
     appTitle: "هويتي",
     buildFlavor: "Production",
     isDevEnviroment: false,
     authEndpoint: Config.prodAuthEndpoint,
     endpoint: Config.prodEndpoint,
-    child: MyApp(),
   );
   setupLocator();
   setupDialogUi();

@@ -12,7 +12,7 @@ import 'forms/company_form_view.dart';
 import 'forms/representatives_form_view.dart';
 
 class CompanyCreateFilesView extends StatelessWidget {
-  const CompanyCreateFilesView({Key key}) : super(key: key);
+  const CompanyCreateFilesView({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

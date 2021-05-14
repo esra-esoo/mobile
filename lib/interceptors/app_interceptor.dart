@@ -14,9 +14,10 @@ import 'package:oauth2/oauth2.dart' as oauth2;
 
 class AppInterceptor extends InterceptorsWrapper {
   final Dio _dio;
-  final _secureStorageService = locator<SecureStorageService>();
-  final _navigationService = locator<NavigationService>();
-  final _userService = locator<UserService>();
+  final SecureStorageService _secureStorageService =
+      locator<SecureStorageService>();
+  final NavigationService _navigationService = locator<NavigationService>();
+  final UserService _userService = locator<UserService>();
 
   AppInterceptor(this._dio);
 
@@ -29,7 +30,8 @@ class AppInterceptor extends InterceptorsWrapper {
       //remove the auxiliary header
       options.headers.remove("requires-token");
 
-      var token = await _secureStorageService.readString(StorageKeys.TOKEN);
+      var token = await (_secureStorageService.readString(StorageKeys.TOKEN)
+          as FutureOr<String>);
       options.headers.addAll({"Authorization": "Bearer " + token});
       handler.next(options);
     }
@@ -38,7 +40,7 @@ class AppInterceptor extends InterceptorsWrapper {
   @override
   void onError(DioError dioError, ErrorInterceptorHandler handler) async {
     try {
-      if (dioError?.response?.statusCode == 401) {
+      if (dioError.response?.statusCode == 401) {
         try {
           _dio.interceptors.requestLock.lock();
           _dio.interceptors.responseLock.lock();
@@ -59,7 +61,7 @@ class AppInterceptor extends InterceptorsWrapper {
           _dio.interceptors.responseLock.unlock();
           await signOut();
         }
-      } else if (dioError?.response?.statusCode == 500) {
+      } else if (dioError.response?.statusCode == 500) {
         return handler.reject(DioError(
           error:
               'حدث خطأ أثناء محاولة تنفيذ طلبك ، نرجو المحاولة في وقت مرة أخر او الاتصال بمسؤول النظام.',
@@ -67,7 +69,7 @@ class AppInterceptor extends InterceptorsWrapper {
         ));
       } else if (dioError.response != null) {
         return handler.reject(DioError(
-          error: dioError?.response?.data,
+          error: dioError.response?.data,
           requestOptions: dioError.requestOptions,
         ));
       } else if (dioError.error is SocketException) {
@@ -94,6 +96,7 @@ class AppInterceptor extends InterceptorsWrapper {
     try {
       var credintailsJson =
           await _secureStorageService.readString(StorageKeys.CREDENTIALS);
+      if (credintailsJson == null) return '';
       var credentials = oauth2.Credentials.fromJson(credintailsJson);
       var newCredentials = await credentials.refresh(
         identifier: Config.identifier,

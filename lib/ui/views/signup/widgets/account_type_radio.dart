@@ -3,7 +3,7 @@ import 'package:huayati/ui/views/signup/signup_viewmodel.dart';
 import 'package:stacked/stacked.dart';
 
 class AccountTypesRadio extends ViewModelWidget<SignUpViewModel> {
-  const AccountTypesRadio({Key key}) : super(key: key);
+  const AccountTypesRadio({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context, SignUpViewModel viewModel) {

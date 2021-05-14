@@ -14,10 +14,10 @@ class Api {
   }
 
   Future<oauth2.Client> getClient({
-    @required String username,
-    @required String password,
+    required String username,
+    required String password,
   }) async {
-    var authEndpoint = AppConfig.of(Get.context).authEndpoint;
+    var authEndpoint = AppConfig.of(Get.context!)!.authEndpoint;
     return await oauth2.resourceOwnerPasswordGrant(
       Uri.parse(authEndpoint + '/connect/token'),
       username,
@@ -31,9 +31,9 @@ class Api {
     );
   }
 
-  Future postCallAuth({@required String url, @required dynamic data}) async {
+  Future postCallAuth({required String url, required dynamic data}) async {
     try {
-      var authEndpoint = AppConfig.of(Get.context).authEndpoint;
+      var authEndpoint = AppConfig.of(Get.context!)!.authEndpoint;
       final response = await _dio.post(
         authEndpoint + url,
         data: data,
@@ -44,9 +44,9 @@ class Api {
     }
   }
 
-  Future putCallAuth({@required String url, @required dynamic data}) async {
+  Future putCallAuth({required String url, required dynamic data}) async {
     try {
-      var authEndpoint = AppConfig.of(Get.context).authEndpoint;
+      var authEndpoint = AppConfig.of(Get.context!)!.authEndpoint;
       final response = await _dio.put(
         authEndpoint + url,
         data: data,
@@ -60,9 +60,9 @@ class Api {
     }
   }
 
-  Future getCallAuth({@required String url}) async {
+  Future getCallAuth({required String url}) async {
     try {
-      var authEndpoint = AppConfig.of(Get.context).authEndpoint;
+      var authEndpoint = AppConfig.of(Get.context!)!.authEndpoint;
       final response = await _dio.get(
         authEndpoint + url,
         options: Options(
@@ -76,11 +76,11 @@ class Api {
   }
 
   Future postCallWithToken({
-    @required String url,
-    @required dynamic data,
+    required String url,
+    required dynamic data,
   }) async {
     try {
-      var endpoint = AppConfig.of(Get.context).endpoint;
+      var endpoint = AppConfig.of(Get.context!)!.endpoint;
       final response = await _dio.post(
         endpoint + url,
         data: data,
@@ -95,11 +95,11 @@ class Api {
   }
 
   Future putCallWithToken({
-    @required String url,
-    @required dynamic data,
+    required String url,
+    required dynamic data,
   }) async {
     try {
-      var endpoint = AppConfig.of(Get.context).endpoint;
+      var endpoint = AppConfig.of(Get.context!)!.endpoint;
       final response = await _dio.put(
         endpoint + url,
         data: data,
@@ -114,10 +114,10 @@ class Api {
   }
 
   Future getCallWithToken({
-    @required String url,
+    required String url,
   }) async {
     try {
-      var endpoint = AppConfig.of(Get.context).endpoint;
+      var endpoint = AppConfig.of(Get.context!)!.endpoint;
       final response = await _dio.get(
         endpoint + url,
         options: Options(

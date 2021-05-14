@@ -26,7 +26,7 @@ class StartUpView extends StatelessWidget {
     return ViewModelBuilder<StartUpViewModel>.reactive(
         viewModelBuilder: () => locator<StartUpViewModel>(),
         onModelReady: (viewModel) async {
-          SchedulerBinding.instance.addPostFrameCallback(
+          SchedulerBinding.instance!.addPostFrameCallback(
             (duration) async {
               await viewModel.initializeView();
             },
@@ -41,7 +41,7 @@ class StartUpView extends StatelessWidget {
             appBar: AppBar(
               leading: IconButton(
                 icon: const Icon(Icons.menu),
-                onPressed: () => _scaffoldKey.currentState.openDrawer(),
+                onPressed: () => _scaffoldKey.currentState!.openDrawer(),
               ),
               title: Text(
                 getTitle(model.currentIndex),

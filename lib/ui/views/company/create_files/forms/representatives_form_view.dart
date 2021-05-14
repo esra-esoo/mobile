@@ -11,7 +11,7 @@ import '../create_files_viewmodel.dart';
 
 class RepresentativesFormView
     extends ViewModelWidget<CompanyCreateFilesViewModel> {
-  const RepresentativesFormView({Key key}) : super(key: key);
+  const RepresentativesFormView({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context, CompanyCreateFilesViewModel viewModel) {
@@ -36,8 +36,8 @@ class RepresentativesFormView
 }
 
 class _AddRepresentativeButton extends StatelessWidget {
-  final VoidCallback onPressed;
-  const _AddRepresentativeButton({Key key, @required this.onPressed})
+  final VoidCallback? onPressed;
+  const _AddRepresentativeButton({Key? key, required this.onPressed})
       : super(key: key);
 
   @override
@@ -82,10 +82,8 @@ class _AddRepresentativeButton extends StatelessWidget {
 class _RepresentativeFieldsCard
     extends ViewModelWidget<CompanyCreateFilesViewModel> {
   final int index;
-  const _RepresentativeFieldsCard({
-    Key key,
-    this.index,
-  }) : super(key: key);
+  const _RepresentativeFieldsCard({Key? key, required this.index})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context, CompanyCreateFilesViewModel viewModel) {
@@ -125,7 +123,7 @@ class _RepresentativeFieldsCard
               FileRadioTile(
                 options: ['الرقم الوطني', 'شهادة الميلاد'],
                 groupValue:
-                    viewModel.representatives[index]?.groupFileType?.index,
+                    viewModel.representatives[index].groupFileType?.index,
                 onChanged: (int value) {
                   viewModel.onRepresentativeExtraTypeChanged(index, value);
                 },
@@ -133,7 +131,7 @@ class _RepresentativeFieldsCard
                   viewModel.representatives[index].groupFile = file;
                   viewModel.notifyListeners();
                 },
-                imageFile: viewModel.representatives[index]?.groupFile,
+                imageFile: viewModel.representatives[index].groupFile,
               ),
               SizedBox(height: 15.h),
               Row(

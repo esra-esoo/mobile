@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:meta/meta.dart';
 
 class AppConfig extends InheritedWidget {
   final String appTitle;
@@ -9,16 +8,16 @@ class AppConfig extends InheritedWidget {
   final String authEndpoint;
   final String endpoint;
 
-  AppConfig({
-    @required this.child,
-    @required this.appTitle,
-    @required this.buildFlavor,
-    @required this.isDevEnviroment,
-    @required this.authEndpoint,
-    @required this.endpoint,
-  });
+  AppConfig(
+    this.child, {
+    required this.appTitle,
+    required this.buildFlavor,
+    required this.isDevEnviroment,
+    required this.authEndpoint,
+    required this.endpoint,
+  }) : super(child: child);
 
-  static AppConfig of(BuildContext context) {
+  static AppConfig? of(BuildContext context) {
     return context.dependOnInheritedWidgetOfExactType<AppConfig>();
   }
 

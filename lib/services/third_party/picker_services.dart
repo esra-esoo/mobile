@@ -11,18 +11,18 @@ import 'package:image_picker/image_picker.dart';
 class PickerItem {
   final String label;
   final dynamic value;
-  PickerItem({@required this.label, @required this.value});
+  PickerItem({required this.label, required this.value});
 }
 
 class PickerService {
-  Future<ImageSource> showMediaType() async {
+  Future<ImageSource?> showMediaType() async {
     await HapticFeedback.mediumImpact();
     return await showPlatformModalSheet(
         material: MaterialModalSheetData(
           enableDrag: true,
           backgroundColor: Colors.transparent,
         ),
-        context: Get.overlayContext,
+        context: Get.overlayContext!,
         builder: (context) {
           return Container(
             height: 200,
@@ -75,14 +75,14 @@ class PickerService {
         });
   }
 
-  Future<int> showResetMethod() async {
+  Future<int?> showResetMethod() async {
     await HapticFeedback.mediumImpact();
     return await showPlatformModalSheet(
         material: MaterialModalSheetData(
           enableDrag: true,
           backgroundColor: Colors.transparent,
         ),
-        context: Get.overlayContext,
+        context: Get.overlayContext!,
         builder: (context) {
           return Container(
             height: MediaQuery.of(context).size.height / 3,

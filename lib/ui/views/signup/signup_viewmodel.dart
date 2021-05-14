@@ -10,15 +10,15 @@ import 'package:huayati/ui/views/signup/signup_view.form.dart';
 import 'package:huayati/extensions/string_extensions.dart';
 
 class SignUpViewModel extends FormViewModel {
-  final _navigationService = locator<NavigationService>();
-  final _snackbarService = locator<SnackBarsService>();
-  final _authService = locator<AuthService>();
+  final NavigationService _navigationService = locator<NavigationService>();
+  final SnackBarsService _snackbarService = locator<SnackBarsService>();
+  final AuthService _authService = locator<AuthService>();
 
   List<String> _accountTypes = ['شركة', 'فرد'];
   List<String> get accountTypes => _accountTypes;
 
-  String _selectedType;
-  String get selectedType => _selectedType;
+  String? _selectedType;
+  String? get selectedType => _selectedType;
 
   @override
   void setFormStatus() {}
@@ -28,13 +28,13 @@ class SignUpViewModel extends FormViewModel {
       _snackbarService.showTopErrorSnackbar(
         message: 'يرجى ملء كافة الحقول المطلوبة (*)',
       );
-    } else if (!phoneValue.isValidPhonenumber) {
+    } else if (!phoneValue!.isValidPhonenumber) {
       _snackbarService.showTopErrorSnackbar(
         message: 'رقم الهاتف يجب ان يكون بصيغة (09xxxxxxxx)',
       );
     } else if (emailValue != null &&
-        emailValue.length > 0 &&
-        !EmailValidator.validate(emailValue)) {
+        emailValue!.length > 0 &&
+        !EmailValidator.validate(emailValue!)) {
       _snackbarService.showTopErrorSnackbar(
         message: 'البريد الالكتروني غير صحيح !',
       );
@@ -77,7 +77,7 @@ class SignUpViewModel extends FormViewModel {
     );
   }
 
-  void onAccountTypeChanged(String value) {
+  void onAccountTypeChanged(String? value) {
     _selectedType = value;
     notifyListeners();
   }

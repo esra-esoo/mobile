@@ -7,11 +7,11 @@ import 'package:huayati/services/third_party/snackbar_service.dart';
 import 'package:stacked/stacked.dart';
 
 class ProfileViewModel extends BaseViewModel {
-  final _authService = locator<AuthService>();
-  final _snackbarService = locator<SnackBarsService>();
-  final _navigationService = locator<NavigationService>();
+  final AuthService _authService = locator<AuthService>();
+  final SnackBarsService _snackbarService = locator<SnackBarsService>();
+  final NavigationService _navigationService = locator<NavigationService>();
 
-  ProfileInfo profileInfo;
+  ProfileInfo? profileInfo;
 
   Future<void> initilizeView() async {
     try {

@@ -5,7 +5,7 @@ import 'package:stacked/stacked.dart';
 import '../profile_viewmodel.dart';
 
 class UpdateProfileButton extends ViewModelWidget<ProfileViewModel> {
-  const UpdateProfileButton({Key key}) : super(key: key, reactive: false);
+  const UpdateProfileButton({Key? key}) : super(key: key, reactive: false);
 
   @override
   Widget build(BuildContext context, ProfileViewModel viewModel) {

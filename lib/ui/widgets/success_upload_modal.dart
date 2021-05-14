@@ -9,7 +9,7 @@ import 'package:huayati/ui/widgets/botton_padding.dart';
 import 'package:responsive_builder/responsive_builder.dart';
 
 class SuccessUploadModal extends StatelessWidget {
-  const SuccessUploadModal({Key key}) : super(key: key);
+  const SuccessUploadModal({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

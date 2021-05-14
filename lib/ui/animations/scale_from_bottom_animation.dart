@@ -6,7 +6,7 @@ enum _AniProps { opacity, scale, translateY }
 
 class ScaleFromBottomAnimation extends StatelessWidget {
   final double order;
-  final int duration;
+  final int? duration;
   final int opacityDuration;
   final int scaleDuration;
   final int transDuration;
@@ -22,7 +22,7 @@ class ScaleFromBottomAnimation extends StatelessWidget {
     this.transDuration = 800, //milliseconds
     this.from = 0.3,
     this.to = 1.0,
-    @required this.child,
+    required this.child,
   });
 
   @override

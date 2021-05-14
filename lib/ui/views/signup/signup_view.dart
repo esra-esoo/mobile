@@ -20,7 +20,7 @@ import 'widgets/account_type_radio.dart';
   FormTextField(name: 'password'),
 ])
 class SignUpView extends StatelessWidget with $SignUpView {
-  SignUpView({Key key}) : super(key: key);
+  SignUpView({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -30,7 +30,7 @@ class SignUpView extends StatelessWidget with $SignUpView {
       viewModelBuilder: () => SignUpViewModel(),
       builder: (context, viewModel, child) => GestureDetector(
         onTap: () {
-          WidgetsBinding.instance.focusManager.primaryFocus?.unfocus();
+          WidgetsBinding.instance!.focusManager.primaryFocus?.unfocus();
         },
         child: BusyOverlay(
           show: viewModel.isBusy,

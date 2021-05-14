@@ -12,10 +12,10 @@ import 'package:huayati/extensions/string_extensions.dart';
 import 'change_password_view.form.dart';
 
 class ChangePasswordViewModel extends FormViewModel {
-  final _navigationService = locator<NavigationService>();
-  final _snackbarService = locator<SnackBarsService>();
-  final _authService = locator<AuthService>();
-  final _dialogService = locator<DialogService>();
+  final NavigationService _navigationService = locator<NavigationService>();
+  final SnackBarsService _snackbarService = locator<SnackBarsService>();
+  final AuthService _authService = locator<AuthService>();
+  final DialogService _dialogService = locator<DialogService>();
 
   @override
   void setFormStatus() {}
@@ -27,7 +27,7 @@ class ChangePasswordViewModel extends FormViewModel {
       _snackbarService.showTopErrorSnackbar(
         message: 'الرجاء إدخال كافة الحقول',
       );
-    } else if (!passwordValue.isStrongPassword) {
+    } else if (!passwordValue!.isStrongPassword) {
       _snackbarService.showTopErrorSnackbar(
         message: 'كلمة المرور الجديدة غير مطابقة للشروط أعلاه',
       );
@@ -41,7 +41,7 @@ class ChangePasswordViewModel extends FormViewModel {
         title: 'تأكيد العملية',
         description: 'هل أنت متأكد من رغبتك في حفظ التعديلات ؟',
       );
-      if (!response.confirmed) return;
+      if (response == null || !response.confirmed) return;
       try {
         await runBusyFuture(
           _authService.changePassword(
