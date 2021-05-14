@@ -10,16 +10,17 @@ import 'api.dart';
 class IndividualService {
   final Api? _api = locator<Api>();
 
-  Future<List<IndivisualImageFile>?> getImages() async {
+  Future<List<IndivisualImageFile>> getImages() async {
     try {
       final response = await _api!.getCallWithToken(
         url: '/api/Individual/GetImages',
       );
       return response
-          ?.map<IndivisualImageFile>(
-            (json) => IndivisualImageFile.fromJson(json),
-          )
-          ?.toList();
+              ?.map<IndivisualImageFile>(
+                (json) => IndivisualImageFile.fromJson(json),
+              )
+              ?.toList() ??
+          [];
     } on DioError catch (e) {
       throw e.message;
     } catch (e) {
@@ -53,16 +54,17 @@ class IndividualService {
     }
   }
 
-  Future<List<IndivisualBankAccount>?> getBankAccounts() async {
+  Future<List<IndivisualBankAccount>> getBankAccounts() async {
     try {
       final response = await _api!.getCallWithToken(
         url: '/api/Individual/GetBankAccounts',
       );
       return response
-          ?.map<IndivisualBankAccount>(
-            (json) => IndivisualBankAccount.fromJson(json),
-          )
-          ?.toList();
+              ?.map<IndivisualBankAccount>(
+                (json) => IndivisualBankAccount.fromJson(json),
+              )
+              ?.toList() ??
+          [];
     } on DioError catch (e) {
       throw e.message;
     } catch (e) {

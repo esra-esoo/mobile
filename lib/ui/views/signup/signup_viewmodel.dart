@@ -24,7 +24,7 @@ class SignUpViewModel extends FormViewModel {
   void setFormStatus() {}
 
   Future saveData() async {
-    if ((phoneValue?.isEmpty ?? true)) {
+    if (phoneValue == null || phoneValue!.isEmpty) {
       _snackbarService.showTopErrorSnackbar(
         message: 'يرجى ملء كافة الحقول المطلوبة (*)',
       );
@@ -58,7 +58,7 @@ class SignUpViewModel extends FormViewModel {
           Routes.otpView,
           arguments: OtpViewArguments(
             email: emailValue,
-            phoneNumber: phoneValue,
+            phoneNumber: phoneValue!,
             customerType: _selectedType == AccountType.INDIVISUAL
                 ? AccountTypeValue.INDIVISUAL
                 : AccountTypeValue.COMPANY,

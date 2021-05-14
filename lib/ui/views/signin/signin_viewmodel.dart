@@ -78,7 +78,7 @@ class SignInViewModel extends FormViewModel {
     }
   }
 
-  Future _forgetPassword(String? phoneNumberOrEmail, int resetMethod) async {
+  Future _forgetPassword(String phoneNumberOrEmail, int resetMethod) async {
     try {
       await runBusyFuture(
         _authService.forgotPassword(

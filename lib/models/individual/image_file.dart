@@ -1,21 +1,20 @@
-import 'package:flutter/foundation.dart';
 import 'package:json_annotation/json_annotation.dart';
 
 part 'image_file.g.dart';
 
 @JsonSerializable()
 class IndivisualImageFile {
-  String individualFileId;
-  String name;
-  String base64Content;
-  bool isEditDisabled;
-  String fileFullName;
-  bool editBtnShow;
+  String? individualFileId;
+  String? name;
+  String? base64Content;
+  bool? isEditDisabled;
+  String? fileFullName;
+  bool? editBtnShow;
 
   IndivisualImageFile({
-    @required this.individualFileId,
-    @required this.name,
-    @required this.base64Content,
+    required this.individualFileId,
+    required this.name,
+    required this.base64Content,
     this.isEditDisabled,
     this.fileFullName,
     this.editBtnShow,

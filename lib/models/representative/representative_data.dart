@@ -4,12 +4,12 @@ part 'representative_data.g.dart';
 
 @JsonSerializable()
 class RepresentativeData {
-  final String companyId;
-  final String representativeId;
-  final String nameInArabic;
-  final String nameInEnglish;
-  final String idNumber;
-  final bool isEditDisabled;
+  final String? companyId;
+  final String? representativeId;
+  final String? nameInArabic;
+  final String? nameInEnglish;
+  final String? idNumber;
+  final bool? isEditDisabled;
 
   const RepresentativeData(
     this.companyId,

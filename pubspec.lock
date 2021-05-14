@@ -84,7 +84,7 @@ packages:
       name: build_runner
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "2.0.2"
+    version: "2.0.3"
   build_runner_core:
     dependency: transitive
     description:
@@ -356,7 +356,7 @@ packages:
       name: image_picker
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "0.7.4"
+    version: "0.7.5"
   image_picker_for_web:
     dependency: transitive
     description:
@@ -599,14 +599,14 @@ packages:
       name: stacked
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "2.1.1"
+    version: "2.1.4"
   stacked_generator:
     dependency: "direct dev"
     description:
       name: stacked_generator
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "0.4.1"
+    version: "0.4.5"
   stacked_hooks:
     dependency: "direct main"
     description:
@@ -620,7 +620,7 @@ packages:
       name: stacked_services
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "0.8.5"
+    version: "0.8.6"
   stream_channel:
     dependency: transitive
     description:

@@ -19,7 +19,7 @@ import 'package:huayati/services/third_party/snackbar_service.dart';
 import 'package:huayati/extensions/file_extensions.dart';
 
 class IndividualUpdateFilesViewModel extends BaseViewModel {
-  final IndividualService? _individualService = locator<IndividualService>();
+  final IndividualService _individualService = locator<IndividualService>();
   final SnackBarsService _snackbarService = locator<SnackBarsService>();
   final NavigationService _navigationService = locator<NavigationService>();
   final DialogService _dialogService = locator<DialogService>();
@@ -72,7 +72,7 @@ class IndividualUpdateFilesViewModel extends BaseViewModel {
       refuseMessage =
           _sharedService.sharedRefuseState.indivisualRefuseState?.message;
       imageFiles = await runBusyFuture(
-        _individualService!.getImages(),
+        _individualService.getImages(),
         throwException: true,
       );
     } catch (e) {
@@ -106,7 +106,7 @@ class IndividualUpdateFilesViewModel extends BaseViewModel {
     try {
       setBusy(true);
       var updatedImages = await _getUpdatedImageFiles();
-      await _individualService!.changeAllImages(updatedImages);
+      await _individualService.changeAllImages(updatedImages);
       await _sharedService.getRefuseState();
       setBusy(false);
       await _showSuccessModal();

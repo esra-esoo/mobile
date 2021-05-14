@@ -1,7 +1,5 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-// @dart=2.9
-
 // **************************************************************************
 // StackedRouterGenerator
 // **************************************************************************
@@ -109,67 +107,67 @@ class StackedRouter extends RouterBase {
   Map<Type, StackedRouteFactory> get pagesMap => _pagesMap;
   final _pagesMap = <Type, StackedRouteFactory>{
     SplashScreenView: (data) {
-      return MaterialPageRoute<dynamic>(
+      return buildAdaptivePageRoute<dynamic>(
         builder: (context) => SplashScreenView(),
         settings: data,
       );
     },
     CompanyCreateFilesView: (data) {
-      return MaterialPageRoute<dynamic>(
+      return buildAdaptivePageRoute<dynamic>(
         builder: (context) => const CompanyCreateFilesView(),
         settings: data,
       );
     },
     CompanyDataView: (data) {
-      return MaterialPageRoute<dynamic>(
+      return buildAdaptivePageRoute<dynamic>(
         builder: (context) => const CompanyDataView(),
         settings: data,
       );
     },
     CompanyBankAccountsDataView: (data) {
-      return MaterialPageRoute<dynamic>(
+      return buildAdaptivePageRoute<dynamic>(
         builder: (context) => const CompanyBankAccountsDataView(),
         settings: data,
       );
     },
     CompanyUpdateFilesView: (data) {
-      return MaterialPageRoute<dynamic>(
+      return buildAdaptivePageRoute<dynamic>(
         builder: (context) => const CompanyUpdateFilesView(),
         settings: data,
       );
     },
     RepresentativeUpdateFilesView: (data) {
-      return MaterialPageRoute<dynamic>(
+      return buildAdaptivePageRoute<dynamic>(
         builder: (context) => const RepresentativeUpdateFilesView(),
         settings: data,
       );
     },
     RepresentativeDataView: (data) {
-      return MaterialPageRoute<dynamic>(
+      return buildAdaptivePageRoute<dynamic>(
         builder: (context) => const RepresentativeDataView(),
         settings: data,
       );
     },
     IndividualCreateFilesView: (data) {
-      return MaterialPageRoute<dynamic>(
+      return buildAdaptivePageRoute<dynamic>(
         builder: (context) => const IndividualCreateFilesView(),
         settings: data,
       );
     },
     IndividualUpdateFilesView: (data) {
-      return MaterialPageRoute<dynamic>(
+      return buildAdaptivePageRoute<dynamic>(
         builder: (context) => const IndividualUpdateFilesView(),
         settings: data,
       );
     },
     IndividualPersonalDataView: (data) {
-      return MaterialPageRoute<dynamic>(
+      return buildAdaptivePageRoute<dynamic>(
         builder: (context) => const IndividualPersonalDataView(),
         settings: data,
       );
     },
     IndividualBankAccountsDataView: (data) {
-      return MaterialPageRoute<dynamic>(
+      return buildAdaptivePageRoute<dynamic>(
         builder: (context) => const IndividualBankAccountsDataView(),
         settings: data,
       );
@@ -178,6 +176,7 @@ class StackedRouter extends RouterBase {
       return PageRouteBuilder<dynamic>(
         pageBuilder: (context, animation, secondaryAnimation) => StartUpView(),
         settings: data,
+        transitionsBuilder: TransitionsBuilders.fadeIn,
         transitionDuration: const Duration(milliseconds: 500),
       );
     },
@@ -191,6 +190,7 @@ class StackedRouter extends RouterBase {
           phoneNumber: args.phoneNumber,
         ),
         settings: data,
+        transitionsBuilder: TransitionsBuilders.fadeIn,
       );
     },
     SignUpView: (data) {
@@ -201,11 +201,12 @@ class StackedRouter extends RouterBase {
         pageBuilder: (context, animation, secondaryAnimation) =>
             SignUpView(key: args.key),
         settings: data,
+        transitionsBuilder: TransitionsBuilders.fadeIn,
       );
     },
     OtpView: (data) {
       var args = data.getArgs<OtpViewArguments>(nullOk: false);
-      return MaterialPageRoute<dynamic>(
+      return buildAdaptivePageRoute<dynamic>(
         builder: (context) => OtpView(
           key: args.key,
           phoneNumber: args.phoneNumber,
@@ -218,7 +219,7 @@ class StackedRouter extends RouterBase {
     },
     ForgetPasswordView: (data) {
       var args = data.getArgs<ForgetPasswordViewArguments>(nullOk: false);
-      return MaterialPageRoute<dynamic>(
+      return buildAdaptivePageRoute<dynamic>(
         builder: (context) => ForgetPasswordView(
           key: args.key,
           phoneNumberOrEmail: args.phoneNumberOrEmail,
@@ -232,7 +233,7 @@ class StackedRouter extends RouterBase {
       var args = data.getArgs<EditProfileViewArguments>(
         orElse: () => EditProfileViewArguments(),
       );
-      return MaterialPageRoute<dynamic>(
+      return buildAdaptivePageRoute<dynamic>(
         builder: (context) => EditProfileView(
           key: args.key,
           profileInfo: args.profileInfo,
@@ -245,7 +246,7 @@ class StackedRouter extends RouterBase {
       var args = data.getArgs<ChangePasswordViewArguments>(
         orElse: () => ChangePasswordViewArguments(),
       );
-      return MaterialPageRoute<dynamic>(
+      return buildAdaptivePageRoute<dynamic>(
         builder: (context) => ChangePasswordView(key: args.key),
         settings: data,
         fullscreenDialog: true,
@@ -260,48 +261,48 @@ class StackedRouter extends RouterBase {
 
 /// SignInView arguments holder class
 class SignInViewArguments {
-  final Key key;
-  final String phoneNumber;
+  final Key? key;
+  final String? phoneNumber;
   SignInViewArguments({this.key, this.phoneNumber});
 }
 
 /// SignUpView arguments holder class
 class SignUpViewArguments {
-  final Key key;
+  final Key? key;
   SignUpViewArguments({this.key});
 }
 
 /// OtpView arguments holder class
 class OtpViewArguments {
-  final Key key;
+  final Key? key;
   final String phoneNumber;
-  final String email;
+  final String? email;
   final int customerType;
   OtpViewArguments(
       {this.key,
-      @required this.phoneNumber,
+      required this.phoneNumber,
       this.email,
-      @required this.customerType});
+      required this.customerType});
 }
 
 /// ForgetPasswordView arguments holder class
 class ForgetPasswordViewArguments {
-  final Key key;
+  final Key? key;
   final String phoneNumberOrEmail;
   final int sentBy;
   ForgetPasswordViewArguments(
-      {this.key, @required this.phoneNumberOrEmail, @required this.sentBy});
+      {this.key, required this.phoneNumberOrEmail, required this.sentBy});
 }
 
 /// EditProfileView arguments holder class
 class EditProfileViewArguments {
-  final Key key;
-  final ProfileInfo profileInfo;
+  final Key? key;
+  final ProfileInfo? profileInfo;
   EditProfileViewArguments({this.key, this.profileInfo});
 }
 
 /// ChangePasswordView arguments holder class
 class ChangePasswordViewArguments {
-  final Key key;
+  final Key? key;
   ChangePasswordViewArguments({this.key});
 }

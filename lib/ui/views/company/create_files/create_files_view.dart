@@ -85,10 +85,8 @@ class CompanyCreateFilesView extends StatelessWidget {
     switch (index) {
       case 0:
         return CompanyFormView();
-        break;
       case 1:
         return RepresentativesFormView();
-        break;
       default:
         return CompanyFormView();
     }

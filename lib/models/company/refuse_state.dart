@@ -4,13 +4,13 @@ part 'refuse_state.g.dart';
 
 @JsonSerializable()
 class CompanyRefuseState {
-  final String companyMessage;
-  final String representativeMessage;
-  final bool hasRefusedCompanyFiles;
-  final bool hasRefusedRepresentativeFiles;
-  final int numberOfCompanyFiles;
-  final int numberOfRepresentativeFiles;
-  final String refuseType;
+  final String? companyMessage;
+  final String? representativeMessage;
+  final bool? hasRefusedCompanyFiles;
+  final bool? hasRefusedRepresentativeFiles;
+  final int? numberOfCompanyFiles;
+  final int? numberOfRepresentativeFiles;
+  final String? refuseType;
 
   const CompanyRefuseState(
     this.companyMessage,

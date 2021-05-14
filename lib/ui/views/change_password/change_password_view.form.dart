@@ -33,11 +33,12 @@ mixin $ChangePasswordView on StatelessWidget {
 
   /// Updates the formData on the FormViewModel
   void _updateFormData(FormViewModel model) => model.setData(
-        {
-          CurrentPasswordValueKey: currentPasswordController.text,
-          PasswordValueKey: passwordController.text,
-          ConfirmPasswordValueKey: confirmPasswordController.text,
-        },
+        model.formValueMap
+          ..addAll({
+            CurrentPasswordValueKey: currentPasswordController.text,
+            PasswordValueKey: passwordController.text,
+            ConfirmPasswordValueKey: confirmPasswordController.text,
+          }),
       );
 
   /// Calls dispose on all the generated controllers and focus nodes
@@ -51,7 +52,17 @@ mixin $ChangePasswordView on StatelessWidget {
 }
 
 extension ValueProperties on FormViewModel {
-  String? get currentPasswordValue => this.formValueMap[CurrentPasswordValueKey];
+  String? get currentPasswordValue =>
+      this.formValueMap[CurrentPasswordValueKey];
   String? get passwordValue => this.formValueMap[PasswordValueKey];
-  String? get confirmPasswordValue => this.formValueMap[ConfirmPasswordValueKey];
+  String? get confirmPasswordValue =>
+      this.formValueMap[ConfirmPasswordValueKey];
+
+  bool get hasCurrentPassword =>
+      this.formValueMap.containsKey(CurrentPasswordValueKey);
+  bool get hasPassword => this.formValueMap.containsKey(PasswordValueKey);
+  bool get hasConfirmPassword =>
+      this.formValueMap.containsKey(ConfirmPasswordValueKey);
 }
+
+extension Methods on FormViewModel {}

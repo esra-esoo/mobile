@@ -1,7 +1,6 @@
 import 'package:huayati/app/app.locator.dart';
 import 'package:huayati/app/app.router.dart';
 import 'package:huayati/enums/dialog_type.dart';
-import 'package:huayati/models/customer_created_result.dart';
 import 'package:huayati/services/auth_service.dart';
 
 import 'package:stacked_services/stacked_services.dart';
@@ -21,7 +20,7 @@ class OtpViewModel extends BaseViewModel {
       );
     } else {
       try {
-        CustomerCreatedResult result = await runBusyFuture(
+        await runBusyFuture(
           _authService.checkSignUpVerificationCode(
             phoneNumber: phoneNo,
             verificationCode: verificationCode,

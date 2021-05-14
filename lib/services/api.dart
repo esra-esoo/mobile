@@ -1,5 +1,4 @@
 import 'package:dio/dio.dart';
-import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:huayati/app/app_config.dart';
 import 'package:huayati/config/config.dart';

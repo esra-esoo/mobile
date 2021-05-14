@@ -9,10 +9,10 @@ part of 'refuse_state.dart';
 IndivisualRefuseState _$IndivisualRefuseStateFromJson(
     Map<String, dynamic> json) {
   return IndivisualRefuseState(
-    json['numberOfFiles'] as int,
-    json['message'] as String,
-    json['refuseType'] as String,
-    (json['files'] as List)?.map((e) => e as String)?.toList(),
+    json['numberOfFiles'] as int?,
+    json['message'] as String?,
+    json['refuseType'] as String?,
+    (json['files'] as List<dynamic>?)?.map((e) => e as String).toList(),
   );
 }
 

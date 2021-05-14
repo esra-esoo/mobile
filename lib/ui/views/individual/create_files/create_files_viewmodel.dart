@@ -19,7 +19,7 @@ import 'package:huayati/ui/widgets/success_upload_modal.dart';
 import 'package:stacked_services/stacked_services.dart' ;
 
 class IndividualCreateFilesViewModel extends BaseViewModel {
-  final IndividualService? _individualService = locator<IndividualService>();
+  final IndividualService _individualService = locator<IndividualService>();
   final SnackBarsService _snackbarService = locator<SnackBarsService>();
   final SharedService _sharedService = locator<SharedService>();
   final UserService _userService = locator<UserService>();
@@ -66,7 +66,7 @@ class IndividualCreateFilesViewModel extends BaseViewModel {
       setBusy(true);
       var user = await _userService.loadUser();
       var fileModels = await _getFileModels();
-      await _individualService!.createFiles(
+      await _individualService.createFiles(
         IndivisualCreateFilesPayload(
           phoneNumber: user.phoneNumber,
           filesModels: fileModels,

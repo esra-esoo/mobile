@@ -4,11 +4,11 @@ part 'personal_data.g.dart';
 
 @JsonSerializable()
 class PersonalData {
-  final String nameInArabic;
-  final String nameInEnglish;
-  final String idNumber;
-  final bool isEditDisabled;
-  final bool editBtnShow;
+  final String? nameInArabic;
+  final String? nameInEnglish;
+  final String? idNumber;
+  final bool? isEditDisabled;
+  final bool? editBtnShow;
 
   const PersonalData(
     this.nameInArabic,

@@ -8,12 +8,12 @@ part of 'image_file.dart';
 
 CompanyImageFile _$CompanyImageFileFromJson(Map<String, dynamic> json) {
   return CompanyImageFile(
-    companyFileId: json['companyFileId'] as String,
-    name: json['name'] as String,
-    base64Content: json['base64Content'] as String,
-    isEditDisabled: json['isEditDisabled'] as bool,
-    fileFullName: json['fileFullName'] as String,
-    editBtnShow: json['editBtnShow'] as bool,
+    companyFileId: json['companyFileId'] as String?,
+    name: json['name'] as String?,
+    base64Content: json['base64Content'] as String?,
+    isEditDisabled: json['isEditDisabled'] as bool?,
+    fileFullName: json['fileFullName'] as String?,
+    editBtnShow: json['editBtnShow'] as bool?,
   );
 }
 

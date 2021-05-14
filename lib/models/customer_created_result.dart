@@ -4,8 +4,8 @@ part 'customer_created_result.g.dart';
 
 @JsonSerializable(explicitToJson: false)
 class CustomerCreatedResult {
-  final String phoneNumber;
-  final String password;
+  final String? phoneNumber;
+  final String? password;
 
   const CustomerCreatedResult(
     this.phoneNumber,

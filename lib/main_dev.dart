@@ -6,7 +6,7 @@ import 'app/app_config.dart';
 import 'main.dart';
 import 'ui/setup_dialog_ui.dart';
 
-void main() async {
+void main() {
   // WidgetsFlutterBinding.ensureInitialized();
   // await Firebase.initializeApp();
   // FlutterError.onError = FirebaseCrashlytics.instance.recordFlutterError;

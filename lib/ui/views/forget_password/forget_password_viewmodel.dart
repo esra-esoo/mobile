@@ -1,4 +1,3 @@
-import 'package:flutter/foundation.dart';
 import 'package:huayati/app/app.locator.dart';
 import 'package:huayati/app/app.router.dart';
 import 'package:huayati/consts/pass_sent_by.dart';

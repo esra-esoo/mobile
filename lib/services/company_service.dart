@@ -38,7 +38,7 @@ class CompanyService {
     }
   }
 
-  Future<List<CompanyBankAccount>?> getBankAccounts() async {
+  Future<List<CompanyBankAccount>> getBankAccounts() async {
     try {
       final response = await _api!.getCallWithToken(
         url: '/api/Company/GetBankAccounts',
@@ -55,16 +55,17 @@ class CompanyService {
     }
   }
 
-  Future<List<CompanyImageFile>?> getCompanyImages() async {
+  Future<List<CompanyImageFile>> getCompanyImages() async {
     try {
       final response = await _api!.getCallWithToken(
         url: '/api/Company/GetImages',
       );
       return response
-          ?.map<CompanyImageFile>(
-            (json) => CompanyImageFile.fromJson(json),
-          )
-          ?.toList();
+              ?.map<CompanyImageFile>(
+                (json) => CompanyImageFile.fromJson(json),
+              )
+              ?.toList() ??
+          [];
     } on DioError catch (e) {
       throw e.message;
     } catch (e) {
@@ -85,16 +86,17 @@ class CompanyService {
     }
   }
 
-  Future<List<RepresentativeImageFile>?> getRepresentativeImages() async {
+  Future<List<RepresentativeImageFile>> getRepresentativeImages() async {
     try {
       final response = await _api!.getCallWithToken(
         url: '/api/Company/GetRepresentativeImages',
       );
       return response
-          ?.map<RepresentativeImageFile>(
-            (json) => RepresentativeImageFile.fromJson(json),
-          )
-          ?.toList();
+              ?.map<RepresentativeImageFile>(
+                (json) => RepresentativeImageFile.fromJson(json),
+              )
+              ?.toList() ??
+          [];
     } on DioError catch (e) {
       throw e.message;
     } catch (e) {
@@ -116,16 +118,17 @@ class CompanyService {
     }
   }
 
-  Future<List<RepresentativeData>?> getRepresentativeData() async {
+  Future<List<RepresentativeData>> getRepresentativeData() async {
     try {
       final response = await _api!.getCallWithToken(
         url: '/api/Company/GetRepresentativeData',
       );
       return response
-          ?.map<RepresentativeData>(
-            (json) => RepresentativeData.fromJson(json),
-          )
-          ?.toList();
+              ?.map<RepresentativeData>(
+                (json) => RepresentativeData.fromJson(json),
+              )
+              ?.toList() ??
+          [];
     } on DioError catch (e) {
       throw e.message;
     } catch (e) {

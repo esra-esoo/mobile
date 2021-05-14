@@ -85,10 +85,8 @@ class StartUpView extends StatelessWidget {
     switch (index) {
       case 0:
         return HomeView();
-        break;
       case 2:
         return ProfileView();
-        break;
       default:
         return HomeView();
     }
@@ -98,10 +96,8 @@ class StartUpView extends StatelessWidget {
     switch (index) {
       case 0:
         return 'الرئيسية';
-        break;
       case 2:
         return 'الملف الشخصي';
-        break;
       default:
         return 'الرئيسية';
     }

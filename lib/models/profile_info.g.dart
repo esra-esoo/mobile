@@ -8,11 +8,11 @@ part of 'profile_info.dart';
 
 ProfileInfo _$ProfileInfoFromJson(Map<String, dynamic> json) {
   return ProfileInfo(
-    username: json['username'] as String,
-    fullname: json['fullname'] as String,
-    familyName: json['familyName'] as String,
-    email: json['email'] as String,
-    phoneNumber: json['phoneNumber'] as String,
+    username: json['username'] as String?,
+    fullname: json['fullname'] as String?,
+    familyName: json['familyName'] as String?,
+    email: json['email'] as String?,
+    phoneNumber: json['phoneNumber'] as String?,
   );
 }
 

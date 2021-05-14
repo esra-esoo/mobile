@@ -27,10 +27,11 @@ mixin $SignInView on StatelessWidget {
 
   /// Updates the formData on the FormViewModel
   void _updateFormData(FormViewModel model) => model.setData(
-        {
-          PhoneValueKey: phoneController.text,
-          PasswordValueKey: passwordController.text,
-        },
+        model.formValueMap
+          ..addAll({
+            PhoneValueKey: phoneController.text,
+            PasswordValueKey: passwordController.text,
+          }),
       );
 
   /// Calls dispose on all the generated controllers and focus nodes
@@ -45,4 +46,9 @@ mixin $SignInView on StatelessWidget {
 extension ValueProperties on FormViewModel {
   String? get phoneValue => this.formValueMap[PhoneValueKey];
   String? get passwordValue => this.formValueMap[PasswordValueKey];
+
+  bool get hasPhone => this.formValueMap.containsKey(PhoneValueKey);
+  bool get hasPassword => this.formValueMap.containsKey(PasswordValueKey);
 }
+
+extension Methods on FormViewModel {}
