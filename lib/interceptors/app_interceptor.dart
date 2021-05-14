@@ -37,7 +37,7 @@ class AppInterceptor extends InterceptorsWrapper {
   }
 
   @override
-  void onError(DioError dioError, ErrorInterceptorHandler handler) async {
+  Future onError(DioError dioError, ErrorInterceptorHandler handler) async {
     try {
       if (dioError.response?.statusCode == 401) {
         try {
@@ -52,7 +52,8 @@ class AppInterceptor extends InterceptorsWrapper {
           _dio.interceptors.responseLock.unlock();
           print('token was refreshed successfully');
 
-          final Response response = await _dio.fetch(options);
+          final Response response = await Dio().fetch(options);
+          print('dio fetch response =: ' + response.statusCode.toString());
           return handler.resolve(response);
         } catch (e) {
           print('AppInterceptor refresh token => $e');
