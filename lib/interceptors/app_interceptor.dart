@@ -49,7 +49,7 @@ class AppInterceptor extends InterceptorsWrapper {
           _dio.unlock();
 
           // request again with refreshed token
-          final Response response = await Dio().fetch(options);
+          final Response response = await _dio.fetch(options);
           return handler.resolve(response);
         } catch (e) {
           _dio.unlock();
