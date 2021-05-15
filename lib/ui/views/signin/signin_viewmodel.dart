@@ -17,7 +17,7 @@ class SignInViewModel extends FormViewModel {
   final SnackBarsService _snackbarService = locator<SnackBarsService>();
   final AuthService _authService = locator<AuthService>();
   final SharedService _sharedService = locator<SharedService>();
-  final PickerService? _pickerService = locator<PickerService>();
+  final PickerService _pickerService = locator<PickerService>();
   final DialogService _dialogService = locator<DialogService>();
 
   @override
@@ -65,7 +65,7 @@ class SignInViewModel extends FormViewModel {
   }
 
   Future recoverPassword() async {
-    var resetMethod = await _pickerService!.showResetMethod();
+    var resetMethod = await _pickerService.showResetMethod();
     if (resetMethod != null) {
       DialogResponse? dialogResponse = await _dialogService.showCustomDialog(
         variant: DialogType.phoneOrEmail,
@@ -78,9 +78,10 @@ class SignInViewModel extends FormViewModel {
     }
   }
 
-  Future _forgetPassword(String phoneNumberOrEmail, int resetMethod) async {
+  Future<void> _forgetPassword(
+      String phoneNumberOrEmail, int resetMethod) async {
     try {
-      await runBusyFuture(
+      await runBusyFuture<void>(
         _authService.forgotPassword(
           phoneNumberOrEmail: phoneNumberOrEmail,
           resetMethod: resetMethod,

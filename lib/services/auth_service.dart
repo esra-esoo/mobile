@@ -11,8 +11,9 @@ import 'third_party/secure_storage_service.dart';
 import 'user_service.dart';
 
 class AuthService {
-  final Api? _api = locator<Api>();
-  final SecureStorageService? _secureStorageService = locator<SecureStorageService>();
+  final Api _api = locator<Api>();
+  final SecureStorageService? _secureStorageService =
+      locator<SecureStorageService>();
   final UserService _userService = locator<UserService>();
 
   Future<SignUpResult> signUp({
@@ -26,7 +27,7 @@ class AuthService {
       'customerType': customerType,
     });
     try {
-      final response = await _api!.postCallAuth(
+      final response = await _api.postCallAuth(
         url: '/api/Users/SignUp',
         data: {
           "email": email,
@@ -50,7 +51,7 @@ class AuthService {
     required int verificationCode,
   }) async {
     try {
-      final response = await _api!.postCallAuth(
+      final response = await _api.postCallAuth(
         url: '/api/SignUpVerificationCode/CheckSignUpVerificationCode',
         data: {
           "phoneNumber": phoneNumber,
@@ -73,7 +74,7 @@ class AuthService {
     required String password,
   }) async {
     try {
-      var client = await _api!.getClient(
+      var client = await _api.getClient(
         username: username,
         password: password,
       );
@@ -101,7 +102,7 @@ class AuthService {
   Future<ProfileInfo> getProfileInfo() async {
     try {
       // await Future.delayed(Duration(seconds: 5));
-      final response = await _api!.getCallAuth(url: '/api/Users/ProfileInfo');
+      final response = await _api.getCallAuth(url: '/api/Users/ProfileInfo');
 
       if (response['phoneNumber'] == null)
         throw 'حدث خطأ نرجو المحاولة مرة اخر،او في وقت لاحق.';
@@ -116,7 +117,7 @@ class AuthService {
 
   Future<void> updateProfileInfo({required ProfileInfo profileInfo}) async {
     try {
-      await _api!.putCallAuth(
+      await _api.putCallAuth(
         url: '/api/Users/ProfileInfo',
         data: profileInfo,
       );
@@ -133,7 +134,7 @@ class AuthService {
     required String? confirmPassword,
   }) async {
     try {
-      await _api!.putCallAuth(
+      await _api.putCallAuth(
         url: '/api/Users/ChangePassword',
         data: {
           "currentPassword": currentPassword,
@@ -149,11 +150,11 @@ class AuthService {
   }
 
   Future<void> forgotPassword({
-    required String? phoneNumberOrEmail,
+    required String phoneNumberOrEmail,
     required int resetMethod,
   }) async {
     try {
-      await _api!.postCallAuth(
+      await _api.postCallAuth(
         url: '/api/ForgetPasswordVerificationCode/ForgotPassword',
         data: {
           "phoneNumberOrEmail": phoneNumberOrEmail,
@@ -168,11 +169,11 @@ class AuthService {
   }
 
   Future<void> resendVerificationCode({
-    required String? phoneNumberOrEmail,
+    required String phoneNumberOrEmail,
     required String sentBy,
   }) async {
     try {
-      await _api!.postCallAuth(
+      await _api.postCallAuth(
         url: '/api/ForgetPasswordVerificationCode/ResendVerificationCode',
         data: {
           "phoneNumberOrEmail": phoneNumberOrEmail,
@@ -187,12 +188,12 @@ class AuthService {
   }
 
   Future<void> checkVerificationCode({
-    required String? phoneNumberOrEmail,
+    required String phoneNumberOrEmail,
     required int verificationCode,
     required String sentBy,
   }) async {
     try {
-      await _api!.postCallAuth(
+      await _api.postCallAuth(
         url: '/api/ForgetPasswordVerificationCode/CheckVerificationCode',
         data: {
           "phoneNumberOrEmail": phoneNumberOrEmail,

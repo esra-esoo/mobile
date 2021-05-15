@@ -12,7 +12,7 @@ import 'package:huayati/services/third_party/secure_storage_service.dart';
 import 'package:huayati/services/user_service.dart';
 import 'package:oauth2/oauth2.dart' as oauth2;
 
-class AppInterceptor extends Interceptor {
+class AppInterceptor extends InterceptorsWrapper {
   final Dio _dio;
   final SecureStorageService _secureStorageService =
       locator<SecureStorageService>();
@@ -39,6 +39,7 @@ class AppInterceptor extends Interceptor {
   @override
   Future onError(DioError dioError, ErrorInterceptorHandler handler) async {
     try {
+      print(dioError.response?.statusCode);
       if (dioError.response?.statusCode == 401) {
         try {
           _dio.lock();

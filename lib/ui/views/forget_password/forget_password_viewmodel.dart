@@ -15,7 +15,7 @@ class ForgetPasswordViewModel extends BaseViewModel {
   final DialogService _dialogService = locator<DialogService>();
 
   Future verifyOtp({
-    required String? phoneNumberOrEmail,
+    required String phoneNumberOrEmail,
     required int verificationCode,
     required int sentBy,
   }) async {
