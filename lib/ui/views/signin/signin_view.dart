@@ -27,7 +27,7 @@ class SignInView extends StatelessWidget with $SignInView {
     return ViewModelBuilder<SignInViewModel>.reactive(
       onModelReady: (viewModel) {
         listenToFormUpdated(viewModel);
-        phoneController.text = phoneNumber!;
+        if (phoneNumber != null) phoneController.text = phoneNumber!;
       },
       onDispose: () => disposeForm(),
       viewModelBuilder: () => SignInViewModel(),
