@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_platform_widgets/flutter_platform_widgets.dart';
 import 'package:huayati/app/app.locator.dart';
+import 'package:huayati/consts/styles.dart';
 import 'package:huayati/enums/dialog_type.dart';
 import 'package:stacked_services/stacked_services.dart';
 
@@ -23,7 +24,8 @@ void setupDialogUi() {
 class _AlertDialog extends StatelessWidget {
   final DialogRequest? request;
   final Function(DialogResponse)? completer;
-  const _AlertDialog({Key? key, this.request, this.completer}) : super(key: key);
+  const _AlertDialog({Key? key, this.request, this.completer})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -48,6 +50,8 @@ class _AlertDialog extends StatelessWidget {
       ),
       actions: <Widget>[
         PlatformDialogAction(
+          material: (_, __) =>
+              MaterialDialogActionData(textColor: kcolorBluelight),
           onPressed: () => completer!(DialogResponse(confirmed: true)),
           child: Text(request!.mainButtonTitle!),
         ),
@@ -85,10 +89,14 @@ class _ConfirmDialog extends StatelessWidget {
       ),
       actions: <Widget>[
         PlatformDialogAction(
+          material: (_, __) =>
+              MaterialDialogActionData(textColor: kcolorBluelight),
           child: Text('تراجع'),
           onPressed: () => completer!(DialogResponse(confirmed: false)),
         ),
         PlatformDialogAction(
+          material: (_, __) =>
+              MaterialDialogActionData(textColor: kcolorBluelight),
           cupertino: (_, __) =>
               CupertinoDialogActionData(isDefaultAction: true),
           onPressed: () => completer!(DialogResponse(confirmed: true)),
@@ -152,13 +160,15 @@ class _PhoneOrEmailDialog extends StatelessWidget {
           cupertino: (_, __) => CupertinoDialogActionData(
             isDefaultAction: true,
           ),
+          material: (_, __) =>
+              MaterialDialogActionData(textColor: kcolorBluelight),
           onPressed: () => completer!(
               DialogResponse(confirmed: true, responseData: inputValue)),
-          child: Text(
-            'تأكيد',
-          ),
+          child: Text('تأكيد'),
         ),
         PlatformDialogAction(
+          material: (_, __) =>
+              MaterialDialogActionData(textColor: kcolorBluelight),
           onPressed: () => completer!(DialogResponse(confirmed: false)),
           child: Text('تراجع'),
         ),
