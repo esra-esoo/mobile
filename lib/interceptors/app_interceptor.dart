@@ -32,8 +32,8 @@ class AppInterceptor extends InterceptorsWrapper {
 
       var token = await _secureStorageService.readString(StorageKeys.TOKEN);
       options.headers.addAll({"Authorization": "Bearer " + (token ?? '')});
-      handler.next(options);
     }
+    handler.next(options);
   }
 
   @override
