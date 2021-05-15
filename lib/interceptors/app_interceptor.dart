@@ -12,7 +12,7 @@ import 'package:huayati/services/third_party/secure_storage_service.dart';
 import 'package:huayati/services/user_service.dart';
 import 'package:oauth2/oauth2.dart' as oauth2;
 
-class AppInterceptor extends InterceptorsWrapper {
+class AppInterceptor extends Interceptor {
   final Dio _dio;
   final SecureStorageService _secureStorageService =
       locator<SecureStorageService>();
@@ -41,25 +41,19 @@ class AppInterceptor extends InterceptorsWrapper {
     try {
       if (dioError.response?.statusCode == 401) {
         try {
-          _dio.interceptors.requestLock.lock();
-          _dio.interceptors.responseLock.lock();
+          _dio.lock();
           RequestOptions options = dioError.requestOptions;
-
           final newToken = await _refrshToken();
-
           options.headers["Authorization"] = "Bearer " + newToken;
-          _dio.interceptors.requestLock.unlock();
-          _dio.interceptors.responseLock.unlock();
-          print('token was refreshed successfully');
+          _dio.unlock();
 
+          // request again with refreshed token
           final Response response = await Dio().fetch(options);
-          print('dio fetch response =: ' + response.statusCode.toString());
           return handler.resolve(response);
         } catch (e) {
-          print('AppInterceptor refresh token => $e');
-          _dio.interceptors.requestLock.unlock();
-          _dio.interceptors.responseLock.unlock();
+          _dio.unlock();
           await signOut();
+          print('failed to refresh token => $e');
         }
       } else if (dioError.response?.statusCode == 500) {
         return handler.reject(DioError(
