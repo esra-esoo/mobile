@@ -2,6 +2,7 @@ import 'dart:io';
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:huayati/app/app.locator.dart';
 import 'package:huayati/consts/styles.dart';
 import 'package:huayati/services/third_party/picker_services.dart';
@@ -85,7 +86,7 @@ class ImagePickerField extends StatelessWidget {
     try {
       var imageSource = await locator<PickerService>().showMediaType();
       if (imageSource == null) return;
-      await Future.delayed(const Duration(milliseconds: 350));
+      // await Future.delayed(const Duration(milliseconds: 350));
       PickedFile? pickedFile = await ImagePicker().getImage(
         source: imageSource,
         maxHeight: 810,
@@ -102,11 +103,11 @@ class ImagePickerField extends StatelessWidget {
       }
 
       onChanged!(imageFile);
-    } on Exception catch (e) {
+    } on PlatformException catch (e) {
       print(e);
-      locator<SnackBarsService>().showTopErrorSnackbar(
-        message: 'حدث خطأ أثناء معالجة الصورة ، نرجو اختيار صورة اخرى',
-      );
+      // locator<SnackBarsService>().showTopErrorSnackbar(
+      //   message: 'حدث خطأ أثناء معالجة الصورة ، نرجو اختيار صورة اخرى',
+      // );
     } catch (e) {
       print(e.toString());
       locator<SnackBarsService>().showTopErrorSnackbar(
