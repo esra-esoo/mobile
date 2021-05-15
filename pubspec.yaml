@@ -44,6 +44,7 @@ dependencies:
   stacked_services: ^0.8.6
   stacked_hooks: ^0.2.0
   flutter_hooks: ^0.16.0
+  firebase_messaging: ^9.1.4
   
 dev_dependencies:
   flutter_test:
