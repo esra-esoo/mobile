@@ -36,7 +36,7 @@ class AppBottomNavigationBar extends StatelessWidget {
         currentIndex: currentIndex,
         elevation: 0,
         type: BottomNavigationBarType.fixed,
-        showUnselectedLabels: true,
+        showUnselectedLabels: false,
         onTap: onTap as void Function(int)?,
         items: [
           BottomNavigationBarItem(
