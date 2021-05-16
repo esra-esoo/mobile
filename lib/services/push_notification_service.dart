@@ -69,7 +69,7 @@ class PushNotificationService {
     await _secureStorageService.addBoolean(StorageKeys.SUBSCRIBED, true);
     print('subscriber to ' +
         (isDevEnviroment ? 'dev_all_users' : 'all_users') +
-        'topic');
+        ' topic');
   }
 
   Future unSubscribeFromDefaultTopic() async {
@@ -82,7 +82,7 @@ class PushNotificationService {
     await _secureStorageService.addBoolean(StorageKeys.SUBSCRIBED, false);
     print('unsubscriber from ' +
         (isDevEnviroment ? 'dev_all_users' : 'all_users') +
-        'topic');
+        ' topic');
   }
 
   Future<void> _handleForgroundMessages(RemoteMessage message) async {
