@@ -90,6 +90,22 @@ class SharedService {
     }
   }
 
+  void updateCompanyState(CompanyRefuseState companyRefuseState) {
+    _sharedRefuseState = SharedRefuseState(
+      companyRefuseState: companyRefuseState,
+      indivisualRefuseState: null,
+    );
+    _sharedRefuseStateController.add(_sharedRefuseState);
+  }
+
+  void updateIndivisualState(IndivisualRefuseState indivisualRefuseState) {
+    _sharedRefuseState = SharedRefuseState(
+      companyRefuseState: null,
+      indivisualRefuseState: indivisualRefuseState,
+    );
+    _sharedRefuseStateController.add(_sharedRefuseState);
+  }
+
   void resetRefuseState() {
     _sharedRefuseState = SharedRefuseState.initial();
     _sharedRefuseStateController.add(_sharedRefuseState);
