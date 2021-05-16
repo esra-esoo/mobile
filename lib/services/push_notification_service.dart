@@ -19,7 +19,7 @@ class PushNotificationService {
   final _sharedService = locator<SharedService>();
   final _secureStorageService = locator<SecureStorageService>();
 
-  Future<void> initialise() async {
+  Future<void> initialize() async {
     try {
       if (Platform.isIOS) {
         await _fcm.requestPermission(

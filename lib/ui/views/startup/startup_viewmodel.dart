@@ -7,6 +7,6 @@ class StartUpViewModel extends IndexTrackingViewModel {
 
   Future<void> initializeView() async {
     await Future.delayed(const Duration(seconds: 2));
-    await _pushNotificationService.initialise();
+    await _pushNotificationService.initialize();
   }
 }
