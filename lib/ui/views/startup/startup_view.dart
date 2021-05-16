@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
 import 'package:flutter/services.dart';
 import 'package:huayati/app/app.locator.dart';
+import 'package:huayati/ui/views/complaint/complaint_view.dart';
 import 'package:huayati/ui/views/home/home_view.dart';
 import 'package:huayati/ui/views/profile/profile_view.dart';
 import 'package:huayati/ui/widgets/bottom_navigation_bar.dart';
@@ -78,11 +79,13 @@ class StartUpView extends StatelessWidget {
   Widget getViewForIndex(int index) {
     switch (index) {
       case 0:
-        return HomeView();
+        return const HomeView();
       case 2:
-        return ProfileView();
+        return const ProfileView();
+      case 3:
+        return const ComplaintView();
       default:
-        return HomeView();
+        return const HomeView();
     }
   }
 
@@ -92,6 +95,8 @@ class StartUpView extends StatelessWidget {
         return 'الرئيسية';
       case 2:
         return 'الملف الشخصي';
+      case 3:
+        return 'إرسال شكوى';
       default:
         return 'الرئيسية';
     }
