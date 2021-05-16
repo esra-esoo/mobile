@@ -7,9 +7,9 @@
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:359297963009:android:086b1f04903a49a9235c00",
+        "mobilesdk_app_id": "1:359297963009:android:5a831765652850b1235c00",
         "android_client_info": {
-          "package_name": "ly.jbank.huayati.app"
+          "package_name": "ly.jbank.huayati.app.dev"
         }
       },
       "oauth_client": [
@@ -31,10 +31,10 @@
               "client_type": 3
             },
             {
-              "client_id": "359297963009-vo15apusc7v3q87cecvqf7ccc3lug283.apps.googleusercontent.com",
+              "client_id": "359297963009-mmjv26bvqetek4jclkgd7t3go5lemc2h.apps.googleusercontent.com",
               "client_type": 2,
               "ios_info": {
-                "bundle_id": "ly.jbank.huayati.app"
+                "bundle_id": "ly.jbank.huayati.app.dev"
               }
             }
           ]
