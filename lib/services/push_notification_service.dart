@@ -1,3 +1,4 @@
+import 'dart:convert';
 import 'dart:io';
 
 import 'package:firebase_messaging/firebase_messaging.dart';
@@ -66,6 +67,9 @@ class PushNotificationService {
         : await _fcm.subscribeToTopic('all_users');
 
     await _secureStorageService.addBoolean(StorageKeys.SUBSCRIBED, true);
+    print('subscriber to ' +
+        (isDevEnviroment ? 'dev_all_users' : 'all_users') +
+        'topic');
   }
 
   Future unSubscribeFromDefaultTopic() async {
@@ -76,9 +80,14 @@ class PushNotificationService {
         : await _fcm.unsubscribeFromTopic('all_users');
 
     await _secureStorageService.addBoolean(StorageKeys.SUBSCRIBED, false);
+    print('unsubscriber from ' +
+        (isDevEnviroment ? 'dev_all_users' : 'all_users') +
+        'topic');
   }
 
   Future<void> _handleForgroundMessages(RemoteMessage message) async {
+    print('handleForgroundMessages');
+    print(jsonEncode(message));
     if (message.notification?.title != null &&
         message.notification?.body != null) {
       _snackbarService.showNotificationSnackbar(
@@ -90,12 +99,16 @@ class PushNotificationService {
   }
 
   Future<void> _handleBackgroundMessages(RemoteMessage message) async {
+    print('handleBackgroundMessages');
+    print(jsonEncode(message));
     _updateAccountRefuseStateFromMessage(message);
   }
 
   Future<void> _handleTerminatedBackgroundMessages() async {
     RemoteMessage? initialMessage = await _fcm.getInitialMessage();
     if (initialMessage != null) {
+      print('handleTerminatedBackgroundMessages');
+      print(jsonEncode(initialMessage));
       _updateAccountRefuseStateFromMessage(initialMessage);
     }
   }
