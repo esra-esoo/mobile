@@ -39,13 +39,14 @@ mixin $EditProfileView on StatelessWidget {
 
   /// Updates the formData on the FormViewModel
   void _updateFormData(FormViewModel model) => model.setData(
-        {
-          PhoneNumberValueKey: phoneNumberController.text,
-          UsernameValueKey: usernameController.text,
-          FullnameValueKey: fullnameController.text,
-          FamilyNameValueKey: familyNameController.text,
-          EmailValueKey: emailController.text,
-        },
+        model.formValueMap
+          ..addAll({
+            PhoneNumberValueKey: phoneNumberController.text,
+            UsernameValueKey: usernameController.text,
+            FullnameValueKey: fullnameController.text,
+            FamilyNameValueKey: familyNameController.text,
+            EmailValueKey: emailController.text,
+          }),
       );
 
   /// Calls dispose on all the generated controllers and focus nodes
@@ -61,9 +62,17 @@ mixin $EditProfileView on StatelessWidget {
 }
 
 extension ValueProperties on FormViewModel {
-  String get phoneNumberValue => this.formValueMap[PhoneNumberValueKey];
-  String get usernameValue => this.formValueMap[UsernameValueKey];
-  String get fullnameValue => this.formValueMap[FullnameValueKey];
-  String get familyNameValue => this.formValueMap[FamilyNameValueKey];
-  String get emailValue => this.formValueMap[EmailValueKey];
+  String? get phoneNumberValue => this.formValueMap[PhoneNumberValueKey];
+  String? get usernameValue => this.formValueMap[UsernameValueKey];
+  String? get fullnameValue => this.formValueMap[FullnameValueKey];
+  String? get familyNameValue => this.formValueMap[FamilyNameValueKey];
+  String? get emailValue => this.formValueMap[EmailValueKey];
+
+  bool get hasPhoneNumber => this.formValueMap.containsKey(PhoneNumberValueKey);
+  bool get hasUsername => this.formValueMap.containsKey(UsernameValueKey);
+  bool get hasFullname => this.formValueMap.containsKey(FullnameValueKey);
+  bool get hasFamilyName => this.formValueMap.containsKey(FamilyNameValueKey);
+  bool get hasEmail => this.formValueMap.containsKey(EmailValueKey);
 }
+
+extension Methods on FormViewModel {}

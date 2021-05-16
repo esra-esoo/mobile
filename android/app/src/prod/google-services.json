@@ -1,0 +1,46 @@
+{
+  "project_info": {
+    "project_number": "63818338452",
+    "project_id": "huayatiprod",
+    "storage_bucket": "huayatiprod.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:63818338452:android:6dfc86778b534a6b1d2481",
+        "android_client_info": {
+          "package_name": "ly.jbank.huayati.app"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "63818338452-idiphqijt00o75jbmo1tbtl0rtsjhi86.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyC9qs4dGE9pVaqP25uyWBlTsNncIyekODw"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "63818338452-idiphqijt00o75jbmo1tbtl0rtsjhi86.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "63818338452-p64eloa1opgl1sgqr92t1tohidc9tice.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "ly.jbank.huayati.app"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

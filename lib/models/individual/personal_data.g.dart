@@ -8,11 +8,11 @@ part of 'personal_data.dart';
 
 PersonalData _$PersonalDataFromJson(Map<String, dynamic> json) {
   return PersonalData(
-    json['nameInArabic'] as String,
-    json['nameInEnglish'] as String,
-    json['idNumber'] as String,
-    json['isEditDisabled'] as bool,
-    json['editBtnShow'] as bool,
+    json['nameInArabic'] as String?,
+    json['nameInEnglish'] as String?,
+    json['idNumber'] as String?,
+    json['isEditDisabled'] as bool?,
+    json['editBtnShow'] as bool?,
   );
 }
 

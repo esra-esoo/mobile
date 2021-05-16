@@ -3,8 +3,8 @@ import 'package:huayati/consts/styles.dart';
 
 class DataItem extends StatelessWidget {
   final String label;
-  final String value;
-  const DataItem({@required this.label, this.value});
+  final String? value;
+  const DataItem({required this.label, this.value});
 
   @override
   Widget build(BuildContext context) {

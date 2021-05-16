@@ -1,35 +1,36 @@
 import 'dart:async';
 import 'dart:io';
 
+import 'package:huayati/enums/dialog_type.dart';
 import 'package:huayati/models/individual/image_file.dart';
 import 'package:huayati/models/individual/image_raw_file.dart';
 import 'package:huayati/models/navigation_result.dart';
 import 'package:huayati/services/shared_service.dart';
-import 'package:huayati/services/third_party/dialog_service.dart';
-import 'package:huayati/services/third_party/navigation_service.dart';
+
+import 'package:stacked_services/stacked_services.dart';
 import 'package:huayati/ui/widgets/success_update_modal.dart';
 import 'package:huayati/utils/file_utils.dart';
 import 'package:stacked/stacked.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:huayati/app/locator.dart';
+import 'package:huayati/app/app.locator.dart';
 import 'package:huayati/services/individual_service.dart';
 import 'package:huayati/services/third_party/snackbar_service.dart';
 import 'package:huayati/extensions/file_extensions.dart';
 
 class IndividualUpdateFilesViewModel extends BaseViewModel {
-  final _individualService = locator<IndividualService>();
-  final _snackbarService = locator<SnackbarService>();
-  final _navigationService = locator<NavigationService>();
-  final _dialogService = locator<DialogService>();
-  final _sharedService = locator<SharedService>();
+  final IndividualService _individualService = locator<IndividualService>();
+  final SnackBarsService _snackbarService = locator<SnackBarsService>();
+  final NavigationService _navigationService = locator<NavigationService>();
+  final DialogService _dialogService = locator<DialogService>();
+  final SharedService _sharedService = locator<SharedService>();
 
-  List<IndivisualImageFile> imageFiles = [];
+  List<IndivisualImageFile>? imageFiles = [];
   List<IndivisualImageRawFile> newImageFiles = [];
-  String refuseMessage;
   bool hasError = false;
+  String? refuseMessage;
 
-  File getNewRawImageFileById(String individualFileId) {
+  File? getNewRawImageFileById(String? individualFileId) {
     var index = newImageFiles.indexWhere(
       (element) => element.individualFileId == individualFileId,
     );
@@ -69,10 +70,9 @@ class IndividualUpdateFilesViewModel extends BaseViewModel {
 
   void initilizeView() async {
     try {
-      hasError =
-          _sharedService?.sharedRefuseState?.indivisualRefuseState != null;
+      hasError = _sharedService.sharedRefuseState.indivisualRefuseState != null;
       refuseMessage =
-          _sharedService?.sharedRefuseState?.indivisualRefuseState?.message;
+          _sharedService.sharedRefuseState.indivisualRefuseState?.message;
       imageFiles = await runBusyFuture(
         _individualService.getImages(),
         throwException: true,
@@ -89,17 +89,18 @@ class IndividualUpdateFilesViewModel extends BaseViewModel {
   }
 
   Future saveData() async {
-    if (newImageFiles.length != imageFiles.length) {
+    if (newImageFiles.length != imageFiles!.length) {
       _snackbarService.showBottomErrorSnackbar(
         message: 'يجب عليك إعادة رفع كافة المستندات المشار إليهم باللون الاحمر',
       );
       return;
     }
-    var response = await _dialogService.showConfirmDialog(
+    var response = await _dialogService.showCustomDialog(
+      variant: DialogType.confirm,
       title: 'تأكيد العملية',
       description: 'هل أنت متأكد من رغبتك في حفظ التغييرات؟',
     );
-    if (!response.confirmed) return;
+    if (response == null || !response.confirmed) return;
     await _uploadFiles();
   }
 
@@ -140,7 +141,7 @@ class IndividualUpdateFilesViewModel extends BaseViewModel {
 
   Future _showSuccessModal() async {
     await showGeneralDialog(
-      context: Get.overlayContext,
+      context: Get.overlayContext!,
       barrierColor: Colors.white,
       barrierDismissible: false,
       transitionDuration: const Duration(milliseconds: 400),

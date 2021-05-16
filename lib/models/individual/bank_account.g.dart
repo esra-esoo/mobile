@@ -9,10 +9,10 @@ part of 'bank_account.dart';
 IndivisualBankAccount _$IndivisualBankAccountFromJson(
     Map<String, dynamic> json) {
   return IndivisualBankAccount(
-    json['individualBankAccountId'] as String,
-    json['accountNumber'] as String,
-    json['branchNumber'] as String,
-    json['isEditDisabled'] as bool,
+    json['individualBankAccountId'] as String?,
+    json['accountNumber'] as String?,
+    json['branchNumber'] as String?,
+    json['isEditDisabled'] as bool?,
   );
 }
 

@@ -1,35 +1,36 @@
 import 'dart:async';
 import 'dart:io';
 
+import 'package:huayati/enums/dialog_type.dart';
 import 'package:huayati/models/company/image_file.dart';
 import 'package:huayati/models/company/image_raw_file.dart';
 import 'package:huayati/models/navigation_result.dart';
 import 'package:huayati/services/company_service.dart';
 import 'package:huayati/services/shared_service.dart';
-import 'package:huayati/services/third_party/dialog_service.dart';
-import 'package:huayati/services/third_party/navigation_service.dart';
+
+import 'package:stacked_services/stacked_services.dart';
 import 'package:huayati/ui/widgets/success_update_modal.dart';
 import 'package:huayati/utils/file_utils.dart';
 import 'package:stacked/stacked.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:huayati/app/locator.dart';
+import 'package:huayati/app/app.locator.dart';
 import 'package:huayati/services/third_party/snackbar_service.dart';
 import 'package:huayati/extensions/file_extensions.dart';
 
 class CompanyUpdateFilesViewModel extends BaseViewModel {
-  final _companyService = locator<CompanyService>();
-  final _snackbarService = locator<SnackbarService>();
-  final _navigationService = locator<NavigationService>();
-  final _dialogService = locator<DialogService>();
-  final _sharedService = locator<SharedService>();
+  final CompanyService _companyService = locator<CompanyService>();
+  final SnackBarsService _snackbarService = locator<SnackBarsService>();
+  final NavigationService _navigationService = locator<NavigationService>();
+  final DialogService _dialogService = locator<DialogService>();
+  final SharedService _sharedService = locator<SharedService>();
 
-  List<CompanyImageFile> imageFiles = [];
+  List<CompanyImageFile>? imageFiles = [];
   List<CompanyImageRawFile> newImageFiles = [];
-  String refuseMessage;
+  String? refuseMessage;
   bool hasError = false;
 
-  File getNewRawImageFileById(String companyFileId) {
+  File? getNewRawImageFileById(String? companyFileId) {
     var index = newImageFiles.indexWhere(
       (element) => element.companyFileId == companyFileId,
     );
@@ -70,10 +71,10 @@ class CompanyUpdateFilesViewModel extends BaseViewModel {
   void initilizeView() async {
     try {
       hasError = _sharedService
-              ?.sharedRefuseState?.companyRefuseState?.hasRefusedCompanyFiles ??
+              .sharedRefuseState.companyRefuseState?.hasRefusedCompanyFiles ??
           false;
       refuseMessage =
-          _sharedService?.sharedRefuseState?.companyRefuseState?.companyMessage;
+          _sharedService.sharedRefuseState.companyRefuseState?.companyMessage;
       imageFiles = await runBusyFuture(
         _companyService.getCompanyImages(),
         throwException: true,
@@ -90,17 +91,18 @@ class CompanyUpdateFilesViewModel extends BaseViewModel {
   }
 
   Future saveData() async {
-    if (newImageFiles.length != imageFiles.length) {
+    if (newImageFiles.length != imageFiles!.length) {
       _snackbarService.showBottomErrorSnackbar(
         message: 'يجب عليك إعادة رفع كافة المستندات المشار إليهم باللون الاحمر',
       );
       return;
     }
-    var response = await _dialogService.showConfirmDialog(
+    var response = await _dialogService.showCustomDialog(
+      variant: DialogType.confirm,
       title: 'تأكيد العملية',
       description: 'هل أنت متأكد من رغبتك في حفظ التغييرات؟',
     );
-    if (!response.confirmed) return;
+    if (response == null || !response.confirmed) return;
     await _uploadFiles();
   }
 
@@ -141,7 +143,7 @@ class CompanyUpdateFilesViewModel extends BaseViewModel {
 
   Future _showSuccessModal() async {
     await showGeneralDialog(
-      context: Get.overlayContext,
+      context: Get.overlayContext!,
       barrierColor: Colors.white,
       barrierDismissible: false,
       transitionDuration: const Duration(milliseconds: 400),

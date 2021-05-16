@@ -21,8 +21,8 @@ import 'edit_profile_viewmodel.dart';
   FormTextField(name: 'email'),
 ])
 class EditProfileView extends StatelessWidget with $EditProfileView {
-  final ProfileInfo profileInfo;
-  EditProfileView({Key key, this.profileInfo}) : super(key: key);
+  final ProfileInfo? profileInfo;
+  EditProfileView({Key? key, this.profileInfo}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -30,17 +30,17 @@ class EditProfileView extends StatelessWidget with $EditProfileView {
       onModelReady: (viewModel) async {
         listenToFormUpdated(viewModel);
         await viewModel.initilizeView(profileInfo);
-        phoneNumberController.text = viewModel.profileInfo.phoneNumber;
-        usernameController.text = viewModel.profileInfo.username;
-        fullnameController.text = viewModel.profileInfo.fullname;
-        familyNameController.text = viewModel.profileInfo.familyName;
-        emailController.text = viewModel.profileInfo.email;
+        phoneNumberController.text = viewModel.profileInfo!.phoneNumber!;
+        usernameController.text = viewModel.profileInfo!.username!;
+        fullnameController.text = viewModel.profileInfo!.fullname!;
+        familyNameController.text = viewModel.profileInfo!.familyName!;
+        emailController.text = viewModel.profileInfo!.email!;
       },
       onDispose: () => disposeForm(),
       viewModelBuilder: () => EditProfileViewModel(),
       builder: (context, viewModel, child) => GestureDetector(
         onTap: () {
-          WidgetsBinding.instance.focusManager.primaryFocus?.unfocus();
+          WidgetsBinding.instance!.focusManager.primaryFocus?.unfocus();
         },
         child: BusyOverlay(
           show: viewModel.isBusy,

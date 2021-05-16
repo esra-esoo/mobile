@@ -4,9 +4,9 @@ part 'signup_result.g.dart';
 
 @JsonSerializable(explicitToJson: false)
 class SignUpResult {
-  final int verificationCode;
-  final String phoneNumber;
-  final DateTime verificationCodeEndDateTime;
+  final int? verificationCode;
+  final String? phoneNumber;
+  final DateTime? verificationCodeEndDateTime;
 
   const SignUpResult(
     this.verificationCode,

@@ -1,33 +1,33 @@
 import 'package:badges/badges.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:huayati/app/locator.dart';
+import 'package:huayati/app/app.locator.dart';
 import 'package:huayati/consts/styles.dart';
 import 'package:huayati/models/menu_item.dart';
 import 'package:huayati/models/navigation_result.dart';
-import 'package:huayati/services/third_party/navigation_service.dart';
+import 'package:stacked_services/stacked_services.dart';
 import 'package:huayati/services/third_party/snackbar_service.dart';
 
 class GridItem extends StatelessWidget {
   final MenuItem menuItem;
-  const GridItem({Key key, @required this.menuItem}) : super(key: key);
+  const GridItem({Key? key, required this.menuItem}) : super(key: key);
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () async {
         if (menuItem.route == null) return;
-        NavigationResult result =
-            await locator<NavigationService>().navigateTo(menuItem.route);
+        NavigationResult? result =
+            await locator<NavigationService>().navigateTo(menuItem.route!);
         if (result != null) {
           NavigationResult navigationResult = result;
           await HapticFeedback.mediumImpact();
           if (navigationResult.success) {
-            locator<SnackbarService>().showBottomSuccessSnackbar(
-              message: navigationResult.message,
+            locator<SnackBarsService>().showBottomSuccessSnackbar(
+              message: navigationResult.message!,
             );
           } else {
-            locator<SnackbarService>().showBottomErrorSnackbar(
-              message: navigationResult.message,
+            locator<SnackBarsService>().showBottomErrorSnackbar(
+              message: navigationResult.message!,
             );
           }
         }
@@ -61,7 +61,7 @@ class GridItem extends StatelessWidget {
                 padding: const EdgeInsets.all(8),
                 elevation: 0,
                 badgeContent: Text(
-                  menuItem.notifciation?.toString() ?? '',
+                  menuItem.notifciation.toString(),
                   style: const TextStyle(color: Colors.white, fontSize: 14),
                 ),
               ),

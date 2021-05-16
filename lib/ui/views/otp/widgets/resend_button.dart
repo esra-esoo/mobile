@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:responsive_builder/responsive_builder.dart';
 
 class ResendButton extends StatelessWidget {
-  final Function onTap;
+  final Function? onTap;
   const ResendButton({this.onTap});
 
   @override
@@ -22,7 +22,7 @@ class ResendButton extends StatelessWidget {
         ),
         const SizedBox(width: 8),
         InkWell(
-          onTap: onTap,
+          onTap: onTap as void Function()?,
           child: Text(
             'إعاة إسال',
             style: TextStyle(

@@ -1,19 +1,20 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:huayati/app/locator.dart';
-import 'package:huayati/app/router.gr.dart';
+import 'package:huayati/app/app.locator.dart';
+import 'package:huayati/app/app.router.dart';
 import 'package:huayati/consts/styles.dart';
 import 'package:huayati/models/navigation_result.dart';
+import 'package:huayati/services/push_notification_service.dart';
 import 'package:huayati/services/shared_service.dart';
-import 'package:huayati/services/third_party/navigation_service.dart';
+import 'package:stacked_services/stacked_services.dart';
 import 'package:huayati/services/third_party/snackbar_service.dart';
 import 'package:huayati/services/user_service.dart';
 import 'package:huayati/ui/views/profile/profile_viewmodel.dart';
 import 'package:huayati/ui/widgets/botton_padding.dart';
 
 class SideDrawer extends StatelessWidget {
-  const SideDrawer({Key key}) : super(key: key);
+  const SideDrawer({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -44,7 +45,7 @@ class SideDrawer extends StatelessWidget {
 }
 
 class _TopContainer extends StatelessWidget {
-  const _TopContainer({Key key}) : super(key: key);
+  const _TopContainer({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -74,7 +75,7 @@ class _TopContainer extends StatelessWidget {
 }
 
 class _HelpButton extends StatelessWidget {
-  const _HelpButton({Key key}) : super(key: key);
+  const _HelpButton({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -105,7 +106,7 @@ class _HelpButton extends StatelessWidget {
 }
 
 class _ChangePassword extends StatelessWidget {
-  const _ChangePassword({Key key}) : super(key: key);
+  const _ChangePassword({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -113,7 +114,7 @@ class _ChangePassword extends StatelessWidget {
       type: MaterialType.transparency,
       child: InkWell(
         onTap: () async {
-          NavigationResult result =
+          NavigationResult? result =
               await locator<NavigationService>().navigateTo(
             Routes.changePasswordView,
           );
@@ -121,12 +122,12 @@ class _ChangePassword extends StatelessWidget {
             NavigationResult navigationResult = result;
             await HapticFeedback.mediumImpact();
             if (navigationResult.success) {
-              locator<SnackbarService>().showBottomSuccessSnackbar(
-                message: navigationResult.message,
+              locator<SnackBarsService>().showBottomSuccessSnackbar(
+                message: navigationResult.message!,
               );
             } else {
-              locator<SnackbarService>().showBottomErrorSnackbar(
-                message: navigationResult.message,
+              locator<SnackBarsService>().showBottomErrorSnackbar(
+                message: navigationResult.message!,
               );
             }
           }
@@ -154,7 +155,7 @@ class _ChangePassword extends StatelessWidget {
 }
 
 class _ChangeProfile extends StatelessWidget {
-  const _ChangeProfile({Key key}) : super(key: key);
+  const _ChangeProfile({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -193,7 +194,7 @@ class _ChangeProfile extends StatelessWidget {
 }
 
 class _SignOutButton extends StatelessWidget {
-  const _SignOutButton({Key key}) : super(key: key);
+  const _SignOutButton({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -203,6 +204,7 @@ class _SignOutButton extends StatelessWidget {
         onTap: () async {
           await locator<UserService>().clearUser();
           locator<SharedService>().resetRefuseState();
+          locator<PushNotificationService>().unSubscribeFromDefaultTopic();
           await locator<NavigationService>()
               .pushNamedAndRemoveUntil(Routes.signInView);
         },

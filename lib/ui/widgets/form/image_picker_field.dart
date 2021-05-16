@@ -2,16 +2,17 @@ import 'dart:io';
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:huayati/app/locator.dart';
+import 'package:flutter/services.dart';
+import 'package:huayati/app/app.locator.dart';
 import 'package:huayati/consts/styles.dart';
 import 'package:huayati/services/third_party/picker_services.dart';
 import 'package:huayati/services/third_party/snackbar_service.dart';
 import 'package:image_picker/image_picker.dart';
 
 class ImagePickerField extends StatelessWidget {
-  final File imageFile;
-  final ValueChanged<File> onChanged;
-  final VoidCallback onDelete;
+  final File? imageFile;
+  final ValueChanged<File>? onChanged;
+  final VoidCallback? onDelete;
   final bool disabled;
   const ImagePickerField({
     this.imageFile,
@@ -42,7 +43,7 @@ class ImagePickerField extends StatelessWidget {
                     ? DecorationImage(
                         fit: BoxFit.cover,
                         image: FileImage(
-                          imageFile,
+                          imageFile!,
                         ),
                       )
                     : null,
@@ -85,8 +86,8 @@ class ImagePickerField extends StatelessWidget {
     try {
       var imageSource = await locator<PickerService>().showMediaType();
       if (imageSource == null) return;
-      await Future.delayed(const Duration(milliseconds: 350));
-      PickedFile pickedFile = await ImagePicker().getImage(
+      // await Future.delayed(const Duration(milliseconds: 350));
+      PickedFile? pickedFile = await ImagePicker().getImage(
         source: imageSource,
         maxHeight: 810,
         maxWidth: 1080,
@@ -95,21 +96,21 @@ class ImagePickerField extends StatelessWidget {
       File imageFile = File(pickedFile.path);
       double megabyte = (await imageFile.length()) / 1024 / 1024;
       if (megabyte >= 2.0) {
-        locator<SnackbarService>().showTopInfoSnackbar(
+        locator<SnackBarsService>().showTopInfoSnackbar(
           message: 'حجم الصورة يجب ان يكون أقل من 2 ميجا',
         );
         return;
       }
 
-      onChanged(imageFile);
-    } on Exception catch (e) {
+      onChanged!(imageFile);
+    } on PlatformException catch (e) {
       print(e);
-      locator<SnackbarService>().showTopErrorSnackbar(
-        message: 'حدث خطأ أثناء معالجة الصورة ، نرجو اختيار صورة اخرى',
-      );
+      // locator<SnackBarsService>().showTopErrorSnackbar(
+      //   message: 'حدث خطأ أثناء معالجة الصورة ، نرجو اختيار صورة اخرى',
+      // );
     } catch (e) {
       print(e.toString());
-      locator<SnackbarService>().showTopErrorSnackbar(
+      locator<SnackBarsService>().showTopErrorSnackbar(
         message: 'حدث خطأ أثناء معالجة الصورة ، نرجو اختيار صورة اخرى',
       );
     }

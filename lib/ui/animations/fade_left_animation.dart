@@ -7,7 +7,7 @@ enum _AniProps { opacity, translateX }
 class FadeFromLeftAnimation extends StatelessWidget {
   final double order;
   final int delay;
-  final int duration;
+  final int? duration;
   final int opacityDuration;
   final int transDuration;
   final Widget child;
@@ -18,7 +18,7 @@ class FadeFromLeftAnimation extends StatelessWidget {
     this.duration, //milliseconds
     this.opacityDuration = 600, //milliseconds
     this.transDuration = 600, //milliseconds
-    @required this.child,
+    required this.child,
   });
 
   @override

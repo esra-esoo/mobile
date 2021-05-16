@@ -3,7 +3,7 @@ import 'package:responsive_builder/responsive_builder.dart';
 
 class TextFieldLabel extends StatelessWidget {
   final String label;
-  const TextFieldLabel({Key key, @required this.label}) : super(key: key);
+  const TextFieldLabel({Key? key, required this.label}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

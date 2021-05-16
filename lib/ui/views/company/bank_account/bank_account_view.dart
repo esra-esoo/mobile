@@ -11,7 +11,7 @@ import 'package:stacked/stacked.dart';
 import 'bank_account_viewmodel.dart';
 
 class CompanyBankAccountsDataView extends StatelessWidget {
-  const CompanyBankAccountsDataView({Key key}) : super(key: key);
+  const CompanyBankAccountsDataView({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -38,7 +38,7 @@ class CompanyBankAccountsDataView extends StatelessWidget {
           duration: const Duration(milliseconds: 375),
           child: viewModel.isBusy
               ? const CenterLoadingIndicator()
-              : viewModel.companyBankAccounts.length > 0
+              : viewModel.companyBankAccounts!.length > 0
                   ? const _DataView()
                   : EmptyListRefreshView(
                       onRefresh: () => viewModel.initilizeView(),
@@ -50,7 +50,7 @@ class CompanyBankAccountsDataView extends StatelessWidget {
 }
 
 class _DataView extends ViewModelWidget<CompanyBankAccountsDataViewModel> {
-  const _DataView({Key key}) : super(key: key);
+  const _DataView({Key? key}) : super(key: key);
 
   @override
   Widget build(
@@ -67,12 +67,12 @@ class _DataView extends ViewModelWidget<CompanyBankAccountsDataViewModel> {
                 MediaQuery.of(context).viewPadding.bottom,
           ),
           shrinkWrap: true,
-          itemCount: viewModel?.companyBankAccounts?.length,
+          itemCount: viewModel.companyBankAccounts?.length,
           itemBuilder: (context, index) {
             return BankItem(
               accountNumber:
-                  viewModel?.companyBankAccounts[index]?.accountNumber,
-              branchNumber: viewModel?.companyBankAccounts[index]?.branchNumber,
+                  viewModel.companyBankAccounts![index].accountNumber,
+              branchNumber: viewModel.companyBankAccounts![index].branchNumber,
               no: index + 1,
             );
           },

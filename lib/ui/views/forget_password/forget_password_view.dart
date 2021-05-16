@@ -18,9 +18,9 @@ class ForgetPasswordView extends StatefulWidget {
   final String phoneNumberOrEmail;
   final int sentBy;
   const ForgetPasswordView({
-    Key key,
-    @required this.phoneNumberOrEmail,
-    @required this.sentBy,
+    Key? key,
+    required this.phoneNumberOrEmail,
+    required this.sentBy,
   }) : super(key: key);
 
   @override
@@ -38,7 +38,7 @@ class _ForgetPasswordViewState extends State<ForgetPasswordView> {
       viewModelBuilder: () => ForgetPasswordViewModel(),
       builder: (context, viewModel, child) => GestureDetector(
         onTap: () {
-          WidgetsBinding.instance.focusManager.primaryFocus?.unfocus();
+          WidgetsBinding.instance!.focusManager.primaryFocus?.unfocus();
         },
         child: BusyOverlay(
           show: viewModel.isBusy,
@@ -109,7 +109,7 @@ class _ForgetPasswordViewState extends State<ForgetPasswordView> {
                               controller: _countDownController,
                               width: 100.w,
                               height: 100.w,
-                              ringColor: Colors.grey[300],
+                              ringColor: Colors.grey[300]!,
                               ringGradient: null,
                               fillColor: kcolorBluelight,
                               fillGradient: null,
@@ -170,7 +170,7 @@ class _ForgetPasswordViewState extends State<ForgetPasswordView> {
                                   ),
                                   enableActiveFill: false,
                                   beforeTextPaste: (text) {
-                                    if (text.length == 6)
+                                    if (text!.length == 6)
                                       return true;
                                     else
                                       return false;

@@ -1,15 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:huayati/app/locator.dart';
-import 'package:huayati/app/router.gr.dart';
+import 'package:huayati/app/app.locator.dart';
+import 'package:huayati/app/app.router.dart';
 import 'package:huayati/consts/styles.dart';
-import 'package:huayati/services/third_party/navigation_service.dart';
+import 'package:stacked_services/stacked_services.dart';
 import 'package:huayati/ui/animations/fade_animation.dart';
 import 'package:huayati/ui/widgets/botton_padding.dart';
 import 'package:responsive_builder/responsive_builder.dart';
 
 class SuccessUploadModal extends StatelessWidget {
-  const SuccessUploadModal({Key key}) : super(key: key);
+  const SuccessUploadModal({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -86,14 +86,17 @@ class SuccessUploadModal extends StatelessWidget {
                 ),
               ),
               SizedBox(height: 50.h),
-              RaisedButton(
-                padding:
-                    const EdgeInsets.symmetric(horizontal: 10, vertical: 15),
-                splashColor: kcolorBluelight,
-                shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(0),
+              TextButton(
+                style: TextButton.styleFrom(
+                  padding:
+                      const EdgeInsets.symmetric(horizontal: 10, vertical: 15),
+                ).copyWith(
+                  overlayColor: MaterialStateProperty.resolveWith<Color>(
+                      (states) => kcolorBluelight),
+                  backgroundColor: MaterialStateProperty.resolveWith<Color>(
+                    (Set<MaterialState> states) => kcolorPrimaryBlue,
+                  ),
                 ),
-                color: kcolorPrimaryBlue,
                 child: Text(
                   'الرئيسية',
                   style: TextStyle(
@@ -105,7 +108,6 @@ class SuccessUploadModal extends StatelessWidget {
                     ),
                   ),
                 ),
-                textColor: kcolorPrimaryBlue,
                 onPressed: () => locator<NavigationService>()
                     .pushNamedAndRemoveUntil(Routes.startUpView),
               ),

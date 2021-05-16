@@ -9,8 +9,8 @@ part of 'customer_created_result.dart';
 CustomerCreatedResult _$CustomerCreatedResultFromJson(
     Map<String, dynamic> json) {
   return CustomerCreatedResult(
-    json['phoneNumber'] as String,
-    json['password'] as String,
+    json['phoneNumber'] as String?,
+    json['password'] as String?,
   );
 }
 

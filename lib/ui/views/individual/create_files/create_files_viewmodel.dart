@@ -1,13 +1,14 @@
 import 'package:huayati/consts/documents_names.dart';
+import 'package:huayati/enums/dialog_type.dart';
 import 'package:huayati/models/file_models.dart';
 import 'package:huayati/models/user.dart';
 import 'package:huayati/services/shared_service.dart';
-import 'package:huayati/services/third_party/dialog_service.dart';
+
 import 'package:huayati/utils/file_utils.dart';
 import 'package:stacked/stacked.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:huayati/app/locator.dart';
+import 'package:huayati/app/app.locator.dart';
 import 'package:huayati/enums/group_file_type.dart';
 import 'package:huayati/models/individual/individual_form.dart';
 import 'package:huayati/models/individual/indivisual_create_files_payload.dart';
@@ -15,13 +16,14 @@ import 'package:huayati/services/individual_service.dart';
 import 'package:huayati/services/third_party/snackbar_service.dart';
 import 'package:huayati/services/user_service.dart';
 import 'package:huayati/ui/widgets/success_upload_modal.dart';
+import 'package:stacked_services/stacked_services.dart' ;
 
 class IndividualCreateFilesViewModel extends BaseViewModel {
-  final _individualService = locator<IndividualService>();
-  final _snackbarService = locator<SnackbarService>();
-  final _sharedService = locator<SharedService>();
-  final _userService = locator<UserService>();
-  final _dialogService = locator<DialogService>();
+  final IndividualService _individualService = locator<IndividualService>();
+  final SnackBarsService _snackbarService = locator<SnackBarsService>();
+  final SharedService _sharedService = locator<SharedService>();
+  final UserService _userService = locator<UserService>();
+  final DialogService _dialogService = locator<DialogService>();
 
   IndividualForm individualForm = IndividualForm.initial();
 
@@ -50,11 +52,12 @@ class IndividualCreateFilesViewModel extends BaseViewModel {
       );
       return;
     }
-    var response = await _dialogService.showConfirmDialog(
+    var response = await _dialogService.showCustomDialog(
+      variant: DialogType.confirm,
       title: 'تأكيد العملية',
       description: 'هل أنت متأكد من رغبتك في حفظ التغييرات؟',
     );
-    if (!response.confirmed) return;
+    if (response == null || !response.confirmed) return;
     await _uploadFiles();
   }
 
@@ -95,26 +98,26 @@ class IndividualCreateFilesViewModel extends BaseViewModel {
     return [
       await FileUtils.fromRawFileToFileModel(
         DocumentsNames.PASSPORT,
-        individualForm.passport,
+        individualForm.passport!,
       ),
       await FileUtils.fromRawFileToFileModel(
         individualForm.groupFileType == GroupFileType.nid
             ? DocumentsNames.NID
             : DocumentsNames.BIRTH_CERTIFICATE,
-        individualForm.groupFile,
+        individualForm.groupFile!,
       ),
       await FileUtils.fromRawFileToFileModel(
         individualForm.groupFileType2 == GroupFileType2.account_statement
             ? DocumentsNames.ACCOUNT_STATEMENT
             : DocumentsNames.CHEQUE,
-        individualForm.groupFile2,
+        individualForm.groupFile2!,
       ),
     ];
   }
 
   Future _showSuccessModal() async {
     await showGeneralDialog(
-      context: Get.overlayContext,
+      context: Get.overlayContext!,
       barrierColor: Colors.white,
       barrierDismissible: false,
       barrierLabel: "success dialog",

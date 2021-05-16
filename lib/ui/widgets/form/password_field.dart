@@ -4,16 +4,16 @@ import 'package:huayati/consts/styles.dart';
 
 class PasswordFormField extends StatefulWidget {
   final TextEditingController controller;
-  final void Function(String) onFieldSubmitted;
-  final String Function(String) validator;
+  final void Function(String)? onFieldSubmitted;
+  final String? Function(String?)? validator;
   final bool lengthValidationRequired;
-  final String hintText;
-  final String labelText;
+  final String? hintText;
+  final String? labelText;
   final InputDecoration inputDecoration;
   final TextStyle style;
-  final TextInputAction textInputAction;
+  final TextInputAction? textInputAction;
   const PasswordFormField({
-    @required this.controller,
+    required this.controller,
     this.onFieldSubmitted,
     this.validator,
     this.lengthValidationRequired = true,

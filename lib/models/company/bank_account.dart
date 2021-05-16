@@ -4,10 +4,10 @@ part 'bank_account.g.dart';
 
 @JsonSerializable()
 class CompanyBankAccount {
-  final String companyBankAccountId;
-  final String accountNumber;
-  final String branchNumber;
-  final bool isEditDisabled;
+  final String? companyBankAccountId;
+  final String? accountNumber;
+  final String? branchNumber;
+  final bool? isEditDisabled;
 
   const CompanyBankAccount(
     this.companyBankAccountId,

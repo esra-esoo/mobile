@@ -8,10 +8,10 @@ part of 'bank_account.dart';
 
 CompanyBankAccount _$CompanyBankAccountFromJson(Map<String, dynamic> json) {
   return CompanyBankAccount(
-    json['companyBankAccountId'] as String,
-    json['accountNumber'] as String,
-    json['branchNumber'] as String,
-    json['isEditDisabled'] as bool,
+    json['companyBankAccountId'] as String?,
+    json['accountNumber'] as String?,
+    json['branchNumber'] as String?,
+    json['isEditDisabled'] as bool?,
   );
 }
 

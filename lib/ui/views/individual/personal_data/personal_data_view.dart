@@ -12,7 +12,7 @@ import 'package:stacked/stacked.dart';
 import 'personal_data_viewmodel.dart';
 
 class IndividualPersonalDataView extends StatelessWidget {
-  const IndividualPersonalDataView({Key key}) : super(key: key);
+  const IndividualPersonalDataView({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -51,7 +51,7 @@ class IndividualPersonalDataView extends StatelessWidget {
 }
 
 class _DataView extends ViewModelWidget<IndividualPersonalDataViewModel> {
-  const _DataView({Key key}) : super(key: key);
+  const _DataView({Key? key}) : super(key: key);
 
   @override
   Widget build(
@@ -70,17 +70,17 @@ class _DataView extends ViewModelWidget<IndividualPersonalDataViewModel> {
             SizedBox(height: 30.h),
             DataItem(
               label: 'الإسم بالعربي',
-              value: viewModel?.personalData?.nameInArabic ?? '',
+              value: viewModel.personalData?.nameInArabic ?? '',
             ),
             SizedBox(height: 25.h),
             DataItem(
               label: 'الإسم بالانجليزي',
-              value: viewModel?.personalData?.nameInEnglish ?? '',
+              value: viewModel.personalData?.nameInEnglish ?? '',
             ),
             SizedBox(height: 25.h),
             DataItem(
               label: 'الرقم الوطني',
-              value: viewModel?.personalData?.idNumber ?? '',
+              value: viewModel.personalData?.idNumber ?? '',
             ),
             const BottomPadding(),
           ],

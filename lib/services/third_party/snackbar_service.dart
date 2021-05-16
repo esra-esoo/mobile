@@ -3,13 +3,13 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:huayati/consts/styles.dart';
 
-class SnackbarService {
+class SnackBarsService {
   /// Shows a snack bar with the details passed in
   void showTopSuccessSnackbar({
-    @required String message,
+    required String message,
     Duration duration = const Duration(seconds: 4),
-    Function onTap,
-    IconData iconData,
+    Function? onTap,
+    IconData? iconData,
     bool shouldIconPulse = false,
   }) {
     GetBar(
@@ -24,15 +24,15 @@ class SnackbarService {
       snackPosition: SnackPosition.TOP,
       borderRadius: 15,
       margin: const EdgeInsets.all(10),
-      onTap: onTap,
+      onTap: onTap as void Function(GetBar<Object>)?,
     ).show();
   }
 
   void showBottomSuccessSnackbar({
-    @required String message,
+    required String message,
     Duration duration = const Duration(seconds: 4),
-    Function onTap,
-    IconData iconData,
+    Function? onTap,
+    IconData? iconData,
     bool shouldIconPulse = false,
   }) {
     GetBar(
@@ -47,15 +47,15 @@ class SnackbarService {
       snackPosition: SnackPosition.BOTTOM,
       borderRadius: 15,
       margin: const EdgeInsets.all(10),
-      onTap: onTap,
+      onTap: onTap as void Function(GetBar<Object>)?,
     ).show();
   }
 
   void showTopErrorSnackbar({
-    @required String message,
+    required String message,
     Duration duration = const Duration(seconds: 3),
-    Function onTap,
-    IconData iconData,
+    Function? onTap,
+    IconData? iconData,
     bool shouldIconPulse = false,
   }) {
     GetBar(
@@ -70,15 +70,15 @@ class SnackbarService {
       snackPosition: SnackPosition.TOP,
       borderRadius: 15,
       margin: const EdgeInsets.all(10),
-      onTap: onTap,
+      onTap: onTap as void Function(GetBar<Object>)?,
     ).show();
   }
 
   void showTopInfoSnackbar({
-    @required String message,
+    required String message,
     Duration duration = const Duration(seconds: 3),
-    Function onTap,
-    IconData iconData,
+    Function? onTap,
+    IconData? iconData,
     bool shouldIconPulse = false,
   }) {
     GetBar(
@@ -93,15 +93,15 @@ class SnackbarService {
       snackPosition: SnackPosition.TOP,
       borderRadius: 15,
       margin: const EdgeInsets.all(10),
-      onTap: onTap,
+      onTap: onTap as void Function(GetBar<Object>)?,
     ).show();
   }
 
   void showBottomErrorSnackbar({
-    @required String message,
+    required String message,
     Duration duration = const Duration(seconds: 3),
-    Function onTap,
-    IconData iconData,
+    Function? onTap,
+    IconData? iconData,
     bool shouldIconPulse = false,
   }) {
     GetBar(
@@ -116,16 +116,16 @@ class SnackbarService {
       snackPosition: SnackPosition.BOTTOM,
       borderRadius: 15,
       margin: const EdgeInsets.all(10),
-      onTap: onTap,
+      onTap: onTap as void Function(GetBar<Object>)?,
     ).show();
   }
 
   void showWarningSnackbar({
     String title = 'تنبيه !',
-    @required String message,
+    required String message,
     Duration duration = const Duration(seconds: 4),
-    Function onTap,
-    IconData iconData,
+    Function? onTap,
+    IconData? iconData,
     bool shouldIconPulse = false,
   }) {
     GetBar(
@@ -141,16 +141,16 @@ class SnackbarService {
       snackPosition: SnackPosition.BOTTOM,
       borderRadius: 15,
       margin: const EdgeInsets.all(10),
-      onTap: onTap,
+      onTap: onTap as void Function(GetBar<Object>)?,
     ).show();
   }
 
   void showNotificationSnackbar({
-    @required String title,
-    @required String message,
-    Duration duration = const Duration(seconds: 4),
-    Function onTap,
-    IconData iconData,
+    required String title,
+    required String message,
+    Duration duration = const Duration(seconds: 6),
+    Function? onTap,
+    IconData? iconData,
   }) {
     GetBar(
       title: title,
@@ -161,21 +161,21 @@ class SnackbarService {
       duration: duration,
       isDismissible: true,
       icon: const Icon(Icons.notifications_active, color: Colors.white),
-      backgroundColor: kcolorPrimaryBlue,
+      backgroundColor: kcolorBluelight,
       animationDuration: const Duration(seconds: 1),
       padding: const EdgeInsets.all(20),
       snackPosition: SnackPosition.TOP,
       borderRadius: 15,
       margin: const EdgeInsets.all(10),
-      onTap: onTap,
+      onTap: onTap as void Function(GetBar<Object>)?,
     ).show();
   }
 
   void showNormalSnack({
-    @required String message,
+    required String message,
     Duration duration = const Duration(seconds: 2),
-    Function onTap,
-    IconData iconData,
+    Function? onTap,
+    IconData? iconData,
   }) {
     GetBar(
       messageText: Text(
@@ -189,7 +189,7 @@ class SnackbarService {
       snackPosition: SnackPosition.BOTTOM,
       borderRadius: 15,
       margin: const EdgeInsets.all(10),
-      onTap: onTap,
+      onTap: onTap as void Function(GetBar<Object>)?,
     ).show();
   }
 }

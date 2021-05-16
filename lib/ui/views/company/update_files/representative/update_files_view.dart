@@ -11,7 +11,7 @@ import 'package:stacked/stacked.dart';
 import 'update_files_viewmodel.dart';
 
 class RepresentativeUpdateFilesView extends StatelessWidget {
-  const RepresentativeUpdateFilesView({Key key}) : super(key: key);
+  const RepresentativeUpdateFilesView({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -51,21 +51,21 @@ class RepresentativeUpdateFilesView extends StatelessWidget {
                 Expanded(
                   child: ListView.builder(
                     shrinkWrap: true,
-                    itemCount: viewModel.imageFiles.length,
+                    itemCount: viewModel.imageFiles!.length,
                     itemBuilder: (context, index) {
-                      var isFirst = viewModel.imageFiles[index].isFirst;
+                      var isFirst = viewModel.imageFiles![index].isFirst!;
                       return ImageUpdateField(
-                        fileName: viewModel.imageFiles[index].name +
+                        fileName: viewModel.imageFiles![index].name! +
                             (isFirst ? ' (بياناتك)' : ''),
                         base64Content:
-                            viewModel.imageFiles[index].base64Content,
+                            viewModel.imageFiles![index].base64Content,
                         isEditDisabled:
-                            viewModel.imageFiles[index].isEditDisabled,
+                            viewModel.imageFiles![index].isEditDisabled,
                         newFile: viewModel.getNewRawImageFileById(
-                          viewModel.imageFiles[index].representativeFileId,
+                          viewModel.imageFiles![index].representativeFileId,
                         ),
                         onChanged: (file) => viewModel.addToNewImageFiles(
-                          viewModel.imageFiles[index],
+                          viewModel.imageFiles![index],
                           file,
                         ),
                       );

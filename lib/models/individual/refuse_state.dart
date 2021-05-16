@@ -4,10 +4,10 @@ part 'refuse_state.g.dart';
 
 @JsonSerializable()
 class IndivisualRefuseState {
-  final int numberOfFiles;
-  final String message;
-  final String refuseType;
-  final List<String> files;
+  final int? numberOfFiles;
+  final String? message;
+  final String? refuseType;
+  final List<String>? files;
 
   const IndivisualRefuseState(
     this.numberOfFiles,

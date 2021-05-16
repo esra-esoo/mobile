@@ -8,12 +8,12 @@ part of 'representative_data.dart';
 
 RepresentativeData _$RepresentativeDataFromJson(Map<String, dynamic> json) {
   return RepresentativeData(
-    json['companyId'] as String,
-    json['representativeId'] as String,
-    json['nameInArabic'] as String,
-    json['nameInEnglish'] as String,
-    json['idNumber'] as String,
-    json['isEditDisabled'] as bool,
+    json['companyId'] as String?,
+    json['representativeId'] as String?,
+    json['nameInArabic'] as String?,
+    json['nameInEnglish'] as String?,
+    json['idNumber'] as String?,
+    json['isEditDisabled'] as bool?,
   );
 }
 

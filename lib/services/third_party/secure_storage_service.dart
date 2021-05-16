@@ -21,7 +21,7 @@ class SecureStorageService {
     await storage.write(key: key, value: value);
   }
 
-  Future<String> readString(String key) async {
+  Future<String?> readString(String key) async {
     return await storage.read(key: key);
   }
 
@@ -29,8 +29,8 @@ class SecureStorageService {
     await storage.write(key: key, value: value.toString());
   }
 
-  Future<int> readNumber(String key) async {
-    String value = await storage.read(key: key);
+  Future<int?> readNumber(String key) async {
+    String? value = await storage.read(key: key);
     return value?.toNumber;
   }
 
@@ -38,8 +38,8 @@ class SecureStorageService {
     await storage.write(key: key, value: value.toString());
   }
 
-  Future<double> readDouble(String key) async {
-    String value = await storage.read(key: key);
+  Future<double?> readDouble(String key) async {
+    String? value = await storage.read(key: key);
     return value?.toDouble;
   }
 
@@ -48,7 +48,7 @@ class SecureStorageService {
   }
 
   Future<bool> readBoolean(String key) async {
-    String value = await storage.read(key: key);
+    String? value = await storage.read(key: key);
     return value != null && value == 'true';
   }
 }

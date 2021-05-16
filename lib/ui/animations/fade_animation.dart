@@ -12,13 +12,13 @@ class FadeAnimation extends StatelessWidget {
   const FadeAnimation({
     this.order = 1.0,
     this.duration = 800, //in milliseconds
-    @required this.child,
+    required this.child,
   });
 
   @override
   Widget build(BuildContext context) {
     final _tween = MultiTween<_AniProps>()
-      ..add(_AniProps.opacity, 0.0.tweenTo(1.0),  duration?.milliseconds);
+      ..add(_AniProps.opacity, 0.0.tweenTo(1.0), duration.milliseconds);
 
     return PlayAnimation<MultiTweenValues<_AniProps>>(
       delay: Duration(milliseconds: (300 * order).round()),

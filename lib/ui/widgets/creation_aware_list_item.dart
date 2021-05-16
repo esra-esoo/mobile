@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 
 class CreationAwareListItem extends StatefulWidget {
-  final Function itemCreated;
-  final Widget child;
+  final Function? itemCreated;
+  final Widget? child;
 
   const CreationAwareListItem({
-    Key key,
+    Key? key,
     this.itemCreated,
     this.child,
   }) : super(key: key);
@@ -19,12 +19,12 @@ class _CreationAwareListItemState extends State<CreationAwareListItem> {
   void initState() {
     super.initState();
     if (widget.itemCreated != null) {
-      widget.itemCreated();
+      widget.itemCreated!();
     }
   }
 
   @override
   Widget build(BuildContext context) {
-    return widget.child;
+    return widget.child!;
   }
 }

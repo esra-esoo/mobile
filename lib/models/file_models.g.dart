@@ -8,10 +8,10 @@ part of 'file_models.dart';
 
 FilesModels _$FilesModelsFromJson(Map<String, dynamic> json) {
   return FilesModels(
-    name: json['name'] as String,
-    fileFullName: json['fileFullName'] as String,
-    fileBytes: json['fileBytes'] as String,
-    length: json['length'] as int,
+    name: json['name'] as String?,
+    fileFullName: json['fileFullName'] as String?,
+    fileBytes: json['fileBytes'] as String?,
+    length: json['length'] as int?,
   );
 }
 

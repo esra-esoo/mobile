@@ -21,7 +21,7 @@ import 'package:huayati/extensions/string_extensions.dart';
   FormTextField(name: 'confirmPassword'),
 ])
 class ChangePasswordView extends StatelessWidget with $ChangePasswordView {
-  ChangePasswordView({Key key}) : super(key: key);
+  ChangePasswordView({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -31,7 +31,7 @@ class ChangePasswordView extends StatelessWidget with $ChangePasswordView {
       viewModelBuilder: () => ChangePasswordViewModel(),
       builder: (context, viewModel, child) => GestureDetector(
         onTap: () {
-          WidgetsBinding.instance.focusManager.primaryFocus?.unfocus();
+          WidgetsBinding.instance!.focusManager.primaryFocus?.unfocus();
         },
         child: BusyOverlay(
           show: viewModel.isBusy,
@@ -79,7 +79,7 @@ class ChangePasswordView extends StatelessWidget with $ChangePasswordView {
                           hintText: 'أدخل كلمة المرور الحالية ..',
                           labelText: 'كلمة المرور الحالية',
                           validator: (value) {
-                            return value.isEmpty ? ' ' : null;
+                            return value == null || value.isEmpty ? ' ' : null;
                           },
                         ),
                         const _PasswordHint(),
@@ -97,7 +97,7 @@ class ChangePasswordView extends StatelessWidget with $ChangePasswordView {
                           hintText: 'أدخل كلمة المرور الجديدة ..',
                           labelText: 'كلمة المرور الجديدة',
                           validator: (value) {
-                            if (value.isEmpty)
+                            if (value == null || value.isEmpty)
                               return ' ';
                             else if (!value.isStrongPassword)
                               return ' ';
@@ -143,7 +143,7 @@ class ChangePasswordView extends StatelessWidget with $ChangePasswordView {
 }
 
 class _PasswordHint extends StatelessWidget {
-  const _PasswordHint({Key key}) : super(key: key);
+  const _PasswordHint({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

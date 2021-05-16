@@ -5,8 +5,8 @@ class FormTitle extends StatelessWidget {
   final String title;
   final Color color;
   const FormTitle({
-    Key key,
-    @required this.title,
+    Key? key,
+    required this.title,
     this.color = Colors.white,
   }) : super(key: key);
 

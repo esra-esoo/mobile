@@ -8,13 +8,13 @@ part of 'refuse_state.dart';
 
 CompanyRefuseState _$CompanyRefuseStateFromJson(Map<String, dynamic> json) {
   return CompanyRefuseState(
-    json['companyMessage'] as String,
-    json['representativeMessage'] as String,
-    json['hasRefusedCompanyFiles'] as bool,
-    json['hasRefusedRepresentativeFiles'] as bool,
-    json['numberOfCompanyFiles'] as int,
-    json['numberOfRepresentativeFiles'] as int,
-    json['refuseType'] as String,
+    json['companyMessage'] as String?,
+    json['representativeMessage'] as String?,
+    json['hasRefusedCompanyFiles'] as bool?,
+    json['hasRefusedRepresentativeFiles'] as bool?,
+    json['numberOfCompanyFiles'] as int?,
+    json['numberOfRepresentativeFiles'] as int?,
+    json['refuseType'] as String?,
   );
 }
 

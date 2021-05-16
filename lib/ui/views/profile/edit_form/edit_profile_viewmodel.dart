@@ -1,23 +1,24 @@
 import 'package:email_validator/email_validator.dart';
-import 'package:huayati/app/locator.dart';
+import 'package:huayati/app/app.locator.dart';
+import 'package:huayati/enums/dialog_type.dart';
 import 'package:huayati/models/navigation_result.dart';
 import 'package:huayati/models/profile_info.dart';
 import 'package:huayati/services/auth_service.dart';
-import 'package:huayati/services/third_party/dialog_service.dart';
-import 'package:huayati/services/third_party/navigation_service.dart';
+
+import 'package:stacked_services/stacked_services.dart';
 import 'package:huayati/services/third_party/snackbar_service.dart';
 import 'package:huayati/ui/views/profile/edit_form/edit_profile_view.form.dart';
 import 'package:stacked/stacked.dart';
 
 class EditProfileViewModel extends FormViewModel {
-  final _authService = locator<AuthService>();
-  final _snackbarService = locator<SnackbarService>();
-  final _navigationService = locator<NavigationService>();
-  final _dialogService = locator<DialogService>();
+  final AuthService _authService = locator<AuthService>();
+  final SnackBarsService _snackbarService = locator<SnackBarsService>();
+  final NavigationService _navigationService = locator<NavigationService>();
+  final DialogService _dialogService = locator<DialogService>();
 
-  ProfileInfo profileInfo;
+  ProfileInfo? profileInfo;
 
-  Future<void> initilizeView(ProfileInfo profile) async {
+  Future<void> initilizeView(ProfileInfo? profile) async {
     if (profile != null) {
       profileInfo = profile;
       notifyListeners();
@@ -43,42 +44,43 @@ class EditProfileViewModel extends FormViewModel {
   void setFormStatus() {}
 
   Future<void> saveData() async {
-    if ((fullnameValue?.trim()?.isEmpty ?? true)) {
+    if ((fullnameValue?.trim().isEmpty ?? true)) {
       _snackbarService.showTopErrorSnackbar(
         message: 'نرجو إدخال الاسم كامل',
       );
       return;
-    } else if ((fullnameValue.trim().length < 5)) {
+    } else if ((fullnameValue!.trim().length < 5)) {
       _snackbarService.showTopErrorSnackbar(
         message: 'يجب أن يكون طول الاسم كامل  من 5 إلى 40 حرف',
       );
       return;
-    } else if ((familyNameValue?.trim()?.isEmpty ?? true)) {
+    } else if ((familyNameValue?.trim().isEmpty ?? true)) {
       _snackbarService.showTopErrorSnackbar(
         message: 'نرجو إدخال اللقب',
       );
       return;
     } else if (emailValue != null &&
-        emailValue.length > 0 &&
-        !EmailValidator.validate(emailValue)) {
+        emailValue!.length > 0 &&
+        !EmailValidator.validate(emailValue!)) {
       _snackbarService.showTopErrorSnackbar(
         message: 'البريد الالكتروني غير صحيح !',
       );
       return;
     }
-    var response = await _dialogService.showConfirmDialog(
+    var response = await _dialogService.showCustomDialog(
+      variant: DialogType.confirm,
       title: 'تأكيد العملية',
       description: 'هل أنت متأكد من رغبتك في حفظ التعديلات ؟',
     );
-    if (!response.confirmed) return;
+    if (response == null || !response.confirmed) return;
     await _updateProfile();
   }
 
   Future<void> _updateProfile() async {
     try {
       var updatedProfile = ProfileInfo(
-        phoneNumber: profileInfo.phoneNumber,
-        username: profileInfo.username,
+        phoneNumber: profileInfo!.phoneNumber,
+        username: profileInfo!.username,
         fullname: fullnameValue,
         familyName: familyNameValue,
         email: emailValue,

@@ -1,13 +1,13 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
 // **************************************************************************
-// AutoRouteGenerator
+// StackedRouterGenerator
 // **************************************************************************
 
 // ignore_for_file: public_member_api_docs
 
-import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
+import 'package:stacked/stacked.dart';
 
 import '../models/profile_info.dart';
 import '../ui/views/change_password/change_password_view.dart';
@@ -76,7 +76,7 @@ class Routes {
   };
 }
 
-class Router extends RouterBase {
+class StackedRouter extends RouterBase {
   @override
   List<RouteDef> get routes => _routes;
   final _routes = <RouteDef>[
@@ -104,8 +104,8 @@ class Router extends RouterBase {
     RouteDef(Routes.changePasswordView, page: ChangePasswordView),
   ];
   @override
-  Map<Type, AutoRouteFactory> get pagesMap => _pagesMap;
-  final _pagesMap = <Type, AutoRouteFactory>{
+  Map<Type, StackedRouteFactory> get pagesMap => _pagesMap;
+  final _pagesMap = <Type, StackedRouteFactory>{
     SplashScreenView: (data) {
       return buildAdaptivePageRoute<dynamic>(
         builder: (context) => SplashScreenView(),
@@ -181,7 +181,7 @@ class Router extends RouterBase {
       );
     },
     SignInView: (data) {
-      final args = data.getArgs<SignInViewArguments>(
+      var args = data.getArgs<SignInViewArguments>(
         orElse: () => SignInViewArguments(),
       );
       return PageRouteBuilder<dynamic>(
@@ -194,7 +194,7 @@ class Router extends RouterBase {
       );
     },
     SignUpView: (data) {
-      final args = data.getArgs<SignUpViewArguments>(
+      var args = data.getArgs<SignUpViewArguments>(
         orElse: () => SignUpViewArguments(),
       );
       return PageRouteBuilder<dynamic>(
@@ -205,7 +205,7 @@ class Router extends RouterBase {
       );
     },
     OtpView: (data) {
-      final args = data.getArgs<OtpViewArguments>(nullOk: false);
+      var args = data.getArgs<OtpViewArguments>(nullOk: false);
       return buildAdaptivePageRoute<dynamic>(
         builder: (context) => OtpView(
           key: args.key,
@@ -218,7 +218,7 @@ class Router extends RouterBase {
       );
     },
     ForgetPasswordView: (data) {
-      final args = data.getArgs<ForgetPasswordViewArguments>(nullOk: false);
+      var args = data.getArgs<ForgetPasswordViewArguments>(nullOk: false);
       return buildAdaptivePageRoute<dynamic>(
         builder: (context) => ForgetPasswordView(
           key: args.key,
@@ -230,7 +230,7 @@ class Router extends RouterBase {
       );
     },
     EditProfileView: (data) {
-      final args = data.getArgs<EditProfileViewArguments>(
+      var args = data.getArgs<EditProfileViewArguments>(
         orElse: () => EditProfileViewArguments(),
       );
       return buildAdaptivePageRoute<dynamic>(
@@ -243,7 +243,7 @@ class Router extends RouterBase {
       );
     },
     ChangePasswordView: (data) {
-      final args = data.getArgs<ChangePasswordViewArguments>(
+      var args = data.getArgs<ChangePasswordViewArguments>(
         orElse: () => ChangePasswordViewArguments(),
       );
       return buildAdaptivePageRoute<dynamic>(
@@ -261,48 +261,48 @@ class Router extends RouterBase {
 
 /// SignInView arguments holder class
 class SignInViewArguments {
-  final Key key;
-  final String phoneNumber;
+  final Key? key;
+  final String? phoneNumber;
   SignInViewArguments({this.key, this.phoneNumber});
 }
 
 /// SignUpView arguments holder class
 class SignUpViewArguments {
-  final Key key;
+  final Key? key;
   SignUpViewArguments({this.key});
 }
 
 /// OtpView arguments holder class
 class OtpViewArguments {
-  final Key key;
+  final Key? key;
   final String phoneNumber;
-  final String email;
+  final String? email;
   final int customerType;
   OtpViewArguments(
       {this.key,
-      @required this.phoneNumber,
+      required this.phoneNumber,
       this.email,
-      @required this.customerType});
+      required this.customerType});
 }
 
 /// ForgetPasswordView arguments holder class
 class ForgetPasswordViewArguments {
-  final Key key;
+  final Key? key;
   final String phoneNumberOrEmail;
   final int sentBy;
   ForgetPasswordViewArguments(
-      {this.key, @required this.phoneNumberOrEmail, @required this.sentBy});
+      {this.key, required this.phoneNumberOrEmail, required this.sentBy});
 }
 
 /// EditProfileView arguments holder class
 class EditProfileViewArguments {
-  final Key key;
-  final ProfileInfo profileInfo;
+  final Key? key;
+  final ProfileInfo? profileInfo;
   EditProfileViewArguments({this.key, this.profileInfo});
 }
 
 /// ChangePasswordView arguments holder class
 class ChangePasswordViewArguments {
-  final Key key;
+  final Key? key;
   ChangePasswordViewArguments({this.key});
 }

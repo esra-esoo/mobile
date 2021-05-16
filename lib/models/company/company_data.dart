@@ -4,13 +4,13 @@ part 'company_data.g.dart';
 
 @JsonSerializable()
 class CompanyData {
-  final String companyName;
-  final String licenseNumber;
-  final String commercialNo;
-  final String importersRecord;
-  final String chamberOfCommerce;
-  final bool isEditDisabled;
-  final bool editBtnShow;
+  final String? companyName;
+  final String? licenseNumber;
+  final String? commercialNo;
+  final String? importersRecord;
+  final String? chamberOfCommerce;
+  final bool? isEditDisabled;
+  final bool? editBtnShow;
 
   const CompanyData(
     this.companyName,

@@ -1,8 +1,9 @@
-import 'package:huayati/app/locator.dart';
+import 'package:huayati/app/app.locator.dart';
+import 'package:huayati/enums/dialog_type.dart';
 import 'package:huayati/models/navigation_result.dart';
 import 'package:huayati/services/auth_service.dart';
-import 'package:huayati/services/third_party/dialog_service.dart';
-import 'package:huayati/services/third_party/navigation_service.dart';
+
+import 'package:stacked_services/stacked_services.dart';
 import 'package:huayati/services/third_party/snackbar_service.dart';
 import 'package:stacked/stacked.dart';
 
@@ -11,10 +12,10 @@ import 'package:huayati/extensions/string_extensions.dart';
 import 'change_password_view.form.dart';
 
 class ChangePasswordViewModel extends FormViewModel {
-  final _navigationService = locator<NavigationService>();
-  final _snackbarService = locator<SnackbarService>();
-  final _authService = locator<AuthService>();
-  final _dialogService = locator<DialogService>();
+  final NavigationService _navigationService = locator<NavigationService>();
+  final SnackBarsService _snackbarService = locator<SnackBarsService>();
+  final AuthService _authService = locator<AuthService>();
+  final DialogService _dialogService = locator<DialogService>();
 
   @override
   void setFormStatus() {}
@@ -26,7 +27,7 @@ class ChangePasswordViewModel extends FormViewModel {
       _snackbarService.showTopErrorSnackbar(
         message: 'الرجاء إدخال كافة الحقول',
       );
-    } else if (!passwordValue.isStrongPassword) {
+    } else if (!passwordValue!.isStrongPassword) {
       _snackbarService.showTopErrorSnackbar(
         message: 'كلمة المرور الجديدة غير مطابقة للشروط أعلاه',
       );
@@ -35,11 +36,12 @@ class ChangePasswordViewModel extends FormViewModel {
         message: 'حقل التأكيد غير مطابق لكلمة المرور',
       );
     } else {
-      var response = await _dialogService.showConfirmDialog(
+      var response = await _dialogService.showCustomDialog(
+        variant: DialogType.confirm,
         title: 'تأكيد العملية',
         description: 'هل أنت متأكد من رغبتك في حفظ التعديلات ؟',
       );
-      if (!response.confirmed) return;
+      if (response == null || !response.confirmed) return;
       try {
         await runBusyFuture(
           _authService.changePassword(

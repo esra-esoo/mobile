@@ -31,9 +31,6 @@ extension StringExtension on String {
   }
 
   get toCapitalize {
-    if (this == null) {
-      throw ArgumentError("string: $this");
-    }
     if (this.isEmpty) {
       return this;
     }

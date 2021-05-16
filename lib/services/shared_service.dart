@@ -1,7 +1,7 @@
 import 'dart:async';
 
 import 'package:dio/dio.dart';
-import 'package:huayati/app/locator.dart';
+import 'package:huayati/app/app.locator.dart';
 import 'package:huayati/consts/account_type.dart';
 import 'package:huayati/models/company/refuse_state.dart';
 import 'package:huayati/models/individual/refuse_state.dart';
@@ -12,8 +12,8 @@ import 'package:huayati/services/api.dart';
 import 'user_service.dart';
 
 class SharedService {
-  final _api = locator<Api>();
-  final _userService = locator<UserService>();
+  final Api? _api = locator<Api>();
+  final UserService _userService = locator<UserService>();
 
   SharedRefuseState _sharedRefuseState = SharedRefuseState.initial();
   SharedRefuseState get sharedRefuseState => _sharedRefuseState;
@@ -23,7 +23,7 @@ class SharedService {
 
   Future<User> updateAccountInfo() async {
     try {
-      final response = await _api.getCallWithToken(
+      final response = await _api!.getCallWithToken(
         url: '/api/shared/GetCurrentCustomerInfo',
       );
       if (response == null) return User.initial();
@@ -53,7 +53,7 @@ class SharedService {
 
   Future<void> _getIndivisualRefuseState() async {
     try {
-      final response = await _api.getCallWithToken(
+      final response = await _api!.getCallWithToken(
         url: '/api/Individual/GetFilesRefuseMessage',
       );
       if (response == null) return resetRefuseState();
@@ -73,7 +73,7 @@ class SharedService {
 
   Future<void> _getCompanyRefuseState() async {
     try {
-      final response = await _api.getCallWithToken(
+      final response = await _api!.getCallWithToken(
         url: '/api/Company/GetFilesRefuseMessage',
       );
       if (response == null) resetRefuseState();
@@ -88,6 +88,22 @@ class SharedService {
     } catch (e) {
       resetRefuseState();
     }
+  }
+
+  void updateCompanyState(CompanyRefuseState companyRefuseState) {
+    _sharedRefuseState = SharedRefuseState(
+      companyRefuseState: companyRefuseState,
+      indivisualRefuseState: null,
+    );
+    _sharedRefuseStateController.add(_sharedRefuseState);
+  }
+
+  void updateIndivisualState(IndivisualRefuseState indivisualRefuseState) {
+    _sharedRefuseState = SharedRefuseState(
+      companyRefuseState: null,
+      indivisualRefuseState: indivisualRefuseState,
+    );
+    _sharedRefuseStateController.add(_sharedRefuseState);
   }
 
   void resetRefuseState() {

@@ -1,6 +1,5 @@
 import 'package:dio/dio.dart';
-import 'package:flutter/material.dart';
-import 'package:huayati/app/locator.dart';
+import 'package:huayati/app/app.locator.dart';
 import 'package:huayati/consts/storage_keys.dart';
 import 'package:huayati/models/customer_created_result.dart';
 import 'package:huayati/models/profile_info.dart';
@@ -12,14 +11,15 @@ import 'third_party/secure_storage_service.dart';
 import 'user_service.dart';
 
 class AuthService {
-  final _api = locator<Api>();
-  final _secureStorageService = locator<SecureStorageService>();
-  final _userService = locator<UserService>();
+  final Api _api = locator<Api>();
+  final SecureStorageService? _secureStorageService =
+      locator<SecureStorageService>();
+  final UserService _userService = locator<UserService>();
 
   Future<SignUpResult> signUp({
-    String email,
-    @required String phoneNumber,
-    @required int customerType,
+    String? email,
+    required String? phoneNumber,
+    required int customerType,
   }) async {
     print({
       "email": email,
@@ -47,8 +47,8 @@ class AuthService {
   }
 
   Future<CustomerCreatedResult> checkSignUpVerificationCode({
-    @required String phoneNumber,
-    @required int verificationCode,
+    required String? phoneNumber,
+    required int verificationCode,
   }) async {
     try {
       final response = await _api.postCallAuth(
@@ -70,19 +70,19 @@ class AuthService {
   }
 
   Future<void> signIn({
-    @required String username,
-    @required String password,
+    required String username,
+    required String password,
   }) async {
     try {
       var client = await _api.getClient(
         username: username,
         password: password,
       );
-      await _secureStorageService.addString(
+      await _secureStorageService!.addString(
         StorageKeys.TOKEN,
         client.credentials.accessToken,
       );
-      await _secureStorageService.addString(
+      await _secureStorageService!.addString(
         StorageKeys.CREDENTIALS,
         client.credentials.toJson(),
       );
@@ -115,7 +115,7 @@ class AuthService {
     }
   }
 
-  Future<void> updateProfileInfo({@required ProfileInfo profileInfo}) async {
+  Future<void> updateProfileInfo({required ProfileInfo profileInfo}) async {
     try {
       await _api.putCallAuth(
         url: '/api/Users/ProfileInfo',
@@ -129,9 +129,9 @@ class AuthService {
   }
 
   Future<void> changePassword({
-    @required String currentPassword,
-    @required String password,
-    @required String confirmPassword,
+    required String? currentPassword,
+    required String? password,
+    required String? confirmPassword,
   }) async {
     try {
       await _api.putCallAuth(
@@ -150,8 +150,8 @@ class AuthService {
   }
 
   Future<void> forgotPassword({
-    @required String phoneNumberOrEmail,
-    @required int resetMethod,
+    required String phoneNumberOrEmail,
+    required int resetMethod,
   }) async {
     try {
       await _api.postCallAuth(
@@ -169,8 +169,8 @@ class AuthService {
   }
 
   Future<void> resendVerificationCode({
-    @required String phoneNumberOrEmail,
-    @required String sentBy,
+    required String phoneNumberOrEmail,
+    required String sentBy,
   }) async {
     try {
       await _api.postCallAuth(
@@ -188,9 +188,9 @@ class AuthService {
   }
 
   Future<void> checkVerificationCode({
-    @required String phoneNumberOrEmail,
-    @required int verificationCode,
-    @required String sentBy,
+    required String phoneNumberOrEmail,
+    required int verificationCode,
+    required String sentBy,
   }) async {
     try {
       await _api.postCallAuth(

@@ -8,17 +8,17 @@ import 'image_picker_field.dart';
 
 class FileRadioTile extends StatefulWidget {
   final List<String> options;
-  final int groupValue;
+  final int? groupValue;
   final ValueChanged<int> onChanged;
-  final File imageFile;
-  final ValueChanged<File> onFileChanged;
+  final File? imageFile;
+  final ValueChanged<File>? onFileChanged;
 
   FileRadioTile({
-    Key key,
-    @required this.options,
-    @required this.groupValue,
-    @required this.onChanged,
-    @required this.imageFile,
+    Key? key,
+    required this.options,
+    required this.groupValue,
+    required this.onChanged,
+    required this.imageFile,
     this.onFileChanged,
   }) : super(key: key);
 
@@ -27,7 +27,7 @@ class FileRadioTile extends StatefulWidget {
 }
 
 class _FileRadioTileState extends State<FileRadioTile> {
-  int _selectedIndex;
+  int? _selectedIndex;
   @override
   void initState() {
     _selectedIndex = widget.groupValue;

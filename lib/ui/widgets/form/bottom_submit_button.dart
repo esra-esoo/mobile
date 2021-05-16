@@ -9,9 +9,9 @@ class BottomSubmitButton extends StatelessWidget {
   final bool accentColors;
   final bool disabled;
   const BottomSubmitButton({
-    Key key,
-    @required this.onPressed,
-    @required this.label,
+    Key? key,
+    required this.onPressed,
+    required this.label,
     this.accentColors = true,
     this.isBusy = false,
     this.disabled = false,
@@ -19,11 +19,19 @@ class BottomSubmitButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return FlatButton(
-      disabledColor: kColorCard,
-      splashColor: kcolorBluelight,
-      color: accentColors ? Colors.white : kcolorPrimaryBlue,
-      minWidth: double.infinity,
+    return TextButton(
+      style: flatButtonStyle.copyWith(
+        overlayColor: MaterialStateProperty.resolveWith<Color>(
+            (states) => kcolorBluelight),
+        foregroundColor: MaterialStateProperty.resolveWith<Color?>(
+          (Set<MaterialState> states) =>
+              states.contains(MaterialState.disabled) ? kColorCard : null,
+        ),
+        backgroundColor: MaterialStateProperty.resolveWith<Color>(
+          (Set<MaterialState> states) =>
+              accentColors ? Colors.white : kcolorPrimaryBlue,
+        ),
+      ),
       child: SafeArea(
         minimum: EdgeInsets.only(
           top: getValueForScreenType<double>(
@@ -52,7 +60,7 @@ class BottomSubmitButton extends StatelessWidget {
                 ),
               ),
       ),
-      onPressed: disabled ? null : onPressed,
+      onPressed: disabled ? null : onPressed as void Function()?,
     );
   }
 }

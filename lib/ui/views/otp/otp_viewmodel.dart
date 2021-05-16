@@ -1,27 +1,26 @@
-import 'package:flutter/foundation.dart';
-import 'package:huayati/app/locator.dart';
-import 'package:huayati/app/router.gr.dart';
-import 'package:huayati/models/customer_created_result.dart';
+import 'package:huayati/app/app.locator.dart';
+import 'package:huayati/app/app.router.dart';
+import 'package:huayati/enums/dialog_type.dart';
 import 'package:huayati/services/auth_service.dart';
-import 'package:huayati/services/third_party/dialog_service.dart';
-import 'package:huayati/services/third_party/navigation_service.dart';
+
+import 'package:stacked_services/stacked_services.dart';
 import 'package:huayati/services/third_party/snackbar_service.dart';
 import 'package:stacked/stacked.dart';
 
 class OtpViewModel extends BaseViewModel {
-  final _navigationService = locator<NavigationService>();
-  final _snackbarService = locator<SnackbarService>();
-  final _authService = locator<AuthService>();
-  final _dialogService = locator<DialogService>();
+  final NavigationService _navigationService = locator<NavigationService>();
+  final SnackBarsService _snackbarService = locator<SnackBarsService>();
+  final AuthService _authService = locator<AuthService>();
+  final DialogService _dialogService = locator<DialogService>();
 
-  Future verifyUser(String phoneNo, int verificationCode) async {
+  Future verifyUser(String? phoneNo, int verificationCode) async {
     if (verificationCode.toString().length < 6) {
       _snackbarService.showTopErrorSnackbar(
         message: 'نرجو منك ملء كافة الخانات ..',
       );
     } else {
       try {
-        CustomerCreatedResult result = await runBusyFuture(
+        await runBusyFuture(
           _authService.checkSignUpVerificationCode(
             phoneNumber: phoneNo,
             verificationCode: verificationCode,
@@ -29,13 +28,12 @@ class OtpViewModel extends BaseViewModel {
           throwException: true,
         );
 
-        print(result.toJson());
-
-        await _dialogService.showAlertDialog(
+        await _dialogService.showCustomDialog(
+          variant: DialogType.alert,
           title: 'نجحت العملية',
           description:
               'لقد تم إسال بيانات المستخدم إلى هاتف $phoneNo ،يمكنك الان تسجيل الدخول.',
-          closeTitle: 'تسجيل الدخول',
+          mainButtonTitle: 'تسجيل الدخول',
         );
         await _navigationService.pushNamedAndRemoveUntil(
           Routes.signInView,
@@ -51,9 +49,9 @@ class OtpViewModel extends BaseViewModel {
   }
 
   Future<bool> resendCode({
-    String email,
-    @required String phoneNumber,
-    @required int customerType,
+    String? email,
+    required String phoneNumber,
+    required int customerType,
   }) async {
     try {
       await runBusyFuture(

@@ -5,13 +5,13 @@ import 'package:huayati/ui/widgets/data_item.dart';
 
 class BankItem extends StatelessWidget {
   final int no;
-  final String accountNumber;
-  final String branchNumber;
+  final String? accountNumber;
+  final String? branchNumber;
   const BankItem({
-    Key key,
-    @required this.no,
-    @required this.accountNumber,
-    @required this.branchNumber,
+    Key? key,
+    required this.no,
+    required this.accountNumber,
+    required this.branchNumber,
   }) : super(key: key);
 
   @override

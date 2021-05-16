@@ -4,10 +4,10 @@ part 'bank_account.g.dart';
 
 @JsonSerializable()
 class IndivisualBankAccount {
-  final String individualBankAccountId;
-  final String accountNumber;
-  final String branchNumber;
-  final bool isEditDisabled;
+  final String? individualBankAccountId;
+  final String? accountNumber;
+  final String? branchNumber;
+  final bool? isEditDisabled;
 
   const IndivisualBankAccount(
     this.individualBankAccountId,

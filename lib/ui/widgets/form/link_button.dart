@@ -8,9 +8,9 @@ class LinkButton extends StatelessWidget {
 
   final bool bold;
   const LinkButton({
-    Key key,
-    @required this.onTap,
-    @required this.label,
+    Key? key,
+    required this.onTap,
+    required this.label,
     this.mainAxisAlignment = MainAxisAlignment.start,
     this.bold = false,
   }) : super(key: key);
@@ -35,7 +35,7 @@ class LinkButton extends StatelessWidget {
           ),
         ],
       ),
-      onTap: onTap,
+      onTap: onTap as void Function()?,
     );
   }
 }

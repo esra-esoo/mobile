@@ -8,13 +8,13 @@ part of 'company_data.dart';
 
 CompanyData _$CompanyDataFromJson(Map<String, dynamic> json) {
   return CompanyData(
-    json['companyName'] as String,
-    json['licenseNumber'] as String,
-    json['commercialNo'] as String,
-    json['importersRecord'] as String,
-    json['chamberOfCommerce'] as String,
-    json['isEditDisabled'] as bool,
-    json['editBtnShow'] as bool,
+    json['companyName'] as String?,
+    json['licenseNumber'] as String?,
+    json['commercialNo'] as String?,
+    json['importersRecord'] as String?,
+    json['chamberOfCommerce'] as String?,
+    json['isEditDisabled'] as bool?,
+    json['editBtnShow'] as bool?,
   );
 }
 

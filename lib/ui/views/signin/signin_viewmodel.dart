@@ -1,10 +1,11 @@
-import 'package:huayati/app/locator.dart';
-import 'package:huayati/app/router.gr.dart';
+import 'package:huayati/app/app.locator.dart';
+import 'package:huayati/app/app.router.dart';
 import 'package:huayati/consts/pass_sent_by.dart';
+import 'package:huayati/enums/dialog_type.dart';
 import 'package:huayati/services/auth_service.dart';
 import 'package:huayati/services/shared_service.dart';
-import 'package:huayati/services/third_party/dialog_service.dart';
-import 'package:huayati/services/third_party/navigation_service.dart';
+
+import 'package:stacked_services/stacked_services.dart';
 import 'package:huayati/services/third_party/picker_services.dart';
 import 'package:huayati/services/third_party/snackbar_service.dart';
 import 'package:huayati/ui/views/signin/signin_view.form.dart';
@@ -12,12 +13,12 @@ import 'package:stacked/stacked.dart';
 import 'package:huayati/extensions/string_extensions.dart';
 
 class SignInViewModel extends FormViewModel {
-  final _navigationService = locator<NavigationService>();
-  final _snackbarService = locator<SnackbarService>();
-  final _authService = locator<AuthService>();
-  final _sharedService = locator<SharedService>();
-  final _pickerService = locator<PickerService>();
-  final _dialogService = locator<DialogService>();
+  final NavigationService _navigationService = locator<NavigationService>();
+  final SnackBarsService _snackbarService = locator<SnackBarsService>();
+  final AuthService _authService = locator<AuthService>();
+  final SharedService _sharedService = locator<SharedService>();
+  final PickerService _pickerService = locator<PickerService>();
+  final DialogService _dialogService = locator<DialogService>();
 
   @override
   void setFormStatus() {}
@@ -27,7 +28,7 @@ class SignInViewModel extends FormViewModel {
       _snackbarService.showTopErrorSnackbar(
         message: 'كل الحقول مطلوبة !',
       );
-    } else if (!phoneValue.isValidPhonenumber) {
+    } else if (!phoneValue!.isValidPhonenumber) {
       _snackbarService.showTopErrorSnackbar(
         message: 'رقم الهاتف يجب ان يكون بصيغة (9xxxxxxxx)',
       );
@@ -35,11 +36,12 @@ class SignInViewModel extends FormViewModel {
       try {
         setBusy(true);
         await _authService.signIn(
-          username: phoneValue,
-          password: passwordValue,
+          username: phoneValue!,
+          password: passwordValue!,
         );
         await _sharedService.updateAccountInfo();
         await _sharedService.getRefuseState();
+
         await _navigationService.pushNamedAndRemoveUntil(
           Routes.startUpView,
         );
@@ -66,19 +68,21 @@ class SignInViewModel extends FormViewModel {
   Future recoverPassword() async {
     var resetMethod = await _pickerService.showResetMethod();
     if (resetMethod != null) {
-      DialogResponse dialogResponse =
-          await _dialogService.showPhoneOrEmailDialog(
-        isEmail: resetMethod == SentByValue.EMAIL,
+      DialogResponse? dialogResponse = await _dialogService.showCustomDialog(
+        variant: DialogType.phoneOrEmail,
+        customData: resetMethod == SentByValue.EMAIL,
       );
-      if (dialogResponse.confirmed && dialogResponse.responseData[0] != null) {
-        await _forgetPassword(dialogResponse.responseData[0], resetMethod);
+      if (dialogResponse == null) return;
+      if (dialogResponse.confirmed && dialogResponse.responseData != null) {
+        await _forgetPassword(dialogResponse.responseData, resetMethod);
       }
     }
   }
 
-  Future _forgetPassword(String phoneNumberOrEmail, int resetMethod) async {
+  Future<void> _forgetPassword(
+      String phoneNumberOrEmail, int resetMethod) async {
     try {
-      await runBusyFuture(
+      await runBusyFuture<void>(
         _authService.forgotPassword(
           phoneNumberOrEmail: phoneNumberOrEmail,
           resetMethod: resetMethod,

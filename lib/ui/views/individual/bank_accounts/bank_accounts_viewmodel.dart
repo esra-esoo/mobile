@@ -1,12 +1,12 @@
-import 'package:huayati/app/locator.dart';
+import 'package:huayati/app/app.locator.dart';
 import 'package:huayati/models/individual/bank_account.dart';
 import 'package:huayati/services/individual_service.dart';
 import 'package:stacked/stacked.dart';
 
 class IndividualBankAccountsDataViewModel extends BaseViewModel {
-  final _individualService = locator<IndividualService>();
+  final IndividualService _individualService = locator<IndividualService>();
 
-  List<IndivisualBankAccount> indivisualBankAccount = [];
+  List<IndivisualBankAccount>? indivisualBankAccount = [];
   Future initilizeView() async {
     try {
       indivisualBankAccount = await runBusyFuture(
@@ -15,13 +15,6 @@ class IndividualBankAccountsDataViewModel extends BaseViewModel {
       );
     } catch (e) {
       print(e);
-      // await Future.delayed(const Duration(milliseconds: 500));
-      // _navigationService.back(
-      //   result: NavigationResult(
-      //     success: false,
-      //     message: e.toString(),
-      //   ),
-      // );
     }
   }
 }

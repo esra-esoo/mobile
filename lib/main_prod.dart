@@ -1,22 +1,24 @@
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
+import 'app/app.locator.dart';
 import 'app/app_config.dart';
-import 'app/locator.dart';
 import 'config/config.dart';
 import 'main.dart';
+import 'ui/setup_dialog_ui.dart';
 
-void main() async {
-  // WidgetsFlutterBinding.ensureInitialized();
-  // await Firebase.initializeApp();
-  // FlutterError.onError = FirebaseCrashlytics.instance.recordFlutterError;
+Future<void> main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp();
 
   var configuredApp = AppConfig(
+    MyApp(),
     appTitle: "هويتي",
     buildFlavor: "Production",
     isDevEnviroment: false,
     authEndpoint: Config.prodAuthEndpoint,
     endpoint: Config.prodEndpoint,
-    child: MyApp(),
   );
   setupLocator();
+  setupDialogUi();
   return runApp(configuredApp);
 }

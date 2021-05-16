@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 
 class FullLogo extends StatelessWidget {
   final double height;
-  final double width;
-  const FullLogo({Key key, @required this.height, this.width})
+  final double? width;
+  const FullLogo({Key? key, required this.height, this.width})
       : super(key: key);
 
   @override

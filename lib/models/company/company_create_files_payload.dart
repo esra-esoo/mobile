@@ -1,4 +1,3 @@
-import 'package:flutter/foundation.dart';
 import 'package:json_annotation/json_annotation.dart';
 
 import '../file_models.dart';
@@ -8,15 +7,15 @@ part 'company_create_files_payload.g.dart';
 
 @JsonSerializable(explicitToJson: true)
 class CompanyCreateFilesPayload {
-  final String phoneNumber;
-  final List<FilesModels> companyFilesModel;
-  final List<CompanyEmployeeModel> companyEmployeeModel;
-  final int totalFilesLength;
+  final String? phoneNumber;
+  final List<FilesModels>? companyFilesModel;
+  final List<CompanyEmployeeModel>? companyEmployeeModel;
+  final int? totalFilesLength;
 
   const CompanyCreateFilesPayload({
-    @required this.phoneNumber,
-    @required this.companyFilesModel,
-    @required this.companyEmployeeModel,
+    required this.phoneNumber,
+    required this.companyFilesModel,
+    required this.companyEmployeeModel,
     this.totalFilesLength,
   });
 

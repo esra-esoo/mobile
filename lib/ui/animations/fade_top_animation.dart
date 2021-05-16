@@ -6,7 +6,7 @@ enum _AniProps { opacity, translateY }
 
 class FadeFromTopAnimation extends StatelessWidget {
   final double order;
-  final int duration;
+  final int? duration;
   final int opacityDuration;
   final int transDuration;
   final Widget child;
@@ -16,7 +16,7 @@ class FadeFromTopAnimation extends StatelessWidget {
     this.duration,
     this.opacityDuration = 600,
     this.transDuration = 600,
-    @required this.child,
+    required this.child,
   });
 
   @override

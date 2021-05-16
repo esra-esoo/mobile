@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:huayati/app/locator.dart';
+import 'package:huayati/app/app.locator.dart';
 import 'package:huayati/consts/styles.dart';
 import 'package:huayati/ui/widgets/botton_padding.dart';
 import 'package:huayati/ui/widgets/data_item.dart';
@@ -12,7 +12,7 @@ import 'profile_viewmodel.dart';
 import 'widgets/update_button.dart';
 
 class ProfileView extends StatelessWidget {
-  const ProfileView({Key key}) : super(key: key);
+  const ProfileView({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -38,7 +38,7 @@ class ProfileView extends StatelessWidget {
 }
 
 class _DataView extends ViewModelWidget<ProfileViewModel> {
-  const _DataView({Key key}) : super(key: key);
+  const _DataView({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context, ProfileViewModel viewModel) {
@@ -59,27 +59,27 @@ class _DataView extends ViewModelWidget<ProfileViewModel> {
             children: [
               DataItem(
                 label: 'رقم الهاتف',
-                value: viewModel?.profileInfo?.phoneNumber ?? '',
+                value: viewModel.profileInfo?.phoneNumber ?? '',
               ),
               SizedBox(height: 20.h),
               DataItem(
                 label: 'اسم المستخدم',
-                value: viewModel?.profileInfo?.username ?? '',
+                value: viewModel.profileInfo?.username ?? '',
               ),
               SizedBox(height: 20.h),
               DataItem(
                 label: 'الاسم كامل',
-                value: viewModel?.profileInfo?.fullname ?? '',
+                value: viewModel.profileInfo?.fullname ?? '',
               ),
               SizedBox(height: 20.h),
               DataItem(
                 label: 'اللقب',
-                value: viewModel?.profileInfo?.familyName ?? '',
+                value: viewModel.profileInfo?.familyName ?? '',
               ),
               SizedBox(height: 20.h),
               DataItem(
                 label: 'البريد الإلكتروني',
-                value: viewModel?.profileInfo?.email ?? '',
+                value: viewModel.profileInfo?.email ?? '',
               ),
               SizedBox(height: 20.h),
               const UpdateProfileButton(),
@@ -93,7 +93,7 @@ class _DataView extends ViewModelWidget<ProfileViewModel> {
 }
 
 class _RefreshView extends ViewModelWidget<ProfileViewModel> {
-  const _RefreshView({Key key}) : super(key: key);
+  const _RefreshView({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context, ProfileViewModel viewModel) {
