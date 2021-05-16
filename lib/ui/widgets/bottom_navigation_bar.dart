@@ -44,12 +44,12 @@ class AppBottomNavigationBar extends StatelessWidget {
             label: 'الرئيسية',
           ),
           BottomNavigationBarItem(
-            icon: Icon(CupertinoIcons.chat_bubble_2_fill),
-            label: 'محادثة',
-          ),
-          BottomNavigationBarItem(
             icon: Icon(CupertinoIcons.person_circle_fill),
             label: 'الملف الشخصي',
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(CupertinoIcons.chat_bubble_2_fill),
+            label: 'محادثة',
           ),
           BottomNavigationBarItem(
             icon: Icon(CupertinoIcons.flag_fill),

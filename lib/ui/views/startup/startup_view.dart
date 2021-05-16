@@ -82,9 +82,9 @@ class StartUpView extends StatelessWidget {
       case 0:
         return const HomeView();
       case 1:
-        return const ChatView();
-      case 2:
         return const ProfileView();
+      case 2:
+        return const ChatView();
       case 3:
         return const ComplaintView();
       default:
@@ -97,9 +97,9 @@ class StartUpView extends StatelessWidget {
       case 0:
         return 'الرئيسية';
       case 1:
-        return 'محادثة';
-      case 2:
         return 'الملف الشخصي';
+      case 2:
+        return 'محادثة';
       case 3:
         return 'إرسال شكوى';
       default:
