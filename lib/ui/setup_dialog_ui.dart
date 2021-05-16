@@ -91,16 +91,16 @@ class _ConfirmDialog extends StatelessWidget {
         PlatformDialogAction(
           material: (_, __) =>
               MaterialDialogActionData(textColor: kcolorBluelight),
-          child: Text('تراجع'),
-          onPressed: () => completer!(DialogResponse(confirmed: false)),
-        ),
-        PlatformDialogAction(
-          material: (_, __) =>
-              MaterialDialogActionData(textColor: kcolorBluelight),
           cupertino: (_, __) =>
               CupertinoDialogActionData(isDefaultAction: true),
           onPressed: () => completer!(DialogResponse(confirmed: true)),
           child: Text('نعم'),
+        ),
+        PlatformDialogAction(
+          material: (_, __) =>
+              MaterialDialogActionData(textColor: kcolorBluelight),
+          child: Text('تراجع'),
+          onPressed: () => completer!(DialogResponse(confirmed: false)),
         ),
       ],
     );
