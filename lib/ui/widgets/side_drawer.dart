@@ -30,7 +30,7 @@ class SideDrawer extends StatelessWidget {
                 children: <Widget>[
                   const _ChangeProfile(),
                   const _ChangePassword(),
-                  const _HelpButton(),
+                  // const _HelpButton(),
                 ],
               ),
             ),
@@ -68,37 +68,6 @@ class _TopContainer extends StatelessWidget {
             ),
             const SizedBox(width: 10),
           ],
-        ),
-      ),
-    );
-  }
-}
-
-class _HelpButton extends StatelessWidget {
-  const _HelpButton({Key? key}) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return Material(
-      type: MaterialType.transparency,
-      child: InkWell(
-        onTap: () {},
-        child: ListTile(
-          contentPadding: EdgeInsets.symmetric(vertical: 10, horizontal: 15),
-          leading: const Icon(
-            Icons.help_outline_rounded,
-            color: kColorText,
-          ),
-          title: Text(
-            'مساعدة',
-            overflow: TextOverflow.ellipsis,
-            softWrap: false,
-            style: TextStyle(
-              color: kColorText,
-              fontWeight: FontWeight.bold,
-              fontSize: 15,
-            ),
-          ),
         ),
       ),
     );
@@ -228,3 +197,34 @@ class _SignOutButton extends StatelessWidget {
     );
   }
 }
+
+// class _HelpButton extends StatelessWidget {
+//   const _HelpButton({Key? key}) : super(key: key);
+
+//   @override
+//   Widget build(BuildContext context) {
+//     return Material(
+//       type: MaterialType.transparency,
+//       child: InkWell(
+//         onTap: () {},
+//         child: ListTile(
+//           contentPadding: EdgeInsets.symmetric(vertical: 10, horizontal: 15),
+//           leading: const Icon(
+//             Icons.help_outline_rounded,
+//             color: kColorText,
+//           ),
+//           title: Text(
+//             'مساعدة',
+//             overflow: TextOverflow.ellipsis,
+//             softWrap: false,
+//             style: TextStyle(
+//               color: kColorText,
+//               fontWeight: FontWeight.bold,
+//               fontSize: 15,
+//             ),
+//           ),
+//         ),
+//       ),
+//     );
+//   }
+// }
