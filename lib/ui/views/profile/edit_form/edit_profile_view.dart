@@ -1,3 +1,4 @@
+import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:huayati/consts/styles.dart';
 import 'package:huayati/models/profile_info.dart';
@@ -45,120 +46,108 @@ class EditProfileView extends StatelessWidget with $EditProfileView {
         child: BusyOverlay(
           show: viewModel.isBusy,
           primaryColors: true,
-          child: Container(
-            constraints: BoxConstraints.expand(),
-            child: Scaffold(
+          child: Scaffold(
+            backgroundColor: Colors.transparent,
+            appBar: AppBar(
+              brightness: Brightness.light,
               backgroundColor: Colors.transparent,
-              appBar: AppBar(
-                brightness: Brightness.light,
-                backgroundColor: Colors.transparent,
-                elevation: 0,
-                leading: IconButton(
-                  onPressed: () => Navigator.pop(context),
-                  icon: Icon(Icons.arrow_back_ios, color: kcolorPrimaryBlue),
-                ),
-                centerTitle: true,
-                title: FormTitle(
-                  title: 'تعديل الملف الشخصي',
-                  color: kcolorPrimaryBlue,
-                ),
+              elevation: 0,
+              leading: IconButton(
+                onPressed: () => Navigator.pop(context),
+                icon: Icon(Icons.arrow_back_ios, color: kcolorPrimaryBlue),
               ),
-              body: Form(
-                autovalidateMode: AutovalidateMode.always,
-                child: SingleChildScrollView(
-                  child: Padding(
-                    padding: EdgeInsets.only(
-                      top: 30.h,
-                      left: 30.w,
-                      right: 30.w,
-                    ),
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.stretch,
-                      children: [
-                        SizedBox(height: 30.h),
-                        TextFieldLabel(label: 'رقم الهاتف'),
-                        SizedBox(height: 10.h),
-                        TextFormField(
-                          cursorColor: kcolorPrimaryBlue,
-                          controller: phoneNumberController,
-                          keyboardType: TextInputType.number,
-                          readOnly: true,
-                          enabled: false,
-                          style: textFormFieldAccentStyle,
-                          decoration: kformFieldInputAccentDecoration.copyWith(
-                            labelText: 'رقم الهاتف (*)',
-                            fillColor: kColorCard,
-                          ),
-                        ),
-                        SizedBox(height: 20.h),
-                        TextFieldLabel(label: 'اسم المستخدم'),
-                        SizedBox(height: 10.h),
-                        TextFormField(
-                          cursorColor: kcolorPrimaryBlue,
-                          controller: usernameController,
-                          keyboardType: TextInputType.text,
-                          readOnly: true,
-                          enabled: false,
-                          style: textFormFieldAccentStyle,
-                          decoration: kformFieldInputAccentDecoration.copyWith(
-                            hintText: 'إسم المستخدم',
-                            fillColor: kColorCard,
-                          ),
-                        ),
-                        SizedBox(height: 20.h),
-                        TextFieldLabel(label: 'الإسم كامل (*)'),
-                        SizedBox(height: 10.h),
-                        TextFormField(
-                          cursorColor: kcolorPrimaryBlue,
-                          controller: fullnameController,
-                          keyboardType: TextInputType.text,
-                          textInputAction: TextInputAction.next,
-                          maxLength: 40,
-                          autocorrect: false,
-                          style: textFormFieldAccentStyle,
-                          decoration: kformFieldInputAccentDecoration.copyWith(
-                            hintText: 'أدخل الاسم كامل هنا ..',
-                          ),
-                        ),
-                        TextFieldLabel(label: 'اللقب (*)'),
-                        SizedBox(height: 10.h),
-                        TextFormField(
-                          cursorColor: kcolorPrimaryBlue,
-                          controller: familyNameController,
-                          keyboardType: TextInputType.text,
-                          textInputAction: TextInputAction.next,
-                          autocorrect: false,
-                          style: textFormFieldAccentStyle,
-                          decoration: kformFieldInputAccentDecoration.copyWith(
-                            hintText: 'أدخل اللقب هنا ..',
-                          ),
-                        ),
-                        SizedBox(height: 20.h),
-                        TextFieldLabel(label: 'البريد الإلكتروني'),
-                        SizedBox(height: 10.h),
-                        TextFormField(
-                          cursorColor: kcolorPrimaryBlue,
-                          controller: emailController,
-                          keyboardType: TextInputType.emailAddress,
-                          textInputAction: TextInputAction.done,
-                          autocorrect: false,
-                          style: textFormFieldAccentStyle,
-                          decoration: kformFieldInputAccentDecoration.copyWith(
-                            hintText: 'ادخل عنوان البريد الالكتروني',
-                          ),
-                          onFieldSubmitted: (_) => viewModel.saveData(),
-                        ),
-                        const BottomPadding(),
-                      ],
-                    ),
+              centerTitle: true,
+              title: FormTitle(
+                title: 'تعديل الملف الشخصي',
+                color: kcolorPrimaryBlue,
+              ),
+            ),
+            body: ListView(
+              padding: EdgeInsets.only(
+                top: 30,
+                left: 30.w,
+                right: 30.w,
+              ),
+              children: [
+                TextFieldLabel(label: 'رقم الهاتف'),
+                SizedBox(height: 10.h),
+                TextFormField(
+                  cursorColor: kcolorPrimaryBlue,
+                  controller: phoneNumberController,
+                  keyboardType: TextInputType.number,
+                  readOnly: true,
+                  enabled: false,
+                  style: textFormFieldAccentStyle,
+                  decoration: kformFieldInputAccentDecoration.copyWith(
+                    labelText: 'رقم الهاتف (*)',
+                    fillColor: kColorCard,
                   ),
                 ),
-              ),
-              bottomNavigationBar: BottomSubmitButton(
-                accentColors: false,
-                label: 'حفظ التعديلات',
-                onPressed: () => viewModel.saveData(),
-              ),
+                SizedBox(height: 20.h),
+                TextFieldLabel(label: 'اسم المستخدم'),
+                SizedBox(height: 10.h),
+                TextFormField(
+                  cursorColor: kcolorPrimaryBlue,
+                  controller: usernameController,
+                  keyboardType: TextInputType.text,
+                  readOnly: true,
+                  enabled: false,
+                  style: textFormFieldAccentStyle,
+                  decoration: kformFieldInputAccentDecoration.copyWith(
+                    hintText: 'إسم المستخدم',
+                    fillColor: kColorCard,
+                  ),
+                ),
+                SizedBox(height: 20.h),
+                TextFieldLabel(label: 'الإسم كامل (*)'),
+                SizedBox(height: 10.h),
+                TextFormField(
+                  cursorColor: kcolorPrimaryBlue,
+                  controller: fullnameController,
+                  keyboardType: TextInputType.text,
+                  textInputAction: TextInputAction.next,
+                  maxLength: 40,
+                  autocorrect: false,
+                  style: textFormFieldAccentStyle,
+                  decoration: kformFieldInputAccentDecoration.copyWith(
+                    hintText: 'أدخل الاسم كامل هنا ..',
+                  ),
+                ),
+                TextFieldLabel(label: 'اللقب (*)'),
+                SizedBox(height: 10.h),
+                TextFormField(
+                  cursorColor: kcolorPrimaryBlue,
+                  controller: familyNameController,
+                  keyboardType: TextInputType.text,
+                  textInputAction: TextInputAction.next,
+                  autocorrect: false,
+                  style: textFormFieldAccentStyle,
+                  decoration: kformFieldInputAccentDecoration.copyWith(
+                    hintText: 'أدخل اللقب هنا ..',
+                  ),
+                ),
+                SizedBox(height: 20.h),
+                TextFieldLabel(label: 'البريد الإلكتروني'),
+                SizedBox(height: 10.h),
+                TextFormField(
+                  cursorColor: kcolorPrimaryBlue,
+                  controller: emailController,
+                  keyboardType: TextInputType.emailAddress,
+                  textInputAction: TextInputAction.done,
+                  autocorrect: false,
+                  style: textFormFieldAccentStyle,
+                  decoration: kformFieldInputAccentDecoration.copyWith(
+                    hintText: 'ادخل عنوان البريد الالكتروني',
+                  ),
+                  onFieldSubmitted: (_) => viewModel.saveData(),
+                ),
+                const BottomPadding(),
+              ],
+            ),
+            bottomNavigationBar: BottomSubmitButton(
+              accentColors: false,
+              label: 'حفظ التعديلات',
+              onPressed: () => viewModel.saveData(),
             ),
           ),
         ),
