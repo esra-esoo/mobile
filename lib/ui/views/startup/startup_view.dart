@@ -97,7 +97,7 @@ class StartUpView extends StatelessWidget {
       case 0:
         return 'الرئيسية';
       case 1:
-        return '';
+        return 'محادثة';
       case 2:
         return 'الملف الشخصي';
       case 3:
