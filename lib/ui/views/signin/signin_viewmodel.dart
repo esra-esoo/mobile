@@ -41,6 +41,8 @@ class SignInViewModel extends FormViewModel {
         );
         await _sharedService.updateAccountInfo();
         await _sharedService.getRefuseState();
+        //TODO send FCM token to be
+
         await _navigationService.pushNamedAndRemoveUntil(
           Routes.startUpView,
         );
