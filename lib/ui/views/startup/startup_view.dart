@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
 import 'package:flutter/services.dart';
 import 'package:huayati/app/app.locator.dart';
+import 'package:huayati/ui/views/chat/chat_view.dart';
 import 'package:huayati/ui/views/complaint/complaint_view.dart';
 import 'package:huayati/ui/views/home/home_view.dart';
 import 'package:huayati/ui/views/profile/profile_view.dart';
@@ -80,6 +81,8 @@ class StartUpView extends StatelessWidget {
     switch (index) {
       case 0:
         return const HomeView();
+      case 1:
+        return const ChatView();
       case 2:
         return const ProfileView();
       case 3:
@@ -93,6 +96,8 @@ class StartUpView extends StatelessWidget {
     switch (index) {
       case 0:
         return 'الرئيسية';
+      case 1:
+        return '';
       case 2:
         return 'الملف الشخصي';
       case 3:

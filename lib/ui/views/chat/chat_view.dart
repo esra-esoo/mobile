@@ -4,14 +4,14 @@ import 'package:flutter/material.dart';
 import 'package:huayati/ui/widgets/loading_indicator.dart';
 import 'package:webview_flutter/webview_flutter.dart';
 
-class ComplaintView extends StatefulWidget {
-  const ComplaintView({Key? key}) : super(key: key);
+class ChatView extends StatefulWidget {
+  const ChatView({Key? key}) : super(key: key);
 
   @override
-  _ComplaintViewState createState() => _ComplaintViewState();
+  _ChatViewState createState() => _ChatViewState();
 }
 
-class _ComplaintViewState extends State<ComplaintView> {
+class _ChatViewState extends State<ChatView> {
   bool isLoading = true;
 
   @override
@@ -25,7 +25,7 @@ class _ComplaintViewState extends State<ComplaintView> {
     return Stack(
       children: [
         WebView(
-          initialUrl: 'https://mobile.tatweer.ly:44323/Complaint',
+          initialUrl: 'https://mobile.tatweer.ly:44351/Chat',
           javascriptMode: JavascriptMode.unrestricted,
           onPageFinished: (finish) {
             setState(() {
