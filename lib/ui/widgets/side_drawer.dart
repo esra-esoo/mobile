@@ -203,9 +203,8 @@ class _SignOutButton extends StatelessWidget {
       child: InkWell(
         onTap: () async {
           await locator<UserService>().clearUser();
-          await locator<PushNotificationService>()
-              .unSubscribeFromDefaultTopic();
           locator<SharedService>().resetRefuseState();
+          locator<PushNotificationService>().unSubscribeFromDefaultTopic();
           await locator<NavigationService>()
               .pushNamedAndRemoveUntil(Routes.signInView);
         },
