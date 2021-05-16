@@ -1,3 +1,4 @@
+import 'package:huayati/services/push_notification_service.dart';
 import 'package:huayati/services/third_party/snackbar_service.dart';
 import 'package:huayati/ui/views/change_password/change_password_view.dart';
 import 'package:huayati/ui/views/company/bank_account/bank_account_view.dart';
@@ -75,6 +76,7 @@ import 'package:stacked/stacked_annotations.dart';
     const LazySingleton(classType: IndividualService),
     const LazySingleton(classType: CompanyService),
     const LazySingleton(classType: SharedService),
+    const LazySingleton(classType: PushNotificationService),
     const LazySingleton(classType: StartUpViewModel),
     const Singleton(classType: ProfileViewModel),
   ],

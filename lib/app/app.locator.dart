@@ -14,6 +14,7 @@ import '../services/api.dart';
 import '../services/auth_service.dart';
 import '../services/company_service.dart';
 import '../services/individual_service.dart';
+import '../services/push_notification_service.dart';
 import '../services/shared_service.dart';
 import '../services/third_party/picker_services.dart';
 import '../services/third_party/secure_storage_service.dart';
@@ -41,6 +42,7 @@ void setupLocator({String? environment, EnvironmentFilter? environmentFilter}) {
   locator.registerLazySingleton(() => IndividualService());
   locator.registerLazySingleton(() => CompanyService());
   locator.registerLazySingleton(() => SharedService());
+  locator.registerLazySingleton(() => PushNotificationService());
   locator.registerLazySingleton(() => StartUpViewModel());
   locator.registerSingleton(ProfileViewModel());
 }
