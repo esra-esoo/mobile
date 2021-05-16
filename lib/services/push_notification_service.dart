@@ -22,6 +22,7 @@ class PushNotificationService {
   Future<void> initialize() async {
     try {
       if (Platform.isIOS) {
+        await Future.delayed(const Duration(seconds: 2));
         await _fcm.requestPermission(
           alert: true,
           announcement: false,
@@ -37,16 +38,24 @@ class PushNotificationService {
       );
       if (!alreadySubscribed) await _subscribeToDefaultTopic();
 
-      FirebaseMessaging.onMessage
-          .listen((RemoteMessage message) => _handleForgroundMessages(message));
+      FirebaseMessaging.onMessage.listen(
+        (RemoteMessage message) => _handleForgroundMessages(message),
+      );
 
       FirebaseMessaging.onMessageOpenedApp.listen(
-          (RemoteMessage message) => _handleBackgroundMessages(message));
+        (RemoteMessage message) => _handleBackgroundMessages(message),
+      );
 
-      _handleTerminatedBackgroundMessages();
+      await _handleTerminatedBackgroundMessages();
     } catch (e) {
       print('notification service initialise error => $e');
     }
+  }
+
+  Future<String?> getDeviceToken() async {
+    final token = await _fcm.getToken();
+    print('FCM Token => $token');
+    return token;
   }
 
   Future _subscribeToDefaultTopic() async {

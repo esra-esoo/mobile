@@ -6,7 +6,8 @@ class StartUpViewModel extends IndexTrackingViewModel {
   final _pushNotificationService = locator<PushNotificationService>();
 
   Future<void> initializeView() async {
-    await Future.delayed(const Duration(seconds: 2));
     await _pushNotificationService.initialize();
+    String? fcmToken = await _pushNotificationService.getDeviceToken();
+    // TODO Call setFCM Token
   }
 }
