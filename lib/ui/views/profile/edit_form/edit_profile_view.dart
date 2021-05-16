@@ -1,4 +1,3 @@
-import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:huayati/consts/styles.dart';
 import 'package:huayati/models/profile_info.dart';
