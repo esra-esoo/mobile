@@ -7,6 +7,7 @@ import 'package:huayati/app/app.router.dart';
 import 'package:huayati/config/config.dart';
 import 'package:huayati/consts/storage_keys.dart';
 import 'package:huayati/models/user.dart';
+import 'package:huayati/services/push_notification_service.dart';
 import 'package:stacked_services/stacked_services.dart';
 import 'package:huayati/services/third_party/secure_storage_service.dart';
 import 'package:huayati/services/user_service.dart';
@@ -14,10 +15,10 @@ import 'package:oauth2/oauth2.dart' as oauth2;
 
 class AppInterceptor extends InterceptorsWrapper {
   final Dio _dio;
-  final SecureStorageService _secureStorageService =
-      locator<SecureStorageService>();
-  final NavigationService _navigationService = locator<NavigationService>();
-  final UserService _userService = locator<UserService>();
+  final _secureStorageService = locator<SecureStorageService>();
+  final _navigationService = locator<NavigationService>();
+  final _userService = locator<UserService>();
+  final _pushNotificationService = locator<PushNotificationService>();
 
   AppInterceptor(this._dio);
 
@@ -84,6 +85,7 @@ class AppInterceptor extends InterceptorsWrapper {
 
   Future<void> signOut() async {
     await _userService.clearUser();
+    await _pushNotificationService.unSubscribeFromDefaultTopic();
     await _navigationService.pushNamedAndRemoveUntil(Routes.signInView);
   }
 

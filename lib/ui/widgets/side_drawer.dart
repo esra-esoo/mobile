@@ -5,6 +5,7 @@ import 'package:huayati/app/app.locator.dart';
 import 'package:huayati/app/app.router.dart';
 import 'package:huayati/consts/styles.dart';
 import 'package:huayati/models/navigation_result.dart';
+import 'package:huayati/services/push_notification_service.dart';
 import 'package:huayati/services/shared_service.dart';
 import 'package:stacked_services/stacked_services.dart';
 import 'package:huayati/services/third_party/snackbar_service.dart';
@@ -202,6 +203,8 @@ class _SignOutButton extends StatelessWidget {
       child: InkWell(
         onTap: () async {
           await locator<UserService>().clearUser();
+          await locator<PushNotificationService>()
+              .unSubscribeFromDefaultTopic();
           locator<SharedService>().resetRefuseState();
           await locator<NavigationService>()
               .pushNamedAndRemoveUntil(Routes.signInView);
