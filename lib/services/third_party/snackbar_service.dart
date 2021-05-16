@@ -148,7 +148,7 @@ class SnackBarsService {
   void showNotificationSnackbar({
     required String title,
     required String message,
-    Duration duration = const Duration(seconds: 4),
+    Duration duration = const Duration(seconds: 6),
     Function? onTap,
     IconData? iconData,
   }) {
@@ -161,7 +161,7 @@ class SnackBarsService {
       duration: duration,
       isDismissible: true,
       icon: const Icon(Icons.notifications_active, color: Colors.white),
-      backgroundColor: kcolorPrimaryBlue,
+      backgroundColor: kcolorBluelight,
       animationDuration: const Duration(seconds: 1),
       padding: const EdgeInsets.all(20),
       snackPosition: SnackPosition.TOP,

@@ -87,7 +87,6 @@ class PushNotificationService {
 
   Future<void> _handleForgroundMessages(RemoteMessage message) async {
     print('handleForgroundMessages');
-    print(jsonEncode(message));
     if (message.notification?.title != null &&
         message.notification?.body != null) {
       _snackbarService.showNotificationSnackbar(
@@ -100,7 +99,6 @@ class PushNotificationService {
 
   Future<void> _handleBackgroundMessages(RemoteMessage message) async {
     print('handleBackgroundMessages');
-    print(jsonEncode(message));
     _updateAccountRefuseStateFromMessage(message);
   }
 
@@ -108,23 +106,28 @@ class PushNotificationService {
     RemoteMessage? initialMessage = await _fcm.getInitialMessage();
     if (initialMessage != null) {
       print('handleTerminatedBackgroundMessages');
-      print(jsonEncode(initialMessage));
       _updateAccountRefuseStateFromMessage(initialMessage);
     }
   }
 
   void _updateAccountRefuseStateFromMessage(RemoteMessage message) {
-    if (message.data['refuse_state'] != null) {
-      String? accountType = message.data['account_type'];
-      if (accountType == 'company') {
-        CompanyRefuseState? companyRefuseState =
-            CompanyRefuseState.fromJson(message.data['refuse_state']);
-        _sharedService.updateCompanyState(companyRefuseState);
-      } else if (accountType == 'indivisual') {
-        IndivisualRefuseState? indivisualRefuseState =
-            IndivisualRefuseState.fromJson(message.data['refuse_state']);
-        _sharedService.updateIndivisualState(indivisualRefuseState);
+    try {
+      if (message.data['refuse_state'] != null) {
+        String? accountType = message.data['account_type'];
+        var parsedJson = jsonDecode(message.data['refuse_state']);
+        if (parsedJson == null) return;
+        if (accountType == 'company') {
+          CompanyRefuseState? companyRefuseState =
+              CompanyRefuseState.fromJson(parsedJson);
+          _sharedService.updateCompanyState(companyRefuseState);
+        } else if (accountType == 'indivisual') {
+          IndivisualRefuseState? indivisualRefuseState =
+              IndivisualRefuseState.fromJson(parsedJson);
+          _sharedService.updateIndivisualState(indivisualRefuseState);
+        }
       }
+    } catch (e) {
+      print(e);
     }
   }
 }
