@@ -18,7 +18,6 @@ class AppInterceptor extends InterceptorsWrapper {
   final _secureStorageService = locator<SecureStorageService>();
   final _navigationService = locator<NavigationService>();
   final _userService = locator<UserService>();
-  final _pushNotificationService = locator<PushNotificationService>();
 
   AppInterceptor(this._dio);
 
@@ -85,7 +84,7 @@ class AppInterceptor extends InterceptorsWrapper {
 
   Future<void> signOut() async {
     await _userService.clearUser();
-    await _pushNotificationService.unSubscribeFromDefaultTopic();
+    locator<PushNotificationService>().unSubscribeFromDefaultTopic();
     await _navigationService.pushNamedAndRemoveUntil(Routes.signInView);
   }
 
